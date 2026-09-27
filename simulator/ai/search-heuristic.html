@@ -1000,7 +1000,13 @@
             path: {bg: '#f59e0b', border: '#b45309', font: 'white'},
         };
 
-        /** 간선 비용의 천장. 바닥은 1이다 → `rollCostsAndGoal`. */
+        /**
+         * 간선 비용의 천장. 바닥은 1이다 → `rollCostsAndGoal`.
+         * 6은 2026-09-08에 여러 천장을 측정해 고른 값이다. 이보다 낮으면 헛걸음을 못 만드는 판이
+         * 남고(`check -- sim heuristic-tree`가 잡는다), 높이면 헛걸음은 깊어지지만 f에서 h가
+         * 차지하는 몫이 줄어 h의 안내력을 판다. 바닥을 1보다 올리는 것도 같은 손해다.
+         * 더 극적으로 만들려면 천장이 아니라 `WANT_DETOUR`를 올린다.
+         */
         static MAX_EDGE_COST = 6;
         /** 길목 밖으로 이만큼은 내려갔다 와야 「곁가지를 파고들었다 되돌아오는」 장면이 된다. */
         static WANT_DETOUR = 2;

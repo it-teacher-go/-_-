@@ -37,7 +37,13 @@ npm run ci        # 검사 → 빌드 → 산출물 검사. CI가 하는 일과 
 | `**/docx/` | 배부 양식이 **빌드 때 생기는** 자리. 저장소에는 없습니다 |
 | [`subjects.json`](./subjects.json) | **어떤 과목이 있는지 정하는 유일한 곳** |
 | [`vite.config.js`](./vite.config.js) · `tools/` | 빌드 설정과 점검 스크립트(전부 Node) |
-| `tests/` | 검사. **Vitest 가 돕니다** — `npm run check`가 부릅니다 |
+| `tests/` | 검사. **Vitest 가 돕니다** — `npm run check`가 부릅니다. `fixtures/`는 일부러 틀리게 쓴 조각입니다 |
+| `simulator/` | 시뮬레이터. 여러 교과가 함께 쓰므로 루트에 둡니다. `ai/`는 인공지능기초가, `cs/`는 정보 · 프로그래밍이 주로 씁니다 |
+| `src/styles/<단위>.css` · `src/entries/<페이지>.js` | 단위별 스타일 진입점과 페이지별 라이브러리 진입점 |
+| `src/tailwind/<단위>.config.js` | 단위별 Tailwind 설정(`content`를 그 단위로 좁힙니다) |
+| `privacy/` | 개인정보 처리방침. 폴더에 `index.html`이라야 `…/privacy/` 주소로 열립니다 |
+| `public/` | 이름이 그대로여야 하는 파일. 저장소에 담지 않습니다 |
+| `.idea/runConfigurations/` | IntelliJ 실행 구성. 전부 `npm run`을 부릅니다 |
 
 **새 과목을 만들 때 [`subjects.json`](./subjects.json)에 등록하지 않으면
 빌드도 배포도 검사도 되지 않습니다.** 유일한 게이트입니다 — 빌드(Vite)와
