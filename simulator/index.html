@@ -25,8 +25,10 @@
            (인쇄, 화면 그대로 뽑는 PDF 내보내기)에서 통째로 사라지는데, 그때 색이 남아 있지
            않으면 흰 바탕에 흰 글자가 되어 머리말이 빈칸으로 나간다. */
         .hero-gradient {
-            background-color: #6366f1;
-            background-image: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            background-color: #7650c8;
+            background-image:
+                radial-gradient(ellipse 70% 90% at 50% 115%, rgba(255, 186, 150, 0.45) 0%, rgba(232, 128, 150, 0.22) 40%, transparent 72%),
+                linear-gradient(100deg, #3f52c2 0%, #7650c8 50%, #c0568f 100%);
         }
 
         /* 스크롤 시 특정 위치부터 상단 고정되는 네비게이션 */
@@ -247,7 +249,7 @@
         <span class="inline-block px-4 py-1.5 bg-white/20 rounded-full font-bold mb-3 md:mb-4 backdrop-blur-md shadow-sm">
             Learn Computing
         </span>
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-black mb-3 md:mb-4 leading-tight tracking-tight">
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-3 md:mb-4 leading-tight tracking-tight">
             Into the World of Computer Science
         </h1>
         <p class="text-base md:text-lg opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
