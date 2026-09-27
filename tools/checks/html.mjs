@@ -309,7 +309,7 @@ export const BANNED_WORDS = [
 const LIGHT_GRAD = /bg-gradient-to-\w+((?:\s+(?:from|via|to)-(?:[a-z]+-\d+|white))+)/g;
 const GRAD_STOP = /(?:from|via|to)-([a-z]+-\d+|white)/g;
 
-/** 소스만 보고 잡히는 금지 요소들. 전부 CLAUDE.md 의 규칙이다. */
+/** 소스만 보고 잡히는 금지 요소들. 전부 docs/강의노트-작성-규칙.md 의 규칙이다. */
 function bannedRules(src) {
     const bad = [];
     for (const m of src.matchAll(LIGHT_GRAD)) {
@@ -351,7 +351,7 @@ function bannedRules(src) {
 // ── 앞을 가리키지 않기 ───────────────────────────────────────────────────────
 // **강의노트는 낱개로 읽히고 순서도 바뀐다.** 그래서 뒤를 가리키는 글은
 // 「없는 다음 시간」이나 「다른 차시」를 가리키게 되는데, **어긋나도 아무도
-// 알려 주지 않는다.** 규칙은 CLAUDE.md 「차시 사이」에
+// 알려 주지 않는다.** 규칙은 docs/강의노트-작성-규칙.md 「차시 사이」에
 // 있고(2026-08-12 사용자 확정), 이 검사가 그 규칙을 지킨다.
 //
 // **규칙만 있고 검사가 없던 동안 34줄이 쌓였다** — 다섯 과목 모두에 있었다.
