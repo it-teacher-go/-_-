@@ -1,0 +1,10 @@
+ERROR   ✗ tests/fixtures/docs/cases/결정.md:13 D-002에 상태가 없다 — 「상태: 미결정 · 결정됨 · 대체됨 (→ D-번호) · 폐기」
+ERROR   ✗ tests/fixtures/docs/cases/결정.md:17 「대체됨」이 없는 번호 D-099를 가리킨다
+ERROR   ✗ tests/fixtures/docs/cases/결정.md:21 결정 기록 머리는 「### D-번호 · 제목」이다: ### 번호 없는 결정
+ERROR   ✗ tests/fixtures/docs/cases/결정.md:9 결정 번호 D-001이 겹친다(5행에도 있다) — 번호는 재사용하지 않는다
+ERROR   ✗ tests/fixtures/docs/cases/시험.md:15 「→ 규칙」이 가리키는 절이 없다: CLAUDE.md 「없는 절」
+ERROR   ✗ tests/fixtures/docs/cases/시험.md:16 「→ 규칙」이 없는 파일을 가리킨다: docs/없는-문서.md
+ERROR   ✗ tests/fixtures/docs/cases/시험.md:5 판례 머리는 「### YYYY-MM-DD · 제목」이다: ### 날짜 없는 판례
+ERROR   ✗ tests/fixtures/docs/cases/시험.md:9 판례가 가리키는 규칙이 없다 — 「→ 규칙: <경로> 「<절 이름>」」 줄을 단다
+ERROR   ✗ tests/fixtures/docs/시험-규칙.md:7 규칙 문서에 날짜 — 날짜가 붙는 글은 판례(docs/cases/)로 옮긴다: - **규칙 문서에 날짜를 적었다.** 2026-09-27에 정했다.
+ERROR   ✗ tests/fixtures/docs/시험-규칙.md:8 없는 파일을 가리키는 링크: 없는-파일.md

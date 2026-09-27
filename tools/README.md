@@ -31,6 +31,7 @@
 | `checks/verbs.mjs` | 동작의 이름이 한자어인가 |
 | `checks/terms.mjs` | 시뮬레이터의 말이 교과 용어인가(진입점의 `import` 를 따라간다) |
 | `checks/index-links.mjs` | 첫 화면과 강의노트가 서로를 놓치지 않았는가 |
+| `checks/docs.mjs` | 규칙 문서의 줄 수 상한 · 날짜 금지, 판례 · 결정 기록의 형식, 문서 안 상대 링크 |
 | `checks/form-sync.mjs` | 인공지능기초 실습 보고서의 문항 지시문 · 체크리스트가 배부 양식(`docx/make/make_ai_template.js`)과 화면판에서 같은가 |
 | `checks/privacy.mjs` | 개인정보 처리방침이 아직 참인가 |
 | `checks/sim-index.mjs` | `simulator/index.html`을 루트 `index.html`에서 굽고, 검사로 부르면 같은지만 본다 |

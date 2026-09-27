@@ -20,6 +20,7 @@ import {check as code} from '../tools/checks/code.mjs';
 import {check as hover} from '../tools/checks/hover.mjs';
 import {check as grid} from '../tools/checks/grid.mjs';
 import {check as formSync} from '../tools/checks/form-sync.mjs';
+import {check as docs} from '../tools/checks/docs.mjs';
 
 const F = 'tests/fixtures';
 const codeFiles = fs.readdirSync(path.join(ROOT, F, 'codefiles')).map((n) => `${F}/codefiles/${n}`);
@@ -38,6 +39,8 @@ const CASES = [
     ['grid', grid, [`${F}/grid.html`]],
     // 배부 양식과 화면판 보고서 — 문항 수 · 번호 · 지시문 · 체크리스트
     ['form-sync', formSync, [`${F}/form-sync.html`]],
+    // 문서 — 규칙 문서의 날짜 · 판례 머리와 가리키는 규칙 · 결정 번호와 상태 · 끊긴 링크
+    ['docs', docs, [`${F}/docs/시험-규칙.md`, `${F}/docs/cases/시험.md`, `${F}/docs/cases/결정.md`]],
     ['code', code, [...codeFiles, `${F}/highlight-none.html`, `${F}/highlight-lang.html`]],
 ];
 

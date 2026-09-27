@@ -80,6 +80,16 @@ const MUTANTS = [
     ['grid', 'src/styles/simulator.css', 'grid-template-rows: max-content minmax(0, 1fr);', 'grid-template-rows: auto minmax(0, 1fr);', '선형 비교 줄의 칸 줄 행을 auto 로 되돌림(옛 사파리0927)'],
     ['grid', 'src/entries/_lib/ds/ds-view-compare.js', "lanesBox.className = 'sim-lanes sim-lanes-stack';", "lanesBox.className = 'sim-lanes sim-lanes-stack'; lanesBox.style.gridTemplateRows = 'auto 1fr';", 'JS 인라인 스타일에 fr 옆 auto(옛 사파리0927)'],
     ['fixtures', 'tools/checks/grid.mjs', "|minmax\\(\\s*auto\\s*,|fit-content\\(/);", '/);', 'grid: minmax(auto, …) · fit-content 를 흘림(옛 사파리0927)'],
+    // 문서 구조(문서정리0927) — 규칙 문서 · 판례 · 결정 기록 · 링크
+    ['docs', 'CLAUDE.md', '## 검사\n', '## 검사\n' + '\n- 줄을 늘린다.'.repeat(20) + '\n', 'CLAUDE.md 줄 수가 상한을 넘음(문서정리0927)'],
+    ['docs', 'docs/시뮬레이터-규칙.md', '## 전체 화면\n', '## 전체 화면\n\n- 2026-09-27에 정했다.\n', '규칙 문서에 날짜(문서정리0927)'],
+    ['docs', 'docs/cases/오개념.md', '→ 규칙: docs/강의노트-작성-규칙.md 「오개념을 심지 않는 서술」', '→ 규칙: docs/강의노트-작성-규칙.md 「없는 절」', '판례가 없는 절을 가리킴(문서정리0927)'],
+    ['docs', 'docs/cases/저장소.md', '### 2026-08-11 · ', '### ', '판례 머리에 날짜가 없음(문서정리0927)'],
+    ['docs', 'docs/cases/결정.md', '상태: 폐기 (2026-08-27)', '', '결정 기록에 상태가 없음(문서정리0927)'],
+    ['docs', 'docs/cases/결정.md', '### D-002 · ', '### D-001 · ', '결정 번호가 겹침(문서정리0927)'],
+    ['docs', 'docs/수정-레시피.md', '](개발-환경.md)', '](없는-문서.md)', '문서 안의 끊긴 링크(문서정리0927)'],
+    ['fixtures', 'tools/checks/docs.mjs', 'if (kind === DECISIONS) checkDecisions(r, rp, text);', '', 'docs: 결정 기록을 보지 않음(문서정리0927)'],
+    ['fixtures', 'tools/checks/docs.mjs', 'const code = blankCode(text).split', 'const code = text.split', 'docs: 코드 속 날짜까지 규칙 문서 위반으로 봄(문서정리0927)'],
     ['fixtures', 'tools/checks/classes.mjs', "    /class=\\\\?\"[^\"'`]*['`]\\s*\\+[^\\n]*?\\+\\s*['`]([^'\"`<>]*)\"/g,", '', 'classes: 이어 붙인 class="… \' + x + \' 꼬리\" 를 보지 않음(감수0926)'],
     // 물러난 말 목록의 활용형 — 옛 정규식으로 되돌리면 selfTest 가 「다듬은」을 못 잡아 멈춘다
     ['fixtures', 'tools/checks/prose.mjs', "[H + '다듬(?!이)',", "[H + '다듬(?:[다고는어었을으지기]|습)',", 'prose: 「다듬다」가 「다듬은」을 흘림(감수0926)'],
