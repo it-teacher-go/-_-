@@ -20,3 +20,17 @@
     el.style.setProperty('grid-template-columns', '2fr auto');
     el.style.gridTemplateRows = `repeat(${n}, minmax(0, 1fr))`;
 </script>
+<style>
+    .stage { grid-template-columns: minmax(0, 1fr); }
+    @media (min-width: 64em) { .under { grid-template-columns: 2fr 1fr; } }
+    .both { grid-template: 1fr / 1fr; }
+    #heavy .run { grid-template-columns: 1fr 1fr; }
+</style>
+<!-- 걸린다 -->
+<div class="stage grid grid-cols-1 gap-4"></div>
+<div class="under grid lg:grid-cols-3"></div>
+<div class="both grid grid-rows-2"></div>
+<!-- 걸리지 않는다 — 무거운 선택자 · 다른 축 · 유틸리티 없음 -->
+<div class="run grid grid-cols-1"></div>
+<div class="stage grid grid-rows-2"></div>
+<div class="stage gap-4"></div>

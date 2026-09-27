@@ -109,9 +109,22 @@
         /* 「뉴런의 계산」·「가중치 갱신」 탭은 교실 화면에 띄워 놓고 조작한다.
            넓은 화면에서는 스크롤 없이 한 화면에 들어오도록 높이를 뷰포트에 묶는다.
            --sim-stage-h 는 스크립트가 상단 바와 탭바를 실측해 넣는다.
-           좁은 화면에서는 묶지 않는다 — 밀어 넣으면 숫자가 읽을 수 없게 작아진다. */
+           좁은 화면에서는 묶지 않는다 — 밀어 넣으면 숫자가 읽을 수 없게 작아진다.
+
+           **격자는 여기서만 정한다. 마크업에 `grid-cols-*` 를 붙이지 않는다.** 빌드한 페이지에서는
+           Tailwind 파일이 이 <style> 뒤에 붙어, 같은 무게의 `.grid-cols-1` 이 아래 두 칸 배치를
+           덮는다 — 그러면 조작 칸이 폭을 다 가져가 그림 칸이 0이 된다. */
         .sim-stage {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1rem;
             min-height: 520px;
+        }
+
+        .sim-under {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0.75rem;
         }
 
         /* 세로로 쌓았을 때만 키를 늘린다. **화면 폭이 아니라 «그림 칸의 폭»이 기준이다** —
@@ -311,7 +324,7 @@
 
         <div id="tab0" class="tab-content fs-stage active section-card !p-4 md:!p-6 bg-white border-slate-300">
 
-            <div class="sim-stage grid grid-cols-1 gap-4">
+            <div class="sim-stage">
 
                 <div class="gd-stage relative min-h-[320px] rounded-2xl border-2 border-slate-300 bg-white shadow-sm overflow-x-auto overflow-y-hidden sim-main">
                     <div class="absolute top-3 left-3 bg-blue-600 text-white px-3 py-1.5 rounded-md text-base font-bold shadow-sm z-10">
@@ -325,7 +338,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-3 min-h-0 sim-under">
+                <div class="min-h-0 sim-under">
                     <div class="bg-slate-900 text-slate-100 rounded-xl p-4 border border-slate-700 shadow-lg flex flex-col min-w-0 min-h-0">
                         <p class="text-blue-300 font-bold text-base mb-2 shrink-0">
                             <i class="fa-solid fa-square-root-variable mr-2"></i>지금 계산하는 식
@@ -572,7 +585,7 @@
 
             <!-- 아래 칸(수식)의 높이를 못박아 두어야 위 그림이 흔들리지 않는다.
                  단계마다 식의 줄 수가 달라지므로, 빈 줄을 채워 줄 수까지 고정한다. -->
-            <div class="sim-stage grid grid-cols-1 gap-4">
+            <div class="sim-stage">
 
                 <div class="net-stage relative min-h-[320px] rounded-2xl border-2 border-slate-300 bg-white shadow-sm overflow-x-auto overflow-y-hidden sim-main">
                     <div class="absolute top-3 left-3 bg-teal-600 text-white px-3 py-1.5 rounded-md text-base font-bold shadow-sm z-10">
@@ -586,7 +599,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-3 min-h-0 sim-under">
+                <div class="min-h-0 sim-under">
                     <div class="bg-slate-900 text-slate-100 rounded-xl p-4 border border-slate-700 shadow-lg flex flex-col min-w-0 min-h-0">
                         <p class="text-teal-300 font-bold text-base mb-2 shrink-0">
                             <i class="fa-solid fa-square-root-variable mr-2"></i>지금 계산하는 식
@@ -671,7 +684,7 @@
         <div id="tabBwd" class="tab-content fs-stage section-card !p-4 md:!p-6 bg-white border-slate-300">
 
             <!-- 순전파 탭과 같은 짜임이다. 아래 칸의 높이를 못박아 위 그림이 흔들리지 않게 한다. -->
-            <div class="sim-stage grid grid-cols-1 gap-4">
+            <div class="sim-stage">
 
                 <div class="net-stage relative min-h-[320px] rounded-2xl border-2 border-slate-300 bg-white shadow-sm overflow-x-auto overflow-y-hidden sim-main">
                     <div class="absolute top-3 left-3 bg-rose-600 text-white px-3 py-1.5 rounded-md text-base font-bold shadow-sm z-10">
@@ -685,7 +698,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-3 min-h-0 sim-under sim-under-3">
+                <div class="min-h-0 sim-under sim-under-3">
                     <div class="bg-slate-900 text-slate-100 rounded-xl p-4 border border-slate-700 shadow-lg flex flex-col min-w-0 min-h-0">
                         <p class="text-rose-300 font-bold text-base mb-2 shrink-0">
                             <i class="fa-solid fa-square-root-variable mr-2"></i>지금 계산하는 식

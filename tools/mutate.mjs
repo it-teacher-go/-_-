@@ -80,6 +80,8 @@ const MUTANTS = [
     ['grid', 'src/styles/simulator.css', 'grid-template-rows: max-content minmax(0, 1fr);', 'grid-template-rows: auto minmax(0, 1fr);', '선형 비교 줄의 칸 줄 행을 auto 로 되돌림(옛 사파리0927)'],
     ['grid', 'src/entries/_lib/ds/ds-view-compare.js', "lanesBox.className = 'sim-lanes sim-lanes-stack';", "lanesBox.className = 'sim-lanes sim-lanes-stack'; lanesBox.style.gridTemplateRows = 'auto 1fr';", 'JS 인라인 스타일에 fr 옆 auto(옛 사파리0927)'],
     ['fixtures', 'tools/checks/grid.mjs', "|minmax\\(\\s*auto\\s*,|fit-content\\(/);", '/);', 'grid: minmax(auto, …) · fit-content 를 흘림(옛 사파리0927)'],
+    ['grid', 'simulator/ai/deep-learning.html', '<div class="min-h-0 sim-under sim-under-3">', '<div class="grid grid-cols-1 gap-3 min-h-0 sim-under sim-under-3">', '딥러닝 무대에 grid-cols-1 을 도로 붙임(빌드 뒤 두 칸이 한 칸으로0927)'],
+    ['fixtures', 'tools/checks/grid.mjs', "const m = sel.trim().match(/^\\.([\\w-]+)$/);", "const m = sel.trim().match(/^\\.([\\w-]+)\\s/);", 'grid: 클래스 하나뿐인 선택자를 못 알아봄0927'],
     // 문서 구조(문서정리0927) — 규칙 문서 · 판례 · 결정 기록 · 링크
     ['docs', 'CLAUDE.md', '## 검사\n', '## 검사\n' + '\n- 줄을 늘린다.'.repeat(20) + '\n', 'CLAUDE.md 줄 수가 상한을 넘음(문서정리0927)'],
     ['docs', 'docs/시뮬레이터-규칙.md', '## 전체 화면\n', '## 전체 화면\n\n- 2026-09-27에 정했다.\n', '규칙 문서에 날짜(문서정리0927)'],

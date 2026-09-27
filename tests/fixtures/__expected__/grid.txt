@@ -4,7 +4,11 @@ ERROR tests/fixtures/grid.html:18 [fr 옆의 auto] gridTemplateRows: auto 1fr  �
 ERROR tests/fixtures/grid.html:19 [fr 옆의 auto] gridTemplateColumns: 1fr auto  ← auto
 ERROR tests/fixtures/grid.html:20 [fr 옆의 auto] grid-template-columns: 2fr auto  ← auto
 ERROR tests/fixtures/grid.html:3 [fr 옆의 auto] grid-template-rows: auto minmax(0, 1fr)  ← auto
+ERROR tests/fixtures/grid.html:30 [<style> 격자를 덮는 유틸리티] .stage + grid-cols-1
+ERROR tests/fixtures/grid.html:31 [<style> 격자를 덮는 유틸리티] .under + lg:grid-cols-3
+ERROR tests/fixtures/grid.html:32 [<style> 격자를 덮는 유틸리티] .both + grid-rows-2
 ERROR tests/fixtures/grid.html:4 [fr 옆의 auto] grid-template-columns: minmax(auto, 20rem) 1fr  ← minmax(auto,
 ERROR tests/fixtures/grid.html:5 [fr 옆의 auto] grid-template-rows: fit-content(10rem) 2fr  ← fit-content(
 ERROR tests/fixtures/grid.html:6 [fr 옆의 auto] grid-template: auto 1fr / 1fr  ← auto
+ERROR 빌드하면 Tailwind 가 페이지 <style> 뒤에 붙어 이긴다 — 마크업의 grid-cols-* · grid-rows-* 를 빼고 기본 트랙까지 <style> 에 적을 것
 ERROR 행은 max-content, 열은 minmax(min-content, max-content) 로 쓸 것 (까닭은 tools/checks/grid.mjs 머리 주석)

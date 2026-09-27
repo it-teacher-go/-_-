@@ -23,6 +23,18 @@
 // 자식이 둘이면 둘째는 `grid-auto-rows`(기본 `auto`) 행에 앉아 같은 꼴이 된다. 자식 수는
 // 화면 폭과 JS 에 달려 있어 정적으로 셀 수 없다 — `fr` 행을 둘 때는 자식 수만큼 행을 적는다.
 //
+// ── 둘째 규칙: 페이지 `<style>` 의 격자와 Tailwind `grid-cols-*` 를 한 요소에 함께 달지 않는다 ──
+//
+// **빌드한 페이지에서는 Tailwind 파일이 페이지 `<style>` 뒤에 붙는다.** `.sim-stage { grid-template-columns: … }`
+// 와 `.grid-cols-1` 은 무게가 같아(클래스 하나) 뒤에 온 Tailwind 가 이긴다. 개발 서버에서는 차례가
+// 달라 멀쩡해 보인다. 딥러닝의 두 칸 무대가 한 칸으로 덮여 조작 칸이 폭을 다 가져가고 그림 칸이
+// 0이 되었다(2026-09-27, 아이패드 가로).
+//
+// 걸리는 꼴 — `<style>` 에서 **클래스 하나뿐인 선택자**(`.x`, 미디어 쿼리 안이어도)가 격자 트랙을
+// 정하고, 같은 요소의 class 에 같은 축의 `grid-cols-*` · `grid-rows-*`(`lg:` 같은 접두사 포함)가 있다.
+// 선택자가 더 무거우면(`#id .x` · `.a .x`) 그쪽이 이기므로 보지 않는다.
+// 대신 쓸 것 — 마크업에서 `grid-cols-*` 를 빼고 기본 트랙까지 `<style>` 에 적는다.
+//
 // 사용:
 //     npm run check -- grid                  # 저장소 전체
 //     npm run check -- grid <파일>…          # 짚은 .html · .css · .js 만
@@ -76,6 +88,46 @@ function fromText(text) {
     return out;
 }
 
+/** `<style>` 에서 클래스 하나뿐인 선택자가 정하는 격자 축 — Map<클래스, Set<'cols'|'rows'>>. */
+function lightGridClasses(css) {
+    const out = new Map();
+    postcss.parse(css).walkRules((rule) => {
+        const axes = new Set();
+        rule.walkDecls((d) => {
+            if (d.prop === 'grid-template-columns') axes.add('cols');
+            else if (d.prop === 'grid-template-rows') axes.add('rows');
+            else if (PROPS.test(d.prop)) { axes.add('cols'); axes.add('rows'); }
+        });
+        if (!axes.size) return;
+        for (const sel of rule.selectors) {
+            const m = sel.trim().match(/^\.([\w-]+)$/);
+            if (!m) continue;
+            const had = out.get(m[1]) || new Set();
+            for (const a of axes) had.add(a);
+            out.set(m[1], had);
+        }
+    });
+    return out;
+}
+
+/** 한 요소에 가벼운 `<style>` 격자 클래스와 같은 축의 Tailwind 트랙 유틸리티가 함께 달린 곳. */
+function utilityOverStyle(rest, light) {
+    const out = [];
+    for (const m of rest.matchAll(/\bclass="([^"]*)"/g)) {
+        const cls = m[1].split(/\s+/).filter(Boolean);
+        for (const c of cls) {
+            const axes = light.get(c);
+            if (!axes) continue;
+            const utils = cls.filter((u) => {
+                const a = u.match(/^(?:[\w-]+:)*grid-(cols|rows)-/);
+                return a && axes.has(a[1]);
+            });
+            if (utils.length) out.push([m.index, c, utils.join(' ')]);
+        }
+    }
+    return out;
+}
+
 const styleBlocks = (text) =>
     [...text.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => [m[1], m.index + m[0].indexOf('>') + 1, m.index + m[0].length]);
 
@@ -90,6 +142,7 @@ export async function check(args = []) {
     if (!files.length) { r.error('검사할 파일이 없다'); return r; }
 
     let n = 0;
+    let m = 0;
     const report = (p, text, at, prop, value, bad) => {
         n++;
         r.error(`${rel(p)}:${lineOf(text, at)} [fr 옆의 auto] ${prop}: ${value}  ← ${bad}`);
@@ -102,16 +155,25 @@ export async function check(args = []) {
             continue;
         }
         let rest = text;
+        const light = new Map();
         if (p.endsWith('.html')) {
             // <style> 은 postcss 로 읽고(주석을 건너뛴다), 나머지 글에서는 그 자리를 비운다.
             for (const [css, base, end] of styleBlocks(text)) {
-                try { for (const [at, ...f] of fromCss(css)) report(p, text, base + at, ...f); }
+                try {
+                    for (const [at, ...f] of fromCss(css)) report(p, text, base + at, ...f);
+                    for (const [c, axes] of lightGridClasses(css)) light.set(c, new Set([...(light.get(c) || []), ...axes]));
+                }
                 catch (e) { r.error(`${rel(p)}:${lineOf(text, base)} CSS 를 읽지 못했다 — ${e.reason || e.message}`); }
                 rest = rest.slice(0, base) + ' '.repeat(end - base) + rest.slice(end);
             }
         }
         for (const f of fromText(rest)) report(p, text, ...f);
+        for (const [at, c, utils] of utilityOverStyle(rest, light)) {
+            m++;
+            r.error(`${rel(p)}:${lineOf(text, at)} [<style> 격자를 덮는 유틸리티] .${c} + ${utils}`);
+        }
     }
     if (n) r.error('행은 max-content, 열은 minmax(min-content, max-content) 로 쓸 것 (까닭은 tools/checks/grid.mjs 머리 주석)');
-    return r.done(`완료 — 파일 ${files.length}, 위반 ${n}`);
+    if (m) r.error('빌드하면 Tailwind 가 페이지 <style> 뒤에 붙어 이긴다 — 마크업의 grid-cols-* · grid-rows-* 를 빼고 기본 트랙까지 <style> 에 적을 것');
+    return r.done(`완료 — 파일 ${files.length}, 위반 ${n + m}`);
 }
