@@ -105,7 +105,7 @@ d3 · p5 · ml5 · chart · vis를 전부 받게 된다. 페이지마다 두면 
 `npm run check -- dist`가 지킨다.
 
 새 라이브러리를 넣을 때 밟기 쉬운 함정(npm 판 API 차이 · 최상위 `await` · 전역에 얹는 순서 · defer)은
-[사례집 「CDN에서 npm + Vite로」](../docs/강의노트-작성-사례집.md)에 있다.
+[저장소 판례](../docs/cases/저장소.md) 「CDN에서 npm + Vite로 — 밟은 함정」에 있다.
 
 **이름이 그대로여야 하는 파일만 `public/`에 둔다.** MathJax는 실행 중에 글꼴 이름을 조립해
 받아오므로 해시된 자산으로 바꾸면 못 찾는다. `public/`은 저장소에 담지 않고 빌드와 dev가
@@ -130,5 +130,5 @@ IntelliJ용 npm 실행 구성이 `.idea/runConfigurations/`에 있지만 편의�
 ## 규칙은 `CLAUDE.md`에 있다
 
 이 도구들은 규칙을 **기계적으로 확인해 주는 것**일 뿐이다.
-무엇을 지켜야 하는지는 [`CLAUDE.md`](../CLAUDE.md),
-왜 그런 규칙이 생겼는지는 [`docs/강의노트-작성-사례집.md`](../docs/강의노트-작성-사례집.md)에 있다.
+무엇을 지켜야 하는지는 [`CLAUDE.md`](../CLAUDE.md)와 거기서 가리키는 영역 규칙,
+왜 그런 규칙이 생겼는지는 [`docs/cases/`](../docs/cases/)에 있다.
