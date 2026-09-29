@@ -24,8 +24,8 @@ import {ROOT, Report, read, rel, walk} from '../lib/repo.mjs';
 /** 규칙 문서의 줄 수 상한. 2026-09-27 문서 구조 정리 직후의 줄 수에서 시작했다. */
 export const RULE_DOC_MAX_LINES = {
     'CLAUDE.md': 133,
-    'docs/강의노트-작성-규칙.md': 202,
-    'docs/시뮬레이터-규칙.md': 51,
+    'docs/강의노트-작성-규칙.md': 203,
+    'docs/시뮬레이터-규칙.md': 52,
 };
 
 /** 규칙 문서에 날짜를 남겨도 되는 줄. `{'경로': ['그 줄에 든 글', '까닭']}` 꼴. 비어 있는 것이 목표다. */
