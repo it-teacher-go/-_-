@@ -22,7 +22,7 @@
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
 새로 외울 문법은 하나도 없습니다.<br>
-            <strong>이미 아는 둘을 겹쳐 놓았을 뿐입니다.</strong>
+            <strong>이미 아는 선택 구조와 반복 구조를 중첩했을 뿐입니다.</strong>
         </p>
     </div>
 </header>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>반복 안에 반복을 넣었을 때 안쪽이 몇 번 도는지 셀 수 있다.</li>
-                    <li>안쪽 횟수가 바깥 값에 따라 달라지는 모양을 읽고 쓸 수 있다.</li>
-                    <li>반복 안에서 조건에 따라 나뉘는 코드를 쓸 수 있다.</li>
-                    <li>겹쳐 놓았을 때 반복을 빠져나가는 것이 어디까지인지 설명할 수 있다.</li>
+                    <li>반복 안에 반복을 중첩했을 때 안쪽 반복이 몇 번 실행되는지 계산할 수 있다.</li>
+                    <li>안쪽 반복 횟수가 바깥 반복 변수의 값에 따라 달라지는 코드를 읽고 쓸 수 있다.</li>
+                    <li>반복 안에서 조건에 따라 분기하는 코드를 쓸 수 있다.</li>
+                    <li>중첩된 반복에서 <code>break</code>가 어느 반복까지 빠져나가는지 설명할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <span class="font-black text-xl tracking-tight text-slate-800">중첩 제어 구조</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#nest" class="hover:text-orange-600 transition">겹친다는 것</a>
+            <a href="#nest" class="hover:text-orange-600 transition">중첩이란</a>
             <a href="#depend" class="hover:text-orange-600 transition">바깥에 따라 달라지기</a>
             <a href="#inside" class="hover:text-orange-600 transition">반복 안의 갈림길</a>
             <a href="#escape" class="hover:text-orange-600 transition">어디까지 빠져나가나</a>
@@ -70,10 +70,10 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 겹친다는 것 ===== -->
+    <!-- ===== 중첩이란 ===== -->
     <section id="nest" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">겹친다는 것</h2>
+            <h2 class="text-3xl font-black text-slate-900">중첩이란</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">시계의 분침과 초침을 떠올리면 그림이 그려집니다.</p>
         </div>
@@ -82,9 +82,10 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">새로 배울 문법이 없습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    이 차시에는 <strong>새 낱말이 하나도 나오지 않습니다.</strong>
-                    반복(<code>for</code>·<code>while</code>)과 갈림길(<code>if</code>)을 <strong>그대로 겹쳐 놓기만</strong> 합니다.
-                    어려운 것은 문법이 아니라 <strong>겹쳤을 때 어떤 순서로 도는지를 머릿속에 그리는 일</strong>입니다.
+                    이 차시에는 <strong>새로운 문법 요소가 하나도 나오지 않습니다.</strong>
+                    반복문(<code>for</code>·<code>while</code>)과 선택문(<code>if</code>)을 서로의 안에 넣기만 합니다.
+                    이렇게 제어 구조 안에 다른 제어 구조를 넣는 것을 중첩(nesting)이라고 합니다.
+                    어려운 것은 문법이 아니라 중첩했을 때 어떤 순서로 실행되는지를 머릿속에 그리는 일입니다.
                 </p>
             </div>
 
@@ -96,35 +97,35 @@
                     <strong>바깥 반복이 분침, 안쪽 반복이 초침</strong>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <strong>안쪽이 훨씬 자주 돕니다.</strong> 바깥이 3번, 안쪽이 4번이면
-                    안쪽 중괄호는 <strong>3 &times; 4 = 12번</strong> 지나갑니다.
+                    그래서 <strong>안쪽 반복이 훨씬 자주 실행됩니다.</strong> 바깥 반복이 3번, 안쪽 반복이 4번이면
+                    안쪽 중괄호 안의 문장은 3 &times; 4 = 12번 실행됩니다.
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/06.시계.c#본문"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                줄바꿈이 어느 자리에 있는지 눈여겨보세요. <code>printf("\n")</code>이
-                안쪽 중괄호 <strong>밖</strong>에 있습니다. 그래서 안쪽이 네 번을 다 돈 뒤에야
-                한 번 실행되어 한 줄이 끝납니다. 이것을 안쪽에 넣으면 초마다 줄이 바뀝니다.
+                줄바꿈을 출력하는 위치를 눈여겨보세요. <code>printf("\n")</code>이
+                안쪽 중괄호 <strong>밖</strong>에 있습니다. 그래서 안쪽 반복이 네 번 모두 실행된 뒤에야
+                한 번 실행되어 한 줄이 끝납니다. 이 문장을 안쪽 중괄호 안에 넣으면 초마다 줄이 바뀝니다.
             </p>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>세는 변수의 이름을 다르게 둡니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>횟수를 세는 변수의 이름을 서로 다르게 짓습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    바깥과 안쪽이 같은 변수 하나로 세면 서로의 값을 흔들어 놓습니다.
-                    습관처럼 <code>i</code>와 <code>j</code>를 쓰기도 하지만,
-                    <strong><code>min</code>과 <code>sec</code>처럼 무엇을 세는지 드러나는 이름</strong>이
-                    겹칠수록 더 도움이 됩니다. 겹치면 헷갈리는 것이 늘어나니까요.
+                    바깥 반복과 안쪽 반복이 같은 변수 하나로 횟수를 세면 서로의 값을 바꿔 놓아 반복 횟수가 어긋납니다.
+                    관례대로 <code>i</code>와 <code>j</code>를 쓰기도 하지만,
+                    <strong><code>min</code>과 <code>sec</code>처럼 무엇을 세는지 드러나는 이름</strong>은
+                    중첩이 깊어질수록 더 도움이 됩니다.
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/06.구구단.c#본문"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                구구단은 겹친 반복의 대표입니다. <strong>바깥이 「몇 단」, 안쪽이 「몇 곱하기」</strong>입니다.
-                <code>--- %d단 ---</code>을 찍는 줄이 바깥 중괄호 안, 안쪽 반복 앞에 있어서
-                단이 바뀔 때마다 한 번씩 나옵니다.
+                구구단은 중첩 반복의 대표적인 예입니다. <strong>바깥 반복이 「몇 단」을, 안쪽 반복이 「몇을 곱하는지」를</strong> 정합니다.
+                <code>--- %d단 ---</code>을 출력하는 문장이 바깥 중괄호 안, 안쪽 반복 앞에 있어서
+                단이 바뀔 때마다 한 번씩 출력됩니다.
             </p>
         </div>
 
@@ -134,18 +135,18 @@
         </div>
     </section>
 
-    <!-- ===== 안쪽 횟수가 바깥에 따라 달라질 때 ===== -->
+    <!-- ===== 안쪽 반복 횟수가 바깥에 따라 달라질 때 ===== -->
     <section id="depend" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">안쪽 횟수가 바깥에 따라 달라질 때</h2>
+            <h2 class="text-3xl font-black text-slate-900">안쪽 반복 횟수가 바깥에 따라 달라질 때</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">여기서부터 겹치기가 재미있어집니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">여기서부터 중첩 반복이 재미있어집니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                지금까지는 안쪽이 늘 같은 횟수를 돌았습니다.
-                그런데 안쪽 조건에 <strong>바깥 변수를 써 넣으면</strong>, 바퀴마다 안쪽 횟수가 달라집니다.
+                지금까지는 안쪽 반복이 늘 같은 횟수만큼 실행되었습니다.
+                그런데 안쪽 조건식에 <strong>바깥 반복의 변수를 쓰면</strong>, 바깥 반복이 한 번 실행될 때마다 안쪽 반복 횟수가 달라집니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/06.별.c#본문"></code></pre>
@@ -158,7 +159,7 @@
                         <tr>
                             <th class="w-28">바깥 <code>line</code></th>
                             <th class="w-44">안쪽 조건</th>
-                            <th>찍히는 것</th>
+                            <th>출력되는 것</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -186,29 +187,29 @@
                     </table>
                 </div>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    안쪽 조건에 <strong>고정된 수가 아니라 <code>line</code>이 들어가 있어서</strong>
-                    바깥이 한 바퀴 돌 때마다 안쪽이 한 번씩 더 돕니다. 그래서 삼각형이 됩니다.
+                    안쪽 조건식에 <strong>고정된 수가 아니라 <code>line</code>이 들어가 있어서</strong>
+                    바깥 반복이 한 번 실행될 때마다 안쪽 반복이 한 번씩 더 실행됩니다. 그래서 삼각형 모양이 됩니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <strong>모양을 바꾸고 싶으면 안쪽 조건을 수정합니다.</strong>
+                <strong>모양을 바꾸고 싶으면 안쪽 조건식을 수정합니다.</strong>
                 <code>star &lt;= 5 - line</code>으로 바꾸면 거꾸로 된 삼각형이 되고,
-                안쪽 반복을 하나 더 붙여 별 앞에 빈칸을 찍으면 오른쪽에 붙은 삼각형이 됩니다.
+                안쪽 반복을 하나 더 추가해 별 앞에 공백을 출력하면 오른쪽으로 정렬된 삼각형이 됩니다.
                 조건 하나만 바꾸어도 그림이 달라집니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/06.전체.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>%2d</code>는 <strong>두 칸을 잡고 오른쪽에 붙이라</strong>는 뜻입니다.
+                <code>%2d</code>는 <strong>출력 폭을 2로 잡고 수를 오른쪽에 맞춰 출력하라</strong>는 뜻입니다.
                 한 자리 수와 두 자리 수가 섞여도 열이 맞아 표처럼 읽힙니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">별을 오른쪽으로 정렬한 삼각형으로 만들려면 무엇을 먼저 찍어야 할까요? 반복이 몇 개 필요할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">별을 오른쪽으로 정렬한 삼각형으로 만들려면 무엇을 먼저 출력해야 할까요? 반복이 몇 개 필요할까요?</p>
         </div>
     </section>
 
@@ -217,33 +218,33 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">반복 안의 갈림길</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">반복끼리만 겹치는 것이 아닙니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">반복끼리만 중첩하는 것이 아닙니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                
-                <strong>반복 안에 갈림길</strong>을 두면 「여럿을 하나씩 보면서 조건에 맞는 것만 고르는」 일이 됩니다.
-                이것이 실제 프로그램에서 아주 자주 나오는 모양입니다.
+
+                <strong>반복 안에 갈림길</strong>을 두면 「여러 값을 하나씩 검사하면서 조건에 맞는 것만 골라내는」 일을 할 수 있습니다.
+                실제 프로그램에서 아주 자주 쓰는 구조입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/06.반복속선택.c#본문"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">세 가지가 한자리에 모였습니다</p>
+                <p class="font-black text-lg text-orange-900">세 가지가 한곳에 모였습니다</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
-                    <li><strong>반복</strong>이 1부터 20까지 하나씩 살핀다.</li>
+                    <li><strong>반복</strong>이 1부터 20까지의 수를 차례로 만든다.</li>
                     <li><strong>갈림길</strong>이 3의 배수인지 판단한다 &mdash; 나머지 연산자를 쓴다.</li>
-                    <li><strong>쌓아 두는 변수</strong>가 몇 개였는지 세어 둔다 &mdash; 반복 밖에서 만든다.</li>
+                    <li><strong>누적할 변수</strong>가 3의 배수의 개수를 센다 &mdash; 반복 밖에서 초기화한다.</li>
                 </ul>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    반복 · 갈림길 · 쌓아 두는 변수가 <strong>한 덩어리로 붙는 모양</strong>입니다.
+                    반복 · 갈림길 · 누적할 변수가 <strong>한 덩어리로 함께 쓰이는 구조</strong>입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>count</code>를 반복 밖에 둔 까닭은 값을 쌓는 변수는 반복 밖에서 한 번만 만들어야 하기 때문입니다.
-                안에 두면 바퀴마다 0으로 되돌아가 1보다 커지지 못합니다.
+                <code>count</code>를 반복 밖에서 초기화한 이유는 누적할 변수는 반복 밖에서 한 번만 초기화해야 하기 때문입니다.
+                안에서 초기화하면 반복할 때마다 0으로 되돌아가 1보다 커지지 못합니다.
             </p>
         </div>
 
@@ -258,45 +259,45 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">어디까지 빠져나가나</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">겹쳐 놓았을 때만 생기는 오해가 하나 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">반복을 중첩했을 때만 생기는 오해가 하나 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <pre class="language-c"><code class="language-c" data-src="code/06.break범위.c#본문"></code></pre>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>break</code>는 「자기가 든 반복 하나」만 빠져나옵니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>break</code>는 「자신을 감싼 가장 가까운 반복 하나」만 빠져나옵니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    안쪽에서 <code>break</code>를 만나면 <strong>안쪽 반복만</strong> 끝납니다.
-                    바깥은 아무 일 없었다는 듯 다음 바퀴를 시작하고, 안쪽 반복도 <strong>처음부터 다시</strong> 돕니다.
-                    그래서 위 코드는 <code>b=1</code>만 세 번 찍고 끝납니다.
+                    안쪽 반복에서 <code>break</code>를 만나면 <strong>안쪽 반복만</strong> 끝납니다.
+                    바깥 반복은 아무 일 없었다는 듯 다음 반복을 시작하고, 안쪽 반복도 처음부터 다시 실행됩니다.
+                    그래서 위 코드는 <code>b=1</code>인 줄만 세 번 출력하고 끝납니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    「<code>break</code>를 걸었는데 왜 계속 돌지?」는 여기서 나옵니다.
-                    <strong>둘 다 끝내고 싶다면 <code>break</code> 하나로는 안 됩니다.</strong>
-                    바깥 조건에도 끝낼 신호를 주거나, 바깥에서 한 번 더 <code>break</code>를 걸어야 합니다.
+                    「<code>break</code>를 썼는데 왜 반복이 계속되지?」라는 의문은 여기서 생깁니다.
+                    <strong>두 반복을 모두 끝내고 싶다면 <code>break</code> 하나로는 안 됩니다.</strong>
+                    바깥 반복의 조건에도 끝낼 신호를 주거나, 바깥 반복에서 한 번 더 <code>break</code>를 써야 합니다.
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">겹칠수록 들여쓰기가 유일한 지도입니다</p>
+                <p class="font-black text-lg text-slate-900">중첩할수록 들여쓰기가 코드를 읽는 지도가 됩니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    C는 들여쓰기를 보지 않지만 <strong>사람은 들여쓰기로 읽습니다.</strong>
-                    겹쳐 놓으면 중괄호가 여럿 겹쳐 닫히는데, 들여쓰기가 흐트러지면
-                    <strong>어느 닫는 괄호가 어느 것과 짝인지</strong> 알 수 없게 됩니다.
-                    한 겹 들어갈 때마다 <strong>네 칸씩</strong> 밀어 두면 눈으로 짝이 보입니다.
+                    C 컴파일러는 들여쓰기를 무시하지만 <strong>사람은 들여쓰기로 코드를 읽습니다.</strong>
+                    중첩하면 닫는 중괄호가 여러 개 이어지는데, 들여쓰기가 흐트러지면
+                    어느 닫는 중괄호가 어느 여는 중괄호와 쌍을 이루는지 알기 어렵습니다.
+                    한 단계 들어갈 때마다 공백 네 개씩 들여 쓰면 쌍이 눈에 잘 보입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    반복은 <strong>두 겹 정도까지</strong>가 읽기 편합니다. 그보다 깊이 겹치면
-                    도는 그림을 머릿속에 그리기가 훨씬 어려워집니다. 그럴 때는 겹치기를 늘리기보다
-                    <strong>일을 나누어 따로 다루는 편</strong>이 낫습니다.
+                    반복은 <strong>두 단계 정도까지</strong> 중첩해야 읽기 편합니다. 그보다 깊이 중첩하면
+                    실행 순서를 머릿속에 그리기가 훨씬 어려워집니다. 그럴 때는 중첩을 늘리기보다
+                    일을 나누어 따로 처리하는 편이 낫습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">바깥과 안쪽을 한꺼번에 끝내려면 어떤 방법이 있을까요? 바깥 반복의 조건과 <code>break</code>를 함께 떠올려 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed">바깥 반복과 안쪽 반복을 한꺼번에 끝내려면 어떤 방법이 있을까요? 바깥 반복의 조건과 <code>break</code>를 함께 떠올려 보세요.</p>
         </div>
     </section>
 
@@ -311,29 +312,29 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">분침과 초침</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    안쪽이 한 바퀴를 다 돌아야 바깥이 한 바퀴 돈다.
-                    바깥 <em>m</em>번, 안쪽 <em>n</em>번이면 안쪽 중괄호는 <strong><em>m</em> &times; <em>n</em>번</strong> 지나간다.
+                    안쪽 반복이 모두 끝나야 바깥 반복이 한 번 끝난다.
+                    바깥 <em>m</em>번, 안쪽 <em>n</em>번이면 안쪽 중괄호 안의 문장은 <strong><em>m</em> &times; <em>n</em>번</strong> 실행된다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">줄바꿈의 자리</h3>
+                <h3 class="text-xl font-black text-slate-900">줄바꿈의 위치</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    안쪽 중괄호 밖에 두면 안쪽이 다 끝난 뒤 한 번,
-                    안에 두면 바퀴마다 한 번이다. 자리가 결과를 정한다.
+                    안쪽 중괄호 밖에 두면 안쪽 반복이 다 끝난 뒤 한 번,
+                    안에 두면 안쪽 반복마다 한 번 실행된다. 위치가 결과를 정한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">바깥 값을 안쪽 조건에</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    안쪽 조건에 바깥 변수를 쓰면 <strong>바퀴마다 안쪽 횟수가 달라진다.</strong>
+                    안쪽 조건식에 바깥 반복의 변수를 쓰면 <strong>바깥 반복마다 안쪽 반복 횟수가 달라진다.</strong>
                     삼각형 모양이 여기서 나온다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>break</code>의 범위</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>자기가 든 반복 하나만</strong> 빠져나온다. 바깥은 계속 돈다.
-                    둘 다 끝내려면 <code>break</code> 하나로는 모자라다.
+                    <strong>자신을 감싼 가장 가까운 반복 하나만</strong> 빠져나온다. 바깥 반복은 계속된다.
+                    둘 다 끝내려면 <code>break</code> 하나로는 부족하다.
                 </p>
             </div>
         </div>
@@ -348,18 +349,18 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. 바깥이 5번, 안쪽이 3번 도는 겹친 반복에서 안쪽 중괄호는 몇 번 지나가는가?</p>
+            <p class="font-black text-lg text-slate-900">1. 바깥 반복이 5번, 안쪽 반복이 3번 실행되는 중첩 반복에서 안쪽 중괄호 안의 문장은 몇 번 실행되는가?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '더하는 것이 아닙니다. 바깥 한 바퀴마다 안쪽이 통째로 한 번씩 돕니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '더하는 것이 아닙니다. 바깥 반복이 한 번 실행될 때마다 안쪽 반복이 처음부터 끝까지 실행됩니다.')">
                     ① 8번
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '바깥 한 바퀴마다 안쪽이 3번씩 돌아 5 × 3 = 15번입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '바깥 반복이 한 번 실행될 때마다 안쪽 반복이 3번씩 실행되어 5 × 3 = 15번입니다.')">
                     ② 15번
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '안쪽은 바깥 바퀴마다 처음부터 다시 돕니다. 3번으로 끝나지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '안쪽 반복은 바깥 반복마다 처음부터 다시 실행됩니다. 3번으로 끝나지 않습니다.')">
                     ③ 3번
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '바깥이 5번 도는 동안 안쪽은 매번 새로 돕니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '바깥 반복이 5번 실행되는 동안 안쪽 반복은 매번 처음부터 다시 실행됩니다.')">
                     ④ 5번
                 </button>
             </div>
@@ -368,17 +369,17 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. 안쪽 반복 안에서 <code>break</code>를 만나면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '바깥까지 끝나지 않습니다. break는 자기가 든 반복 하나만 빠져나옵니다.')">
-                    ① 바깥까지 한꺼번에 끝난다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '바깥 반복까지 끝나지 않습니다. break는 자신을 감싼 가장 가까운 반복 하나만 빠져나옵니다.')">
+                    ① 바깥 반복까지 한꺼번에 끝난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '자기가 든 반복 하나만 빠져나옵니다. 바깥은 다음 바퀴를 이어 갑니다.')">
-                    ② 안쪽만 끝나고 바깥은 다음 바퀴를 이어 간다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'break는 자신을 감싼 가장 가까운 반복 하나만 빠져나옵니다. 바깥 반복은 다음 반복을 이어 갑니다.')">
+                    ② 안쪽 반복만 끝나고 바깥 반복은 계속된다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '그것은 continue가 하는 일입니다.')">
-                    ③ 이번 바퀴만 건너뛴다
+                    ③ 이번 반복만 건너뛴다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '겹친 반복 안에서도 break는 쓸 수 있습니다.')">
-                    ④ 겹친 반복 안에서는 쓸 수 없다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '중첩된 반복 안에서도 break를 쓸 수 있습니다.')">
+                    ④ 중첩된 반복 안에서는 쓸 수 없다
                 </button>
             </div>
         </div>
@@ -386,17 +387,17 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 별 삼각형에서 줄마다 별 개수가 늘어나게 만든 것은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '안쪽 조건에 바깥 변수가 들어가 있어 바퀴마다 안쪽 횟수가 달라집니다.')">
-                    ① 안쪽 조건에 바깥 변수를 써 넣은 것
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '안쪽 조건식에 바깥 반복의 변수가 들어가 있어 바깥 반복마다 안쪽 반복 횟수가 달라집니다.')">
+                    ① 안쪽 조건식에 바깥 반복의 변수를 쓴 것
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '줄바꿈 자리는 줄이 언제 끝나는지를 정할 뿐 개수를 바꾸지 않습니다.')">
-                    ② 줄바꿈을 안쪽 밖에 둔 것
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '줄바꿈의 위치는 줄이 언제 끝나는지를 정할 뿐 별의 개수를 바꾸지 않습니다.')">
+                    ② 줄바꿈을 안쪽 반복 밖에 둔 것
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '이름은 사람이 읽기 위한 것이라 동작을 바꾸지 않습니다.')">
-                    ③ 세는 변수의 이름을 다르게 둔 것
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '변수 이름은 사람이 읽기 위한 것이라 동작을 바꾸지 않습니다.')">
+                    ③ 횟수를 세는 변수의 이름을 서로 다르게 지은 것
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '들여쓰기는 C가 보지 않습니다.')">
-                    ④ 들여쓰기를 네 칸씩 준 것
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'C는 들여쓰기를 무시합니다.')">
+                    ④ 들여쓰기를 공백 네 개씩 한 것
                 </button>
             </div>
         </div>

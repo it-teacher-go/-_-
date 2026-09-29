@@ -21,8 +21,8 @@
             반복 구조
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-같은 줄을 백 번 적을 수는 없습니다.<br>
-            <strong>몇 번 돌지 세어 줄 것을 붙입니다.</strong>
+같은 줄을 백 번 쓸 수는 없습니다.<br>
+            <strong>한 번만 쓰고, 몇 번 반복할지를 따로 정합니다.</strong>
         </p>
     </div>
 </header>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>같은 일을 반복하는 구조가 왜 필요한지 설명하고, 반복에 필요한 것을 시작·조건·변화 셋으로 나누어 볼 수 있다.</li>
-                    <li>세 가지 가운데 변화를 빠뜨리면 왜 멈추지 않는지 설명할 수 있다.</li>
-                    <li>같은 반복을 두 가지 모양으로 쓸 수 있고, 어느 쪽이 어울리는 경우인지 판단할 수 있다.</li>
-                    <li>값을 쌓아 나가는 변수를 알맞은 자리에 두고, 반복을 끝내거나 건너뛸 수 있다.</li>
+                    <li>같은 일을 반복하는 구조가 왜 필요한지 설명하고, 반복에 필요한 요소를 시작·조건·변화로 나누어 설명할 수 있다.</li>
+                    <li>변화를 빠뜨리면 반복이 왜 멈추지 않는지 설명할 수 있다.</li>
+                    <li>같은 반복을 <code>while</code>문과 <code>for</code>문으로 각각 쓸 수 있고, 상황에 알맞은 반복문을 고를 수 있다.</li>
+                    <li>값을 누적하는 변수를 알맞은 위치에서 초기화하고, <code>break</code>와 <code>continue</code>로 반복을 끝내거나 건너뛸 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -59,8 +59,8 @@
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
             <a href="#why" class="hover:text-orange-600 transition">왜 필요한가</a>
             <a href="#three" class="hover:text-orange-600 transition">세 가지</a>
-            <a href="#for" class="hover:text-orange-600 transition">한 줄로 모으기</a>
-            <a href="#accum" class="hover:text-orange-600 transition">쌓아 나가기</a>
+            <a href="#for" class="hover:text-orange-600 transition">for문</a>
+            <a href="#accum" class="hover:text-orange-600 transition">누적</a>
             <a href="#jump" class="hover:text-orange-600 transition">끝내기와 건너뛰기</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
@@ -76,28 +76,28 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">같은 일을 여러 번</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">손으로 적을 수 있는 횟수에는 한계가 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">코드에 한 줄씩 직접 쓸 수 있는 횟수에는 한계가 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                「안녕하세요」를 다섯 번 찍으려면 이렇게 하면 됩니다.
+                「안녕하세요」를 다섯 번 출력하려면 이렇게 하면 됩니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/05.손으로.c#본문"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                다섯 번은 견딜 만합니다. 그런데 백 번이면 백 줄이고,
+                다섯 번은 괜찮습니다. 그런데 백 번이면 백 줄을 써야 하고,
                 「안녕하세요」를 「반갑습니다」로 바꾸려면 백 줄을 다 고쳐야 합니다.
-                무엇보다 <strong>횟수를 사용자가 정하면 손으로는 아예 적을 수 없습니다</strong> &mdash;
-                코드를 적는 시점에는 그 수를 모르니까요.
+                무엇보다 <strong>횟수를 사용자가 정하면 이런 방식으로는 아예 쓸 수 없습니다.</strong>
+                코드를 작성하는 시점에는 그 횟수를 모르기 때문입니다.
             </p>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">반복 구조</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>같은 줄을 여러 번 적는 대신, 한 번만 적고 「몇 번 돌지」를 따로 정해 주는</strong> 방식입니다.
-                    줄 수가 횟수와 상관없어지므로, 백 번이든 백만 번이든 코드 길이가 같습니다.
+                    <strong>같은 줄을 여러 번 쓰는 대신, 한 번만 쓰고 「몇 번 반복할지」를 따로 정하는</strong> 방식입니다.
+                    코드의 줄 수가 반복 횟수와 상관없어지므로 백 번이든 백만 번이든 코드 길이가 같습니다.
                 </p>
             </div>
 
@@ -105,15 +105,15 @@
                 <p class="font-black text-lg text-slate-900">트랙을 도는 것으로 생각합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     운동장 트랙을 떠올리면 편합니다. 달리는 사람은 <strong>같은 트랙을 계속 돕니다.</strong>
-                    코드도 마찬가지로 <strong>중괄호 안이라는 같은 자리</strong>를 계속 지나갑니다.
-                    한 바퀴를 <strong>「반복 한 번」</strong>이라고 부르겠습니다.
+                    코드도 마찬가지로 <strong>중괄호 안의 같은 문장들</strong>을 반복해서 실행합니다.
+                    트랙 한 바퀴가 <strong>「반복 한 번」</strong>에 해당합니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">「안녕하세요」를 사용자가 말한 횟수만큼 찍으려면, 반복보다 먼저 무엇이 필요할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">「안녕하세요」를 사용자가 입력한 횟수만큼 출력하려면, 반복보다 먼저 무엇이 필요할까요?</p>
         </div>
     </section>
 
@@ -122,14 +122,14 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">반복에 필요한 세 가지</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">셋 가운데 하나만 빠져도 반복이 뜻대로 돌지 않습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">셋 가운데 하나만 빠져도 반복이 의도한 대로 실행되지 않습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                달리기로 치면 이렇습니다. 어디서 출발하는가,
-                언제까지 도는가, 한 바퀴 돌 때마다 무엇이 달라지는가.
-                셋이 다 있어야 뜻한 만큼 돌고 끝납니다.
+                반복에는 세 가지가 필요합니다. 어떤 값에서 시작하는가,
+                언제까지 반복하는가, 반복할 때마다 무엇이 달라지는가.
+                셋이 모두 있어야 의도한 횟수만큼 반복하고 끝납니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/05.while.c#본문"></code></pre>
@@ -138,7 +138,7 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-28">무엇</th>
+                        <th class="w-28">요소</th>
                         <th class="w-44">위 코드에서</th>
                         <th>빠뜨리면</th>
                     </tr>
@@ -164,21 +164,21 @@
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>while</code>은 <strong>「조건이 참인 동안 계속」</strong>이라는 뜻입니다.
-                한 바퀴가 끝날 때마다 조건을 다시 봅니다. 거짓이 되는 순간 중괄호를 빠져나옵니다.
+                <code>while</code>문은 <strong>「조건이 참인 동안 반복하라」</strong>는 뜻입니다.
+                반복을 시작하기 전과 반복을 한 번 마칠 때마다 조건을 검사하고, 조건이 거짓이면 반복을 끝내고 중괄호 다음 문장으로 넘어갑니다.
             </p>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>변화를 빠뜨리면 영원히 돕니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>변화를 빠뜨리면 반복이 끝나지 않습니다</p>
                 <pre class="language-c"><code class="language-c" data-src="code/05.무한루프.c#본문"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>i</code>가 영원히 1이므로 <code>i &lt;= 5</code>도 영원히 참입니다.
-                    <strong>출발선에 선 채로 「아직 안 왔네」를 무한히 반복하는 셈</strong>입니다.
-                    화면에 1이 끝없이 쏟아지고, <strong>Ctrl+C로 끊어야</strong> 멈춥니다.
+                    <code>i</code>가 계속 1이므로 <code>i &lt;= 5</code>도 계속 참입니다.
+                    이렇게 끝나지 않는 반복을 <strong>무한 루프(infinite loop)</strong>라고 합니다.
+                    화면에 1이 끝없이 출력되고, Ctrl+C를 눌러 강제로 종료해야 멈춥니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    처음 배울 때 거의 모두 한 번은 겪습니다. <strong>고장이 아니라 시킨 대로 한 것</strong>이니
-                    당황하지 말고 <strong>③ 변화가 있는지부터</strong> 보세요.
+                    처음 배울 때 누구나 한 번쯤 겪습니다. 프로그램이 고장 난 것이 아니라 코드에 쓴 대로 실행된 결과이니,
+                    당황하지 말고 <strong>③ 변화가 있는지부터</strong> 확인하세요.
                 </p>
             </div>
         </div>
@@ -189,80 +189,80 @@
         </div>
     </section>
 
-    <!-- ===== 세 가지를 한 줄로 모으기 ===== -->
+    <!-- ===== 세 가지를 한 줄에 모은 for문 ===== -->
     <section id="for" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">세 가지를 한 줄로 모으기</h2>
+            <h2 class="text-3xl font-black text-slate-900">세 가지를 한 줄에 모은 for문</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">흩어 두면 잊습니다. 그래서 모아 적는 방법이 따로 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">흩어져 있으면 빠뜨리기 쉽습니다. 그래서 한곳에 모아 쓰는 반복문이 따로 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                방금 본 <code>while</code>에서 세 가지는 서로 다른 세 자리에 흩어져 있었습니다.
-                ①은 반복 앞, ②는 괄호 안, ③은 중괄호 맨 끝. 그래서 <strong>③을 빠뜨리기 쉽습니다.</strong>
-                셋을 한 줄에 모아 적는 것이 <code>for</code>입니다.
+                방금 본 <code>while</code>문에서 세 가지는 서로 다른 세 곳에 흩어져 있었습니다.
+                ①은 반복문 앞, ②는 <code>while</code> 뒤 괄호 안, ③은 중괄호 안 맨 끝에 있습니다. 그래서 <strong>③을 빠뜨리기 쉽습니다.</strong>
+                셋을 한 줄에 모아 쓰는 반복문이 <code>for</code>문입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/05.for.c#본문"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">도는 순서는 <code>while</code>과 똑같습니다</p>
+                <p class="font-black text-lg text-orange-900">실행 순서는 <code>while</code>문과 같습니다</p>
                 <ol class="space-y-1 text-base text-slate-700 list-decimal list-outside pl-5">
                     <li>① 시작을 <strong>딱 한 번</strong> 실행한다.</li>
-                    <li>② 조건을 본다. 거짓이면 여기서 끝.</li>
-                    <li>중괄호 안을 실행한다.</li>
+                    <li>② 조건을 검사한다. 거짓이면 반복을 끝낸다.</li>
+                    <li>중괄호 안의 문장을 실행한다.</li>
                     <li>③ 변화를 실행하고 <strong>2번으로 돌아간다.</strong></li>
                 </ol>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>③은 중괄호 안이 끝난 「뒤」에 실행됩니다.</strong> 적혀 있는 자리는 맨 위인데
-                    실제로 도는 자리는 맨 아래라는 점만 조심하면 됩니다.
+                    <strong>③은 중괄호 안의 문장을 모두 실행한 「뒤」에 실행됩니다.</strong> 코드에서는 맨 위에 쓰지만
+                    실행되는 시점은 중괄호 안의 문장이 끝난 뒤라는 점에 주의합니다.
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">둘 중 무엇을 쓸까</p>
+                <p class="font-black text-lg text-slate-900"><code>while</code>문과 <code>for</code>문 가운데 무엇을 쓸까</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>둘은 서로 바꿔 쓸 수 있습니다.</strong> 할 수 있는 일에 차이가 없습니다.
-                    다만 <strong>횟수가 정해져 있으면 <code>for</code></strong>가 읽기 좋습니다 &mdash;
-                    한 줄만 보면 몇 번 도는지 알 수 있으니까요.
-                    <strong>「언제 끝날지 미리 모를 때」는 <code>while</code></strong>이 자연스럽습니다.
-                    사용자가 그만두겠다고 할 때까지 도는 경우가 그렇습니다.
+                    둘은 서로 바꿔 쓸 수 있고, 할 수 있는 일에 차이가 없습니다.
+                    다만 <strong>반복 횟수가 정해져 있으면 <code>for</code>문</strong>이 읽기 좋습니다.
+                    한 줄만 보면 몇 번 반복하는지 알 수 있기 때문입니다.
+                    <strong>「언제 끝날지 미리 모를 때」는 <code>while</code>문</strong>이 자연스럽습니다.
+                    사용자가 그만두겠다고 입력할 때까지 반복하는 경우가 그렇습니다.
                 </p>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>일단 한 번은 하고 나서 묻는 방법도 있습니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>먼저 한 번 실행하고 나서 조건을 검사하는 방법도 있습니다</p>
                 <pre class="language-c"><code class="language-c" data-src="code/05.dowhile.c#본문"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>while</code>은 <strong>묻고 나서</strong> 들어가므로 조건이 처음부터 거짓이면 <strong>한 번도 안 합니다.</strong>
-                    <code>do</code>&hellip;<code>while</code>은 <strong>하고 나서</strong> 묻습니다. 그래서 <strong>적어도 한 번은 실행됩니다.</strong>
+                    <code>while</code>문은 <strong>조건을 먼저 검사하고</strong> 중괄호 안으로 들어가므로, 조건이 처음부터 거짓이면 한 번도 실행되지 않습니다.
+                    <code>do</code>&hellip;<code>while</code>문은 중괄호 안을 먼저 실행하고 나서 조건을 검사합니다. 그래서 <strong>적어도 한 번은 실행됩니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    메뉴를 보여 주고 고르게 하는 프로그램이 대표적입니다 &mdash;
-                    <strong>메뉴는 일단 한 번 보여 줘야</strong> 사용자가 고를 수 있으니까요.
-                    끝에 <strong>세미콜론이 붙는다</strong>는 점만 눈여겨보세요.
+                    메뉴를 출력하고 사용자가 고르게 하는 프로그램이 대표적입니다.
+                    메뉴를 적어도 한 번은 출력해야 사용자가 고를 수 있기 때문입니다.
+                    <code>while (조건)</code> 뒤에 <strong>세미콜론을 붙인다</strong>는 점도 눈여겨보세요.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">사용자가 0을 넣을 때까지 계속 수를 받는 프로그램이라면 셋 가운데 무엇이 어울릴까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">사용자가 0을 입력할 때까지 계속 수를 입력받는 프로그램이라면 <code>while</code>, <code>for</code>, <code>do</code>&hellip;<code>while</code> 가운데 무엇이 알맞을까요?</p>
         </div>
     </section>
 
-    <!-- ===== 값을 쌓아 나가기 ===== -->
+    <!-- ===== 값을 누적하기 ===== -->
     <section id="accum" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">값을 쌓아 나가기</h2>
+            <h2 class="text-3xl font-black text-slate-900">값을 누적하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">바구니를 트랙 「밖」에 두느냐 「안」에 두느냐로 결과가 나뉩니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">누적할 변수를 반복 「밖」과 「안」 가운데 어디서 초기화하느냐에 따라 결과가 달라집니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                반복이 정말 쓸모 있어지는 것은 <strong>바퀴마다 나온 값을 모을 때</strong>입니다.
+                반복은 <strong>반복할 때마다 나온 값을 모을 때</strong> 특히 쓸모가 많습니다.
                 1부터 100까지 더하는 코드를 봅시다.
             </p>
 
@@ -270,46 +270,47 @@
 
             <p class="text-base text-slate-700 leading-relaxed">
                 <code>sum = sum + i</code>는 대입 규칙 그대로입니다 &mdash;
-                오른쪽을 먼저 계산해서 왼쪽에 담습니다. 바퀴마다
-                <strong>「지금까지의 합에 이번 수를 더해 다시 담는」</strong> 일이 일어납니다.
+                오른쪽을 먼저 계산해 왼쪽 변수에 대입합니다. 반복할 때마다
+                <strong>「지금까지의 합에 이번 수를 더해 다시 대입하는」</strong> 일이 일어납니다.
+                이렇게 값을 계속 더해 나가는 것을 누적(accumulation)이라고 합니다.
             </p>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>담을 자리를 「안」에 만들면 쌓이지 않습니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>누적할 변수를 「안」에서 초기화하면 합이 쌓이지 않습니다</p>
                 <pre class="language-c"><code class="language-c" data-src="code/05.초기화자리.c#본문"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>바퀴를 돌 때마다 새 바구니를 꺼내 오는 셈</strong>이라, 앞 바퀴에 담은 것이 사라집니다.
-                    그래서 <code>1 2 3</code>이 찍히고 <code>1 3 6</code>이 찍히지 않습니다.
+                    <strong>반복할 때마다 <code>sum</code>이 새로 선언되고 0으로 초기화되므로</strong> 앞에서 더한 값이 사라집니다.
+                    그래서 <code>1 3 6</code>이 아니라 <code>1 2 3</code>이 출력됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>쌓아 갈 것은 반복 「밖」에 두고 「한 번만」 초기화합니다.</strong>
-                    반대로 <strong>바퀴마다 새로 써야 하는 것은 안에</strong> 두는 편이 맞습니다 &mdash;
-                    안이 늘 틀린 것이 아니라 <strong>무엇을 하려는지에 달렸습니다.</strong>
+                    <strong>누적할 변수는 반복 「밖」에서 「한 번만」 초기화합니다.</strong>
+                    반대로 반복할 때마다 새로 시작해야 하는 값은 안에서 초기화하는 것이 맞습니다.
+                    안이 늘 틀린 것이 아니라 무엇을 하려는지에 달렸습니다.
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/05.전체.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                횟수를 사용자에게 받아 오면, 「같은 일을 여러 번」 절에서 손으로는 못 적는다고 했던 일이 됩니다.
-                평균에서 <code>(double)</code>을 붙인 것에 눈길을 두세요 &mdash;
-                둘 다 정수이면 몫만 남는다는, 정수끼리의 나눗셈 함정입니다.
+                횟수를 사용자에게 입력받으면, 「같은 일을 여러 번」 절에서 코드에 미리 쓸 수 없다고 했던 일도 할 수 있습니다.
+                평균을 구할 때 <code>(double)</code>을 붙인 것에 주목하세요.
+                두 값이 모두 정수이면 몫만 남는 정수 나눗셈이 되므로, 강제 형 변환으로 이를 피한 것입니다.
             </p>
 
             <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>세는 변수는 값을 나르는 심부름꾼입니다</p>
+                <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>반복 횟수를 세는 변수를 계산에도 씁니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>i</code>는 <strong>몇 바퀴째인지 세는 데만 쓰는 것이 아닙니다.</strong>
-                    위 코드에서는 세는 값 자체가 <strong>더할 대상</strong>이기도 합니다.
-                    「1번째 바퀴에서는 1을, 2번째 바퀴에서는 2를」 하는 식으로
-                    <strong>바퀴 번호를 그대로 계산에 쓰는 것</strong>이 반복을 쓰는 흔한 방식입니다.
+                    <code>i</code>는 <strong>몇 번째 반복인지 세는 데만 쓰는 것이 아닙니다.</strong>
+                    위 코드에서는 <code>i</code>의 값 자체가 더할 대상이기도 합니다.
+                    「첫 번째 반복에서는 1을, 두 번째 반복에서는 2를」 더하는 식으로
+                    반복 횟수를 세는 변수를 그대로 계산에 쓰는 것은 반복문의 흔한 활용법입니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">곱을 구하려면 <code>sum</code>에 해당하는 자리를 0으로 두면 안 됩니다. 왜일까요? 무엇으로 두어야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">곱을 누적할 변수는 0으로 초기화하면 안 됩니다. 왜일까요? 무엇으로 초기화해야 할까요?</p>
         </div>
     </section>
 
@@ -318,53 +319,53 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">끝내기와 건너뛰기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">트랙을 아예 나가는 것과, 이번 바퀴만 쉬는 것은 다릅니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">반복을 아예 끝내는 것과 이번 반복만 건너뛰는 것은 다릅니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div class="space-y-3 min-w-0">
-                    <p class="font-black text-lg text-slate-900"><code>break</code> &mdash; 트랙에서 나간다</p>
+                    <p class="font-black text-lg text-slate-900"><code>break</code> &mdash; 반복을 끝낸다</p>
                     <pre class="language-c"><code class="language-c" data-src="code/05.break.c#본문"></code></pre>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        <strong>반복을 통째로 끝냅니다.</strong> 남은 바퀴가 있어도 더 돌지 않고
-                        중괄호 밖으로 나갑니다.
+                        <strong>반복 전체를 끝냅니다.</strong> 남은 반복이 있어도 더 실행하지 않고
+                        반복문 다음 문장으로 넘어갑니다.
                     </p>
                 </div>
                 <div class="space-y-3 min-w-0">
-                    <p class="font-black text-lg text-slate-900"><code>continue</code> &mdash; 이번 바퀴만 쉰다</p>
+                    <p class="font-black text-lg text-slate-900"><code>continue</code> &mdash; 이번 반복만 건너뛴다</p>
                     <pre class="language-c"><code class="language-c" data-src="code/05.continue.c#본문"></code></pre>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        <strong>이번 바퀴의 남은 줄만 건너뜁니다.</strong> 반복은 끝나지 않고
-                        다음 바퀴로 이어집니다.
+                        <strong>이번 반복의 남은 문장만 건너뜁니다.</strong> 반복은 끝나지 않고
+                        다음 반복으로 이어집니다.
                     </p>
                 </div>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>for</code>에서 <code>continue</code>를 쓸 때 조심할 것</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>for</code>문과 <code>while</code>문에서 <code>continue</code>를 쓸 때 조심할 것</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>continue</code>는 남은 줄을 건너뛰지만 <strong>③ 변화는 건너뛰지 않습니다.</strong>
-                    <code>for</code>에서는 ③이 중괄호 밖에 적혀 있으니 그대로 실행됩니다.
-                    그런데 <code>while</code>에서 ③을 중괄호 「안」 맨 끝에 두었다면
-                    <strong><code>continue</code>가 그 줄을 건너뛰어 멈추지 않을 수 있습니다.</strong>
-                    같은 낱말인데 두 구조에서 결과가 달라지는 경우입니다.
+                    <code>for</code>문에서 <code>continue</code>를 만나면 남은 문장을 건너뛰지만 <strong>③ 변화는 건너뛰지 않습니다.</strong>
+                    ③은 <code>for</code> 뒤 괄호 안에 쓰여 있으므로 그대로 실행된 다음 조건을 검사합니다.
+                    그런데 <code>while</code>문에서 ③을 중괄호 「안」 맨 끝에 두었다면
+                    <code>continue</code>가 그 문장까지 건너뛰므로 반복이 멈추지 않을 수 있습니다.
+                    같은 <code>continue</code>라도 반복문의 구조에 따라 결과가 달라지는 경우입니다.
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900"><code>switch</code>의 <code>break</code>와 같은 낱말입니다</p>
+                <p class="font-black text-lg text-slate-900"><code>switch</code>문의 <code>break</code>와 같습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>switch</code>에서 갈래를 끝낼 때 쓰는 그 <code>break</code>가 맞습니다. 하는 일도 같습니다 &mdash;
-                    <strong>「자기를 감싼 가장 가까운 반복이나 <code>switch</code>에서 빠져나가라」</strong>입니다.
-                    <code>switch</code> 안이면 <code>switch</code>를, 반복 안이면 반복을 빠져나갑니다. <code>if</code>의 중괄호는 여기에 들지 않아서, 「트랙에서 나간다」 상자의 코드에서도 <code>break</code>는 <code>if</code>가 아니라 <code>for</code>를 빠져나갔습니다.
+                    <code>switch</code>문에서 <code>case</code>를 끝낼 때 쓰는 그 <code>break</code>입니다. 하는 일도 같습니다.
+                    <strong><code>break</code>는 자신을 감싼 가장 가까운 반복문이나 <code>switch</code>문을 빠져나갑니다.</strong>
+                    <code>switch</code>문 안이면 <code>switch</code>문을, 반복문 안이면 반복문을 빠져나갑니다. <code>if</code>문의 중괄호는 여기에 해당하지 않으므로, 위 <code>break</code> 예시에서도 <code>break</code>는 <code>if</code>문이 아니라 <code>for</code>문을 빠져나갔습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">1부터 세다가 <strong>처음으로</strong> 7의 배수를 만나면 그 수를 찍고 멈추려면 <code>break</code>와 <code>continue</code> 가운데 무엇을 쓸까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">1부터 세다가 <strong>처음으로</strong> 7의 배수를 만나면 그 수를 출력하고 멈추려면 <code>break</code>와 <code>continue</code> 가운데 무엇을 쓸까요?</p>
         </div>
     </section>
 
@@ -379,29 +380,29 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">반복의 세 가지</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>시작 &middot; 조건 &middot; 변화.</strong> 변화를 빠뜨리면 처음에 참이던 조건이 영원히 참이라
-                    멈추지 않는다. 멈추지 않으면 ③부터 본다.
+                    <strong>시작 &middot; 조건 &middot; 변화.</strong> 변화를 빠뜨리면 처음에 참이던 조건이 계속 참이라
+                    무한 루프가 된다. 반복이 멈추지 않으면 ③부터 확인한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>while</code>과 <code>for</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    할 수 있는 일은 같다. 셋이 흩어져 있으면 <code>while</code>,
-                    한 줄에 모여 있으면 <code>for</code>. 횟수가 정해졌으면 <code>for</code>가 읽기 좋다.
+                    할 수 있는 일은 같다. 세 가지가 흩어져 있으면 <code>while</code>문,
+                    한 줄에 모여 있으면 <code>for</code>문이다. 반복 횟수가 정해져 있으면 <code>for</code>문이 읽기 좋다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">쌓을 자리</h3>
+                <h3 class="text-xl font-black text-slate-900">누적할 변수</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    쌓아 갈 변수는 <strong>반복 밖에 두고 한 번만 초기화</strong>한다.
-                    안에 두면 바퀴마다 되돌아간다. 바퀴마다 새로 써야 하는 것은 안에 둔다.
+                    누적할 변수는 <strong>반복 밖에서 한 번만 초기화</strong>한다.
+                    안에서 초기화하면 반복할 때마다 초깃값으로 되돌아간다. 반복할 때마다 새로 시작해야 하는 값은 안에서 초기화한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>break</code>와 <code>continue</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>break</code>는 <strong>반복을 통째로</strong> 끝내고,
-                    <code>continue</code>는 이번 바퀴의 남은 줄만 건너뛴다.
+                    <code>break</code>는 <strong>반복 전체를</strong> 끝내고,
+                    <code>continue</code>는 이번 반복의 남은 문장만 건너뛴다.
                 </p>
             </div>
         </div>
@@ -416,18 +417,18 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. 반복이 멈추지 않고 계속 돈다. 가장 먼저 확인할 곳은?</p>
+            <p class="font-black text-lg text-slate-900">1. 반복이 멈추지 않고 계속 실행된다. 가장 먼저 확인할 곳은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '변화가 없으면 조건이 영원히 같은 값이라 끝나지 않습니다.')">
-                    ① 한 바퀴마다 값이 달라지게 하는 줄이 있는지
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '변화가 없으면 조건식의 결과가 계속 같아서 반복이 끝나지 않습니다.')">
+                    ① 반복할 때마다 값을 바꾸는 문장이 있는지
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '중괄호를 빠뜨려 변화 줄이 반복 밖으로 밀려난 것도 원인일 수 있습니다. 다만 그 경우도 ①을 확인하면 드러나므로, 먼저 확인할 곳은 변화 줄입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '중괄호를 빠뜨려 변화 문장이 반복 밖으로 밀려난 것도 원인일 수 있습니다. 다만 그 경우도 ①을 확인하면 드러나므로, 먼저 확인할 곳은 변화 문장입니다.')">
                     ② 중괄호를 빠뜨렸는지
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '들여쓰기는 C가 보지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'C는 들여쓰기를 무시합니다.')">
                     ③ 들여쓰기가 맞는지
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '컴파일은 잘 됩니다. 시킨 대로 도는 것뿐입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '컴파일은 정상적으로 됩니다. 코드에 쓴 대로 반복하는 것뿐입니다.')">
                     ④ 컴파일 오류가 났는지
                 </button>
             </div>
@@ -439,10 +440,10 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '컴파일은 됩니다. 결과만 달라집니다.')">
                     ① 컴파일 오류가 난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '바퀴마다 0으로 되돌아가므로 앞 바퀴에 담은 것이 사라집니다.')">
-                    ② 바퀴마다 0으로 되돌아가 합이 쌓이지 않는다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '반복할 때마다 0으로 초기화되므로 앞에서 더한 값이 사라집니다.')">
+                    ② 반복할 때마다 0으로 되돌아가 합이 누적되지 않는다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '자리가 결과를 바꿉니다. 같지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '초기화하는 위치가 결과를 바꿉니다. 결과가 같지 않습니다.')">
                     ③ 결과는 똑같다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '멈추는 것과는 상관없습니다. 조건과 변화가 정하는 일입니다.')">
@@ -454,16 +455,16 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'continue는 이번 바퀴의 남은 줄만 건너뜁니다. 반복은 계속됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'continue는 이번 반복의 남은 문장만 건너뜁니다. 반복은 계속됩니다.')">
                     ① <code>continue</code>를 만나면 반복이 끝난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'do…while은 먼저 실행하고 나서 조건을 묻기 때문에 조건이 거짓이어도 한 번은 실행됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'do…while은 먼저 실행하고 나서 조건을 검사하기 때문에 조건이 거짓이어도 한 번은 실행됩니다.')">
                     ② <code>do</code>…<code>while</code>은 조건이 거짓이어도 한 번은 실행된다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'for와 while은 서로 바꿔 쓸 수 있습니다.')">
                     ③ <code>for</code>로 쓴 반복은 <code>while</code>로도 쓸 수 있다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'break는 지금 있는 반복을 빠져나갑니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'break는 자신을 감싼 가장 가까운 반복문을 빠져나갑니다.')">
                     ④ 반복 안의 <code>break</code>는 그 반복을 빠져나간다
                 </button>
             </div>

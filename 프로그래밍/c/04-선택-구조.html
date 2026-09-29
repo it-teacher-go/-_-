@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>조건에 따라 실행할 줄을 선택할 수 있고, 갈래가 셋 이상일 때 이어 붙일 수 있다.</li>
-                    <li>중괄호가 없을 때 무엇이 조건에 딸리는지 설명할 수 있다.</li>
-                    <li>값이 정해진 여러 갈래를 다른 방식으로도 쓸 수 있고, 그 방식이 어울리는 경우를 판단할 수 있다.</li>
-                    <li>값 하나를 고르는 짧은 표현을 읽고 쓸 수 있다.</li>
+                    <li>조건에 따라 실행할 문장을 선택할 수 있고, 경우가 셋 이상일 때 <code>else if</code>로 조건을 이어 쓸 수 있다.</li>
+                    <li>중괄호가 없을 때 어디까지가 <code>if</code>문에 포함되는지 설명할 수 있다.</li>
+                    <li>변수를 정해진 여러 값과 비교하는 선택을 <code>switch</code>문으로 쓸 수 있고, <code>if</code>문과 <code>switch</code>문 가운데 알맞은 것을 고를 수 있다.</li>
+                    <li>조건 연산자로 조건에 따라 값 하나를 고르는 식을 읽고 쓸 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -59,8 +59,8 @@
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
             <a href="#branch" class="hover:text-orange-600 transition">분기</a>
             <a href="#brace" class="hover:text-orange-600 transition">중괄호</a>
-            <a href="#switch" class="hover:text-orange-600 transition">값으로 고르기</a>
-            <a href="#ternary" class="hover:text-orange-600 transition">짧게 고르기</a>
+            <a href="#switch" class="hover:text-orange-600 transition">switch문</a>
+            <a href="#ternary" class="hover:text-orange-600 transition">조건 연산자</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -75,63 +75,63 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">조건에 따른 분기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold"><code>if</code>는 입력에 따라 지나가는 줄이 달라지게 만듭니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold"><code>if</code>문은 입력에 따라 실행되는 문장이 달라지게 합니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                갈림길이 없는 프로그램은 위에서 아래로 한 번 흐르고 끝납니다.
-                입력이 무엇이든 지나가는 줄이 같습니다. <code>if</code>는 여기에
-                <strong>갈림길</strong>을 놓습니다.
+                갈림길이 없는 프로그램은 위에서 아래로 한 번 실행되고 끝납니다.
+                입력이 무엇이든 실행되는 문장이 같습니다. <code>if</code>문은 여기에
+                <strong>갈림길</strong>을 놓습니다. 이처럼 조건에 따라 실행 흐름이 나뉘는 것을 분기(branch)라고 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/04.기본.c"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">읽는 순서</p>
+                <p class="font-black text-lg text-orange-900">실행 순서</p>
                 <ol class="space-y-2 text-base text-slate-700 list-decimal list-outside pl-5">
-                    <li>괄호 안의 조건을 계산한다 &mdash; 비교의 <strong>결과는 1이나 0</strong>이다.</li>
-                    <li>0이 아니면 <strong>바로 뒤 중괄호 안</strong>을 실행하고, <code>else</code> 쪽은 건너뛴다.</li>
-                    <li>0이면 <code>else</code> 쪽만 실행한다.</li>
+                    <li>괄호 안의 조건식을 계산한다 &mdash; 비교 연산의 <strong>결과는 1(참)이나 0(거짓)</strong>이다.</li>
+                    <li>결과가 0이 아니면 <strong>바로 뒤 중괄호 안의 문장</strong>을 실행하고, <code>else</code> 부분은 건너뛴다.</li>
+                    <li>결과가 0이면 <code>else</code> 부분만 실행한다.</li>
                 </ol>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>둘 중 하나만 실행됩니다.</strong> <code>else</code>는 없어도 됩니다 &mdash;
-                    그러면 조건이 거짓일 때 아무 일도 하지 않고 지나갑니다.
+                    <strong>둘 중 하나만 실행됩니다.</strong> <code>else</code>는 생략할 수 있습니다.
+                    생략하면 조건이 거짓일 때 아무것도 실행하지 않고 다음 문장으로 넘어갑니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                갈래가 셋 이상이면 <code>else if</code>로 이어 붙입니다.
+                경우가 셋 이상이면 <code>else if</code>로 조건을 이어 씁니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/04.여러갈래.c"></code></pre>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>위에서부터 보다가 「맞는 첫 곳」에서 멈춥니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>위에서부터 검사하다가 「참인 첫 조건」에서 멈춥니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     85점은 <code>score &gt;= 80</code>도 참이고 <code>score &gt;= 70</code>도 참입니다.
-                    그런데 <strong>B만 찍힙니다.</strong> 한 갈래가 걸리면 나머지는 보지도 않기 때문입니다.
+                    그런데 <strong>B만 출력됩니다.</strong> 참인 조건을 하나 만나면 그 아래 조건은 검사하지 않기 때문입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <strong>순서가 뜻을 바꿉니다.</strong> 위 코드에서 조건을 뒤집어
-                    <code>score &gt;= 70</code>을 맨 위에 두면, 95점도 C가 되어 버립니다.
-                    이렇게 조건이 서로 겹칠 때는 <strong>좁은 조건부터 넓은 조건 순으로</strong> 놓아야 합니다.
+                    그래서 <strong>조건의 순서가 결과를 바꿉니다.</strong> 위 코드에서 조건의 순서를 뒤집어
+                    <code>score &gt;= 70</code>을 맨 위에 두면 95점도 C가 됩니다.
+                    이렇게 조건의 범위가 서로 겹칠 때는 좁은 조건부터 넓은 조건 순으로 써야 합니다.
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/04.전체.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                윤년 판별은 갈래를 여럿 이어 붙이는 좋은 예입니다.
+                윤년 판별은 <code>else if</code>로 조건을 이어 쓰는 좋은 예입니다.
                 <strong>4의 배수이면서 100의 배수가 아니면</strong> 윤년이고,
-                그 조건에서 걸러진 100의 배수 가운데 400의 배수만 다시 윤년입니다.
+                이 조건이 거짓인 연도 가운데 400의 배수도 윤년입니다.
                 2024와 2000은 윤년이고, 1900은 아닙니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">위 등급 코드에 <code>score</code>가 105일 때는 무엇이 찍힐까요? 잘못된 값을 걸러 내려면 어디에 무엇을 더해야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">위 등급 코드에 <code>score</code>가 105일 때는 무엇이 출력될까요? 0점부터 100점까지의 범위를 벗어난 값을 처리하려면 어디에 어떤 조건을 추가해야 할까요?</p>
         </div>
     </section>
 
@@ -145,129 +145,130 @@
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                실행할 줄이 하나뿐이면 중괄호를 생략할 수 있습니다. 그런데 생략한 곳에서
-                <strong>가장 찾기 어려운 실수</strong>가 나옵니다.
+                조건이 참일 때 실행할 문장이 하나뿐이면 중괄호를 생략할 수 있습니다. 그런데 중괄호를 생략한 코드에서
+                <strong>찾기 어려운 실수</strong>가 자주 생깁니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/04.중괄호함정.c"></code></pre>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>딸리는 것은 「다음 한 줄」뿐입니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>if</code>문에 포함되는 것은 「다음 문장 하나」뿐입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    나란히 들여썼으니 둘 다 조건에 딸린 것처럼 보이지만, C는 들여쓰기를 보지 않습니다.
+                    두 줄을 똑같이 들여 써서 둘 다 <code>if</code>문에 포함된 것처럼 보이지만, C 컴파일러는 들여쓰기를 무시합니다.
                     <code>printf("축하합니다")</code>는 <strong>조건과 상관없이 언제나 실행됩니다.</strong>
-                    40점이어도 축하를 받습니다.
+                    40점이어도 「축하합니다」가 출력됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>오류가 아니라 잘못된 동작</strong>이라 컴파일은 그대로 됩니다.
-                    다행히 요즘 컴파일러는 경고를 켜 두면 이 모양을 보고 「들여쓰기가 오해를 부른다」고 경고해 줍니다 &mdash;
-                    <strong>경고를 읽는 습관</strong>이 이 실수를 잡습니다.
+                    문법 오류가 아니라 의도와 다른 동작이라 컴파일은 정상적으로 됩니다.
+                    다만 요즘 컴파일러는 경고 옵션을 켜 두면 이런 코드를 찾아 「들여쓰기가 오해를 부른다」는 경고를 냅니다.
+                    <strong>경고를 읽는 습관</strong>이 있으면 이 실수를 잡을 수 있습니다.
                 </p>
             </div>
 
             <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>줄이 하나여도 중괄호를 치는 편이 낫습니다</p>
+                <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>문장이 하나여도 중괄호를 쓰는 편이 낫습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    생략해도 문법에 어긋나지 않습니다. 다만 <strong>나중에 한 줄을 더 넣을 때</strong>
-                    중괄호를 함께 넣는 것을 잊기 쉽고, 그러면 방금 본 일이 그대로 일어납니다.
-                    처음부터 쳐 두면 그 실수 자체가 생기지 않습니다.
+                    중괄호를 생략해도 문법에 어긋나지 않습니다. 다만 <strong>나중에 문장을 하나 더 추가할 때</strong>
+                    중괄호를 함께 넣는 것을 잊기 쉽고, 그러면 방금 본 실수가 그대로 생깁니다.
+                    처음부터 중괄호를 써 두면 이런 실수가 생기지 않습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">중괄호 없는 <code>if</code> 아래에 줄을 두 개 쓰고 둘 다 실행되게 하려면 무엇을 고쳐야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">중괄호 없는 <code>if</code> 아래에 문장을 두 개 쓰고, 조건이 참일 때 둘 다 실행되게 하려면 무엇을 고쳐야 할까요?</p>
         </div>
     </section>
 
-    <!-- ===== 값으로 고르기 ===== -->
+    <!-- ===== 값으로 고르는 switch문 ===== -->
     <section id="switch" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">값으로 고르기</h2>
+            <h2 class="text-3xl font-black text-slate-900">값으로 고르는 switch문</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">「크다·작다」가 아니라 「무엇과 같다」가 이어질 때 쓰는 방식입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">「크다·작다」가 아니라 「어느 값과 같은가」를 여러 번 비교할 때 씁니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
                 <code>grade == 'A'</code>, <code>grade == 'B'</code>&hellip;처럼
-                <strong>같은 변수를 여러 값과 비교하기만</strong> 할 때는
-                <code>switch</code>로 쓰면 무엇을 고르는 코드인지 한눈에 보입니다.
+                <strong>같은 변수가 어느 값과 같은지만 비교할</strong> 때는
+                <code>switch</code>문으로 쓰면 값에 따라 무엇을 실행하는지 한눈에 보입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/04.switch.c"></code></pre>
 
             <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
-                <li><code>case</code> 뒤에는 <strong>고정된 값</strong>만 올 수 있다. <code>case score &gt; 80:</code>은 안 된다.</li>
-                <li><code>default</code>는 <strong>어느 것에도 걸리지 않았을 때</strong>다. <code>else</code>에 해당한다.</li>
-                <li>비교할 수 있는 것은 <strong>정수와 글자</strong>다. 실수와 글자의 나열에는 쓸 수 없다.</li>
+                <li><code>case</code> 뒤에는 <strong>고정된 값</strong>만 쓸 수 있다. <code>case score &gt; 80:</code>처럼 조건식은 쓸 수 없다.</li>
+                <li><code>default</code>는 <strong>어느 <code>case</code>의 값과도 같지 않을 때</strong> 실행된다. <code>if</code>문의 <code>else</code>에 해당한다.</li>
+                <li>비교할 수 있는 것은 <strong>정수와 문자</strong>다. 실수와 문자열에는 쓸 수 없다.</li>
             </ul>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>break</code>가 없으면 아래로 흘러내립니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>break</code>가 없으면 아래 <code>case</code>로 이어서 실행됩니다</p>
                 <pre class="language-c"><code class="language-c" data-src="code/04.break없이.c"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>case</code>는 <strong>들어가는 자리</strong>를 정할 뿐이고, 나오는 자리는 정하지 않습니다.
-                    <code>break</code>를 만나기 전까지 <strong>아래 <code>case</code>의 줄들까지 계속 실행됩니다.</strong>
-                    <code>else if</code>가 하나만 걸리고 멈추는 것과 <strong>정반대</strong>입니다.
+                    <code>case</code>는 <strong>실행을 시작할 위치</strong>만 정하고, 끝낼 위치는 정하지 않습니다.
+                    값이 같은 <code>case</code>에서 실행을 시작하면 <code>break</code>를 만나거나 <code>switch</code>문이 끝날 때까지
+                    아래 <code>case</code>의 문장들도 차례로 실행됩니다.
+                    참인 조건 하나만 실행하고 멈추는 <code>else if</code>와 다른 점입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    이것은 결함이 아니라 <strong>일부러 쓸 때도 있는 성질</strong>입니다 &mdash;
-                    여러 값에 같은 일을 시키려고 <code>case</code>를 붙여 늘어놓는 식입니다.
-                    다만 <strong>실수로 빠뜨린 것인지 일부러 그런 것인지 코드만 봐서는 알 수 없으므로</strong>,
-                    일부러 흘려보낼 때는 주석으로 밝혀 둡니다.
+                    이것은 결함이 아니라 <strong>일부러 활용하기도 하는 동작</strong>입니다.
+                    예를 들어 여러 값에 같은 문장을 실행하려면 <code>break</code> 없이 <code>case</code>를 이어 씁니다.
+                    다만 <code>break</code>를 실수로 빠뜨린 것인지 일부러 뺀 것인지 코드만 봐서는 알 수 없으므로,
+                    일부러 뺄 때는 주석으로 밝혀 둡니다.
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">둘 중 무엇을 쓸까</p>
+                <p class="font-black text-lg text-slate-900"><code>if</code>문과 <code>switch</code>문 가운데 무엇을 쓸까</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong><code>switch</code>로 되는 것은 전부 <code>if</code>로도 됩니다.</strong> 반대는 아닙니다 &mdash;
-                    범위를 검사하는 조건은 <code>switch</code>로 옮길 수 없습니다.
-                    <strong>정해진 값 목록에서 고르는 경우</strong>라면 <code>switch</code>가 읽기 쉽고,
-                    <strong>범위나 여러 변수를 함께 보는 경우</strong>라면 <code>if</code>를 씁니다.
+                    <strong><code>switch</code>문으로 쓴 것은 모두 <code>if</code>문으로 바꿔 쓸 수 있습니다.</strong>
+                    반대는 성립하지 않습니다. 범위를 검사하는 조건은 <code>switch</code>문으로 옮길 수 없기 때문입니다.
+                    정해진 값 가운데 하나를 고르는 경우라면 <code>switch</code>문이 읽기 쉽고,
+                    범위를 검사하거나 여러 변수를 함께 비교하는 경우라면 <code>if</code>문을 씁니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">점수 90점 이상이면 A, 80점대면 B&hellip;를 <code>switch</code>로 쓰려면 무엇이 곤란할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">점수 90점 이상이면 A, 80점대면 B&hellip;를 <code>switch</code>문으로 쓰려면 무엇이 곤란할까요?</p>
         </div>
     </section>
 
-    <!-- ===== 값 하나를 골라 담기 ===== -->
+    <!-- ===== 값 하나를 고르는 조건 연산자 ===== -->
     <section id="ternary" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">값 하나를 골라 담기</h2>
+            <h2 class="text-3xl font-black text-slate-900">값 하나를 고르는 조건 연산자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">조건에 따라 달라지는 것이 「실행할 줄」이 아니라 「값」일 때가 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">조건에 따라 달라지는 것이 「실행할 문장」이 아니라 「값」일 때가 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <pre class="language-c"><code class="language-c" data-src="code/04.삼항.c"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">조건 연산자</p>
+                <p class="font-black text-lg text-orange-900">조건 연산자(conditional operator)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>조건 ? 참일 때 값 : 거짓일 때 값</code> 꼴입니다.
-                    <code>if</code>와 달리 <strong>줄을 고르는 것이 아니라 값을 고릅니다.</strong>
-                    그래서 대입문 오른쪽이나 <code>printf</code>의 인자 자리처럼
-                    <strong>값이 놓일 자리</strong>에 바로 쓸 수 있습니다.
+                    <code>조건 ? 참일 때 값 : 거짓일 때 값</code> 형식으로 씁니다. 피연산자가 셋이라 삼항 연산자라고도 합니다.
+                    <code>if</code>문이 실행할 문장을 고르는 것과 달리 <strong>조건 연산자는 값을 고릅니다.</strong>
+                    그래서 대입문의 오른쪽이나 <code>printf</code>의 인자처럼
+                    값이 들어갈 곳에 바로 쓸 수 있습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 짧다고 늘 나은 것은 아닙니다. 고르는 것이 값 하나이고 조건이 짧을 때는
-                한 줄로 읽혀 좋지만, 안에 또 조건을 넣어 겹치면 금세 읽기 어려워집니다.
-                <strong>겹칠 것 같으면 <code>if</code>로 풀어 쓰는 편</strong>이 낫습니다.
+                한 줄로 읽기 좋지만, 조건 연산자 안에 또 조건 연산자를 넣으면 금세 읽기 어려워집니다.
+                <strong>그럴 때는 <code>if</code>문으로 풀어 쓰는 편</strong>이 낫습니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">두 수 가운데 큰 것을 고르는 코드를 <code>if</code>로 쓴 것과 조건 연산자로 쓴 것, 둘 다 적어 보고 어느 쪽이 읽기 쉬운지 비교해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed">두 수 가운데 큰 수를 고르는 코드를 <code>if</code>문과 조건 연산자로 각각 작성해 보고, 어느 쪽이 읽기 쉬운지 비교해 보세요.</p>
         </div>
     </section>
 
@@ -282,30 +283,30 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>if</code> &middot; <code>else if</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    위에서부터 보다가 <strong>맞는 첫 갈래에서 멈춘다.</strong>
-                    그래서 순서가 뜻을 바꾼다 &mdash; 조건이 겹치면 좁은 조건을 위에 놓는다.
+                    위에서부터 조건을 검사하다가 <strong>참인 첫 조건에서 멈춘다.</strong>
+                    그래서 조건의 순서가 결과를 바꾼다 &mdash; 조건의 범위가 겹치면 좁은 조건을 위에 놓는다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">중괄호</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    없으면 <strong>다음 한 줄만</strong> 조건에 딸린다.
-                    들여쓰기는 C가 보지 않는다. 줄이 하나여도 쳐 두는 편이 안전하다.
+                    중괄호가 없으면 <strong>다음 문장 하나만</strong> <code>if</code>문에 포함된다.
+                    C는 들여쓰기를 무시한다. 문장이 하나여도 중괄호를 쓰는 편이 안전하다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>switch</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    정해진 값과 비교할 때 쓴다. <code>case</code>는 들어가는 자리만 정하므로
-                    <strong><code>break</code>가 없으면 아래로 흘러내린다.</strong>
+                    변수를 정해진 값과 비교할 때 쓴다. <code>case</code>는 실행을 시작할 위치만 정하므로
+                    <strong><code>break</code>가 없으면 아래 <code>case</code>로 이어서 실행된다.</strong>
                     범위 조건에는 쓸 수 없다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">조건 연산자</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>조건 ? 값 : 값</code>. 줄이 아니라 값을 고른다.
-                    겹쳐 쓰면 읽기 어려워지므로 그때는 <code>if</code>로 푼다.
+                    <code>조건 ? 값 : 값</code>. 실행할 문장이 아니라 값을 고른다.
+                    안에 또 조건 연산자를 넣으면 읽기 어려우므로 그때는 <code>if</code>문으로 풀어 쓴다.
                 </p>
             </div>
         </div>
@@ -325,14 +326,14 @@
                 <code>score &gt;= 90</code> 순으로 <code>else if</code>를 늘어놓으면 어떻게 실행되는가?
             </p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '맞는 첫 갈래에서 멈춥니다. 95는 70 이상이라 첫 갈래에 걸리고 나머지는 보지도 않습니다.')">
-                    ① 맨 위 갈래 하나만 실행된다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '참인 첫 조건에서 멈춥니다. 95는 70 이상이라 첫 조건이 참이 되고, 나머지 조건은 검사하지 않습니다.')">
+                    ① 맨 위 조건이 참일 때의 문장만 실행된다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '조건이 여럿 참이어도 실행되는 것은 하나뿐입니다.')">
-                    ② 조건이 참인 갈래가 모두 실행된다
+                    ② 조건이 참인 부분이 모두 실행된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '가장 좁은 조건을 알아서 고르지 않습니다. 순서대로 볼 뿐입니다.')">
-                    ③ 가장 잘 맞는 갈래를 알아서 고른다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '가장 좁은 조건을 알아서 고르지 않습니다. 위에서부터 차례로 검사할 뿐입니다.')">
+                    ③ 가장 좁은 조건을 알아서 골라 실행한다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '문법에 어긋나지 않습니다. 그래서 더 찾기 어렵습니다.')">
                     ④ 컴파일 오류가 난다
@@ -343,16 +344,16 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>switch</code>에서 <code>break</code>를 빠뜨리면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'case는 들어가는 자리만 정합니다. 저절로 빠져나오지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'case는 실행을 시작할 위치만 정합니다. 그 case의 문장이 끝나도 switch문을 저절로 빠져나오지 않습니다.')">
                     ① 그 <code>case</code>만 실행되고 저절로 빠져나온다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, true, 'break를 만나기 전까지 아래 case의 줄들까지 계속 실행됩니다.')">
                     ② 아래 <code>case</code>의 줄들까지 이어서 실행된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '컴파일은 됩니다. 일부러 쓰는 성질이기도 하기 때문입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '문법 오류가 아니므로 컴파일은 됩니다. 일부러 break를 빼서 활용하기도 합니다.')">
                     ③ 컴파일 오류가 난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'default로 건너뛰지 않습니다. 바로 아래 case로 이어집니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'default로 건너뛰지 않습니다. 바로 아래 case의 문장이 이어서 실행됩니다.')">
                     ④ <code>default</code>로 건너뛴다
                 </button>
             </div>
@@ -361,17 +362,17 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'if로 쓴 범위 조건은 switch로 옮길 수 없습니다. switch로 되는 것은 전부 if로도 되지만 그 반대는 아닙니다.')">
-                    ① <code>if</code>로 쓴 것은 전부 <code>switch</code>로 바꿔 쓸 수 있다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'if문으로 쓴 범위 조건은 switch문으로 옮길 수 없습니다. switch문으로 쓴 것은 모두 if문으로 바꿀 수 있지만 그 반대는 성립하지 않습니다.')">
+                    ① <code>if</code>문으로 쓴 것은 모두 <code>switch</code>문으로 바꿔 쓸 수 있다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '중괄호가 없으면 조건에 딸리는 것은 다음 한 줄뿐입니다. 들여쓰기는 C가 보지 않습니다.')">
-                    ② 중괄호가 없으면 조건에 딸리는 것은 다음 한 줄뿐이다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '중괄호가 없으면 if문에 포함되는 것은 다음 문장 하나뿐입니다. C는 들여쓰기를 무시합니다.')">
+                    ② 중괄호가 없으면 <code>if</code>문에 포함되는 것은 다음 문장 하나뿐이다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'case 뒤에는 고정된 값만 올 수 있습니다.')">
                     ③ <code>case</code> 뒤에 범위 조건은 쓸 수 없다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '조건 연산자는 값이 놓일 자리에 씁니다.')">
-                    ④ 조건 연산자는 줄이 아니라 값을 고른다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '조건 연산자는 값을 고르므로 값이 들어갈 곳에 씁니다.')">
+                    ④ 조건 연산자는 실행할 문장이 아니라 값을 고른다
                 </button>
             </div>
         </div>
