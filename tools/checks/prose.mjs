@@ -455,7 +455,22 @@ const STYLE_SCREEN = [
         ['최고보다 낫다', '광고보다', '원고본', '알고 보니', '고봉밥', '보고서', 'code/1-1.알고보기.py']],
 ];
 
+// ── 프로그래밍 언어 강의노트에서 물러난 명사 ──────────────────────────────────
+// 언어 문법을 설명할 때는 순한국어 명사 대신 교과 용어를 쓴다(2026-09-30 사용자 지시, 파이썬부터 정제).
+// 다른 과목은 이 명사를 아직 정제하지 않았으므로 `LANG_NOTES` 글롭에서만 막는다. 정제를 마친 언어의 폴더를 더한다.
+// 그림 속 네모 칸 · 비유 한 번(사물함 칸 · 트랙 한 바퀴)은 교과 용어로 바꿀 것이 아니라 여기 넣지 않는다.
+const LANG_NOTES = ['프로그래밍/py/*.html'];
+const LANG_NOUNS = [
+    [H + '(?<!(?:째|의|한|두|세|네|몇)\\s)자리(?!수)', '자리(자릿수가 아닌 뜻)', '변수 · 공간 · 위치 · 곳',
+        ['값을 담아 두는 자리', '같은 자리에서', '자리마다 따로'], ['소수 둘째 자리', '일의 자리', '한 · 두 자리', '자릿수', '한자리']],
+    [H + '담(?:아|은|긴|는|을|겨|았|기)', '담다', '저장하다 · 대입하다 · 넣다',
+        ['값을 담아', '담긴 값', '숫자만 담은'], ['부담을', '상담은', '담당', '담임']],
+    ['꾸러미', '꾸러미', '모듈 · 패키지', ['꾸러미를 불러'], ['모듈']],
+    [H + '갈래', '갈래', '경우 · 조건', ['갈래 셋', '맞는 갈래'], ['한가지']],
+];
+
 const RULES = [...VERBS, ...PATTERNS, ...STYLE_NOW, ...STYLE_SCREEN].map(([p, 쓴, 쓸, 예, 아님]) => [re(p), 쓴, 쓸, 예, 아님]);
+const LANG_RULES = LANG_NOUNS.map(([p, 쓴, 쓸, 예, 아님]) => [re(p), 쓴, 쓸, 예, 아님]);
 const hit = (rx, s) => { rx.lastIndex = 0; return rx.test(s); };
 
 // 기준서 12의 이모지 — **강의노트에만** 쓴다. 시뮬레이터 화면의 이모지는 지우지 않는다
@@ -792,7 +807,7 @@ const RAW_ONLY = new Set(['「vs」 비교 표기']);
 /** 목록의 정규식이 제 예시를 잡는지, 잡으면 안 되는 것을 비껴가는지. */
 export function selfTest() {
     const errs = [];
-    for (const [rx, 쓴, , 예, 아님] of RULES) {
+    for (const [rx, 쓴, , 예, 아님] of [...RULES, ...LANG_RULES]) {
         for (const e of 예) if (!hit(rx, e)) errs.push(`「${쓴}」이 「${e}」를 못 잡는다`);
         for (const e of 아님) if (hit(rx, e)) errs.push(`「${쓴}」이 「${e}」를 잘못 잡는다`);
     }
@@ -955,6 +970,9 @@ function checkFile(p, sim) {
     for (const [rx, 쓴, 쓸] of RULES) {
         if (sim && LECTURE_ONLY.has(쓴)) continue;
         for (const body of RAW_ONLY.has(쓴) ? bodies.slice(0, 1) : bodies) for (const m of body.matchAll(rx)) add(body, m.index, `「${m[0]}」(${쓴}) — 「${쓸}」로 쓴다`);
+    }
+    if (!sim && LANG_NOTES.some((g) => pathMatch(rel(p), g))) {
+        for (const [rx, 쓴, 쓸] of LANG_RULES) for (const body of bodies) for (const m of body.matchAll(rx)) add(body, m.index, `「${m[0]}」(${쓴}) — 「${쓸}」로 쓴다`);
     }
     if (isGen(p)) {
         for (const [rx, 쓴, 쓸] of BANNED_WORDS) for (const m of bodies[0].matchAll(rx)) add(bodies[0], m.index, `「${m[0]}」(${쓴}) — 「${쓸}」로 쓴다`);

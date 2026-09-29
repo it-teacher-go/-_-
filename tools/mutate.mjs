@@ -39,7 +39,7 @@ export const MUTANTS = [
     ['verbs', 'simulator/cs/sort.html', '</body>', "<button>지우기</button></body>", '버튼 이름 「지우기」'],  // verbs: 예시
     ['prose', NOTE, ...afterH1('<p>짚어 보면 알 수 있습니다.</p>'), '물러난 말 「짚다」'],
     ['prose', NOTE, ...afterH1('<p>앞 시간에 배운 대로</p>'), '앞 차시 참조'],
-    ['prose', NOTE, ...afterH1('<p>한 일을 되짚어 보면 됩니다.</p>'), '물러난 말 「되짚다」(「짚다」 규칙이 낱말 첫머리로만 걸려 새던 꼴)'],
+    ['prose', '프로그래밍/py/01-변수와-자료형.html', '값을 저장하는 변수</h2>', '값을 담아 두는 자리</h2>', '파이썬 강의노트에 물러난 명사 「자리 · 담다」'],    ['prose', NOTE, ...afterH1('<p>한 일을 되짚어 보면 됩니다.</p>'), '물러난 말 「되짚다」(「짚다」 규칙이 낱말 첫머리로만 걸려 새던 꼴)'],
     ['prose', NOTE, ...afterH1('<p>결정계수는 0에 가깝습니다.</p>'), '과목 간 표기 「결정계수」'],
     ['prose', 'simulator/ai/unsupervised-k-means.html', '</main>', '<p>리스트의 자리 번호로 꺼냅니다.</p></main>', '시뮬레이터에 「자리 번호」'],
     ['prose', 'simulator/cs/sort.html', '</main>', '<p><b>가</b>와 <b>나</b>를 봅니다.</p></main>', '시뮬레이터 문단에 볼드 둘(문체 기준서)'],
