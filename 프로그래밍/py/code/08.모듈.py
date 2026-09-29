@@ -1,7 +1,7 @@
 # ---
 # check: none
 # ---
-import math                 # 「math라는 꾸러미를 가져오겠다」
+import math                 # 「math 모듈을 가져오겠다」
 
 print(math.sqrt(16))        # 4.0        제곱근
 print(math.gcd(12, 18))     # 6          최대공약수

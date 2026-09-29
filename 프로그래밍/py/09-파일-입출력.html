@@ -37,11 +37,11 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>변수와 파일의 차이를 프로그램이 끝난 뒤로 설명할 수 있다.</li>
+                    <li>프로그램이 끝난 뒤에 값이 남는지를 기준으로 변수와 파일의 차이를 설명할 수 있다.</li>
                     <li>파일을 열고 읽고 닫는 세 단계를 <code>with</code>로 안전하게 쓸 수 있다.</li>
-                    <li>읽어 온 줄에서 줄바꿈을 떼고 필요한 자료형으로 바꿀 수 있다.</li>
-                    <li>쓰기 모드와 이어 붙이기 모드를 구별해 고를 수 있다.</li>
-                    <li>쉼표로 나뉜 파일을 자르고 이어 표 형태의 자료를 다룰 수 있다.</li>
+                    <li>읽어 온 줄에서 줄바꿈을 떼고 필요한 자료형으로 변환할 수 있다.</li>
+                    <li>쓰기 모드와 추가 모드를 구별해 고를 수 있다.</li>
+                    <li>쉼표로 값을 구분한 파일을 <code>split</code>과 <code>join</code>으로 읽고 써서 표 형태의 자료를 다룰 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -60,9 +60,9 @@
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
             <a href="#why" class="hover:text-orange-600 transition">왜 파일인가</a>
             <a href="#open" class="hover:text-orange-600 transition">열고 닫기</a>
-            <a href="#read" class="hover:text-orange-600 transition">읽어 오기</a>
-            <a href="#write" class="hover:text-orange-600 transition">써 넣기</a>
-            <a href="#csv" class="hover:text-orange-600 transition">표를 담은 파일</a>
+            <a href="#read" class="hover:text-orange-600 transition">파일 읽기</a>
+            <a href="#write" class="hover:text-orange-600 transition">파일 쓰기</a>
+            <a href="#csv" class="hover:text-orange-600 transition">CSV 파일</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -77,25 +77,25 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">값은 프로그램과 함께 사라진다</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">변수에 담은 값은 실행이 끝나는 순간 없어집니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">변수에 저장한 값은 실행이 끝나는 순간 없어집니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <pre class="language-python"><code class="language-python" data-src="code/09.사라진다.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                변수는 <strong>실행하는 동안만</strong> 값을 들고 있습니다.
-                프로그램이 끝나면 그 자리를 컴퓨터가 도로 가져가므로,
-                다시 실행하면 처음부터 다시 입력해야 합니다.
-                한 학급의 점수를 다룬다면 서른 번을 다시 쳐야 한다는 뜻입니다.
+                변수는 <strong>프로그램이 실행되는 동안에만</strong> 값을 저장합니다.
+                프로그램이 끝나면 변수가 쓰던 공간을 컴퓨터가 회수하므로,
+                다시 실행하면 값을 처음부터 다시 입력해야 합니다.
+                한 학급의 점수를 다룬다면 서른 명의 점수를 매번 다시 입력해야 한다는 뜻입니다.
             </p>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">파일(file)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>저장 장치에 이름을 붙여 남겨 두는 자료 덩어리</strong>입니다.
+                    <strong>저장 장치에 이름을 붙여 기록해 둔 자료</strong>입니다.
                     프로그램이 끝나도, 컴퓨터를 꺼도 남습니다.
-                    <strong>다음 실행이 지난 실행의 결과를 이어받을 수 있게</strong> 해 주는 것이 파일입니다.
+                    그래서 <strong>다음 실행에서 지난 실행의 결과를 이어받을 수 있습니다.</strong>
                 </p>
             </div>
 
@@ -119,7 +119,7 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">입력한 점수를 파일에 적어 두면, 다음에 프로그램을 켰을 때 무엇을 하지 않아도 될까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">입력한 점수를 파일에 저장해 두면, 다음에 프로그램을 실행했을 때 무엇을 하지 않아도 될까요?</p>
         </div>
     </section>
 
@@ -156,7 +156,7 @@
                     <tr>
                         <td>② 읽고 쓰기</td>
                         <td><code>f.read()</code> <code>f.write()</code></td>
-                        <td>내용을 가져오거나 넣는다</td>
+                        <td>파일의 내용을 읽어 오거나 파일에 내용을 쓴다</td>
                     </tr>
                     <tr>
                         <td>③ 닫기</td>
@@ -191,8 +191,8 @@
                         </tr>
                         <tr>
                             <td><code>"a"</code></td>
-                            <td>append (이어 붙이기)</td>
-                            <td>쓴다. 없으면 만들고, <strong>있으면 내용 뒤에 이어</strong> 붙인다</td>
+                            <td>append (추가)</td>
+                            <td>쓴다. 없으면 만들고, <strong>있으면 기존 내용 뒤에 이어</strong> 쓴다</td>
                         </tr>
                         </tbody>
                     </table>
@@ -204,9 +204,9 @@
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>닫기를 빠뜨리기 쉽습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    쓴 내용이 <strong>아직 파일에 닿지 않은 채</strong> 남아 있을 수 있고,
-                    중간에서 오류가 나면 <code>close</code>까지 가지도 못합니다.
-                    그래서 파이썬에는 <strong>닫는 것을 잊을 수 없게 해 주는 문법</strong>이 있습니다.
+                    <code>close</code>를 빠뜨리면 쓴 내용이 <strong>아직 파일에 저장되지 않은 채</strong> 남아 있을 수 있습니다.
+                    중간에 오류가 나면 <code>close</code>까지 실행되지도 못합니다.
+                    그래서 파이썬에는 <strong>닫기를 빠뜨릴 수 없게 해 주는 문법</strong>이 있습니다.
                 </p>
             </div>
 
@@ -215,32 +215,32 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900"><code>with</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>들여쓰기가 끝나는 자리에서 파일이 저절로 닫힙니다.</strong>
+                    <strong>들여쓰기가 끝나는 곳에서 파일이 자동으로 닫힙니다.</strong>
                     안에서 오류가 나도 닫힙니다. <code>close</code>를 직접 적는 것도 틀리지 않지만,
-                    <strong>빠뜨릴 수 없는 쪽</strong>이 더 안전합니다. 아래로는 이 꼴만 씁니다.
+                    <strong>빠뜨릴 수 없는 쪽</strong>이 더 안전합니다. 여기부터는 <code>with</code>로만 파일을 엽니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>"w"</code>로 연 프로그램을 실수로 두 번 실행하면 파일의 내용은 어떻게 될까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">파일을 <code>"w"</code>로 여는 프로그램을 실수로 두 번 실행하면 파일의 내용은 어떻게 될까요?</p>
         </div>
     </section>
 
-    <!-- ===== 읽어 오기 ===== -->
+    <!-- ===== 파일 읽기 ===== -->
     <section id="read" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">읽어 오기</h2>
+            <h2 class="text-3xl font-black text-slate-900">파일 읽기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">텍스트 파일에서 읽어 온 것은 언제나 글자입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">텍스트 파일에서 읽어 온 값은 언제나 문자열입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>read</code>는 파일 전체를 문자열 하나로 가져옵니다.
+                <code>read</code>는 파일 전체를 문자열 하나로 읽어 옵니다.
                 하지만 자료는 대개 한 줄에 하나씩 적혀 있으므로, 줄 단위로 다루는 쪽이 편합니다.
-                파일도 <strong>하나씩 꺼내는 것</strong>이라 <code>for</code>가 그대로 통합니다.
+                파일도 <strong><code>for</code>로 한 줄씩 꺼낼 수 있어서</strong> 리스트를 반복하던 방식이 그대로 통합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/09.한줄씩.py"></code></pre>
@@ -248,17 +248,17 @@
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>줄바꿈이 딸려 옵니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    줄을 나누는 <strong>줄바꿈 글자까지 함께</strong> 읽힙니다.
-                    눈에 보이지 않아 알아채기 어렵지만, 대괄호로 감싸 찍어 보면 드러납니다.
-                    <strong>앞뒤 빈칸을 떼는 <code>strip</code></strong>이 줄바꿈도 함께 떼어 줍니다.
+                    줄 끝의 <strong>줄바꿈 문자까지 함께</strong> 읽힙니다.
+                    눈에 보이지 않아 알아채기 어렵지만, 대괄호로 감싸 출력해 보면 드러납니다.
+                    <strong>앞뒤 공백을 떼는 <code>strip</code></strong>이 줄바꿈도 함께 떼어 줍니다.
                 </p>
             </div>
 
             <pre class="language-python"><code class="language-python" data-src="code/09.줄바꿈.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                하나 더 있습니다. <strong>파일에 적힌 90은 수가 아니라 글자 <code>"90"</code>입니다.</strong>
-                <code>input</code>으로 받은 값이 글자인 것과 같은 까닭으로, 더하려면 수로 바꿔 주어야 합니다.
+                하나 더 있습니다. <strong>파일에서 읽은 90은 숫자가 아니라 문자열 <code>"90"</code>입니다.</strong>
+                <code>input</code>으로 입력받은 값이 문자열인 것과 같은 이유로, 더하려면 숫자로 변환해야 합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/09.숫자로.py"></code></pre>
@@ -266,23 +266,23 @@
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>정리가 먼저, 변환이 나중입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int</code>는 앞뒤의 줄바꿈과 공백은 봐주어서 <code>int("90\n")</code>도 90이 됩니다.
-                    하지만 쉼표나 다른 글자가 섞이면 오류가 나며 프로그램이 멈춥니다.
-                    <strong>읽은 줄에는 <code>strip</code>을 먼저 거는 습관</strong>을 들여 두면, 무엇이 남았는지 확인하고 바꿀 수 있습니다.
+                    <code>int</code>는 앞뒤의 줄바꿈과 공백을 무시하므로 <code>int("90\n")</code>도 90이 됩니다.
+                    하지만 쉼표 같은 다른 글자가 섞이면 오류가 나며 프로그램이 멈춥니다.
+                    <strong>읽은 줄에는 <code>strip</code>을 먼저 적용하는 습관</strong>을 들여 두면, 무엇이 남았는지 확인한 뒤 변환할 수 있습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">점수 파일을 읽어 합계를 냈더니 숫자가 이어 붙은 긴 글자가 나왔습니다. 무엇을 빠뜨린 것일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">점수 파일을 읽어 합계를 구했더니 숫자가 이어 붙은 긴 문자열이 나왔습니다. 무엇을 빠뜨린 것일까요?</p>
         </div>
     </section>
 
-    <!-- ===== 써 넣기 ===== -->
+    <!-- ===== 파일 쓰기 ===== -->
     <section id="write" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">써 넣기</h2>
+            <h2 class="text-3xl font-black text-slate-900">파일 쓰기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">줄바꿈은 직접 넣어 주어야 합니다.</p>
         </div>
@@ -291,14 +291,14 @@
             <pre class="language-python"><code class="language-python" data-src="code/09.쓰기.py"></code></pre>
 
             <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
-                <li><code>write</code>는 <strong>글자만</strong> 받는다. 수는 <code>str</code>로 바꾸어 넣는다.</li>
+                <li><code>write</code>는 <strong>문자열만</strong> 인자로 받는다. 숫자는 <code>str</code>로 변환해 넣는다.</li>
                 <li><code>print</code>와 달리 <strong>줄을 저절로 바꾸지 않는다.</strong>
-                    넣지 않으면 <strong>한 줄에 다 이어 붙는다.</strong></li>
+                    줄바꿈 문자를 넣지 않으면 <strong>한 줄에 모두 이어 붙는다.</strong></li>
             </ul>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 <code>"w"</code>는 <strong>있던 내용을 지우고 처음부터</strong> 씁니다.
-                기록을 쌓아 가려면 <code>"a"</code>로 열어야 합니다.
+                기록을 계속 덧붙여 가려면 <code>"a"</code>로 열어야 합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/09.이어쓰기.py"></code></pre>
@@ -314,7 +314,7 @@
                 <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                     <p class="font-black text-lg text-slate-900"><code>"a"</code>가 맞는 때</p>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        <strong>실행할 때마다 한 줄씩 쌓아 갈 때.</strong>
+                        <strong>실행할 때마다 한 줄씩 덧붙여 갈 때.</strong>
                         출석 기록처럼 <strong>지난 것이 남아야 하는</strong> 경우입니다.
                     </p>
                 </div>
@@ -323,9 +323,9 @@
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>지워진 것은 되돌릴 수 없습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>"w"</code>로 여는 순간 <strong>있던 내용은 그 자리에서 사라집니다.</strong>
+                    <code>"w"</code>로 여는 순간 <strong>있던 내용은 바로 사라집니다.</strong>
                     휴지통에도 남지 않습니다.
-                    <strong>중요한 파일 이름을 코드에 적을 때는 모드를 한 번 더 봅니다.</strong>
+                    <strong>중요한 파일 이름을 코드에 적을 때는 모드를 한 번 더 확인합니다.</strong>
                 </p>
             </div>
         </div>
@@ -336,37 +336,37 @@
         </div>
     </section>
 
-    <!-- ===== 표를 담은 파일 ===== -->
+    <!-- ===== 표 형태의 자료와 CSV ===== -->
     <section id="csv" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">표를 담은 파일</h2>
+            <h2 class="text-3xl font-black text-slate-900">표 형태의 자료와 CSV</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">쉼표로 나뉜 글자일 뿐입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">쉼표로 값을 구분한 텍스트일 뿐입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                자료는 대개 표입니다. 이름과 점수처럼 한 줄에 여러 값이 들어갑니다.
-                이럴 때 흔히 쓰는 것이 <strong>값 사이를 쉼표로 나눈 파일</strong>입니다.
+                자료는 대개 표 형태입니다. 이름과 점수처럼 한 줄에 여러 값이 들어갑니다.
+                이럴 때 흔히 쓰는 것이 <strong>값 사이를 쉼표로 구분한 파일</strong>입니다.
             </p>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">CSV(comma-separated values)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>한 줄이 한 행</strong>, <strong>쉼표가 열 구분</strong>인 텍스트 파일입니다.
-                    표 계산 프로그램이 열어 주기는 하지만,
-                    <strong>속을 살펴보면 그냥 글자</strong>입니다 &mdash; 그래서 문자열 도구만으로 다룰 수 있습니다.
+                    표 계산 프로그램으로 열 수도 있지만,
+                    <strong>내용을 살펴보면 평범한 문자열</strong>입니다 &mdash; 그래서 문자열 메서드만으로 다룰 수 있습니다.
                 </p>
             </div>
 
             <pre class="language-python"><code class="language-python" data-src="code/09.csv읽기.py"></code></pre>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">읽기는 자르기, 쓰기는 잇기</p>
+                <p class="font-black text-lg text-slate-900">읽기는 나누기, 쓰기는 잇기</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>줄바꿈을 떼고 쉼표에서 자르면 리스트</strong>가 되고,
+                    <strong>줄바꿈을 떼고 쉼표를 기준으로 나누면 리스트</strong>가 되고,
                     <strong>쉼표로 이어 붙이고 줄바꿈을 더하면 한 줄</strong>이 됩니다.
-                    문자열을 자르는 <code>split</code>과 잇는 <code>join</code> 한 쌍이 그대로 쓰입니다.
+                    문자열을 나누는 <code>split</code>과 잇는 <code>join</code> 한 쌍이 그대로 쓰입니다.
                 </p>
             </div>
 
@@ -375,15 +375,15 @@
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>encoding</code>을 적어 두는 이유</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    글자를 어떤 규칙으로 저장할지 정하는 것이 인코딩입니다.
+                    글자를 어떤 규칙으로 저장할지 정하는 것을 인코딩(encoding)이라고 합니다.
                     쓸 때와 읽을 때의 규칙이 다르면 <strong>한글이 깨져 보입니다.</strong>
                     <code>encoding="utf-8"</code>을 <strong>양쪽에 똑같이</strong> 적어 두면 이 문제를 피할 수 있습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                파일에서 읽어 &rarr; 함수로 계산해 &rarr; 파일로 내보내면 하나의 프로그램이 됩니다.
-                <strong>사람이 한 글자도 치지 않아도 도는 프로그램</strong>이 여기서 나옵니다.
+                파일에서 읽고 &rarr; 함수로 계산하고 &rarr; 파일에 쓰면 하나의 프로그램이 됩니다.
+                <strong>사용자가 한 글자도 입력하지 않아도 끝까지 실행되는 프로그램</strong>입니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/09.전체.py"></code></pre>
@@ -391,8 +391,8 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">한 가지 조심할 것</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>값 안에 쉼표가 들어 있으면</strong> 이 방법으로는 잘못 잘립니다.
-                    실제 자료를 다룰 때는 그런 줄이 있는지 먼저 보아야 합니다.
+                    <strong>값 안에 쉼표가 들어 있으면</strong> 이 방법으로는 잘못 나뉩니다.
+                    실제 자료를 다룰 때는 그런 줄이 있는지 먼저 확인해야 합니다.
                     <strong>여기서는 값에 쉼표가 없다고 보고 다룹니다.</strong>
                 </p>
             </div>
@@ -415,36 +415,36 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">변수는 사라지고 파일은 남는다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    변수는 실행하는 동안만 값을 든다.
-                    <strong>다음 실행이 이어받게 하려면</strong> 파일에 적어 둔다.
+                    변수는 프로그램이 실행되는 동안에만 값을 저장한다.
+                    <strong>다음 실행에서 이어받게 하려면</strong> 파일에 적어 둔다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">열고 &rarr; 다루고 &rarr; 닫는다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>with open(...) as f:</code>를 쓰면
-                    <strong>들여쓰기가 끝나는 자리에서 저절로 닫힌다.</strong>
+                    <strong>들여쓰기가 끝나는 곳에서 파일이 자동으로 닫힌다.</strong>
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">텍스트 파일을 읽으면 글자다</h3>
+                <h3 class="text-xl font-black text-slate-900">텍스트 파일에서 읽은 값은 문자열이다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     줄 끝에 줄바꿈이 딸려 오므로 <code>strip</code>으로 떼고,
-                    계산하려면 <code>int</code>&middot;<code>float</code>로 바꾼다.
+                    계산하려면 <code>int</code>&middot;<code>float</code>로 변환한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>"w"</code>와 <code>"a"</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>"w"</code>는 지우고 처음부터, <code>"a"</code>는 뒤에 이어.
+                    <code>"w"</code>는 기존 내용을 지우고 처음부터, <code>"a"</code>는 기존 내용 뒤에 이어 쓴다.
                     <code>write</code>는 줄을 저절로 바꾸지 않는다.
                 </p>
             </div>
             <div class="section-card space-y-2 md:col-span-2">
                 <h3 class="text-xl font-black text-slate-900">CSV는 특별한 파일이 아니다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    한 줄이 한 행, 쉼표가 열 구분인 그냥 텍스트다.
-                    <strong>읽기는 자르기, 쓰기는 잇기</strong>로 다룬다.
+                    한 줄이 한 행, 쉼표가 열 구분인 평범한 텍스트다.
+                    <strong>읽기는 나누기, 쓰기는 잇기</strong>로 다룬다.
                     한글을 주고받을 때는 <code>encoding</code>을 양쪽에 같게 적는다.
                 </p>
             </div>
@@ -480,13 +480,13 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. 한 줄에 하나씩 점수가 적힌 파일에서 <code>line</code>을 그대로 <code>int</code>에 넣기 전에 할 일은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '줄바꿈만 붙어 있으면 int가 봐주지만, 다른 글자가 섞였을 때를 대비해 strip으로 먼저 정리하는 습관을 들입니다. 그래야 무엇이 남았는지 확인하고 바꿀 수 있습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '줄바꿈만 붙어 있으면 int가 무시하지만, 다른 글자가 섞였을 때를 대비해 strip으로 먼저 정리하는 습관을 들입니다. 그래야 무엇이 남았는지 확인한 뒤 변환할 수 있습니다.')">
                     ① <code>strip</code>으로 줄바꿈을 떼어 낸다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '쉼표로 나뉜 파일이 아니라면 자를 일이 없습니다.')">
                     ② <code>split(",")</code>으로 자른다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '읽어 온 값은 이미 글자입니다. 다시 글자로 바꿀 이유가 없습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '읽어 온 값은 이미 문자열입니다. 다시 문자열로 변환할 이유가 없습니다.')">
                     ③ <code>str</code>로 바꾼다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '닫는 것은 다 읽은 뒤의 일입니다.')">
@@ -498,10 +498,10 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'write는 줄을 바꿔 주지 않습니다. 넣지 않으면 한 줄에 이어 붙습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'write는 줄을 바꿔 주지 않습니다. 줄바꿈 문자를 넣지 않으면 한 줄에 이어 붙습니다.')">
                     ① <code>write</code>는 <code>print</code>처럼 줄을 저절로 바꿔 준다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'with로 연 파일은 들여쓰기가 끝나는 자리에서 저절로 닫힙니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'with로 연 파일은 들여쓰기가 끝나는 곳에서 자동으로 닫힙니다.')">
                     ② <code>with</code>를 쓰면 <code>close</code>를 적지 않아도 닫힌다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '읽기 모드로는 없는 파일을 열 수 없어 오류가 납니다.')">

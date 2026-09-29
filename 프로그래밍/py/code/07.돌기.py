@@ -7,5 +7,5 @@ for ch in word:         # 리스트에서 값을 꺼내던 것과 같은 방식�
     print(ch, end=" ")  # p y t h o n
 print()
 
-print("th" in word)     # True    들어 있는지 묻는다
+print("th" in word)     # True    들어 있는지 확인한다
 print("z" in word)      # False

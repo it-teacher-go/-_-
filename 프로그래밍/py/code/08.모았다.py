@@ -1,7 +1,7 @@
 # ---
 # check: none
 # ---
-def average(scores):            # 「평균 내는 방법」에 이름을 붙인다
+def average(scores):            # 「평균을 구하는 코드」에 이름을 붙인다
     return round(sum(scores) / len(scores), 1)
 
 print(average([90, 85, 72]))    # 82.3

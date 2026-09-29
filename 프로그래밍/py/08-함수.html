@@ -22,7 +22,7 @@
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
 같은 계산이 코드 곳곳에 흩어져 있습니다.<br>
-            <strong>한 번 적고 이름을 붙여 두면 어디서든 부를 수 있습니다.</strong>
+            <strong>한 번 적고 이름을 붙여 두면 어디서든 불러 쓸 수 있습니다.</strong>
         </p>
     </div>
 </header>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>반복되는 일을 함수로 묶고, 정의와 호출을 구별할 수 있다.</li>
-                    <li>매개변수로 값을 건네고 기본값을 둘 수 있다.</li>
-                    <li><code>return</code>으로 값을 돌려주는 것과 <code>print</code>로 찍는 것의 차이를 설명할 수 있다.</li>
-                    <li>함수 안에서 만든 이름이 밖에서 보이지 않는 이유를 알고, 값을 돌려주는 쪽을 고를 수 있다.</li>
+                    <li>반복되는 코드를 함수로 묶고, 정의와 호출을 구별할 수 있다.</li>
+                    <li>매개변수와 인자로 값을 전달하고, 매개변수에 기본값을 둘 수 있다.</li>
+                    <li><code>return</code>으로 값을 반환하는 것과 <code>print</code>로 출력하는 것의 차이를 설명할 수 있다.</li>
+                    <li>함수 안에서 만든 변수를 밖에서 쓸 수 없는 이유를 알고, 전역 변수를 바꾸는 대신 값을 반환하는 방식을 고를 수 있다.</li>
                     <li>내장 함수와 모듈의 함수를 찾아 쓸 수 있다.</li>
                 </ol>
             </div>
@@ -59,10 +59,10 @@
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
             <a href="#why" class="hover:text-orange-600 transition">왜 필요한가</a>
-            <a href="#make" class="hover:text-orange-600 transition">만들고 부르기</a>
-            <a href="#param" class="hover:text-orange-600 transition">값을 건네기</a>
-            <a href="#ret" class="hover:text-orange-600 transition">값을 돌려받기</a>
-            <a href="#scope" class="hover:text-orange-600 transition">이름이 사는 곳</a>
+            <a href="#make" class="hover:text-orange-600 transition">정의와 호출</a>
+            <a href="#param" class="hover:text-orange-600 transition">매개변수와 인자</a>
+            <a href="#ret" class="hover:text-orange-600 transition">값 반환하기</a>
+            <a href="#scope" class="hover:text-orange-600 transition">지역 변수</a>
             <a href="#lib" class="hover:text-orange-600 transition">이미 있는 함수</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
@@ -73,23 +73,23 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 같은 일을 여러 자리에서 ===== -->
+    <!-- ===== 같은 일을 여러 곳에서 ===== -->
     <section id="why" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">같은 일을 여러 자리에서</h2>
+            <h2 class="text-3xl font-black text-slate-900">같은 일을 여러 곳에서</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">반복은 한 곳을 여러 번 도는 것이고, 함수는 여러 곳에서 한 방법을 부르는 것입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">반복문은 한 곳의 코드를 여러 번 실행하고, 함수는 같은 코드를 여러 곳에서 불러 씁니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                과목마다 평균을 내려면 함수 없이는 이렇게 됩니다.
+                과목마다 평균을 구하려면 함수 없이는 이렇게 됩니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.흩어진다.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <strong>같은 계산이 세 자리에 흩어져 있습니다.</strong>
+                <strong>같은 계산이 세 곳에 흩어져 있습니다.</strong>
                 반올림 자릿수를 바꾸려면 세 군데를 모두 고쳐야 하고,
                 한 군데를 빠뜨리면 그 줄만 조용히 다른 값을 냅니다.
             </p>
@@ -97,8 +97,8 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">함수(function)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>일을 하는 방법에 이름을 붙여 두고, 필요할 때 그 이름을 부르는 것</strong>입니다.
-                    방법은 <strong>한 자리에만</strong> 적히므로, 고칠 일이 생겨도 그 한 자리만 고칩니다.
+                    <strong>어떤 일을 하는 코드에 이름을 붙여 두고, 필요할 때 그 이름으로 불러 실행하게 한 것</strong>입니다.
+                    코드는 <strong>한 곳에만</strong> 적히므로, 고칠 일이 생겨도 그 한 곳만 고칩니다.
                 </p>
             </div>
 
@@ -106,17 +106,17 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div class="bg-white border-l-4 border-l-sky-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                    <p class="font-black text-lg text-slate-900">반복 &mdash; 한 자리를 여러 번</p>
+                    <p class="font-black text-lg text-slate-900">반복문 &mdash; 한 곳을 여러 번</p>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        <strong>같은 줄들을</strong> 이어서 여러 번 지나갑니다.
-                        언제 도는지는 그 자리가 정합니다.
+                        <strong>같은 코드를</strong> 연달아 여러 번 실행합니다.
+                        언제 실행되는지는 반복문이 놓인 위치가 정합니다.
                     </p>
                 </div>
                 <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                    <p class="font-black text-lg text-slate-900">함수 &mdash; 여러 자리에서 한 방법을</p>
+                    <p class="font-black text-lg text-slate-900">함수 &mdash; 여러 곳에서 같은 코드를</p>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        <strong>떨어져 있는 자리들에서</strong> 같은 방법을 불러 씁니다.
-                        언제 쓸지는 부르는 쪽이 정합니다.
+                        <strong>서로 떨어진 여러 곳에서</strong> 같은 코드를 불러 씁니다.
+                        언제 실행할지는 부르는 쪽이 정합니다.
                     </p>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>round(sum(scores) / len(scores), 1)</code>은 <strong>읽고 나서야</strong> 평균인 줄 압니다.
                     <code>average(scores)</code>는 <strong>보자마자</strong> 압니다.
-                    함수는 코드를 줄이기도 하지만, <strong>읽는 사람에게 이름을 주는 것</strong>이 더 큰 몫입니다.
+                    함수는 코드를 줄여 줄 뿐 아니라, <strong>읽는 사람이 코드를 이름으로 이해하게</strong> 해 줍니다.
                 </p>
             </div>
         </div>
@@ -137,12 +137,12 @@
         </div>
     </section>
 
-    <!-- ===== 만들고 부르기 ===== -->
+    <!-- ===== 정의와 호출 ===== -->
     <section id="make" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">만들고 부르기</h2>
+            <h2 class="text-3xl font-black text-slate-900">정의와 호출</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">적어 두는 일과 실행하는 일은 따로입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">함수를 적어 두는 일과 실행하는 일은 따로입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -150,21 +150,21 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-28">부르는 말</th>
-                        <th class="w-44">모양</th>
+                        <th class="w-28">용어</th>
+                        <th class="w-44">형태</th>
                         <th>하는 일</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><strong>정의</strong></td>
+                        <td><strong>정의</strong>(definition)</td>
                         <td><code>def 이름():</code> 아래 들여쓰기</td>
-                        <td>방법을 적어 둔다. <strong>이때는 실행되지 않는다</strong></td>
+                        <td>함수가 할 일을 적어 둔다. <strong>이때는 실행되지 않는다</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>호출</strong></td>
+                        <td><strong>호출</strong>(call)</td>
                         <td><code>이름()</code></td>
-                        <td>적어 둔 방법을 <strong>실제로 실행한다</strong></td>
+                        <td>적어 둔 코드를 <strong>실제로 실행한다</strong></td>
                     </tr>
                     </tbody>
                 </table>
@@ -175,15 +175,15 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">요리법을 적어 두는 것과 요리를 하는 것</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    요리법을 적었다고 밥이 되지 않습니다. <strong>정의는 적어 두는 일</strong>이고,
-                    <strong>호출이 실제로 하는 일</strong>입니다. 적어 둔 것은 <strong>몇 번이든 다시 쓸 수 있습니다.</strong>
+                    요리법을 적었다고 밥이 되지 않습니다. <strong>정의는 요리법을 적어 두는 일</strong>이고,
+                    <strong>호출은 실제로 요리를 하는 일</strong>입니다. 적어 둔 함수는 <strong>몇 번이든 다시 호출할 수 있습니다.</strong>
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>부르기 전에 정의가 있어야 합니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>호출하기 전에 정의가 있어야 합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    코드는 <strong>위에서 아래로</strong> 실행됩니다. 실행이 아직 <code>def</code> 줄을 지나오지 않았다면 그 함수 이름은 아직 없는 이름이라 <code>NameError</code>가 납니다.
+                    코드는 <strong>위에서 아래로</strong> 실행됩니다. 실행이 아직 <code>def</code> 줄에 이르지 않았다면 그 함수는 아직 정의되지 않은 것이라 <code>NameError</code>가 납니다.
                 </p>
             </div>
 
@@ -191,23 +191,23 @@
 
             <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
                 <li><code>def</code> 줄 끝의 <strong>콜론</strong>과 <strong>들여쓰기</strong>는 <code>if</code>&middot;<code>for</code>에서와 같은 규칙이다.</li>
-                <li>들여쓰기가 끝나는 자리가 <strong>함수의 끝</strong>이다.</li>
-                <li>이름은 <strong>하는 일이 드러나게</strong> 짓는다 &mdash; <code>f</code>보다 <code>average</code>가 낫다.</li>
+                <li>들여쓰기가 끝나는 곳이 <strong>함수의 끝</strong>이다.</li>
+                <li>함수 이름은 <strong>하는 일이 드러나게</strong> 짓는다 &mdash; <code>f</code>보다 <code>average</code>가 낫다.</li>
             </ul>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">함수를 정의만 하고 한 번도 부르지 않은 프로그램을 실행하면 무엇이 찍힐까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">함수를 정의만 하고 한 번도 호출하지 않은 프로그램을 실행하면 무엇이 출력될까요?</p>
         </div>
     </section>
 
-    <!-- ===== 값을 건네기 ===== -->
+    <!-- ===== 매개변수와 인자 ===== -->
     <section id="param" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">값을 건네기</h2>
+            <h2 class="text-3xl font-black text-slate-900">매개변수와 인자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">같은 방법을 다른 값에 쓰려면 받을 자리가 있어야 합니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">같은 함수를 다른 값에 쓰려면 값을 받을 변수가 있어야 합니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -217,8 +217,8 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-40">부르는 말</th>
-                        <th class="w-36">보기</th>
+                        <th class="w-40">용어</th>
+                        <th class="w-36">예</th>
                         <th>뜻</th>
                     </tr>
                     </thead>
@@ -226,20 +226,21 @@
                     <tr>
                         <td><strong>매개변수</strong>(parameter)</td>
                         <td><code>def greet(name)</code>의 <code>name</code></td>
-                        <td>정의할 때 적어 두는 <strong>받아 둘 자리</strong></td>
+                        <td>정의할 때 괄호 안에 적어 두는, <strong>전달받은 값을 저장할 변수</strong></td>
                     </tr>
                     <tr>
                         <td><strong>인자</strong>(argument)</td>
                         <td><code>greet("학생 A")</code>의 <code>"학생 A"</code></td>
-                        <td>부를 때 <strong>실제로 건네는 값</strong></td>
+                        <td>호출할 때 괄호 안에 넣어 <strong>실제로 전달하는 값</strong></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                매개변수는 「받는 자리」이고 인자는 「주는 값」입니다. 둘은 이어져 있지만 가리키는 것이 다릅니다.
-                자리가 여럿이면 <strong>적은 순서대로</strong> 들어갑니다.
+                매개변수는 값을 「받는 변수」이고 인자는 「전달하는 값」입니다. 함수를 호출하면 인자가 매개변수에 대입된 뒤 함수 안의 코드가 실행됩니다.
+                <code>print</code>에서 <code>sep</code>&middot;<code>end</code>를 지정하고 <code>len</code>의 괄호 안에 값을 넣던 것도 모두 인자를 전달하는 일이었습니다.
+                매개변수가 여럿이면 인자는 <strong>적은 순서대로</strong> 들어갑니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.여러개.py"></code></pre>
@@ -247,14 +248,14 @@
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>순서를 바꾸면 오류가 아니라 「틀린 값」입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    둘 다 수이므로 파이썬은 그대로 계산해 줍니다.
+                    둘 다 숫자이므로 파이썬은 그대로 계산합니다.
                     <strong>멈추지 않고 이상한 값이 나오는 쪽이 찾기 더 어렵습니다.</strong>
-                    자리 이름을 <code>weight</code>&middot;<code>height</code>처럼 분명히 지어 두는 것이 예방책입니다.
+                    매개변수 이름을 <code>weight</code>&middot;<code>height</code>처럼 분명히 지어 두면 이런 실수를 줄일 수 있습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <strong>거의 늘 같은 값이라면</strong> 미리 정해 두고, 다를 때만 건네게 할 수 있습니다.
+                <strong>인자가 거의 늘 같은 값이라면</strong> 매개변수에 기본값을 정해 두고, 다를 때만 인자를 넣게 할 수 있습니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.기본값.py"></code></pre>
@@ -266,12 +267,12 @@
         </div>
     </section>
 
-    <!-- ===== 값을 돌려받기 ===== -->
+    <!-- ===== 값을 반환하기 ===== -->
     <section id="ret" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">값을 돌려받기</h2>
+            <h2 class="text-3xl font-black text-slate-900">값을 반환하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">찍는 것과 돌려주는 것은 전혀 다른 일입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">출력하는 것과 반환하는 것은 전혀 다른 일입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -280,14 +281,14 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900"><code>return</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수를 <strong>거기서 끝내고</strong>, 부른 자리에 <strong>값을 건네줍니다.</strong> 이렇게 건네주는 값을 반환값(return value)이라고 합니다.
-                    부른 자리는 그 값을 담거나 계산에 이어 쓸 수 있습니다.
+                    함수를 <strong>그 줄에서 끝내고</strong>, 호출한 곳에 <strong>값을 반환합니다.</strong> 이렇게 반환하는 값을 반환값(return value)이라고 합니다.
+                    호출한 곳에서는 그 값을 변수에 저장하거나 계산에 바로 쓸 수 있습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                여기서 가장 자주 헷갈리는 것이 있습니다. <code>print</code>는 화면에 보여 주는 일이고,
-                <strong><code>return</code>은 부른 쪽에 값을 넘기는 일</strong>입니다. 겉보기에는 둘 다 「결과가 나온 것」처럼 보입니다.
+                여기서 가장 자주 헷갈리는 것이 있습니다. <code>print</code>는 화면에 출력하는 일이고,
+                <strong><code>return</code>은 호출한 쪽에 값을 넘기는 일</strong>입니다. 겉보기에는 둘 다 「결과가 나온 것」처럼 보입니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.print리턴.py"></code></pre>
@@ -296,15 +297,15 @@
                 <div class="bg-white border-l-4 border-l-sky-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                     <p class="font-black text-lg text-slate-900"><code>print</code>만 하는 함수</p>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        화면에는 보입니다. 그러나 <strong>담아 두면 <code>None</code></strong>이라
+                        화면에는 결과가 보입니다. 그러나 <strong>호출 결과를 변수에 저장하면 <code>None</code></strong>이 들어가므로
                         <strong>다음 계산에 쓸 수 없습니다.</strong>
                     </p>
                 </div>
                 <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                     <p class="font-black text-lg text-slate-900"><code>return</code>하는 함수</p>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        저절로 보이지는 않습니다. 대신 <strong>값이 손에 남아</strong>
-                        담고 더하고 비교할 수 있습니다.
+                        화면에 저절로 출력되지는 않습니다. 대신 <strong>반환값이 남아</strong>
+                        저장하고 더하고 비교할 수 있습니다.
                     </p>
                 </div>
             </div>
@@ -312,15 +313,15 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900"><code>None</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>「돌려준 것이 없다」</strong>는 뜻의 값입니다.
-                    <code>return</code>이 없는 함수는 <code>None</code>을 돌려줍니다.
-                    <strong>계산 결과가 이유 없이 <code>None</code>이면 <code>return</code>을 빠뜨린 것</strong>부터 봅니다.
+                    리스트에서 본, <strong>「값이 없음」</strong>을 나타내는 특별한 값입니다.
+                    <code>return</code>이 없는 함수도 끝나면 <code>None</code>을 반환합니다.
+                    <strong>계산 결과가 뜻밖에 <code>None</code>이면 <code>return</code>을 빠뜨리지 않았는지</strong>부터 확인합니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>return</code>을 만나면 함수는 <strong>그 자리에서 끝납니다.</strong>
-                그래서 갈래마다 <code>return</code>을 두면 <code>else</code> 없이도 갈래가 나뉩니다.
+                <code>return</code>을 만나면 함수는 <strong>그 줄에서 바로 끝납니다.</strong>
+                그래서 조건마다 <code>return</code>을 두면 <code>else</code> 없이도 경우가 나뉩니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.리턴뒤.py"></code></pre>
@@ -328,16 +329,16 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">평균을 내는 함수가 <code>print</code>만 하고 있다면, 그 평균으로 등급을 매기려 할 때 무엇이 막힐까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">평균을 구하는 함수가 <code>print</code>로 출력만 하고 있다면, 그 평균으로 등급을 매기려 할 때 무엇이 막힐까요?</p>
         </div>
     </section>
 
-    <!-- ===== 이름이 사는 곳 ===== -->
+    <!-- ===== 변수를 쓸 수 있는 범위 ===== -->
     <section id="scope" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">이름이 사는 곳</h2>
+            <h2 class="text-3xl font-black text-slate-900">변수를 쓸 수 있는 범위</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">함수 안에서 만든 이름은 함수와 함께 사라집니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">함수 안에서 만든 변수는 함수가 끝나면 사라집니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -346,47 +347,47 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">지역 변수와 전역 변수</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
-                    <li><strong>지역 변수</strong> &mdash; 함수 안에서 만든 이름. <strong>함수가 끝나면 사라진다.</strong></li>
-                    <li><strong>전역 변수</strong> &mdash; 함수 밖에서 만든 이름. 프로그램 전체에서 보인다.</li>
+                    <li><strong>지역 변수</strong>(local variable) &mdash; 함수 안에서 만든 변수. 매개변수도 지역 변수다. <strong>함수가 끝나면 사라진다.</strong></li>
+                    <li><strong>전역 변수</strong>(global variable) &mdash; 함수 밖에서 만든 변수. 함수 안에서도 값을 읽을 수 있다.</li>
                 </ul>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">불편한 규칙이 아니라 지켜 주는 규칙입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수마다 <code>total</code>&middot;<code>i</code> 같은 이름을 마음 놓고 쓸 수 있는 것이
-                    이 규칙 덕분입니다. <strong>안에서 이름에 무엇을 담든 바깥의 같은 이름은 그대로입니다.</strong>
-                    다만 건네받은 리스트를 <code>append</code>처럼 직접 고치면 바깥에서도 바뀝니다.
+                    함수마다 <code>total</code>&middot;<code>i</code> 같은 변수 이름을 마음 놓고 쓸 수 있는 것이
+                    이 규칙 덕분입니다. <strong>함수 안에서 어떤 값을 대입하든 바깥에 있는 같은 이름의 변수는 그대로입니다.</strong>
+                    다만 인자로 받은 리스트를 <code>append</code>처럼 직접 고치면 바깥에서도 바뀝니다.
                     매개변수가 바깥의 그 리스트에 이름을 하나 더 붙인 것이기 때문입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                함수 안에서 <strong>바깥 이름에 값을 다시 담으려면</strong> 그렇게 하겠다고 밝혀야 합니다.
+                함수 안에서 <strong>전역 변수에 값을 다시 대입하려면</strong> <code>global</code>로 그렇게 하겠다고 밝혀야 합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.전역.py"></code></pre>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>되도록 돌려주는 쪽을 고릅니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>되도록 값을 반환하는 쪽을 고릅니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>global</code>을 쓰면 <strong>함수가 바깥을 몰래 바꾸게</strong> 되어,
+                    <code>global</code>을 쓰면 <strong>함수가 바깥의 변수를 몰래 바꾸게</strong> 되어,
                     값이 어디서 달라졌는지 찾기 어려워집니다.
-                    <strong>받아서 돌려주면</strong> 오가는 것이 부르는 줄에 그대로 보입니다.
+                    <strong>인자로 받고 결과를 반환하면</strong> 오가는 값이 호출하는 줄에 그대로 드러납니다.
                 </p>
             </div>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.돌려주기로.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                다만 어느 쪽이 늘 옳은 것은 아닙니다. 여러 함수가 함께 보아야 하는 값이라면
-                바깥에 두는 편이 나을 때도 있습니다. <strong>값이 오가는 길이 눈에 보이는 쪽</strong>을 고르면 됩니다.
+                다만 어느 쪽이 늘 옳은 것은 아닙니다. 여러 함수가 함께 읽어야 하는 값이라면
+                전역 변수로 두는 편이 나을 때도 있습니다. <strong>값이 오가는 길이 눈에 보이는 쪽</strong>을 고르면 됩니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">두 함수가 저마다 <code>total</code>이라는 이름을 쓰고 있습니다. 서로 부딪히지 않는 이유는 무엇일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">두 함수가 저마다 <code>total</code>이라는 변수를 쓰고 있습니다. 서로 부딪히지 않는 이유는 무엇일까요?</p>
         </div>
     </section>
 
@@ -401,21 +402,21 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
                 <code>print</code>&middot;<code>len</code>&middot;<code>input</code>도 함수입니다.
-                이렇게 파이썬에 처음부터 들어 있는 함수를 <strong>내장 함수</strong>라고 합니다.
+                이렇게 파이썬에 처음부터 들어 있는 함수를 <strong>내장 함수</strong>(built-in function)라고 합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.내장.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                더 특별한 계산은 꾸러미로 묶여 따로 놓여 있습니다.
-                필요할 때 가져와서 씁니다.
+                더 특별한 계산을 하는 함수는 따로 묶여 있어서,
+                필요할 때 가져와 씁니다.
             </p>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">모듈(module)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    관련 있는 함수들을 모아 둔 <strong>꾸러미</strong>입니다.
-                    처음부터 다 들여놓으면 무거우므로, <code>import</code>로 <strong>필요한 것만 가져옵니다.</strong>
+                    관련 있는 함수들을 모아 둔 <strong>묶음</strong>입니다.
+                    처음부터 모두 가져오면 무거우므로, <code>import</code>로 <strong>필요한 모듈만 가져옵니다.</strong>
                 </p>
             </div>
 
@@ -439,39 +440,39 @@
                     <tbody>
                     <tr>
                         <td><code>import math</code></td>
-                        <td>부를 때마다 <strong>어느 꾸러미의 것인지</strong> 드러난다. 가장 무난하다</td>
+                        <td>호출할 때마다 <strong>어느 모듈의 함수인지</strong> 드러난다. 가장 무난하다</td>
                     </tr>
                     <tr>
                         <td><code>import math as m</code></td>
-                        <td>이름이 길고 여러 번 부를 때 <strong>짧게</strong> 쓴다</td>
+                        <td>모듈 이름이 길고 여러 번 호출할 때 <strong>짧게</strong> 쓴다</td>
                     </tr>
                     <tr>
                         <td><code>from math import sqrt</code></td>
-                        <td>몇 개만 쓸 때 <strong>꾸러미 이름 없이</strong> 부른다. <strong>내 변수와 이름이 부딪힐 수 있다</strong></td>
+                        <td>몇 개만 쓸 때 <strong>모듈 이름 없이</strong> 호출한다. <strong>내가 만든 변수와 이름이 충돌할 수 있다</strong></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                무작위로 값을 고르는 <code>random</code>도 자주 씁니다.
-                이 꾸러미는 <strong>실행할 때마다 다른 값</strong>을 내놓습니다.
+                무작위로 값을 고르는 <code>random</code> 모듈도 자주 씁니다.
+                이 모듈의 함수는 <strong>실행할 때마다 다른 값</strong>을 반환합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.랜덤.py"></code></pre>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">씨앗을 고정하면 같은 결과가 나옵니다</p>
+                <p class="font-black text-lg text-slate-900">시드를 고정하면 같은 결과가 나옵니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>seed</code>를 정해 두면 <strong>매번 같은 순서</strong>가 나옵니다.
-                    무작위가 아니게 되는 것이 아니라, <strong>같은 무작위를 다시 재현하는 것</strong>입니다.
-                    결과를 남과 맞춰 보아야 할 때 씁니다. <strong>이 예제의 값이 여러분 화면에도 똑같이 나오는 이유</strong>입니다.
+                    <code>random.seed</code>로 시드(seed) 값을 정해 두면 <strong>매번 같은 순서로 값이 나옵니다.</strong>
+                    무작위가 아니게 되는 것이 아니라, <strong>같은 무작위 순서를 재현하는 것</strong>입니다.
+                    결과를 다른 사람과 맞춰 보아야 할 때 씁니다. <strong>이 예제의 값이 여러분 화면에도 똑같이 나오는 것</strong>도 이 때문입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                평균을 내는 함수와 등급을 매기는 함수를 한데 놓으면 이렇게 됩니다. 함수 둘로 나누어 두니
-                마지막 줄이 하는 말이 그대로 읽힙니다.
+                평균을 구하는 함수와 등급을 매기는 함수를 함께 쓰면 이렇게 됩니다. 두 함수로 나누어 두니
+                마지막 줄이 하는 일이 그대로 읽힙니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.전체.py"></code></pre>
@@ -494,28 +495,28 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">정의와 호출은 다르다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>def</code>는 방법을 적어 두는 일이고
-                    <code>이름()</code>이 실행하는 일이다. 부르기 전에 정의가 있어야 한다.
+                    <code>def</code>는 함수를 적어 두는 일이고
+                    <code>이름()</code>이 실행하는 일이다. 호출하기 전에 정의가 있어야 한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">값은 순서대로 들어간다</h3>
+                <h3 class="text-xl font-black text-slate-900">인자는 순서대로 들어간다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    받는 자리와 주는 값은 적은 순서대로 짝지어진다.
-                    순서를 바꾸면 <strong>오류 없이 틀린 값</strong>이 나온다.
+                    인자는 적은 순서대로 매개변수에 대입된다.
+                    순서를 바꾸면 <strong>오류 없이 틀린 값</strong>이 나올 수 있다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>print</code>와 <code>return</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    찍는 것은 보여 주는 일, 돌려주는 것은 <strong>값을 넘기는 일</strong>이다.
-                    <code>return</code>이 없으면 <code>None</code>이 돌아온다.
+                    출력은 화면에 보여 주는 일, 반환은 <strong>호출한 곳에 값을 넘기는 일</strong>이다.
+                    <code>return</code>이 없으면 <code>None</code>이 반환된다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">이름이 사는 곳</h3>
+                <h3 class="text-xl font-black text-slate-900">지역 변수</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수 안에서 만든 이름은 <strong>밖에서 보이지 않는다.</strong>
+                    함수 안에서 만든 변수는 <strong>함수 밖에서 쓸 수 없다.</strong>
                     덕분에 함수마다 같은 이름을 마음 놓고 쓸 수 있다.
                 </p>
             </div>
@@ -539,9 +540,9 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. <code>def</code>로 함수를 정의하기만 하고 부르지 않으면?</p>
+            <p class="font-black text-lg text-slate-900">1. <code>def</code>로 함수를 정의하기만 하고 호출하지 않으면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '정의는 방법을 적어 두는 일입니다. 호출해야 실행됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '정의는 함수가 할 일을 적어 두기만 합니다. 호출해야 실행됩니다.')">
                     ① 함수 안의 코드는 실행되지 않는다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '한 번 실행되지도 않습니다. 적어 두기만 한 것입니다.')">
@@ -550,8 +551,8 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '오류는 나지 않습니다. 쓰이지 않을 뿐입니다.')">
                     ③ 오류가 난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'None은 함수를 부른 결과이지, 부르지 않으면 결과 자체가 없습니다.')">
-                    ④ <code>None</code>이 찍힌다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'None은 return이 없는 함수를 호출했을 때 반환되는 값입니다. 호출하지 않으면 반환되는 값도 없습니다.')">
+                    ④ <code>None</code>이 출력된다
                 </button>
             </div>
         </div>
@@ -559,16 +560,16 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. 함수가 <code>print</code>만 하고 <code>return</code>이 없을 때, <code>x = 함수()</code>의 <code>x</code>는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '화면에 찍힌 것과 돌려준 것은 다릅니다.')">
-                    ① 화면에 찍힌 값
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '화면에 출력된 값과 반환값은 다릅니다.')">
+                    ① 화면에 출력된 값
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '돌려준 것이 없다는 뜻의 None입니다. 계산에 쓸 수 없습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'return이 없는 함수는 None을 반환합니다. 이 값은 계산에 쓸 수 없습니다.')">
                     ② <code>None</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '오류 없이 담깁니다. 그래서 더 찾기 어렵습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '오류 없이 None이 저장됩니다. 그래서 더 찾기 어렵습니다.')">
                     ③ 오류가 난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '0이 되지는 않습니다. 값의 종류부터 다릅니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '0이 되지는 않습니다. 자료형부터 다릅니다.')">
                     ④ <code>0</code>
                 </button>
             </div>
@@ -577,16 +578,16 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '함수 안에서 만든 이름은 함수가 끝나면 사라져 밖에서 부를 수 없습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '함수 안에서 만든 변수는 지역 변수라서 함수가 끝나면 사라지고, 밖에서 쓸 수 없습니다.')">
                     ① 함수 안에서 만든 변수는 함수 밖에서도 쓸 수 있다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'return을 만나면 그 줄에서 함수가 끝납니다.')">
-                    ② <code>return</code>을 만나면 함수는 그 자리에서 끝난다
+                    ② <code>return</code>을 만나면 함수는 그 줄에서 바로 끝난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '인자 순서를 바꿔도 둘 다 수이면 그대로 계산되어 버려 오류가 나지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '인자 순서를 바꿔도 둘 다 숫자이면 그대로 계산되어 오류가 나지 않습니다.')">
                     ③ 인자 순서를 바꿔도 오류가 나지 않을 수 있다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'seed를 정하면 같은 무작위 결과를 다시 재현할 수 있습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'seed를 정하면 같은 무작위 결과를 재현할 수 있습니다.')">
                     ④ <code>seed</code>를 정하면 같은 무작위 결과를 다시 얻을 수 있다
                 </button>
             </div>

@@ -3,8 +3,8 @@
 # ---
 count = 0
 
-def visit(count):       # 받아서
-    return count + 1    # 늘린 값을 돌려준다
+def visit(count):       # 인자로 받아서
+    return count + 1    # 1을 더한 값을 반환한다
 
 count = visit(count)
 count = visit(count)
