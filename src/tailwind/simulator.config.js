@@ -3,7 +3,11 @@
 // 섞여 들어오지 않는다. content가 같으면 산출물이 똑같아져 Rollup이 하나로 합친다.
 // `simulator/index.html`은 시뮬레이터가 아니라 **입구**다. index.css를 링크하므로
 // 여기서 빼지 않으면 그 페이지의 클래스가 시뮬레이터 스물셋의 CSS에 얹혀 나간다.
+import theme from './theme.js';
+
 export default {
+    // 라이트 · 다크 색의 짝 — 색 유틸리티가 CSS 변수를 읽는다. → ./theme.js
+    presets: [theme(['simulator'])],
     // hover: 는 마우스처럼 호버가 되는 기기에서만 켠다 — 터치 기기에서는 누른 뒤 호버 색이 붙어 남는다.
     future: { hoverOnlyWhenSupported: true },
     content: ['./simulator/**/*.html', '!./simulator/index.html'],

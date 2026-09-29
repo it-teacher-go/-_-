@@ -1,0 +1,190 @@
+/* 딥러닝 (Deep Learning) 시뮬레이터(simulator/ai/deep-learning.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-deep-learning)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+:where(.sim-deep-learning) .tab-btn.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+:where(.sim-deep-learning) .tab-btn:not(.active) {
+    background-color: #f8fafc;
+    color: #64748b;
+    border-color: #e2e8f0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-deep-learning) .tab-btn:not(.active):hover {
+        background-color: #f1f5f9;
+        color: #3b82f6;
+    }
+}
+
+:where(.sim-deep-learning) .tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+:where(.sim-deep-learning) .tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+}
+
+:where(.sim-deep-learning) input[type=range] {
+    accent-color: #3b82f6;
+}
+
+:where(.sim-deep-learning) .canvas-container {
+    background-color: #f8fafc;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+/* 「뉴런의 계산」·「가중치 갱신」 탭은 교실 화면에 띄워 놓고 조작한다.
+   넓은 화면에서는 스크롤 없이 한 화면에 들어오도록 높이를 뷰포트에 묶는다.
+   --sim-stage-h 는 스크립트가 상단 바와 탭바를 실측해 넣는다.
+   좁은 화면에서는 묶지 않는다 — 밀어 넣으면 숫자가 읽을 수 없게 작아진다.
+
+   **격자는 여기서만 정한다. 마크업에 `grid-cols-*` 를 붙이지 않는다.** 빌드한 페이지에서는
+   Tailwind 파일이 이 <style> 뒤에 붙어, 같은 무게의 `.grid-cols-1` 이 아래 두 칸 배치를
+   덮는다 — 그러면 조작 칸이 폭을 다 가져가 그림 칸이 0이 된다. */
+:where(.sim-deep-learning) .sim-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    min-height: 520px;
+}
+
+:where(.sim-deep-learning) .sim-under {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+}
+
+/* 세로로 쌓았을 때만 키를 늘린다. **화면 폭이 아니라 «그림 칸의 폭»이 기준이다** —
+   1024px 위에서는 그림 칸이 두 칸짜리 격자의 왼쪽이라 도로 좁아지므로,
+   미디어 쿼리로는 맞출 수 없다. 표시는 스크립트가 붙인다.
+   키가 늘면 노드 반지름이 커져 안에 든 숫자가 함께 커진다. */
+:where(.sim-deep-learning) .net-stage.is-stacked {
+    min-height: 528px;
+}
+
+/* 경사하강법은 그림이 둘이라 더 필요하다. */
+:where(.sim-deep-learning) .gd-stage.is-stacked {
+    min-height: 608px;
+}
+
+/* **px가 아니라 em으로 가른다.** lg: 접두사는 1024px 고정이라, 브라우저 글자
+   크기를 키운 화면에서는 「두 칸으로 놓을 만큼 넓다」는 판정이 어긋난다 —
+   칸은 좁아지는데 글자만 커져 안내 칸이 한 줄에 예닐곱 자가 된다.
+   64em이면 글자가 커질수록 기준도 함께 올라가 알아서 한 칸으로 편다. */
+@media (min-width: 64em) {
+    :where(.sim-deep-learning) .sim-main {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    :where(.sim-deep-learning) .sim-under {
+        grid-column: 1;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+
+    :where(.sim-deep-learning) .sim-under-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    :where(.sim-deep-learning) .sim-side {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
+    :where(.sim-deep-learning) .sim-stage {
+        display: grid;
+        gap: 1rem;
+        /* **배치 치수는 rem으로 두지 않는다.** 브라우저의 글자 크기 설정을 키우면
+           rem이 함께 커져 조작 칸이 부풀고 그림 칸이 짓눌린다 — 루트 글자를 20px로만
+           올려도 그림 칸이 549px에서 453px로 줄고, 29px에서는 237px이 된다
+           (2026-08-23 실측). 글자는 설정대로 커지되 «칸의 크기»는 그대로 둔다. */
+        grid-template-columns: minmax(0, 1fr) 368px;
+        grid-template-rows: minmax(0, 1fr) 208px;
+        height: var(--sim-stage-h, 560px);
+        /* 뷰포트에 묶기만 하면 낮은 노트북에서 그림 칸이 눌린다 — 아래 칸이 208px으로
+           고정이라 눌리는 쪽은 언제나 그림이다. **눌린 그림보다 페이지 스크롤이 낫다.**
+           그래서 그림 칸이 480px은 되도록 바닥을 잡는다(480 + 208 + 사이 여백 16).
+           전체 화면에서는 이 바닥을 풀어 화면에 딱 맞춘다. */
+        min-height: 704px;
+    }
+}
+
+/* 화면이 넉넉하면 수식 칸을 넓게 쓴다. */
+@media (min-width: 64em) and (min-height: 55em) {
+    :where(.sim-deep-learning) .sim-stage {
+        grid-template-rows: minmax(0, 1fr) 240px;
+        min-height: 736px;
+    }
+}
+
+/* 낮은 화면에서는 수식 글자를 한 단 줄여 다섯 줄이 잘리지 않게 한다.
+   줄여도 본문 최소 크기(16px) 아래로는 내려가지 않는다. */
+@media (max-height: 879px) {
+    :where(.sim-deep-learning) #fpFormulaBody,
+    :where(.sim-deep-learning) #bpFormulaBody {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    :where(.sim-deep-learning) #fpFormulaBody > * + *,
+    :where(.sim-deep-learning) #bpFormulaBody > * + * {
+        margin-top: 0.125rem;
+    }
+}
+
+/* 이 두 탭만 본문 폭 제한을 넘어 넓게 쓴다.
+   교실 화면에 전체 과정과 조작 패널을 한 줄로 배치하기 위해서다.
+   나머지 탭은 지금 폭이 알맞으므로 본문 제한을 그대로 둔다. */
+@media (min-width: 1024px) {
+    :where(.sim-deep-learning) #tab0,
+    :where(.sim-deep-learning) #tabFwd,
+    :where(.sim-deep-learning) #tabBwd {
+        margin-inline: calc(50% - min(48vw, 900px));
+    }
+}
+
+/* 전체 화면(프레젠테이션) 모드 — hero와 내비게이션이 사라진 자리를 전부 쓴다.
+   배경·모서리·스크롤·안여백과 버튼 동작은 공통 규약(src/styles/simulator.css)과
+   카드의 `!p-*`가 맡는다. 이 페이지만의 것은 스테이지 높이 하나다. */
+:where(.sim-deep-learning) .fs-stage:is(:fullscreen, .fs-on) .sim-stage {
+    /* 바깥에서 잡아 둔 바닥값을 여기서 푼다. 그대로 두면 낮은 화면에서
+       전체 화면인데도 스크롤이 생긴다. */
+    min-height: 0;
+    /* 전체 화면일 때 이 안에 든 것은 .sim-stage 하나뿐이다.
+       바깥 상자가 100vh이고 box-sizing이 border-box이므로 100%가 곧
+       「안여백을 뺀 나머지 전부」다. **안여백 값을 여기 적지 않는다** —
+       적어 두면 카드의 `!p-*`를 손댈 때 이 숫자만 조용히 어긋난다. */
+    height: 100%;
+}
+
+/* 수식 패널. 숫자가 바뀔 때마다 줄 길이가 달라져도 자리가 흔들리지 않게 한다.
+   가로 스크롤은 줄마다 걸지 않고 상자에 건다 — 줄에 걸면 스크롤바가 생기는 줄만
+   그만큼 높아져서, 긴 식이 나오는 단계에서 화면이 들썩인다. */
+:where(.sim-deep-learning) .formula-line {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}

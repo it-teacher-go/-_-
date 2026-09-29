@@ -1,0 +1,22 @@
+/* 서포트 벡터 머신 (SVM) 시뮬레이터(simulator/ai/supervised-svm.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-supervised-svm)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+/* 커지게(scale) 두면 조작 칸이 넘치는 부분을 잘라 효과가 깎인다. 크기는 그대로 두고
+   고르지 않은 버튼은 흐리게, 고른 버튼은 그 색으로 채운다(테두리도 같은 색).
+   안의 표식(원 · 네모)은 글자색을 따라 흰색이 된다. 누를 때 흔들리지 않는다. */
+:where(.sim-supervised-svm) .tool-btn {
+    opacity: 0.5;
+}
+
+:where(.sim-supervised-svm) .tool-btn.active {
+    opacity: 1;
+}
+
+:where(.sim-supervised-svm) .tool-btn.active[data-tool="1"] {
+    background-color: #f43f5e; border-color: #f43f5e; color: #fff;
+}
+
+:where(.sim-supervised-svm) .tool-btn.active[data-tool="-1"] {
+    background-color: #3b82f6; border-color: #3b82f6; color: #fff;
+}

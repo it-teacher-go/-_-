@@ -3,23 +3,30 @@
 //     npm run mutate                 전부
 //     npm run mutate -- sort html    대상 테스트 이름이 든 것만
 //
+// 한 줄은 `[대상 테스트, 파일, 찾을 글, 바꿀 글, 설명]`이다. **설명에는 무엇이 망가졌는지만 적는다** —
+// 작업 묶음 꼬리표 · 날짜를 달지 않는다(무엇을 뜻하는지 아무도 모르게 되고 반드시 낡는다). 묶어 돌리고 싶으면
+// 대상 테스트 이름으로 거른다. **찾을 글은 대상 파일에 글자 그대로 있어야 한다** — 코드를 옮기면 돌연변이가
+// 조용히 과녁을 잃으므로, 둘 다 `check -- mutate-targets`(ci)가 지킨다.
+//
 // 초록인데 오류를 못 잡는 검사는 없는 것보다 나쁘다 — 「통과했다」는 말에 뜻이 없는데 사람은 믿는다.
 // 그래서 검사가 지키는 대상(강의노트 · 시뮬레이터 · 산출물 · 검사 규칙 자체)에 **돌연변이를 하나씩 심고**
 // 그 검사만 돌려 **빨간불이 켜지는지** 본다. 켜지지 않으면(«살아남은» 돌연변이) 그 검사는 헛돈다.
 //
-// 돌연변이마다 파일을 바이트 그대로 되돌린다. 도중에 죽어도 되돌리도록 `finally` 에 둔다.
+// 돌연변이마다 파일을 바이트 그대로 되돌린다(`finally`). **도는 중에 강제로 끊지 않는다** — 프로세스를 죽이면
+// `finally` 도 건너뛰어 돌연변이가 심긴 채 남는다. 끊었다면 `git status` 와 새 파일의 과녁을 직접 확인한다.
 // **`ci` 에 넣지 않는다.** 시뮬레이터 검사를 돌연변이마다 다시 돌려 오래 걸린다 — 검사를 새로 쓰거나
 // 크게 고쳤을 때 돌린다. 새 검사를 만들면 여기에 돌연변이를 하나 이상 더한다.
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import {pathToFileURL} from 'node:url';
 import {ROOT} from './lib/repo.mjs';
 
 const NOTE = '데이터과학/1-1-1.데이터-과학과-의사-결정.html';
 const afterH1 = (html) => ['</h1>', `</h1>${html}`];
 
 // [대상 테스트, 파일, 찾을 글, 바꿀 글, 무엇을 망가뜨렸나]
-const MUTANTS = [
+export const MUTANTS = [
     // ── 정적 검사 — 지키는 대상(글)에 위반을 심는다 ─────────────────────────
     ['html', NOTE, ...afterH1('<p class="text-sm">작은 글</p>'), '강의노트에 text-sm'],
     ['html', NOTE, ...afterH1('<div><span></div>'), '태그 중첩 깨짐'],
@@ -36,66 +43,66 @@ const MUTANTS = [
     ['prose', NOTE, ...afterH1('<p>결정계수는 0에 가깝습니다.</p>'), '과목 간 표기 「결정계수」'],
     ['prose', 'simulator/ai/unsupervised-k-means.html', '</main>', '<p>리스트의 자리 번호로 꺼냅니다.</p></main>', '시뮬레이터에 「자리 번호」'],
     ['prose', 'simulator/cs/sort.html', '</main>', '<p><b>가</b>와 <b>나</b>를 봅니다.</p></main>', '시뮬레이터 문단에 볼드 둘(문체 기준서)'],
-    // 2026-09-26 전문 감수에서 되풀이해 찾은 유형(감수0926)
-    ['prose', NOTE, ...afterH1('<p>사회가 다투고 있는 자리입니다.</p>'), '「자리」를 쟁점 뜻으로(감수0926)'],
-    ['prose', NOTE, ...afterH1('<p>위 표의 오른쪽 칸을 보세요.</p>'), '표를 「오른쪽 칸」으로 가리킴(감수0926)'],
-    ['prose', NOTE, ...afterH1('<p>0번째 글자를 꺼냅니다.</p>'), '위치를 「0번째」로(감수0926)'],
-    ['prose', NOTE, ...afterH1('<p>그런 뜻이지요.</p>'), '해요체 맺음(감수0926)'],
-    ['prose', NOTE, ...afterH1('<p>출처: 통계청</p>'), '옛 기관명 통계청(감수0926)'],
-    ['prose', NOTE, ...afterH1('<p>자켓이 나옵니다.</p>'), '물러난 말 「자켓」(감수0926)'],
-    ['prose', NOTE, ...afterH1(`<button onclick="checkAnswer(this, true, '이것이 옳지 않습니다. 까닭은')">가</button>`), '정답 해설을 「이것이 옳지 않습니다」로 엶(감수0926)'],
-    ['prose', NOTE, ...afterH1(`<button onclick="checkAnswer(this, false, '반대입니다. 큰 쪽이')">가</button>`), '오답 해설을 「반대입니다.」로 엶(감수0926)'],
-    ['prose', 'simulator/ai/search-n-queen.html', '</main>', '<p>퀸을 모두 배치했습니다!</p></main>', '시뮬레이터 화면 문구에 느낌표(화면 문구 정제0926)'],
-    ['prose', 'simulator/ai/unsupervised-k-means.html', "'수렴 완료. 데이터 소속이", "'수렴 완료. 버튼을 눌러주세요. 데이터 소속이", '시뮬레이터 인라인 스크립트 문자열에 보조 용언 붙여 씀(화면 문구 정제0926)'],
-    ['prose', NOTE, ...afterH1('<p>표를 직접 만들어보세요.</p>'), '강의노트에 보조 용언 붙여 씀(화면 문구 정제0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', '...STYLE_NOW, ...STYLE_SCREEN]', '...STYLE_NOW]', 'prose: 느낌표 · 보조 용언 규칙 끔(화면 문구 정제0926)'],
-    ['prose', NOTE, ...afterH1('<p>정형 데이터 vs 비정형 데이터</p>'), '강의노트에 소문자 「vs」(vs0926)'],
-    ['prose', NOTE, ...afterH1('<p><strong>산도가 높습니다</strong>(0.37 vs 0.25).</p>'), '태그 너머에 한글이 있는 「vs」(vs0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', "const RAW_ONLY = new Set(['「vs」 비교 표기']);", 'const RAW_ONLY = new Set([]);', 'prose: 「vs」가 <code> 속까지 잡음(vs0926)'],
-    ['prose', NOTE, ...afterH1('<p>알고보니 쉬웠습니다.</p>'), '강의노트에 「-고 보다」 붙여 씀(vs0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', "'(?<=[가-힣])(?<!원)고(?:보(?:니|", "'(?<=[가-힣])(?<!원)고(?:보(?:", 'prose: 「-고 보다」가 「알고보니」를 흘림(vs0926)'],
+    // 2026-09-26 전문 감수에서 되풀이해 찾은 유형
+    ['prose', NOTE, ...afterH1('<p>사회가 다투고 있는 자리입니다.</p>'), '「자리」를 쟁점 뜻으로'],
+    ['prose', NOTE, ...afterH1('<p>위 표의 오른쪽 칸을 보세요.</p>'), '표를 「오른쪽 칸」으로 가리킴'],
+    ['prose', NOTE, ...afterH1('<p>0번째 글자를 꺼냅니다.</p>'), '위치를 「0번째」로'],
+    ['prose', NOTE, ...afterH1('<p>그런 뜻이지요.</p>'), '해요체 맺음'],
+    ['prose', NOTE, ...afterH1('<p>출처: 통계청</p>'), '옛 기관명 통계청'],
+    ['prose', NOTE, ...afterH1('<p>자켓이 나옵니다.</p>'), '물러난 말 「자켓」'],
+    ['prose', NOTE, ...afterH1(`<button onclick="checkAnswer(this, true, '이것이 옳지 않습니다. 까닭은')">가</button>`), '정답 해설을 「이것이 옳지 않습니다」로 엶'],
+    ['prose', NOTE, ...afterH1(`<button onclick="checkAnswer(this, false, '반대입니다. 큰 쪽이')">가</button>`), '오답 해설을 「반대입니다.」로 엶'],
+    ['prose', 'simulator/ai/search-n-queen.html', '</main>', '<p>퀸을 모두 배치했습니다!</p></main>', '시뮬레이터 화면 문구에 느낌표'],
+    ['prose', 'simulator/ai/unsupervised-k-means.html', "'수렴 완료. 데이터 소속이", "'수렴 완료. 버튼을 눌러주세요. 데이터 소속이", '시뮬레이터 인라인 스크립트 문자열에 보조 용언 붙여 씀'],
+    ['prose', NOTE, ...afterH1('<p>표를 직접 만들어보세요.</p>'), '강의노트에 보조 용언 붙여 씀'],
+    ['fixtures', 'tools/checks/prose.mjs', '...STYLE_NOW, ...STYLE_SCREEN]', '...STYLE_NOW]', 'prose: 느낌표 · 보조 용언 규칙 끔'],
+    ['prose', NOTE, ...afterH1('<p>정형 데이터 vs 비정형 데이터</p>'), '강의노트에 소문자 「vs」'],
+    ['prose', NOTE, ...afterH1('<p><strong>산도가 높습니다</strong>(0.37 vs 0.25).</p>'), '태그 너머에 한글이 있는 「vs」'],
+    ['fixtures', 'tools/checks/prose.mjs', "const RAW_ONLY = new Set(['「vs」 비교 표기']);", 'const RAW_ONLY = new Set([]);', 'prose: 「vs」가 <code> 속까지 잡음'],
+    ['prose', NOTE, ...afterH1('<p>알고보니 쉬웠습니다.</p>'), '강의노트에 「-고 보다」 붙여 씀'],
+    ['fixtures', 'tools/checks/prose.mjs', "'(?<=[가-힣])(?<!원)고(?:보(?:니|", "'(?<=[가-힣])(?<!원)고(?:보(?:", 'prose: 「-고 보다」가 「알고보니」를 흘림'],
     // 배부 양식과 화면판 보고서 — 한쪽만 고친 꼴
-    ['form-sync', '인공지능기초/실습/loan-approval.html', '입력과 출력을 중심으로', '입력과 출력을 위주로', '화면판 지시문만 고침(양식0926)'],
-    ['form-sync', 'tools/docx/make/make_ai_template.js', '            "자신의 경험을 바탕으로 진솔하게 작성되어 있다.",\n', '', '배부 양식 체크리스트 항목만 뺌(양식0926)'],
-    ['fixtures', 'tools/checks/form-sync.mjs', 'if (screen !== paper) {', 'if (false) {', 'form-sync: 지시문을 맞대지 않음(양식0926)'],
-    ['code', '프로그래밍/c/code/01.변수.c', '\n', '\n// if (n % 2 == 1)\n', 'C 에서 홀수를 % 2 == 1 로 물음(감수0926)'],
-    ['fixtures', 'tools/checks/code.mjs', "checkOddTest(files.filter((f) => !f.endsWith('.html')), r);", '', 'code: 홀수 판별 규칙 끔(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', 'for (const [label, rx, msg] of AUDIT_TEXT) {', 'for (const [label, rx, msg] of []) {', 'prose: 감사 목록 최상급 · 자리 · 인덱스 끔(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', 'for (const m of src.matchAll(AUDIT_NEG_HEAD)) {', 'for (const m of []) {', 'prose: 감사 목록 오답 해설 판정 머리 끔(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', 'for (const m of src.matchAll(AUDIT_TD)) {', 'for (const m of []) {', 'prose: 감사 목록 표 셀 합니다체 끔(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', '% 28 === 17', '% 28 >= 0', 'prose: 합니다체 판정이 「아니다」까지 합니다체로 봄(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', 'if (plainEnd >= 8 && plainEnd > polite)', 'if (false)', 'prose: 감사 목록 해라체 본문 끔(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', 'for (const [pos, dup] of selfQuizDup(src))', 'for (const [pos, dup] of [])', 'prose: 감사 목록 스스로 확인 = 퀴즈 끔(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', 'for (const m of body.matchAll(AUDIT_UB)) {', 'for (const m of []) {', 'prose: 감사 목록 UB 단정 끔(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', 'const AUDIT_UB_HEDGE = /수 있|모릅니다|정해져 있지 않|보장/;', 'const AUDIT_UB_HEDGE = /(?!)/;', 'prose: UB 감사가 유보(「모릅니다」)까지 잡음(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', "if (report && !isSim(f) && path.extname(f) === '.html') {", 'if (false) {', 'prose: --report 가 감사 목록을 내놓지 않음(감수0926)'],
+    ['form-sync', '인공지능기초/실습/loan-approval.html', '입력과 출력을 중심으로', '입력과 출력을 위주로', '화면판 지시문만 고침'],
+    ['form-sync', 'tools/docx/make/make_ai_template.js', '            "자신의 경험을 바탕으로 진솔하게 작성되어 있다.",\n', '', '배부 양식 체크리스트 항목만 뺌'],
+    ['fixtures', 'tools/checks/form-sync.mjs', 'if (screen !== paper) {', 'if (false) {', 'form-sync: 지시문을 맞대지 않음'],
+    ['code', '프로그래밍/c/code/01.변수.c', '\n', '\n// if (n % 2 == 1)\n', 'C 에서 홀수를 % 2 == 1 로 물음'],
+    ['fixtures', 'tools/checks/code.mjs', "checkOddTest(files.filter((f) => !f.endsWith('.html')), r);", '', 'code: 홀수 판별 규칙 끔'],
+    ['fixtures', 'tools/checks/prose.mjs', 'for (const [label, rx, msg] of AUDIT_TEXT) {', 'for (const [label, rx, msg] of []) {', 'prose: 감사 목록 최상급 · 자리 · 인덱스 끔'],
+    ['fixtures', 'tools/checks/prose.mjs', 'for (const m of src.matchAll(AUDIT_NEG_HEAD)) {', 'for (const m of []) {', 'prose: 감사 목록 오답 해설 판정 머리 끔'],
+    ['fixtures', 'tools/checks/prose.mjs', 'for (const m of src.matchAll(AUDIT_TD)) {', 'for (const m of []) {', 'prose: 감사 목록 표 셀 합니다체 끔'],
+    ['fixtures', 'tools/checks/prose.mjs', '% 28 === 17', '% 28 >= 0', 'prose: 합니다체 판정이 「아니다」까지 합니다체로 봄'],
+    ['fixtures', 'tools/checks/prose.mjs', 'if (plainEnd >= 8 && plainEnd > polite)', 'if (false)', 'prose: 감사 목록 해라체 본문 끔'],
+    ['fixtures', 'tools/checks/prose.mjs', 'for (const [pos, dup] of selfQuizDup(src))', 'for (const [pos, dup] of [])', 'prose: 감사 목록 스스로 확인 = 퀴즈 끔'],
+    ['fixtures', 'tools/checks/prose.mjs', 'for (const m of body.matchAll(AUDIT_UB)) {', 'for (const m of []) {', 'prose: 감사 목록 UB 단정 끔'],
+    ['fixtures', 'tools/checks/prose.mjs', 'const AUDIT_UB_HEDGE = /수 있|모릅니다|정해져 있지 않|보장/;', 'const AUDIT_UB_HEDGE = /(?!)/;', 'prose: UB 감사가 유보(「모릅니다」)까지 잡음'],
+    ['fixtures', 'tools/checks/prose.mjs', "if (report && !isSim(f) && path.extname(f) === '.html') {", 'if (false) {', 'prose: --report 가 감사 목록을 내놓지 않음'],
     ['classes', NOTE, ...afterH1('<div class="bg-${x}-50"></div>'), '조립한 클래스'],
     ['classes', 'simulator/ai/search-bfs-dfs.html', "classList.toggle('on', mode === 'free');", "className = 'px-3 py-1 text-base';", '시뮬레이터 인라인 스크립트가 className 을 클래스 뭉치로 덮어씀'],
     ['classes', 'simulator/ai/supervised-k-nn.html', "toast.classList.add('shown')", "toast.classList.add('shown', 'translate-y-0')", '인라인 스크립트 classList 둘째 인자에 Tailwind'],
     ['classes', NOTE, "' quiz-mark\"></i>'", "' mr-2\"></i>'", '강의노트 퀴즈 스크립트의 아이콘에 Tailwind'],
-    ['hover', NOTE, '</style>', '.quiz-btn:hover { background: #eee; }\n</style>', '강의노트 <style> 에 감싸지 않은 :hover'],
+    ['hover', NOTE, '</head>', '<style>.quiz-btn:hover { background: #eee; }</style>\n</head>', '강의노트 <style> 에 감싸지 않은 :hover'],
     ['hover', 'src/styles/_quiz.css', '/* 누른 선택지', '.quiz-mark:hover { color: red; }\n/* 누른 선택지', '단위 CSS 에 감싸지 않은 :hover'],
     ['fixtures', 'tools/checks/hover.mjs', 'export const HOVER_MEDIA = (params) =>', 'export const HOVER_MEDIA = (params) => true ||', 'hover: 어떤 @media 안이든 감싼 것으로 봄'],
     ['fixtures', 'tools/checks/hover.mjs', " && !/^\\s*not\\b/.test(params)", '', 'hover: not 으로 뒤집은 @media 를 감싼 것으로 봄'],
-    ['grid', 'src/styles/simulator.css', 'grid-template-rows: max-content minmax(0, 1fr);', 'grid-template-rows: auto minmax(0, 1fr);', '선형 비교 줄의 칸 줄 행을 auto 로 되돌림(옛 사파리0927)'],
-    ['grid', 'src/entries/_lib/ds/ds-view-compare.js', "lanesBox.className = 'sim-lanes sim-lanes-stack';", "lanesBox.className = 'sim-lanes sim-lanes-stack'; lanesBox.style.gridTemplateRows = 'auto 1fr';", 'JS 인라인 스타일에 fr 옆 auto(옛 사파리0927)'],
-    ['fixtures', 'tools/checks/grid.mjs', "|minmax\\(\\s*auto\\s*,|fit-content\\(/);", '/);', 'grid: minmax(auto, …) · fit-content 를 흘림(옛 사파리0927)'],
-    ['grid', 'simulator/ai/deep-learning.html', '<div class="min-h-0 sim-under sim-under-3">', '<div class="grid grid-cols-1 gap-3 min-h-0 sim-under sim-under-3">', '딥러닝 무대에 grid-cols-1 을 도로 붙임(빌드 뒤 두 칸이 한 칸으로0927)'],
-    ['fixtures', 'tools/checks/grid.mjs', "const m = sel.trim().match(/^\\.([\\w-]+)$/);", "const m = sel.trim().match(/^\\.([\\w-]+)\\s/);", 'grid: 클래스 하나뿐인 선택자를 못 알아봄0927'],
-    // 문서 구조(문서정리0927) — 규칙 문서 · 판례 · 결정 기록 · 링크
-    ['docs', 'CLAUDE.md', '## 검사\n', '## 검사\n' + '\n- 줄을 늘린다.'.repeat(20) + '\n', 'CLAUDE.md 줄 수가 상한을 넘음(문서정리0927)'],
-    ['docs', 'docs/시뮬레이터-규칙.md', '## 전체 화면\n', '## 전체 화면\n\n- 2026-09-27에 정했다.\n', '규칙 문서에 날짜(문서정리0927)'],
-    ['docs', 'docs/cases/오개념.md', '→ 규칙: docs/강의노트-작성-규칙.md 「오개념을 심지 않는 서술」', '→ 규칙: docs/강의노트-작성-규칙.md 「없는 절」', '판례가 없는 절을 가리킴(문서정리0927)'],
-    ['docs', 'docs/cases/저장소.md', '### 2026-08-11 · ', '### ', '판례 머리에 날짜가 없음(문서정리0927)'],
-    ['docs', 'docs/cases/결정.md', '상태: 폐기 (2026-08-27)', '', '결정 기록에 상태가 없음(문서정리0927)'],
-    ['docs', 'docs/cases/결정.md', '### D-002 · ', '### D-001 · ', '결정 번호가 겹침(문서정리0927)'],
-    ['docs', 'docs/수정-레시피.md', '](개발-환경.md)', '](없는-문서.md)', '문서 안의 끊긴 링크(문서정리0927)'],
-    ['fixtures', 'tools/checks/docs.mjs', 'if (kind === DECISIONS) checkDecisions(r, rp, text);', '', 'docs: 결정 기록을 보지 않음(문서정리0927)'],
-    ['fixtures', 'tools/checks/docs.mjs', 'const code = blankCode(text).split', 'const code = text.split', 'docs: 코드 속 날짜까지 규칙 문서 위반으로 봄(문서정리0927)'],
-    ['fixtures', 'tools/checks/classes.mjs', "    /class=\\\\?\"[^\"'`]*['`]\\s*\\+[^\\n]*?\\+\\s*['`]([^'\"`<>]*)\"/g,", '', 'classes: 이어 붙인 class="… \' + x + \' 꼬리\" 를 보지 않음(감수0926)'],
+    ['grid', 'src/styles/simulator.css', 'grid-template-rows: max-content minmax(0, 1fr);', 'grid-template-rows: auto minmax(0, 1fr);', '선형 비교 줄의 칸 줄 행을 auto 로 되돌림(옛 사파리)'],
+    ['grid', 'src/entries/_lib/ds/ds-view-compare.js', "lanesBox.className = 'sim-lanes sim-lanes-stack';", "lanesBox.className = 'sim-lanes sim-lanes-stack'; lanesBox.style.gridTemplateRows = 'auto 1fr';", 'JS 인라인 스타일에 fr 옆 auto(옛 사파리)'],
+    ['fixtures', 'tools/checks/grid.mjs', "|minmax\\(\\s*auto\\s*,|fit-content\\(/);", '/);', 'grid: minmax(auto, …) · fit-content 를 흘림(옛 사파리)'],
+    ['grid', 'simulator/ai/deep-learning.html', '<div class="min-h-0 sim-under sim-under-3">', '<div class="grid grid-cols-1 gap-3 min-h-0 sim-under sim-under-3">', '딥러닝 무대에 grid-cols-1 을 도로 붙임(빌드 뒤 두 칸이 한 칸으로 덮임)'],
+    ['fixtures', 'tools/checks/grid.mjs', "const m = sel.trim().match(/^\\.([\\w-]+)$/);", "const m = sel.trim().match(/^\\.([\\w-]+)\\s/);", 'grid: 클래스 하나뿐인 선택자를 못 알아봄'],
+    // 문서 구조 — 규칙 문서 · 판례 · 결정 기록 · 링크
+    ['docs', 'CLAUDE.md', '## 검사\n', '## 검사\n' + '\n- 줄을 늘린다.'.repeat(20) + '\n', 'CLAUDE.md 줄 수가 상한을 넘음'],
+    ['docs', 'docs/시뮬레이터-규칙.md', '## 전체 화면\n', '## 전체 화면\n\n- 2026-09-27에 정했다.\n', '규칙 문서에 날짜'],
+    ['docs', 'docs/cases/오개념.md', '→ 규칙: docs/강의노트-작성-규칙.md 「오개념을 심지 않는 서술」', '→ 규칙: docs/강의노트-작성-규칙.md 「없는 절」', '판례가 없는 절을 가리킴'],
+    ['docs', 'docs/cases/저장소.md', '### 2026-08-11 · ', '### ', '판례 머리에 날짜가 없음'],
+    ['docs', 'docs/cases/결정.md', '상태: 폐기 (2026-08-27)', '', '결정 기록에 상태가 없음'],
+    ['docs', 'docs/cases/결정.md', '### D-002 · ', '### D-001 · ', '결정 번호가 겹침'],
+    ['docs', 'docs/수정-레시피.md', '](개발-환경.md)', '](없는-문서.md)', '문서 안의 끊긴 링크'],
+    ['fixtures', 'tools/checks/docs.mjs', 'if (kind === DECISIONS) checkDecisions(r, rp, text);', '', 'docs: 결정 기록을 보지 않음'],
+    ['fixtures', 'tools/checks/docs.mjs', 'const code = blankCode(text).split', 'const code = text.split', 'docs: 코드 속 날짜까지 규칙 문서 위반으로 봄'],
+    ['fixtures', 'tools/checks/classes.mjs', "    /class=\\\\?\"[^\"'`]*['`]\\s*\\+[^\\n]*?\\+\\s*['`]([^'\"`<>]*)\"/g,", '', 'classes: 이어 붙인 class="… \' + x + \' 꼬리\" 를 보지 않음'],
     // 물러난 말 목록의 활용형 — 옛 정규식으로 되돌리면 selfTest 가 「다듬은」을 못 잡아 멈춘다
-    ['fixtures', 'tools/checks/prose.mjs', "[H + '다듬(?!이)',", "[H + '다듬(?:[다고는어었을으지기]|습)',", 'prose: 「다듬다」가 「다듬은」을 흘림(감수0926)'],
-    ['fixtures', 'tools/checks/prose.mjs', "[H + '따(?:지(?!막)|져|졌|질|진|집)',", "[H + '따(?:지[다고는며면자지]|져|졌|질 |진 |집)',", 'prose: 「따지다」가 「따진다 · 따지므로」를 흘림(감수0926)'],
+    ['fixtures', 'tools/checks/prose.mjs', "[H + '다듬(?!이)',", "[H + '다듬(?:[다고는어었을으지기]|습)',", 'prose: 「다듬다」가 「다듬은」을 흘림'],
+    ['fixtures', 'tools/checks/prose.mjs', "[H + '따(?:지(?!막)|져|졌|질|진|집)',", "[H + '따(?:지[다고는며면자지]|져|졌|질 |진 |집)',", 'prose: 「따지다」가 「따진다 · 따지므로」를 흘림'],
     ['fixtures', 'tools/checks/classes.mjs', 'for (const [code, base] of inlineScripts(text)) scan(p, text, code, base);', '', 'classes: 인라인 스크립트를 보지 않음'],
     ['fixtures', 'tools/checks/classes.mjs', 'if (ts.length >= 2) bundles.push([ts, p, at(m.index)]);', '', 'classes: 변수에 담은 클래스 뭉치를 보지 않음'],
     ['code', '데이터과학/code/2-3-2.영을-결측치로.py', '\n', '\ndef (:\n', '.py 구문 오류'],
@@ -104,6 +111,14 @@ const MUTANTS = [
     ['code', 'src/entries/data-science/3-1-2.js', "import '../_lib/prism-r.js';", '', '진입점에 R 문법 빠짐'],
     ['index-links', 'index.html', 'href="데이터과학/1-1-1.데이터-과학과-의사-결정.html"', 'href="데이터과학/없는-파일.html"', '첫 화면의 끊긴 링크'],
     ['privacy', 'src/entries/_lib/josa.js', '\n', '\nlocalStorage.setItem("a", "b");\n', '브라우저 저장소 사용'],
+    ['privacy', 'src/entries/_lib/josa.js', '\n', "\nlocalStorage.setItem('theme', 'dark');\n", '테마 선택을 토글 밖에서도 남김'],
+    ['colors', '프로그래밍/py/05-리스트.html', '<body class="text-slate-900">', '<body class="text-slate-900" style="background:#ffffff">', '강의노트에 색을 박음'],
+    ['mutate-targets', 'src/styles/_note.css', ':root[data-theme="dark"] .section-card {', ':root[data-theme="dark"]  .section-card {', '과녁 파일의 글이 바뀌어 돌연변이가 과녁을 잃음'],
+    ['mutate-targets', 'tools/mutate.mjs', "'강의노트에 색을 박음'],", "'강의노트에 색을 박음(묶음0930)'],", '돌연변이 설명에 작업 꼬리표를 붙임'],
+    ['colors', 'tools/checks/colors.mjs', 'const LEGACY = new Set([', "const LEGACY = new Set([\n    '프로그래밍/py/05-리스트.html',", 'LEGACY에 색 없는 파일이 남음'],
+    ['fixtures', 'tools/checks/colors.mjs', "const inside = stack.some((s) => s === 'svg' || s.startsWith('keep:'));", 'const inside = false;', 'colors: svg · 섬 안까지 잡음'],
+    ['privacy', 'tools/vite/theme-toggle.js', "localStorage.setItem('theme', next)", "localStorage.setItem('theme-v2', next)", '테마 선택을 방침에 없는 이름으로 남김'],
+    ['privacy', 'tools/vite/theme-toggle.js', "try { localStorage.setItem('theme', next); } catch (err) {}", '', '테마 선택을 남기지 않게 됨 — 방침 제4조가 없는 것을 설명'],
     ['sim-index', 'simulator/index.html', '</body>', '<!-- 손으로 고침 --></body>', '구운 입구를 손으로 고침'],
     ['dist', 'dist/index.html', '</body>', '<script type="module" src="x.js"></script></body>', '산출물에 모듈 스크립트'],
     ['dist', 'dist/index.html', '<link rel="icon" href="https://luminousky.com/favicon.svg" type="image/svg+xml">', '', '산출물에 파비콘 빠짐'],
@@ -126,9 +141,9 @@ const MUTANTS = [
     ['fixtures', 'tools/checks/verbs.mjs', 'if (QUIZ.test(m[2])) continue;', '', 'verbs: 퀴즈 선택지 예외 뺌'],
     ['prose', 'tools/docx/make/ai/loan-approval.js', 'tool: "오렌지",', 'tool: "오렌지를 돌렸다",', '배부 양식 생성기 문장에 물러난 말 「돌리다」'],
     ['fixtures', 'tools/checks/prose.mjs', "[H + '(?:되|헛|넘겨\\\\s?)짚',", "[H + '(?!)',", 'prose: 「되짚다 · 헛짚다 · 넘겨짚다」 뺌'],
-    ['prose', NOTE, ...afterH1('<p>기대 효과를 부풀려 적었습니다.</p>'), '물러난 말 「부풀리다」(물러난말0926b)'],
-    ['fixtures', 'tools/checks/prose.mjs', "['맞물', '맞물리다',", "['(?!)', '맞물리다',", 'prose: 「맞물리다」 뺌(물러난말0926b)'],
-    ['fixtures', 'tools/checks/prose.mjs', "['(?<!이)끌어\\\\s?", "['끌어\\\\s?", 'prose: 「끌어내다」가 허용한 「이끌어내다」까지 잡음(물러난말0926b)'],
+    ['prose', NOTE, ...afterH1('<p>기대 효과를 부풀려 적었습니다.</p>'), '물러난 말 「부풀리다」'],
+    ['fixtures', 'tools/checks/prose.mjs', "['맞물', '맞물리다',", "['(?!)', '맞물리다',", 'prose: 「맞물리다」 뺌'],
+    ['fixtures', 'tools/checks/prose.mjs', "['(?<!이)끌어\\\\s?", "['끌어\\\\s?", 'prose: 「끌어내다」가 허용한 「이끌어내다」까지 잡음'],
     ['fixtures', 'tools/checks/prose.mjs', 'const isGen = (p) =>', 'const isGen = (p) => false &&', 'prose: 배부 양식 생성기를 알아보지 못함(금지 낱말 · 코드 칸 빼기가 꺼짐)'],
     ['fixtures', 'tools/checks/prose.mjs', 'const genSource = (src) => src.replace(GEN_CODE, blank);', 'const genSource = (src) => src;', 'prose: 생성기의 코드 칸까지 문장으로 봄'],
     ['fixtures', 'tools/checks/prose.mjs', 'for (const [pos, e] of straightQuotes(p, src))', 'for (const [pos, e] of [])', 'prose: 곧은따옴표 끔'],
@@ -149,6 +164,14 @@ const MUTANTS = [
     ['browser/sim-layout', 'src/styles/simulator.css', '        height: calc(1.625em * 3 + 1.5rem);', '        height: auto;', 'sim-deck 설명 띠 높이를 풀어 단계마다 그림이 들썩임'],
     ['browser/sim-layout', 'src/styles/simulator.css', '    order: -1;', '    order: 0;', 'sim-deck 조작 칸이 그림 뒤로'],
     ['browser/sim-layout', 'src/styles/simulator.css', '    height: max(62rem, calc(100dvh - 2rem));', '    height: calc(100dvh - 2rem);', '낮은 화면에서 무대 바닥이 없어 그림이 칸 안에서 스크롤됨'],
+
+    // ── 다크 테마 — 짝을 빼거나 토글을 망가뜨린다 ───────────────────────────
+    ['browser/dark', 'src/styles/_note.css', ':root[data-theme="dark"] .section-card {', ':root[data-theme="dark"] .section-card-x {', '다크에서 강의노트 본문 카드가 흰 채로 남음'],
+    ['browser/dark', 'src/tailwind/theme.js', 'const TEXT_UP = {400: 300, 500: 300, 600: 300, 700: 200, 800: 100, 900: 50, 950: 50};', 'const TEXT_UP = {};', '다크에서 짙은 글자를 밝히지 않음'],
+    ['browser/dark', 'tools/vite/theme-toggle.js', '        chosen = true;\n        apply(next);', '        chosen = true;', '토글을 눌러도 테마가 그대로'],
+    ['browser/dark', 'src/styles/_theme.css', '    box-shadow: inset 0 0 0 100vmax', '    box-shadow: 0 0 0 0', '다크에서 hero가 그대로 밝음'],
+    ['browser/dark', 'src/styles/index.css', ':root[data-theme="dark"] .link-card span {\n    color: var(--ink-body);', ':root[data-theme="dark"] .link-card span {\n    color: #475569;', '첫 화면 링크 카드 글자가 다크에서 짙은 채로'],
+    ['browser/dark', 'tools/vite/theme-toggle.js', '    function apply(theme) {\n        root.dataset.theme = theme;\n        label();', '    function apply(theme) {\n        root.dataset.theme = theme;', '토글 단추 이름이 테마를 따라가지 않음'],
 
     // ── 시뮬레이터 — 알고리즘에 그럴듯한 버그를 심는다 ────────────────────────
     ['sim-pages', 'src/entries/_lib/canvas-dpr.js', 'const dpr = window.devicePixelRatio || 1;', 'const dpr = 1;', '캔버스가 화면 배율을 무시'],
@@ -436,25 +459,29 @@ function runTest(name) {
     return p.status;
 }
 
-const want = process.argv.slice(2);
-const todo = MUTANTS.filter(([t, , , , why]) => !want.length || want.some((w) => t.includes(w) || why.includes(w)));
-const rows = [];
-for (const [test, rel, from, to, why] of todo) {
-    const file = path.join(ROOT, rel);
-    const orig = fs.readFileSync(file);
-    const text = orig.toString('utf8');
-    if (!text.includes(from)) { rows.push([test, why, '돌연변이를 심을 자리가 없다']); console.log(`?? ${test} — ${why}: 자리 없음`); continue; }
-    try {
-        fs.writeFileSync(file, text.replace(from, to));
-        const code = runTest(test);
-        const verdict = code === 0 ? '살아남음 ✗' : '잡힘';
-        rows.push([test, why, verdict]);
-        console.log(`${code === 0 ? '✗ 살아남음' : '✓ 잡힘   '}  ${test.padEnd(24)} ${why}`);
-    } finally {
-        fs.writeFileSync(file, orig);
+function main(want) {
+    const todo = MUTANTS.filter(([t, , , , why]) => !want.length || want.some((w) => t.includes(w) || why.includes(w)));
+    const rows = [];
+    for (const [test, rel, from, to, why] of todo) {
+        const file = path.join(ROOT, rel);
+        const orig = fs.readFileSync(file);
+        const text = orig.toString('utf8');
+        if (!text.includes(from)) { rows.push([test, why, '돌연변이를 심을 자리가 없다']); console.log(`?? ${test} — ${why}: 자리 없음`); continue; }
+        try {
+            fs.writeFileSync(file, text.replace(from, to));
+            const code = runTest(test);
+            const verdict = code === 0 ? '살아남음 ✗' : '잡힘';
+            rows.push([test, why, verdict]);
+            console.log(`${code === 0 ? '✗ 살아남음' : '✓ 잡힘   '}  ${test.padEnd(24)} ${why}`);
+        } finally {
+            fs.writeFileSync(file, orig);
+        }
     }
+    const alive = rows.filter((r) => r[2] !== '잡힘');
+    console.log(`\n돌연변이 ${rows.length}개 — 잡힘 ${rows.length - alive.length}, 살아남음·자리 없음 ${alive.length}`);
+    for (const r of alive) console.log(`  ${r[0]} — ${r[1]}: ${r[2]}`);
+    process.exit(alive.length ? 1 : 0);
 }
-const alive = rows.filter((r) => r[2] !== '잡힘');
-console.log(`\n돌연변이 ${rows.length}개 — 잡힘 ${rows.length - alive.length}, 살아남음·자리 없음 ${alive.length}`);
-for (const r of alive) console.log(`  ${r[0]} — ${r[1]}: ${r[2]}`);
-process.exit(alive.length ? 1 : 0);
+
+// 직접 부를 때만 돈다. 목록(`MUTANTS`)은 `check -- mutate-targets` 가 불러 과녁이 살아 있는지 본다.
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main(process.argv.slice(2));

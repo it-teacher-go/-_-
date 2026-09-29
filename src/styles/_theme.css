@@ -1,0 +1,109 @@
+/* 라이트 · 다크 테마의 장치 — 모든 단위의 진입 CSS가 @import 한다. **틀(카드 · 표 · 단추)의 짝은 여기 두지 않는다.**
+
+   다크 색이 어디서 오나 —
+     색 유틸리티(`bg-*` · `text-*` · `border-*`)의 짝   src/tailwind/theme.js (HTML은 고치지 않는다)
+     다크의 바탕 · 글자 이름(`--surface-*` · `--ink-*`)  src/tailwind/theme.js 가 내려 준다
+     틀의 짝                                          그 틀 곁, 라이트 규칙 바로 아래(_note.css · _sim-cs.css · _sim-ai.css ·
+                                                      과목 CSS · sim-ai/<편>.css …). 페이지 <style>에는 틀을 두지 않는다(`check -- colors`)
+
+   **여기서 무채색 hex를 적지 않는다.** `--surface-*` · `--ink-*` 이름만 쓴다.
+   **선택자는 `:root[data-theme="dark"]`로 시작한다.**
+
+   목차 — 1 테마 스위치 · 2 토글 단추 · 3 hero · 4 그림(SVG · 캔버스 · data-figure) · 코드 블록
+          5 라이트로 남기는 섬(data-keep-color) */
+
+/* ── 1 테마 스위치 ───────────────────────────────────────── */
+:root {
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+/* ── 2 토글 단추 ─────────────────────────────────────────────
+   마크업은 빌드가 hero 오른쪽 위에 넣는다 → tools/vite/theme-toggle.js
+   **sticky로 두지 않는다** — 읽는 동안 따라다니며 글을 가리지 않게. */
+header.hero-gradient {
+    position: relative;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    /* 44px — 손가락으로 누를 수 있는 가장 작은 크기 */
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    color: #ffffff;
+    background: rgb(255 255 255 / 0.15);
+    border: 1px solid rgb(255 255 255 / 0.4);
+    backdrop-filter: blur(4px);
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .theme-toggle:hover {
+        background: rgb(255 255 255 / 0.3);
+    }
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* 지금 테마가 아니라 **누르면 바뀔 테마**의 그림을 보인다. */
+.theme-toggle .theme-icon-sun,
+:root[data-theme="dark"] .theme-toggle .theme-icon-moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .theme-icon-sun {
+    display: inline-block;
+}
+
+/* ── 3 hero ──────────────────────────────────────────────────
+   과목 색 그러데이션은 페이지마다 <style>에 있다. 과목별로 짝을 짓지 않고 **짙은 막을 한 겹 덮어**
+   가라앉힌다. 막은 **안쪽 그림자**로 칠한다 — 배경 위, 내용 아래에 그려지므로 hero 안의 칸이
+   z-index를 가졌든 말든 글자는 늘 막 위에 온다. */
+:root[data-theme="dark"] header.hero-gradient {
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--surface-page) 45%, transparent);
+}
+
+/* ── 4 그림(SVG · 캔버스 · data-figure) · 코드 블록 ─────────
+   그림은 색을 하나하나 짝짓지 않고 **밝기만 뒤집는다.** 시뮬레이터가 캔버스 · 차트 · d3에 칠하는 색도
+   스크립트를 고치지 않고 함께 따라온다. `hue-rotate(180deg)`가 invert로 돌아간 색상을 되돌려
+   주황은 주황, 파랑은 파랑으로 남는다 — 본문이 「주황 상자」라고 불러도 계속 맞다.
+   1이 아니라 0.93만 뒤집어 흰 바탕이 새까맣지 않고 카드 색 가까이에 앉게 한다.
+
+   그림으로 보는 것 — SVG · 캔버스, 그리고 `data-figure`를 단 칸(스크립트가 `style`로 색을 칠해 HTML로
+   그리는 그림 — 자료구조 · 정렬 칸 따위). 그 칸 안의 Tailwind 색은 theme.js가 라이트 값으로 되돌려 두므로
+   필터가 한 번만 뒤집는다. **바깥에서 물려받는 글자색은 되돌릴 수 없으므로** 칸 자신에 글자색 클래스를
+   단다(`text-slate-800` 따위) — 5절의 섬과 같은 원칙이다.
+   뒤집지 않는 것 — `fill="currentColor"` 아이콘(이미 글자색을 따라 밝아졌다) · 5절의 섬 ·
+   그림 안의 그림(바깥이 이미 뒤집었다). */
+:root[data-theme="dark"] main :is(svg, canvas, [data-figure]):not([fill="currentColor"], [data-keep-color], [data-keep-color] *, :is(svg, [data-figure]) *) {
+    filter: invert(0.93) hue-rotate(180deg);
+}
+
+/* 코드는 두 테마 모두 어두운 Prism 테마(tomorrow)다. 라이트에서 흰 카드 위 짙은 상자였듯이
+   다크에서도 **카드보다 한 단 짙은 바탕**에 선을 둘러 카드와 떼어 놓는다. 글자 색은 테마 그대로다.
+   복사 단추의 짝은 그 단추 곁에 있다 → _code-copy.css */
+:root[data-theme="dark"] pre[class*="language-"] {
+    background: var(--surface-page);
+    box-shadow: inset 0 0 0 1px var(--surface-raised);
+}
+
+/* ── 5 라이트로 남기는 섬(`data-keep-color`) ────────────────
+   색 자체가 내용인 그림 · 표 · 화면 목업에 **이 속성 하나만** 단다. 셋이 이 이름을 본다 —
+   4절의 그림 필터가 빠지고, theme.js가 색 변수를 라이트 값으로 되돌리고, `check -- dark`가 대비에서 빼는
+   대신 「다크에서도 라이트와 같은 색인가」를 본다. 바깥에서 물려받는 글자색은 되돌릴 수 없으므로
+   섬 요소에 글자색 클래스(`text-slate-900` 따위)를 스스로 단다 — 빠지면 그 검사가 알려 준다.
+   목록이 필요하면 `data-keep-color`로 찾는다. 따로 적어 두는 표는 없다. */

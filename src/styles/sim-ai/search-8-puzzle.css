@@ -1,0 +1,160 @@
+/* 8-퍼즐 시뮬레이터(simulator/ai/search-8-puzzle.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-search-8-puzzle)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+/* 공통 섹션 카드 스타일 */
+:where(.sim-search-8-puzzle) .section-card {
+    background-color: white;
+    border-radius: 1.5rem;
+    padding: clamp(1.25rem, 4vw, 3rem);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    border: 1px solid #f1f5f9;
+}
+
+@media (max-width: 768px) {
+    :where(.sim-search-8-puzzle) .section-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+}
+
+/* 8-퍼즐 실습용 특화 스타일 */
+:where(.sim-search-8-puzzle) .puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    background-color: #cbd5e1;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    width: fit-content;
+    /* `margin: 0 auto` 로 쓰면 세로 여백까지 0으로 못박아,
+       HTML 이 붙인 `mb-*` 가 조용히 지워진다(특정도가 같아 나중에 온 이쪽이 이긴다).
+       가운데 정렬만 하려는 것이므로 가로만 건드린다. */
+    margin-inline: auto;
+    position: relative; /* 오버레이를 위해 추가 */
+}
+
+/* 교실 화면(전체 화면)에서는 판이 커야 뒷자리에서 보인다.
+   평소에는 80px이 맞는 크기인데, 1600×900 전체 화면에서 그대로 두면
+   판이 272px로 앉아 **화면 폭의 17%밖에 쓰지 못한다**(2026-08-27 실측).
+   남는 높이와 폭 가운데 작은 쪽에 맞춰 칸을 키운다 — 판은 정사각이라
+   둘 중 하나만 보면 다른 쪽으로 넘친다.
+
+   **바닥을 지금 크기(80px)로 둔다.** clamp 의 아래끝이 오늘의 값이므로
+   어떤 화면에서도 지금보다 작아질 수 없다. 천장 220px은 1920×1080에서
+   판이 판 위아래의 조작 줄을 밀어내지 않는 선이다. */
+:where(.sim-search-8-puzzle) .fs-stage:is(:fullscreen, .fs-on) .puzzle-tile {
+    width: clamp(80px, min(21vh, 11vw), 220px);
+    height: clamp(80px, min(21vh, 11vw), 220px);
+    font-size: clamp(2rem, min(9vh, 4.5vw), 5.5rem);
+}
+
+:where(.sim-search-8-puzzle) .puzzle-tile {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    background-color: white;
+    color: #4f46e5;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+    position: relative;   /* 평가 함수 뱃지를 이 상자 안에 얹는다 */
+}
+
+@media (max-width: 640px) {
+    :where(.sim-search-8-puzzle) .puzzle-tile {
+        width: 65px;
+        height: 65px;
+        font-size: 1.5rem;
+    }
+}
+
+/* 평가 함수를 판 위에 겹쳐 보이는 뱃지.
+   **타일 안에 새 요소를 넣지 않는다** — 타일은 flex 로 숫자를 가운데 두고 있어서,
+   자식을 하나라도 넣으면 숫자가 밀린다. 가상 요소를 절대 배치로 얹는다. */
+:where(.sim-search-8-puzzle) .puzzle-tile[data-away]::after {
+    content: attr(data-away);
+    position: absolute;
+    right: 5px;
+    bottom: 3px;
+    /* fs-figure: 타일 모서리에 앉는 뱃지라 타일 크기가 천장이다 */
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #b45309;
+}
+
+:where(.sim-search-8-puzzle) .puzzle-tile[data-away="0"]::after {
+    /* 제자리에 있는 타일에는 체크. **글자가 아니라 CSS 이스케이프로 적는다** —
+       예전에 여기 체크 문자를 그대로 넣었다가 「¹3」으로 깨져 나갔고,
+       검사기는 CSS 안의 글자를 보지 않아 배포까지 그대로 갔다. */
+    content: "\2713";
+    color: #059669;
+}
+
+:where(.sim-search-8-puzzle) .puzzle-tile[data-delta]::before {
+    content: attr(data-delta);
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    padding: 1px 4px;
+    border-radius: 0.3rem;
+    /* fs-figure: 타일 모서리에 앉는 뱃지라 타일 크기가 천장이다 */
+    font-size: 0.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+:where(.sim-search-8-puzzle) .puzzle-tile[data-delta^="-"]::before {
+    color: #065f46;
+    background: #d1fae5;
+}
+
+:where(.sim-search-8-puzzle) .puzzle-tile[data-delta^="+"]::before {
+    color: #9f1239;
+    background: #ffe4e6;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-search-8-puzzle) .puzzle-tile:hover:not(.empty) {
+        transform: scale(0.95);
+        background-color: #e0e7ff;
+    }
+}
+
+:where(.sim-search-8-puzzle) .puzzle-tile.empty {
+    background-color: transparent;
+    box-shadow: none;
+    cursor: default;
+    color: transparent;
+}
+
+/* 코드 블록 스타일 */
+:where(.sim-search-8-puzzle) pre {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* 경로 뱃지 애니메이션용 */
+:where(.sim-search-8-puzzle) .path-badge-enter {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+}
+
+:where(.sim-search-8-puzzle) .path-badge-enter-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

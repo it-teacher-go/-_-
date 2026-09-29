@@ -5,221 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지능적 탐색</title>
     <link rel="stylesheet" href="/src/styles/ai-basics.css">
-    <style>
-        /* 코드·모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지는 것을 막는다.
-           라틴 문자는 모노스페이스, 한글은 Pretendard로 렌더링된다. */
-        code, kbd, samp, pre,
-        body .font-mono {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-            "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
-            "Malgun Gothic", monospace;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-            "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, #047857 0%, #0d9488 100%);
-        }
-
-        .sticky-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background-color: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        /* 그리드 아이템의 min-width:auto가 mini-grid 최소 너비에 밀려
-           375px에서 페이지가 가로로 넘치던 것을 막는다. */
-        .grid > * {
-            min-width: 0;
-        }
-
-        .section-card {
-            background: white;
-            padding: clamp(1.25rem, 4vw, 2.5rem);
-            border-radius: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-        }
-
-        .quiz-btn {
-            width: 100%;
-            padding: 1.25rem;
-            text-align: left;
-            border-radius: 1rem;
-            border: 2px solid #e2e8f0;
-            background-color: #f8fafc;
-            font-weight: 500;
-            color: #374151;
-            font-size: 1rem;
-            transition: all 0.25s ease;
-            cursor: pointer;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .quiz-btn:hover {
-                background: #f0fdf4;
-                border-color: #86efac;
-            }
-        }
-
-        .quiz-btn.correct {
-            background: #047857;
-            color: white;
-            border-color: #047857;
-        }
-
-        .quiz-btn.wrong {
-            background: #f43f5e;
-            color: white;
-            border-color: #f43f5e;
-        }
-
-        .quiz-btn.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            ::-webkit-scrollbar-thumb:hover {
-                background: #94a3b8;
-            }
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #e2e8f0;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 1rem;
-        }
-
-        /* width:100%인 표가 좁은 화면에서 눌려 찌그러지는 것을 막는다.
-           최소 너비를 주면 래퍼 안에서 가로 스크롤된다. */
-        table.table-prose {
-            min-width: 32rem;
-        }
-
-        /* 학생이 표에 직접 적는 칸. 빈 칸으로 두면 내용이 빠진 것처럼 보인다. */
-        body .fill-in {
-            width: 100%;
-            min-height: 4.5rem;
-            resize: vertical;
-            box-sizing: border-box;
-            padding: 0.5rem 0.75rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 0.5rem;
-            background: #f8fafc;
-            color: #1e293b;
-            font-family: inherit;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        body .fill-in::placeholder {
-            color: #94a3b8;
-        }
-
-        body .fill-in:focus {
-            outline: 2px solid #6366f1;
-            outline-offset: 1px;
-            background: #ffffff;
-        }
-
-        thead th {
-            background-color: #f1f5f9;
-            font-weight: 700;
-            color: #334155;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            tbody tr:hover {
-                background-color: #f0fdf4;
-            }
-        }
-
-        /* ── 맹목적 vs 정보 이용 탐색 비교 격자 ── */
-        .mini-grid {
-            display: grid;
-            grid-template-columns: repeat(11, 26px);
-            gap: 2px;
-            width: fit-content;
-        }
-
-        .mc {
-            box-sizing: border-box;
-            width: 26px;
-            height: 26px;
-            border-radius: 5px;
-            background: #475569;
-            transition: background-color 0.15s;
-        }
-
-        /* 벽 색이 패널 배경(bg-slate-900)과 같은 #0f172a라 테두리가 없으면
-           범례에서 칸이 아예 보이지 않는다. 지도에서도 벽이 빈자리처럼 읽힌다. */
-        .mc.wall {
-            background: #0f172a;
-            border: 1px solid #94a3b8;
-        }
-
-        .mc.front {
-            background: #a5b4fc;
-        }
-
-        .mc.closed {
-            background: #6366f1;
-        }
-
-        .mc.s {
-            background: #2563eb;
-        }
-
-        .mc.g {
-            background: #10b981;
-        }
-    </style>
 </head>
-<body class="text-slate-900">
+<body class="text-slate-900 quiz-green-emerald700">
 
 <!-- ── Hero ── -->
-<header id="top" class="hero-gradient text-white py-32 px-6 relative overflow-hidden">
+<header id="top" class="hero-gradient hero-emerald700-teal600 text-white py-32 px-6 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
         <i class="fa-solid fa-sitemap absolute top-10 left-10 text-8xl transform -rotate-12"></i>
         <i class="fa-solid fa-code-branch absolute bottom-10 right-10 text-9xl"></i>
@@ -409,7 +199,7 @@
             <p class="text-lg text-slate-600 max-w-2xl mx-auto">두 갈래가 각각 무엇을 얻고 무엇을 내주는지 살펴봅시다.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 [&>*]:min-w-0">
             <!-- 무정보 탐색 -->
             <div class="section-card border-t-4 border-t-emerald-500 space-y-4">
                 <div class="flex items-center gap-3 mb-2">
@@ -545,7 +335,7 @@
                 </p>
 
                 <p class="font-bold text-slate-800 text-base">같은 문제에도 휴리스틱은 여러 가지로 잡을 수 있다</p>
-                <div class="grid sm:grid-cols-2 gap-4">
+                <div class="grid sm:grid-cols-2 gap-4 [&>*]:min-w-0">
                     <div class="bg-white p-4 rounded-xl border border-amber-200 space-y-1">
                         <p class="font-bold text-slate-800"><i class="fa-solid fa-ruler text-indigo-500 mr-1"></i> 거리로 추정하기</p>
                         <p class="text-base text-slate-600">
@@ -604,7 +394,7 @@
                 가운데에 벽이 있고 위·아래로 돌아가는 틈이 있습니다.
             </p>
 
-            <div class="grid md:grid-cols-2 gap-5">
+            <div class="grid md:grid-cols-2 gap-5 [&>*]:min-w-0">
                 <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 space-y-2">
                     <p class="font-bold text-blue-800 text-base">왼쪽 · 맹목적 탐색 (너비 우선)</p>
                     <p class="text-base text-blue-900 leading-relaxed">
@@ -629,7 +419,7 @@
                     <button id="cmpAuto" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base">자동 재생</button>
                     <button id="cmpReset" class="px-4 py-2 rounded-xl bg-slate-600 hover:bg-slate-500 text-white font-bold text-base">처음부터</button>
                 </div>
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-2 gap-6 [&>*]:min-w-0">
                     <div class="space-y-3">
                         <p class="text-center font-bold text-blue-300 text-base">맹목적 탐색 (너비 우선)</p>
                         <div class="overflow-x-auto"><div class="mini-grid mx-auto" id="gridBlind"></div></div>
@@ -750,7 +540,7 @@
                 모둠을 나누어 하루 동안 다녀올 여행 계획을 세워 보자. 한 모둠은 맹목적 탐색으로,
                 다른 모둠은 정보 이용 탐색으로 방문 순서를 정해 비교해 본다.
             </p>
-            <div class="grid md:grid-cols-2 gap-4">
+            <div class="grid md:grid-cols-2 gap-4 [&>*]:min-w-0">
                 <div class="bg-white rounded-xl border border-emerald-200 p-4 space-y-1">
                     <p class="font-bold text-emerald-700">① 맹목적 탐색으로 계획하기</p>
                     <p class="text-base text-slate-600">지역 관광 지도만 보고, 정보 없이 정해 둔 순서대로 모든 권역을 하나씩 방문하는 당일치기 계획을 세운다.</p>
@@ -835,7 +625,7 @@
             <p class="text-lg text-slate-600 max-w-2xl mx-auto">시뮬레이터를 조작하며 위에서 배운 차이를 직접 확인해 보세요.</p>
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-6">
+        <div class="grid sm:grid-cols-2 gap-6 [&>*]:min-w-0">
             <a href="../simulator/ai/search-bfs-dfs.html" target="_blank"
                class="group bg-gradient-to-br from-emerald-400 to-teal-600 p-1 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
                 <div class="bg-white/10 h-full rounded-xl p-6 text-white flex items-center gap-4 border border-white/20">
@@ -867,7 +657,7 @@
     </section>
 
     <!-- ===== 핵심 정리 ===== -->
-    <div class="grid md:grid-cols-2 gap-6">
+    <div class="grid md:grid-cols-2 gap-6 [&>*]:min-w-0">
         <div class="section-card bg-rose-50 border border-rose-100 space-y-4">
             <h3 class="text-xl font-bold text-rose-900 flex items-center gap-2">
                 <i class="fa-solid fa-circle-xmark text-rose-500 text-2xl"></i>
@@ -1022,10 +812,10 @@
 <footer class="bg-white border-t border-slate-200 mt-20 px-6 py-5">
     <div class="max-w-6xl mx-auto flex items-center justify-center gap-1">
         <a href="../index.html" title="강의노트 목록" aria-label="강의노트 목록"
-           class="w-11 h-11 grid place-items-center rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors"><i class="fa-solid fa-house text-base"></i></a>
+           class="w-11 h-11 grid place-items-center rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors [&>*]:min-w-0"><i class="fa-solid fa-house text-base"></i></a>
         <a href="https://github.com/itmir913/Visual-Assets-for-CS-Teacher" target="_blank" rel="noopener noreferrer"
            title="GitHub 저장소" aria-label="GitHub 저장소"
-           class="w-11 h-11 grid place-items-center rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors"><svg viewBox="0 0 16 16" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+           class="w-11 h-11 grid place-items-center rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors [&>*]:min-w-0"><svg viewBox="0 0 16 16" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
         <span class="text-base text-slate-400 ml-2">&copy; luminousky</span>
     </div>
 </footer>

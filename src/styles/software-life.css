@@ -8,16 +8,26 @@
 @import "prismjs/themes/prism-tomorrow.css";
 @import "./_code-copy.css";   /* 코드 블록 복사 버튼 (마크업은 빌드가 넣는다) */
 @import "./_quiz.css";        /* 퀴즈 스크립트가 만드는 요소의 모양 — 스크립트에 Tailwind 클래스를 적지 않는다 */
+@import "./_theme.css";       /* 라이트 · 다크 테마와 토글 단추 (색 유틸리티의 짝은 tailwind/theme.js) */
+@import "./_tailwind.css";    /* @tailwind 층(변형 포함) */
+@import "./_note.css";        /* 강의노트의 틀 — 유틸리티보다 뒤라야 한다(_note.css 머리 주석) */
 
 @config "../tailwind/software-life.config.js";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
     body {
         word-break: keep-all;       /* 한국어 단어 단위 줄바꿈 */
         overflow-wrap: break-word;  /* 긴 낱말이 컨테이너를 뚫을 때 fallback */
     }
+}
+
+/* 강의노트 틀(_note.css)의 과목 색. 이름의 뜻은 _note.css 머리 주석에 있다. */
+:root {
+    --note-hero: linear-gradient(135deg, #4d7c0f 0%, #365314 100%);
+    --note-tint: #f7fee7;
+    --note-rim: #a3e635;
+    --note-solid: #4d7c0f;
+    --note-tag-ink: #9a3412;
+    --note-tag-bg: #ffedd5;
+    --note-tag-line: #fdba74;
 }

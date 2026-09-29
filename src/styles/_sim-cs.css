@@ -1,0 +1,310 @@
+/* CS 시뮬레이터(simulator/cs/ 다섯 편)의 틀. simulator.css가 **`_tailwind.css` 바로 뒤에** @import 한다
+   (유틸리티보다 뒤라야 하는 까닭은 _note.css 머리 주석과 같다). **그 편들의 <style>에 이 틀을 다시 적지 않는다.**
+
+   **`.sim-cs` 아래로만 건다.** 같은 simulator.css를 AI 시뮬레이터도 링크하므로, CS 다섯 편의 <body>에 단
+   `sim-cs`로 범위를 좁힌다. 다크 짝은 각 규칙 바로 아래에 둔다 — 바탕 · 글자 이름(`--surface-*` · `--ink-*`)은
+   src/tailwind/theme.js가 내려 준다. 켜진 상태(`.on` 따위)는 `:not()`으로 빼서 그 색을 지킨다. */
+
+/* ── 글꼴과 바탕 ── 코드 · 모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지는 것을 막는다. */
+.sim-cs :is(code, kbd, samp, pre),
+.sim-cs .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
+    "Malgun Gothic", monospace;
+}
+
+.sim-cs pre {
+    overflow-x: auto;
+    max-width: 100%;
+    min-width: 0;
+}
+
+body.sim-cs {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+:root[data-theme="dark"] body.sim-cs {
+    background-color: var(--surface-page);
+    color: var(--ink-body);
+}
+
+.sim-cs .hero-gradient {
+    background: linear-gradient(135deg, #881337 0%, #be123c 40%, #e11d48 65%, #f43f5e 100%);
+}
+
+/* ── 분류 탭 ── 개념 지도 역할을 하므로 고른 것이 뚜렷해야 한다. */
+.sim-cs .group-tab {
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+    color: #64748b;
+    border-bottom: 4px solid transparent;
+    transition: color .15s, border-color .15s;
+    white-space: nowrap;
+}
+
+:root[data-theme="dark"] .sim-cs .group-tab:not(.on) {
+    color: var(--ink-soft);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sim-cs .group-tab:hover {
+        color: #e11d48;
+    }
+
+    :root[data-theme="dark"] .sim-cs .group-tab:hover {
+        color: #fb7185; /* rose-400 */
+    }
+}
+
+.sim-cs .group-tab.on {
+    color: #e11d48;
+    border-bottom-color: #e11d48;
+}
+
+:root[data-theme="dark"] .sim-cs .group-tab.on {
+    color: #fb7185; /* rose-400 */
+}
+
+/* ── 구조 칩 ── 같은 분류 안에서 고르는 자리. */
+.sim-cs .algo-chip {
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #475569;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color .15s, color .15s, border-color .15s;
+}
+
+:root[data-theme="dark"] .sim-cs .algo-chip:not(.on) {
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sim-cs .algo-chip:hover {
+        border-color: #fb7185;
+        color: #be123c;
+    }
+
+    :root[data-theme="dark"] .sim-cs .algo-chip:not(.on):hover {
+        border-color: #fb7185;
+        color: #fda4af; /* rose-300 */
+    }
+}
+
+.sim-cs .algo-chip.on {
+    background: #e11d48;
+    border-color: #e11d48;
+    color: #fff;
+}
+
+/* ── 미리 준비한 값 ── 켠 것은 라이트에서 짙은 칩, 다크에서 강조색 칩으로 두드러지게 한다. */
+.sim-cs .preset-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+}
+
+:root[data-theme="dark"] .sim-cs .preset-btn:not(.on) {
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+.sim-cs .preset-btn.on {
+    background: #0f172a;
+    border-color: #0f172a;
+    color: #fff;
+}
+
+/* 다크에서 밝은 칩으로 뒤집으면 짙은 화면에 흰 칸이 뜬다 — 강조색 계열로 채우되, 흰 글자가 AAA를 넘도록
+   한 단 짙게(rose-800) 칠하고 선만 강조색으로 둔다. */
+:root[data-theme="dark"] .sim-cs .preset-btn.on {
+    background: #9f1239;
+    border-color: #e11d48;
+    color: #fff;
+}
+
+/* ── 연산 단추 ── **그 페이지에서 가장 자주 누르는 것**이라 크게 둔다. */
+.sim-cs .op-btn {
+    padding: 0.55rem 1rem;
+    border-radius: 0.6rem;
+    border: 1px solid #fda4af;
+    background: #fff1f2;
+    color: #9f1239;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+:root[data-theme="dark"] .sim-cs .op-btn {
+    color: #fecdd3; /* rose-200 */
+    background: color-mix(in srgb, #f43f5e 16%, var(--surface-card));
+    border-color: color-mix(in srgb, #f43f5e 45%, var(--surface-card));
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sim-cs .op-btn:hover {
+        background: #ffe4e6;
+        border-color: #fb7185;
+    }
+
+    :root[data-theme="dark"] .sim-cs .op-btn:hover {
+        background: color-mix(in srgb, #f43f5e 26%, var(--surface-card));
+        border-color: #fb7185;
+    }
+}
+
+/* ── 재생 · 되감기 단추 ── **`.ctrl-main`에 `min-width`를 주지 않는다.** 좁은 화면에서 3열 격자의 칸보다
+   넓어지면 옆 버튼 위로 올라탄다. 너비를 붙드는 일은 격자 칸과 `sm:w-32`가 이미 한다. */
+.sim-cs .ctrl-btn {
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #334155;
+    font-weight: 700;
+}
+
+:root[data-theme="dark"] .sim-cs .ctrl-btn:not(.ctrl-main) {
+    color: var(--ink-body);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sim-cs .ctrl-btn:hover:not(:disabled) {
+        background: #f1f5f9;
+    }
+
+    :root[data-theme="dark"] .sim-cs .ctrl-btn:not(.ctrl-main):hover:not(:disabled) {
+        background: var(--surface-line);
+    }
+}
+
+.sim-cs .ctrl-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.sim-cs .ctrl-main {
+    background: #e11d48;
+    border-color: #e11d48;
+    color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sim-cs .ctrl-main:hover:not(:disabled) {
+        background: #be123c;
+    }
+}
+
+/* ── 세는 횟수 · 값 넣는 칸 ── 자릿수가 계속 바뀌므로 고정폭 숫자로 두어 글자가 들썩이지 않게 한다. */
+.sim-cs .tally {
+    font-variant-numeric: tabular-nums;
+}
+
+.sim-cs .num-input {
+    width: 5rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+:root[data-theme="dark"] .sim-cs .num-input {
+    color: var(--ink-strong);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+/* ── 압축(compress) 그림의 칸 ── 모두 그림 칸(`view-host`, `data-figure`) 안에 그려진다.
+   **다크 짝을 두지 않는다** — 다크에서는 그림째 필터로 뒤집히므로(_theme.css 7절), 짝을 두면 두 번 뒤집힌다. */
+/* 글자 한 칸. **폭을 못박아 두어야 압축 전과 후가 나란히 읽힌다.** */
+.sim-cs .glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.4rem;
+    border-radius: 0.4rem;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    transition: background-color .15s, border-color .15s;
+}
+
+/* 지금 묶고 있는 구간. */
+.sim-cs .glyph.on {
+    background: #fef08a;
+    border-color: #eab308;
+}
+
+/* 바꾸어 넣은 기호. 원래 글자와 한눈에 갈려야 한다. */
+.sim-cs .glyph.sym {
+    background: #eef2ff;
+    border-color: #a5b4fc;
+    color: #3730a3;
+}
+
+/* 이미 줄여 적은 자리. */
+.sim-cs .glyph.done {
+    background: #f1f5f9;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+}
+
+/* 내놓은 조각 하나. 밑에 비트 수를 달아 **크기가 눈에 보이게** 한다. */
+.sim-cs .piece {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.3rem 0.55rem;
+    border-radius: 0.45rem;
+    border: 1px solid #fda4af;
+    background: #fff1f2;
+    color: #9f1239;
+    font-weight: 800;
+}
+
+/* **비트 수를 작게 적지 않는다.** 교실 뒷자리에서 읽어야 하는 숫자라
+   본문과 같은 크기로 두고, 위아래를 가르는 일은 색과 굵기에 맡긴다. */
+.sim-cs .piece .bits {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #be123c;
+    opacity: .8;
+}
+
+.sim-cs .piece.symbol {
+    border-color: #a5b4fc;
+    background: #eef2ff;
+    color: #3730a3;
+}
+
+.sim-cs .piece.symbol .bits {
+    color: #4338ca;
+}
+
+/* 코드표·사전 한 줄. **본문과 색을 달리해 「이건 부가 정보다」가 보이게** 한다. */
+.sim-cs .aside-row {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.4rem;
+    border: 1px dashed #cbd5e1;
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 700;
+}

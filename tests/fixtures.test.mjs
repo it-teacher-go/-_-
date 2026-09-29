@@ -18,6 +18,7 @@ import {check as prose} from '../tools/checks/prose.mjs';
 import {check as classes} from '../tools/checks/classes.mjs';
 import {check as code} from '../tools/checks/code.mjs';
 import {check as hover} from '../tools/checks/hover.mjs';
+import {check as colors} from '../tools/checks/colors.mjs';
 import {check as grid} from '../tools/checks/grid.mjs';
 import {check as formSync} from '../tools/checks/form-sync.mjs';
 import {check as docs} from '../tools/checks/docs.mjs';
@@ -36,6 +37,8 @@ const CASES = [
     ['prose-report', (a) => prose([...a, '--report']), [`${F}/prose-report.html`], 'warn'],
     ['classes', classes, [`${F}/classes.html`, `${F}/classes.js`]],
     ['hover', hover, [`${F}/hover.html`]],
+    // 페이지에 박은 색 — svg · data-keep-color 안과 색이 아닌 style 은 걸리지 않아야 한다
+    ['colors', colors, [`${F}/colors.html`]],
     ['grid', grid, [`${F}/grid.html`]],
     // 배부 양식과 화면판 보고서 — 문항 수 · 번호 · 지시문 · 체크리스트
     ['form-sync', formSync, [`${F}/form-sync.html`]],

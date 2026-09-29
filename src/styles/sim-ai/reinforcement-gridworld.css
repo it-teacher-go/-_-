@@ -1,0 +1,86 @@
+/* GridWorld & Q-Learning 시뮬레이터(simulator/ai/reinforcement-gridworld.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-reinforcement-gridworld)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+/* Toggle Switch CSS */
+:where(.sim-reinforcement-gridworld) .toggle-checkbox:checked {
+    right: 0;
+    border-color: #3b82f6;
+}
+
+:where(.sim-reinforcement-gridworld) .toggle-checkbox:checked + .toggle-label {
+    background-color: #3b82f6;
+}
+
+:where(.sim-reinforcement-gridworld) .toggle-checkbox:checked + .toggle-label:before {
+    transform: translateX(100%);
+}
+
+:where(.sim-reinforcement-gridworld) .toggle-checkbox:checked + .toggle-label + .dot {
+    transform: translateX(100%);
+}
+
+/* Grid Cell Styles */
+:where(.sim-reinforcement-gridworld) .grid-cell {
+    position: relative;
+    border-right: 1px solid rgba(203, 213, 225, 0.4);
+    border-bottom: 1px solid rgba(203, 213, 225, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+:where(.sim-reinforcement-gridworld) .grid-cell-wall {
+    background-color: #475569 !important;
+    background-image: repeating-linear-gradient(45deg, #334155 25%, transparent 25%, transparent 75%, #334155 75%, #334155), repeating-linear-gradient(45deg, #334155 25%, transparent 25%, transparent 75%, #334155 75%, #334155);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+}
+
+:where(.sim-reinforcement-gridworld) .policy-arrow {
+    position: absolute;
+    color: #fbbf24;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0px 0px 8px rgba(0, 0, 0, 0.8);
+    z-index: 15;
+    transition: all 0.2s;
+}
+
+/* 자동 실행 중에는 같은 버튼이 「일시정지」가 된다. 색은 여기서만 바꾼다(JS 는 클래스만 켠다). */
+:where(.sim-reinforcement-gridworld) #btnRun.state-running {
+    background-color: #f43f5e !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-reinforcement-gridworld) #btnRun.state-running:hover {
+        background-color: #e11d48 !important;
+    }
+}
+
+:where(.sim-reinforcement-gridworld) #agent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease-out;
+    z-index: 20;
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.2));
+}
+
+/* Value text */
+:where(.sim-reinforcement-gridworld) .v-text {
+    position: absolute;
+    /* 실제 크기는 격자 칸 수에 따라 initDOM() 에서 인라인으로 지정한다. */
+    /* fs-figure: 격자 칸 «안»에 앉는 값이라 칸 크기가 천장이다 */
+    font-size: 0.875rem;
+    font-weight: 800;
+    /* 흐린 회색이라 작은 글자에서 더 안 읽혀 대비를 올렸다. */
+    color: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1px 4px;
+    border-radius: 4px;
+    bottom: 4px;
+}

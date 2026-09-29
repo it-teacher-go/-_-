@@ -1,0 +1,397 @@
+/* N-Queen 시뮬레이터(simulator/ai/search-n-queen.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-search-n-queen)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+/* 섹션 카드 스타일 */
+:where(.sim-search-n-queen) .section-card {
+    background-color: white;
+    border-radius: 1.5rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    border: 1px solid #f1f5f9;
+}
+
+@media (max-width: 768px) {
+    :where(.sim-search-n-queen) .section-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+}
+
+/* N-Queen 보드 스타일 */
+:where(.sim-search-n-queen) .chess-board {
+    display: grid;
+    gap: 0;
+    border: 4px solid #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
+    /* `margin: 0 auto` 로 쓰면 세로 여백까지 0으로 못박아,
+       HTML 이 붙인 `mb-*` 가 조용히 지워진다(특정도가 같아 나중에 온 이쪽이 이긴다).
+       가운데 정렬만 하려는 것이므로 가로만 건드린다. */
+    margin-inline: auto;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* 실습 단계의 판만 자리에 맞춰 커진다 — `.walkthrough-board`로 그린
+   걸어 보기 그림의 작은 판은 고정 크기 그대로 둔다.
+   칸을 고정 크기로 두면 판이 남는 자리를 쓰지 못한다. 폭은 칸이 나눠 갖고,
+   `grid-auto-rows: 1fr` 이 줄 높이를 판 높이에서 도출해 정사각형이 유지된다. */
+:where(.sim-search-n-queen) .board-fill {
+    width: min(30rem, calc(100% - 1rem));
+    aspect-ratio: 1;
+    grid-auto-rows: 1fr;
+}
+
+:where(.sim-search-n-queen) .board-fill .chess-cell {
+    width: auto;
+    height: auto;
+    /* 칸의 크기를 내용이 아니라 격자가 정하게 못박는다. 그래야 아래의
+       `cqmin` 이 「이 칸의 한 변」을 뜻하게 된다. */
+    container-type: size;
+}
+
+/* 판이 커지면 퀸도 함께 커져야 한다. 고정 `font-size` 로 두면 큰 판에서는
+   칸 한가운데 좁쌀만 하게 남고, 작은 판에서는 칸을 뚫는다.
+   `cqmin` 은 그 칸의 짧은 변이라 비율이 어느 크기에서나 같다. */
+:where(.sim-search-n-queen) .board-fill .queen-icon {
+    font-size: 62cqmin;
+}
+
+:where(.sim-search-n-queen) .chess-cell {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+@media (max-width: 640px) {
+    :where(.sim-search-n-queen) .chess-cell {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+:where(.sim-search-n-queen) .cell-white {
+    background-color: #f8fafc;
+}
+
+:where(.sim-search-n-queen) .cell-black {
+    background-color: #cbd5e1;
+}
+
+/* 단계별 풀이 섹션용 정적 4×4 체스판 */
+:where(.sim-search-n-queen) .walkthrough-board {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+:where(.sim-search-n-queen) .bg-white-cell {
+    background-color: #f8fafc;
+}
+
+:where(.sim-search-n-queen) .bg-black-cell {
+    background-color: #94a3b8;
+}
+
+:where(.sim-search-n-queen) .cell-conflict {
+    background-color: #fecdd3 !important;
+    box-shadow: inset 0 0 10px rgba(225, 29, 72, 0.5);
+}
+
+:where(.sim-search-n-queen) .cell-try {
+    background-color: #fef08a !important;
+}
+
+:where(.sim-search-n-queen) .cell-place {
+    background-color: #d1fae5 !important;
+}
+
+:where(.sim-search-n-queen) .cell-paused {
+    background-color: #e2e8f0 !important;
+}
+
+:where(.sim-search-n-queen) .queen-icon {
+    font-size: 2.2rem;
+    color: #4f46e5;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@media (max-width: 640px) {
+    :where(.sim-search-n-queen) .queen-icon {
+        font-size: 1.5rem;
+    }
+}
+
+:where(.sim-search-n-queen) .queen-conflict {
+    color: #e11d48;
+    animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes popIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+}
+
+@keyframes shake {
+            10%, 90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+            20%, 80% {
+                transform: translate3d(2px, 0, 0);
+            }
+            30%, 50%, 70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+            40%, 60% {
+                transform: translate3d(4px, 0, 0);
+            }
+}
+
+/* 슬라이더 커스텀 */
+:where(.sim-search-n-queen) input[type=range] {
+    accent-color: #9333ea;
+}
+
+/* D3 트리 SVG 텍스트 드래그 방지 */
+:where(.sim-search-n-queen) svg text {
+    user-select: none;
+    pointer-events: none;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+}
+
+/* ===========================
+   직접 해보기 섹션 스타일 (iq-)
+   =========================== */
+:where(.sim-search-n-queen) .iq-chess-board {
+    display: grid;
+    gap: 0;
+    border: 4px solid #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+    /* 칸을 고정 크기로 두면 판을 작게 골라도 칸이 커지지 않는다.
+       가진 폭을 나눠 쓰게 하고, 칸이 지나치게 커지지 않도록 판에만 상한을 둔다. */
+    width: min(30rem, calc(100% - 3rem));
+    /* `margin: 0 auto` 로 쓰면 세로 여백까지 0으로 못박아,
+       HTML 이 붙인 `mb-*` 가 조용히 지워진다(특정도가 같아 나중에 온 이쪽이 이긴다).
+       가운데 정렬만 하려는 것이므로 가로만 건드린다. */
+    margin-inline: auto;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* 전체 화면에서는 30rem 이 교실 화면에 작다. 판은 정사각이라 폭을 키우면
+   높이도 같이 커지므로, **화면 높이에 맞춰** 폭 상한을 다시 잡는다.
+   옆 칸을 밀지 않도록 `calc(100% - 3rem)` 상한은 그대로 둔다. */
+:where(.sim-search-n-queen) .fs-stage:is(:fullscreen, .fs-on) .iq-chess-board {
+    width: min(60vh, 40rem, calc(100% - 3rem));
+}
+
+:where(.sim-search-n-queen) .iq-cell {
+    /* grid 의 1fr 이 폭을 정하고 정사각형은 aspect-ratio 로 유지한다. */
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+    position: relative;
+    user-select: none;
+}
+
+:where(.sim-search-n-queen) .iq-cell-light {
+    background-color: #f1f5f9;
+}
+
+:where(.sim-search-n-queen) .iq-cell-dark {
+    background-color: #94a3b8;
+}
+
+:where(.sim-search-n-queen) .iq-cell-conflict {
+    background-color: #fecdd3 !important;
+    box-shadow: inset 0 0 12px rgba(225, 29, 72, 0.4);
+}
+
+:where(.sim-search-n-queen) .iq-cell-attacked {
+    background-color: #fef9c3 !important;
+}
+
+:where(.sim-search-n-queen) .iq-cell-light.iq-cell-hover {
+    background-color: #d1fae5 !important;
+}
+
+:where(.sim-search-n-queen) .iq-cell-dark.iq-cell-hover {
+    background-color: #6ee7b7 !important;
+}
+
+:where(.sim-search-n-queen) .iq-cell:active {
+    transform: scale(0.92);
+}
+
+:where(.sim-search-n-queen) .iq-queen {
+    font-size: 2rem;
+    color: #4f46e5;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+    animation: iqPopIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+    :where(.sim-search-n-queen) .iq-queen {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 400px) {
+    :where(.sim-search-n-queen) .iq-queen {
+        font-size: 1.2rem;
+    }
+}
+
+:where(.sim-search-n-queen) .iq-queen-conflict {
+    color: #e11d48 !important;
+    animation: iqShake 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+:where(.sim-search-n-queen) .iq-queen-ghost {
+    font-size: 2rem;
+    color: #4f46e5;
+    opacity: 0.28;
+    pointer-events: none;
+    transition: opacity 0.15s;
+}
+
+@media (max-width: 640px) {
+    :where(.sim-search-n-queen) .iq-queen-ghost {
+        font-size: 1.4rem;
+    }
+}
+
+@keyframes iqPopIn {
+            0% {
+                transform: scale(0) rotate(-20deg);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.15) rotate(3deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+}
+
+@keyframes iqShake {
+            10%, 90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+            20%, 80% {
+                transform: translate3d(2px, 0, 0);
+            }
+            30%, 50%, 70% {
+                transform: translate3d(-3px, 0, 0);
+            }
+            40%, 60% {
+                transform: translate3d(3px, 0, 0);
+            }
+}
+
+:where(.sim-search-n-queen) .iq-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.5rem 1rem;
+    min-height: 2.5rem;
+    width: 100%;
+    font-size: 1rem;
+    transition: all 0.25s ease;
+}
+
+:where(.sim-search-n-queen) .iq-status-idle {
+    color: #475569;
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+}
+
+:root[data-theme="dark"] :where(.sim-search-n-queen) .iq-status-idle {
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+:where(.sim-search-n-queen) .iq-status-ok {
+    color: #065f46;
+    background: #d1fae5;
+    border-color: #a7f3d0;
+}
+
+:root[data-theme="dark"] :where(.sim-search-n-queen) .iq-status-ok {
+    color: #6ee7b7; /* emerald-300 */
+    background: color-mix(in srgb, #10b981 16%, var(--surface-card));
+    border-color: color-mix(in srgb, #10b981 45%, var(--surface-card));
+}
+
+:where(.sim-search-n-queen) .iq-status-conflict {
+    color: #9f1239;
+    background: #fff1f2;
+    border-color: #fecdd3;
+}
+
+:root[data-theme="dark"] :where(.sim-search-n-queen) .iq-status-conflict {
+    color: #fda4af; /* rose-300 */
+    background: color-mix(in srgb, #f43f5e 16%, var(--surface-card));
+    border-color: color-mix(in srgb, #f43f5e 45%, var(--surface-card));
+}
+
+:where(.sim-search-n-queen) .iq-status-success {
+    color: #065f46;
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border-color: #34d399;
+    animation: iqPulseGreen 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes iqPulseGreen {
+            from {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4);
+            }
+            to {
+                box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+            }
+}
+
+:where(.sim-search-n-queen) .iq-progress-fill {
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:where(.sim-search-n-queen) .iq-success-banner {
+    animation: iqBounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes iqBounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+}

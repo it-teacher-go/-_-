@@ -25,6 +25,7 @@
 | `checks/html.mjs` | 태그 중첩 · 최소 글자 크기(CSS · SVG) · 테이블 래퍼 · 제목 일치 · 금지 요소 · **금지 낱말**(`BANNED_WORDS`) · 중복 id. **못 잡는 것도 머리에 적혀 있다** |
 | `checks/classes.mjs` | 코드로 조립되는 Tailwind 클래스 · JS(진입점 · 시뮬레이터와 강의노트의 인라인 스크립트)에 적은 Tailwind 클래스 |
 | `checks/hover.mjs` | 손으로 쓴 CSS(페이지 `<style>` · `src/styles`)의 `:hover` 가 `@media (hover: hover)` 안에 있는가 |
+| `checks/colors.mjs` | 페이지 HTML(`<style>` · `style=""`)에 색을 박지 않았는가. 아직 옮기지 않은 파일은 `LEGACY`에 이름으로 둔다 |
 | `checks/grid.mjs` | 격자 트랙 목록에 `fr` 과 `auto` 최솟값이 함께 있지 않은가(옛 사파리에서 `auto` 트랙이 0으로 접힌다) |
 | `checks/code.mjs` | 강의노트가 끌어다 쓰는 `.py` · `.c`의 구문 오류 · 파일 이름의 공백 · `.c` 의 홀수 판별(`% 2 == 1`) · `<pre><code>`에 직접 적은 코드 · Prism 진입점 |
 | `checks/prose.mjs` | 정제에서 물러난 말과 문체 기준서 — 강의노트 · 시뮬레이터 · 배부 양식 생성기(`docx/make/`)의 문장. `--report` 는 막지 않는 감사 목록까지 내놓는다 |
@@ -37,6 +38,7 @@
 | `checks/sim-index.mjs` | `simulator/index.html`을 루트 `index.html`에서 굽고, 검사로 부르면 같은지만 본다 |
 | `checks/dist.mjs` | 산출물 검사 — `.docx` 링크 · CDN 잔존 · 태그 중첩 · 제3자 라이선스 고지 · 사이트 아이콘 |
 | `audits/pre.mjs` · `svg.mjs` · `lemma.mjs` … | 판정 없이 목록만 내놓는 감사. `ci` 밖이다 |
+| `audits/styles.mjs` | CSS를 옮기기 전후의 계산된 스타일 견주기(`save` → 고친다 → `diff`). 재는 것은 `tests/browser/style-snapshot.test.mjs` |
 | `mutate.mjs` | 돌연변이 검사 — 검사가 지키는 대상에 버그를 심고 빨간불이 켜지는지 본다. `ci` 밖이다 |
 | `_sim-harness.mjs` | 시뮬레이터 페이지를 원문 그대로 node(jsdom)에서 돌리는 받침대. 직접 부르지 않는다 |
 | `gen_graph_presets.mjs` | 그래프 시뮬레이터의 지도를 새로 뽑는다(`gen:graph`) |
@@ -65,6 +67,7 @@ Vite 설정(`vite.config.js`)은 조립만 하고, 하는 일은 여기 하나�
 | `classic-scripts.js` | 페이지가 받던 청크를 **평범한 `<script defer>` 하나로** 눌러 담는다 |
 | `copy-code-button.js` | 모든 `<pre>` 오른쪽 위에 복사 버튼을 얹는다 |
 | `site-favicon.js` | 모든 페이지 `<head>`에 사이트 아이콘 두 줄을 넣는다 |
+| `theme-toggle.js` · `theme-pages.js` | 라이트 · 다크 토글과 테마를 정하는 스크립트를 hero에 넣는다. 어느 페이지인지는 `theme-pages.js`(검사도 같은 답을 쓴다) |
 | `drop-ttf-fallback.js` | 아무도 받지 않는 `ttf` 대체 경로를 지운다 (PostCSS) |
 | `subset-icon-font.js` | 아이콘 폰트를 **실제로 쓰는 글자만 남기고** 깎는다 |
 | `third-party-notices.js` | 번들에 실제로 들어간 패키지의 라이선스 고지를 `THIRD-PARTY-NOTICES.txt`로 굽는다 |

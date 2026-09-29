@@ -12,6 +12,7 @@
    이미 갈라져 있다. */
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+@import "./_theme.css";       /* 라이트 · 다크 테마와 토글 단추 (색 유틸리티의 짝은 tailwind/theme.js) */
 
 @config "../tailwind/ai-project.config.js";
 
@@ -66,6 +67,16 @@ body.type-cluster {   /* 비지도학습 · 군집 */
     --hero-to: #db2777;
 }
 
+/* 다크 — 유형 색을 카드 색에 섞은 셋. 아래 틀마다 라이트 규칙 바로 밑에서 이 이름을 쓴다.
+   **`--accent*` 자체는 바꾸지 않는다** — SVG 안에서도 쓰이는데 SVG는 다크에서 필터로 통째로 뒤집히므로,
+   변수까지 어둡게 하면 두 번 뒤집혀 도로 밝아진다. body에 두어야 type-* 가 고른 `--accent`를 읽는다.
+   바탕 · 글자 이름(`--surface-*` · `--ink-*`)은 src/tailwind/theme.js 가 내려 준다. */
+:root[data-theme="dark"] body {
+    --accent-tint: color-mix(in srgb, var(--accent) 16%, var(--surface-card));
+    --accent-rim: color-mix(in srgb, var(--accent) 45%, var(--surface-card));
+    --accent-ink: color-mix(in srgb, var(--accent) 35%, #ffffff);
+}
+
 @layer base {
     html {
         scroll-behavior: smooth;
@@ -78,6 +89,10 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         background-color: #f8fafc;
         word-break: keep-all;       /* 한국어 단어 단위 줄바꿈 */
         overflow-wrap: break-word;  /* 긴 낱말이 컨테이너를 뚫을 때 fallback */
+    }
+
+    :root[data-theme="dark"] body {
+        background-color: var(--surface-page);
     }
 
     /* 코드·모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지는 것을 막는다.
@@ -106,14 +121,26 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         background: #f1f5f9;
     }
 
+    :root[data-theme="dark"] ::-webkit-scrollbar-track {
+        background: var(--surface-card);
+    }
+
     ::-webkit-scrollbar-thumb {
         background: #cbd5e1;
         border-radius: 10px;
     }
 
+    :root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+        background: var(--surface-line);
+    }
+
     @media (hover: hover) and (pointer: fine) {
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
+        }
+
+        :root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+            background: var(--surface-edge);
         }
     }
 }
@@ -134,6 +161,12 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
 
+    :root[data-theme="dark"] .sticky-nav {
+        background-color: color-mix(in srgb, var(--surface-card) 90%, transparent);
+        border-bottom-color: var(--surface-raised);
+        box-shadow: none;
+    }
+
     .nav-link {
         color: #64748b;
         transition: color 0.2s ease;
@@ -144,6 +177,14 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         .nav-link:hover {
             color: var(--accent-deep);
         }
+
+        :root[data-theme="dark"] .nav-link:hover {
+            color: var(--accent-ink);
+        }
+    }
+
+    :root[data-theme="dark"] .nav-link {
+        color: var(--ink-soft);
     }
 
     .brand-mark {
@@ -164,10 +205,22 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         color: var(--accent-deep);
     }
 
+    :root[data-theme="dark"] .chip {
+        background: var(--accent-tint);
+        border-color: var(--accent-rim);
+        color: var(--accent-ink);
+    }
+
     .chip-neutral {
         background: #f8fafc;
         border-color: #e2e8f0;
         color: #475569;
+    }
+
+    :root[data-theme="dark"] .chip-neutral {
+        background: var(--surface-raised);
+        border-color: var(--surface-line);
+        color: var(--ink-soft);
     }
 
     /* 섹션 제목 아래 그어지는 짧은 막대. 인공지능기초 강의노트의 제목 블록
@@ -185,6 +238,12 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         border-radius: 1.5rem;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         border: 1px solid #e2e8f0;
+    }
+
+    :root[data-theme="dark"] .section-card {
+        background: var(--surface-card);
+        border-color: var(--surface-raised);
+        box-shadow: none;
     }
 
     @media (min-width: 768px) {
@@ -205,11 +264,19 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         margin-bottom: 1rem;
     }
 
+    :root[data-theme="dark"] .q-header {
+        background: var(--accent-tint);
+    }
+
     .q-number {
         font-weight: 900;
         font-size: 1.125rem;
         color: var(--accent-deep);
         margin-bottom: 0.25rem;
+    }
+
+    :root[data-theme="dark"] .q-number {
+        color: var(--accent-ink);
     }
 
     .answer-block {
@@ -220,11 +287,20 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         line-height: 1.8;
     }
 
+    :root[data-theme="dark"] .answer-block {
+        background: color-mix(in srgb, var(--surface-raised) 60%, var(--surface-card));
+        border-color: var(--surface-line);
+    }
+
     .checklist-box {
         background: #eff6ff;
         border: 2px solid #3b82f6;
         border-radius: 0.75rem;
         padding: 1rem 1.25rem;
+    }
+
+    :root[data-theme="dark"] .checklist-box {
+        background: color-mix(in srgb, #3b82f6 16%, var(--surface-card));
     }
 
     .two-col-answer {
@@ -244,12 +320,21 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         color: var(--accent-deep);
     }
 
+    :root[data-theme="dark"] .accent-ink {
+        color: var(--accent-ink);
+    }
+
     /* 지표 해설. R²·정확도·손실처럼 학생이 처음 보는 숫자의 뜻을 그 자리에서 푼다. */
     .note-box {
         background: var(--accent-soft);
         border: 1px solid var(--accent-line);
         border-radius: 0.75rem;
         padding: 1rem 1.25rem;
+    }
+
+    :root[data-theme="dark"] .note-box {
+        background: var(--accent-tint);
+        border-color: var(--accent-rim);
     }
 
     /* 놓치면 오개념이 되는 것. 음수 절편·외삽·군집 이름 붙이기 같은 자리에 쓴다. */
@@ -259,6 +344,12 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         border-left: 4px solid #f97316;
         border-radius: 0.75rem;
         padding: 1rem 1.25rem;
+    }
+
+    :root[data-theme="dark"] .warn-box {
+        background: color-mix(in srgb, #f97316 14%, var(--surface-card));
+        border-color: color-mix(in srgb, #f97316 45%, var(--surface-card));
+        border-left-color: #f97316;
     }
 
     /* 재현 절차. 학생이 화면 앞에서 그대로 따라 할 수 있어야 한다. */
@@ -306,6 +397,10 @@ body.type-cluster {   /* 비지도학습 · 군집 */
         color: #64748b;
         text-align: center;
         line-height: 1.6;
+    }
+
+    :root[data-theme="dark"] .figure-cap {
+        color: var(--ink-soft);
     }
 
     /* SVG 안에서 테마 색을 쓰는 자리 */

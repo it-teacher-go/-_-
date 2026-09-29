@@ -5,236 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>데이터 전처리</title>
     <link rel="stylesheet" href="/src/styles/ai-basics.css">
-    <style>
-        /* 코드·모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지는 것을 막는다.
-           라틴 문자는 모노스페이스, 한글은 Pretendard로 렌더링된다. */
-        code, kbd, samp, pre,
-        body .font-mono {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-            "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
-            "Malgun Gothic", monospace;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-            "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, #7c3aed 0%, #ea580c 100%);
-        }
-
-        .sticky-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background-color: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .section-card {
-            background: white;
-            padding: clamp(1.25rem, 4vw, 2.5rem);
-            border-radius: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-        }
-
-        .quiz-btn {
-            width: 100%;
-            padding: 1.25rem;
-            text-align: left;
-            border-radius: 1rem;
-            border: 2px solid #e2e8f0;
-            background-color: #f8fafc;
-            font-weight: 500;
-            color: #374151;
-            font-size: 1rem;
-            transition: all 0.25s ease;
-            cursor: pointer;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .quiz-btn:hover {
-                background: #ecfdf5;
-                border-color: #6ee7b7;
-            }
-        }
-
-        .quiz-btn.correct {
-            background: #059669;
-            color: white;
-            border-color: #059669;
-        }
-
-        .quiz-btn.wrong {
-            background: #f43f5e;
-            color: white;
-            border-color: #f43f5e;
-        }
-
-        .quiz-btn.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            ::-webkit-scrollbar-thumb:hover {
-                background: #94a3b8;
-            }
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #e2e8f0;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 1rem;
-        }
-
-        thead th {
-            background-color: #f1f5f9;
-            font-weight: 700;
-            color: #334155;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            tbody tr:hover {
-                background-color: #ede9fe;
-            }
-        }
-
-        body .explore-input {
-            width: 100%;
-            min-height: 3.5rem;
-            resize: vertical;
-            box-sizing: border-box;
-            padding: 0.5rem 0.75rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 0.5rem;
-            background: #f8fafc;
-            color: #1e293b;
-            font-family: inherit;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        body .explore-input::placeholder {
-            color: #94a3b8;
-        }
-
-        body .explore-input:focus {
-            outline: 2px solid #f59e0b;
-            outline-offset: 1px;
-            background: #ffffff;
-        }
-
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            overflow-x: auto;
-            line-height: 1.9;
-        }
-
-        .code-block .key {
-            color: #7dd3fc;
-        }
-
-        .code-block .value {
-            color: #86efac;
-        }
-
-        .code-block .arrow {
-            color: #fbbf24;
-        }
-
-        .code-block .punct {
-            color: #94a3b8;
-        }
-
-        .step-badge {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            background: #ea580c;
-            color: white;
-            font-weight: 900;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .workflow-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 1.5rem;
-        }
-
-        /* 본문이 긴 셀이 있거나 열이 4개 이상인 표는 눌리는 대신 래퍼 안에서 가로 스크롤된다. */
-        table.table-prose {
-            min-width: 32rem;
-        }
-
-        a.ext-link {
-            color: #4338ca;
-            font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            word-break: break-all;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            a.ext-link:hover {
-                color: #312e81;
-            }
-        }
-    </style>
 </head>
-<body class="text-slate-900">
+<body class="text-slate-900 quiz-emerald-emerald600">
 
 <!-- ── Hero ── -->
-<header id="top" class="hero-gradient text-white py-32 px-6 relative overflow-hidden">
+<header id="top" class="hero-gradient hero-violet600-orange600 text-white py-32 px-6 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
         <i class="fa-solid fa-gear absolute top-10 left-10 text-8xl transform -rotate-12"></i>
         <i class="fa-solid fa-images absolute bottom-10 right-10 text-9xl"></i>
@@ -1435,7 +1210,7 @@
         <!-- STEP 1 -->
         <div class="section-card space-y-5">
             <div class="flex items-center gap-4">
-                <div class="step-badge">1</div>
+                <div class="step-badge bg-orange-600">1</div>
                 <h3 class="text-xl font-bold text-slate-800">이미지 데이터셋 다운로드</h3>
             </div>
             <p class="text-base text-slate-700 leading-relaxed">
@@ -1498,7 +1273,7 @@
         <!-- STEP 2 -->
         <div class="section-card space-y-5">
             <div class="flex items-center gap-4">
-                <div class="step-badge">2</div>
+                <div class="step-badge bg-orange-600">2</div>
                 <h3 class="text-xl font-bold text-slate-800">Image Analytics 설치</h3>
             </div>
             <p class="text-base text-slate-700 leading-relaxed">
@@ -1563,7 +1338,7 @@
         <!-- STEP 3 -->
         <div class="section-card space-y-5">
             <div class="flex items-center gap-4">
-                <div class="step-badge">3</div>
+                <div class="step-badge bg-orange-600">3</div>
                 <h3 class="text-xl font-bold text-slate-800">이미지 데이터 입력 및 확인</h3>
             </div>
 
@@ -1678,7 +1453,7 @@
         <!-- STEP 4 -->
         <div class="section-card space-y-6">
             <div class="flex items-center gap-4">
-                <div class="step-badge">4</div>
+                <div class="step-badge bg-orange-600">4</div>
                 <h3 class="text-xl font-bold text-slate-800">기계학습을 위한 전처리 — 이미지 임베딩</h3>
             </div>
             <p class="text-base text-slate-700 leading-relaxed">
@@ -1779,7 +1554,7 @@
         <!-- STEP 5 -->
         <div class="section-card space-y-5">
             <div class="flex items-center gap-4">
-                <div class="step-badge">5</div>
+                <div class="step-badge bg-orange-600">5</div>
                 <h3 class="text-xl font-bold text-slate-800">전처리 결과 확인</h3>
             </div>
             <p class="text-base text-slate-700 leading-relaxed">

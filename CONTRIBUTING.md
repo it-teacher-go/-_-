@@ -39,7 +39,9 @@ npm run ci        # 검사 → 빌드 → 산출물 검사. CI가 하는 일과 
 | [`vite.config.js`](./vite.config.js) · `tools/` | 빌드 설정과 점검 스크립트(전부 Node) |
 | `tests/` | 검사. **Vitest 가 돕니다** — `npm run check`가 부릅니다. `fixtures/`는 일부러 틀리게 쓴 조각입니다 |
 | `simulator/` | 시뮬레이터. 여러 교과가 함께 쓰므로 루트에 둡니다. `ai/`는 인공지능기초가, `cs/`는 정보 · 프로그래밍이 주로 씁니다 |
-| `src/styles/<단위>.css` · `src/entries/<페이지>.js` | 단위별 스타일 진입점과 페이지별 라이브러리 진입점 |
+| `src/styles/<단위>.css` · `src/entries/<페이지>.js` | 단위별 스타일 진입점(그 단위의 색 변수와 그 단위만 쓰는 틀)과 페이지별 라이브러리 진입점 |
+| `src/styles/_note.css` · `_sim-cs.css` | 여러 단위가 함께 쓰는 틀(강의노트 · CS 시뮬레이터). 라이트 규칙 바로 아래에 다크 짝이 있습니다 |
+| `src/styles/_theme.css` · `src/tailwind/theme.js` | 라이트 · 다크 테마의 장치와 다크의 색 이름 · 색 유틸리티의 짝 |
 | `src/tailwind/<단위>.config.js` | 단위별 Tailwind 설정(`content`를 그 단위로 좁힙니다) |
 | `privacy/` | 개인정보 처리방침. 폴더에 `index.html`이라야 `…/privacy/` 주소로 열립니다 |
 | `public/` | 이름이 그대로여야 하는 파일. 저장소에 담지 않습니다 |

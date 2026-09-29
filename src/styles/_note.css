@@ -1,0 +1,322 @@
+/* 강의노트의 틀. 과목 진입 CSS(programming.css 따위)가 **`_tailwind.css` 바로 뒤에** @import 한다.
+   **강의노트 <style>에 이 틀을 다시 적지 않는다** — `check -- html`이 이 파일의 선택자를 페이지 <style>에서 찾아 막는다.
+
+   **왜 유틸리티 뒤인가.** 이 틀은 원래 페이지마다 <style>에 있었고, <style>은 링크된 CSS보다 뒤에 온다.
+   그래서 같은 특정도의 Tailwind 유틸리티를 이겼다(`th, td`의 여백이 `<th class="p-3">`을 이기는 식).
+   유틸리티 앞에 두면 그 승부가 뒤집혀 화면이 바뀐다.
+
+   **과목마다 다른 것은 색뿐이다.** 과목 진입 CSS가 `:root`에 아래 변수를 정한다 — 여기에는 과목 색을 적지 않는다.
+     --note-hero                                   hero 배경
+     --note-tint                                   퀴즈 선택지 · 표 줄을 가리킬 때의 옅은 바탕
+     --note-rim                                    퀴즈 선택지를 가리킬 때의 선
+     --note-solid                                  맞힌 퀴즈 선택지의 채움. 다크에서는 가리킬 때의 색도 이것에서 섞는다
+     --note-tag-ink · --note-tag-bg · --note-tag-line   화면 속 이름표(.widget-name)
+
+   **다크 짝은 각 규칙 바로 아래에 둔다.** 다크의 바탕 · 글자 이름(`--surface-*` · `--ink-*`)은 src/tailwind/theme.js가 내려 준다.
+   무채색 hex는 라이트 규칙에만 두고 다크 짝은 그 이름만 쓴다. 상태 클래스(맞음 · 틀림)는 `:not()`으로 빼서 그 색을 지킨다. */
+
+/* ── 글꼴과 바탕 ─────────────────────────────────────────────
+   코드 · 모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지지 않게 한다 — 라틴 문자는 모노스페이스, 한글은 Pretendard.
+   `code, pre`처럼 요소 선택자만 쓰면 Preflight의 같은 특정도 규칙에 밀리므로 `body`를 붙여 한 단계 올린다. */
+body code, body kbd, body samp, body pre,
+body .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
+    "Malgun Gothic", monospace;
+}
+
+body pre {
+    overflow-x: auto; /* 넘치는 줄은 코드 블록 안에서만 가로 스크롤 */
+    max-width: 100%;
+    min-width: 0; /* flex 자식일 때 정상적으로 줄어들도록 */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: #f8fafc;
+}
+
+:root[data-theme="dark"] body {
+    background-color: var(--surface-page);
+}
+
+/* ── hero와 nav ──────────────────────────────────────────── */
+.hero-gradient {
+    background: var(--note-hero);
+}
+
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="dark"] .sticky-nav {
+    background-color: color-mix(in srgb, var(--surface-card) 90%, transparent);
+    border-bottom-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+/* ── 본문 카드 ── 좁은 화면에서 여백이 본문 칸을 먹지 않게 clamp로 준다. */
+.section-card {
+    background: white;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+:root[data-theme="dark"] .section-card {
+    background: var(--surface-card);
+    border-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+/* ── 퀴즈 선택지 ─────────────────────────────────────────── */
+.quiz-btn {
+    width: 100%;
+    padding: 1.25rem;
+    text-align: left;
+    border-radius: 1rem;
+    border: 2px solid #e2e8f0;
+    background-color: #f8fafc;
+    font-weight: 500;
+    color: #374151;
+    font-size: 1rem;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+:root[data-theme="dark"] .quiz-btn:not(.correct, .wrong, .quiz-right, .quiz-wrong) {
+    color: var(--ink-body);
+    background-color: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .quiz-btn:hover {
+        background: var(--note-tint);
+        border-color: var(--note-rim);
+    }
+
+    :root[data-theme="dark"] .quiz-btn:not(.correct, .wrong, .quiz-right, .quiz-wrong):hover {
+        background: color-mix(in srgb, var(--note-solid) 18%, var(--surface-card));
+        border-color: var(--note-solid);
+    }
+}
+
+.quiz-btn.correct {
+    background: var(--note-solid);
+    color: white;
+    border-color: var(--note-solid);
+}
+
+.quiz-btn.wrong {
+    background: #f43f5e;
+    color: white;
+    border-color: #f43f5e;
+}
+
+.quiz-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ── 스크롤 막대 ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--surface-card);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    :root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+        background: var(--surface-edge);
+    }
+}
+
+/* ── 표 ──────────────────────────────────────────────────────
+   **표를 스스로 꾸미는 편은 빠진다** — <body>에 `note-own-tables`를 단 편(Tailwind 클래스로 칸마다 여백 · 선을
+   준 인공지능기초의 몇 편)에는 이 틀이 걸리지 않는다. `:where()`는 특정도가 0이라 걸리는 편에서는 `table` ·
+   `th` 를 바로 적은 것과 똑같이 계산된다. 표를 이 틀에 맞추면 그 편의 `note-own-tables`를 뗀다.
+   다크 짝은 색이 내용인 표(`data-keep-color`, 히트맵 따위)를 건드리지 않는다. */
+:where(body:not(.note-own-tables)) table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+:where(body:not(.note-own-tables)) :is(th, td) {
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 1rem;
+}
+
+:root[data-theme="dark"] body:not(.note-own-tables) :is(th, td):not([data-keep-color] *) {
+    border-color: var(--surface-line);
+}
+
+:where(body:not(.note-own-tables)) thead th {
+    background-color: #f1f5f9;
+    font-weight: 700;
+    color: #334155;
+}
+
+:root[data-theme="dark"] body:not(.note-own-tables) thead th:not([data-keep-color] *) {
+    color: var(--ink-body);
+    background-color: var(--surface-raised);
+}
+
+:where(body:not(.note-own-tables)) tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+:root[data-theme="dark"] body:not(.note-own-tables) tbody tr:nth-child(even):not([data-keep-color] *) {
+    background-color: color-mix(in srgb, var(--surface-raised) 50%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(body:not(.note-own-tables)) tbody tr:hover {
+        background-color: var(--note-tint);
+    }
+
+    :root[data-theme="dark"] body:not(.note-own-tables) tbody tr:hover:not([data-keep-color] *) {
+        background-color: color-mix(in srgb, var(--note-solid) 14%, var(--surface-card));
+    }
+}
+
+/* 375px에서 본문이 긴 셀이 100px 안팎으로 눌려 세로 리본처럼 찌그러진다. `table{width:100%}` 때문에 래퍼가
+   있어도 넘치지 않고 눌리기 때문이다. 최소 너비를 주면 눌리는 대신 래퍼(.overflow-x-auto) 안에서 가로 스크롤된다.
+   값이 짧은 2열 표에는 붙이지 않는다. 굳이 넓힐 이유가 없다. */
+table.table-prose {
+    min-width: 32rem;
+}
+
+/* ── 본문 속 이름표와 링크 ────────────────────────────────────
+   프로그램 · 사이트 안의 고유 이름을 본문과 구별해 표시한다. `font-mono`를 쓰지 않는다 — 화면에 적힌 이름은
+   코드가 아니라서 모노스페이스로 두면 코드처럼 읽힌다. `inline-block` + `nowrap`은 긴 이름이 375px를 뚫으므로 쓰지 않는다. */
+.widget-name,
+.attr-name {
+    display: inline;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    padding: 0.05rem 0.45rem;
+    letter-spacing: 0.01em;
+}
+
+.widget-name { /* 메뉴 이름 · 설정 이름 */
+    color: var(--note-tag-ink);
+    background: var(--note-tag-bg);
+    border: 1px solid var(--note-tag-line);
+}
+
+:root[data-theme="dark"] .widget-name {
+    color: color-mix(in srgb, var(--note-tag-line) 70%, #ffffff);
+    background: color-mix(in srgb, var(--note-tag-line) 16%, transparent);
+    border-color: color-mix(in srgb, var(--note-tag-line) 45%, transparent);
+}
+
+.attr-name { /* 파일명 · 속성명 */
+    color: #334155;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+}
+
+:root[data-theme="dark"] .attr-name {
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+/* 외부 사이트 주소는 반드시 눌러서 갈 수 있어야 한다. 긴 주소가 375px를 뚫으므로 break-all을 함께 준다. */
+a.ext-link {
+    color: #4338ca;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-all;
+}
+
+:root[data-theme="dark"] a.ext-link {
+    color: #a5b4fc; /* indigo-300 */
+}
+
+@media (hover: hover) and (pointer: fine) {
+    a.ext-link:hover {
+        color: #312e81;
+    }
+
+    :root[data-theme="dark"] a.ext-link:hover {
+        color: #c7d2fe; /* indigo-200 */
+    }
+}
+
+/* ── 차트 예시 그림 ── 글자를 넣지 않고 도형만 그린 뒤 설명은 HTML로 붙인다.
+   SVG 안의 글자는 375px에서 뷰박스와 함께 줄어들어 최소 글자 크기 규칙을 어긴다.
+   다크에서는 그림째 뒤집히므로(_theme.css) 바탕은 짝이 필요 없고 테두리만 맞춘다. */
+.chart-svg {
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+}
+
+:root[data-theme="dark"] .chart-svg {
+    border-color: var(--surface-line);
+}
+
+/* ── 접는 칸 ─────────────────────────────────────────────────
+   브라우저의 ▶ 표시는 **직접 넣은 쉐브론(`.details-chevron`)이 있을 때만** 숨긴다. 쉐브론 없이 ▶에 기대는
+   `<summary>`(인공지능기초)에서 숨기면 접힌 칸이라는 단서가 사라진다. `:has()`를 모르는 옛 브라우저에서는
+   쉐브론 옆에 ▶가 함께 보일 뿐이다. */
+details > summary:has(.details-chevron) {
+    cursor: pointer;
+    list-style: none;
+}
+
+details > summary:has(.details-chevron)::-webkit-details-marker {
+    display: none;
+}
+
+details[open] > summary .details-chevron {
+    transform: rotate(90deg);
+}
+
+.details-chevron {
+    transition: transform 0.2s ease;
+}

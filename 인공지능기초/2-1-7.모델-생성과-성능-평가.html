@@ -5,170 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>모델 생성과 성능 평가</title>
     <link rel="stylesheet" href="/src/styles/ai-basics.css">
-    <style>
-        /* 코드·모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지는 것을 막는다.
-           라틴 문자는 모노스페이스, 한글은 Pretendard로 렌더링된다. */
-        code, kbd, samp, pre,
-        body .font-mono {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-            "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
-            "Malgun Gothic", monospace;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-            "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
-        }
-
-        .section-card {
-            background: white;
-            padding: clamp(1.25rem, 4vw, 2.5rem);
-            border-radius: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-        }
-
-        .step-badge {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            background: #0d9488;
-            color: white;
-            font-weight: 900;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .quiz-btn {
-            width: 100%;
-            padding: 1.25rem;
-            text-align: left;
-            border-radius: 1rem;
-            border: 2px solid #e2e8f0;
-            background-color: #f8fafc;
-            font-weight: 500;
-            color: #374151;
-            font-size: 1rem;
-            transition: all 0.25s ease;
-            cursor: pointer;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .quiz-btn:hover {
-                background: #ecfdf5;
-                border-color: #6ee7b7;
-            }
-        }
-
-        .quiz-btn.correct {
-            background: #059669;
-            color: white;
-            border-color: #059669;
-        }
-
-        .quiz-btn.wrong {
-            background: #f43f5e;
-            color: white;
-            border-color: #f43f5e;
-        }
-
-        .quiz-btn.disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            ::-webkit-scrollbar-thumb:hover {
-                background: #94a3b8;
-            }
-        }
-
-        .widget-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            padding: 0.375rem 0.875rem;
-            border-radius: 9999px;
-            font-size: 1rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .arrow-flow {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .arrow-flow .widget-chip + .arrow-chip::before {
-            content: '';
-        }
-
-        /* 본문이 긴 셀이나 열이 4개 이상인 표는 375px에서 눌려 찌그러진다.
-           최소 너비를 주면 눌리는 대신 래퍼 안에서 가로로 스크롤된다. */
-        table.table-prose {
-            min-width: 32rem;
-        }
-
-        a.ext-link {
-            color: #0f766e;
-            font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            word-break: break-all;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            a.ext-link:hover {
-                color: #115e59;
-            }
-        }
-
-        .sticky-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background-color: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-    </style>
 </head>
-<body class="text-slate-900">
+<body class="text-slate-900 quiz-emerald-emerald600 note-own-tables">
 
 <!-- ── HEADER ── -->
-<header id="top" class="hero-gradient text-white py-32 px-6 relative overflow-hidden">
+<header id="top" class="hero-gradient hero-emerald600-teal600 text-white py-32 px-6 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
         <i class="fa-solid fa-list-ol absolute top-10 left-10 text-8xl transform -rotate-12"></i>
         <i class="fa-solid fa-chart-bar absolute bottom-10 right-10 text-9xl"></i>
@@ -406,7 +247,7 @@
             <!-- 1단계 -->
             <div class="flex gap-5 pb-8 relative">
                 <div class="flex flex-col items-center">
-                    <div class="step-badge">1</div>
+                    <div class="step-badge bg-teal-600">1</div>
                     <div class="w-0.5 bg-teal-200 flex-1 mt-2"></div>
                 </div>
                 <div class="flex-1 pb-2">
@@ -425,7 +266,7 @@
             <!-- 2단계 -->
             <div class="flex gap-5 pb-8 relative">
                 <div class="flex flex-col items-center">
-                    <div class="step-badge">2</div>
+                    <div class="step-badge bg-teal-600">2</div>
                     <div class="w-0.5 bg-teal-200 flex-1 mt-2"></div>
                 </div>
                 <div class="flex-1 pb-2">
@@ -464,7 +305,7 @@
             <!-- 3단계 -->
             <div class="flex gap-5 pb-8 relative">
                 <div class="flex flex-col items-center">
-                    <div class="step-badge">3</div>
+                    <div class="step-badge bg-teal-600">3</div>
                     <div class="w-0.5 bg-teal-200 flex-1 mt-2"></div>
                 </div>
                 <div class="flex-1 pb-2">
@@ -488,7 +329,7 @@
             <!-- 4단계 -->
             <div class="flex gap-5 pb-8 relative">
                 <div class="flex flex-col items-center">
-                    <div class="step-badge">4</div>
+                    <div class="step-badge bg-teal-600">4</div>
                     <div class="w-0.5 bg-teal-200 flex-1 mt-2"></div>
                 </div>
                 <div class="flex-1 pb-2">
@@ -503,7 +344,7 @@
             <!-- 5단계 모델 생성 -->
             <div class="flex gap-5 pb-8 relative">
                 <div class="flex flex-col items-center">
-                    <div class="step-badge">5</div>
+                    <div class="step-badge bg-teal-600">5</div>
                     <div class="w-0.5 bg-teal-200 flex-1 mt-2"></div>
                 </div>
                 <div class="flex-1 pb-2">
@@ -517,7 +358,7 @@
             <!-- 6단계 -->
             <div class="flex gap-5">
                 <div class="flex flex-col items-center">
-                    <div class="step-badge">6</div>
+                    <div class="step-badge bg-teal-600">6</div>
                 </div>
                 <div class="flex-1">
                     <h3 class="text-xl font-bold text-slate-800 mb-2">성능 평가</h3>
@@ -847,7 +688,7 @@
         <!-- 1단계: 문제 정의 -->
         <div class="section-card space-y-4">
             <div class="flex items-center gap-4">
-                <div class="step-badge">1</div>
+                <div class="step-badge bg-teal-600">1</div>
                 <h3 class="text-xl font-bold text-slate-800">문제 정의</h3>
             </div>
             <p class="text-base text-slate-600 leading-relaxed">
@@ -874,7 +715,7 @@
         <!-- 2단계: 데이터 수집 -->
         <div class="section-card space-y-4">
             <div class="flex items-center gap-4">
-                <div class="step-badge">2</div>
+                <div class="step-badge bg-teal-600">2</div>
                 <h3 class="text-xl font-bold text-slate-800">데이터 수집</h3>
             </div>
             <p class="text-base text-slate-600 leading-relaxed">
@@ -900,7 +741,7 @@
         <!-- 3단계: 데이터 전처리 -->
         <div class="section-card space-y-6">
             <div class="flex items-center gap-4">
-                <div class="step-badge">3</div>
+                <div class="step-badge bg-teal-600">3</div>
                 <h3 class="text-xl font-bold text-slate-800">데이터 전처리</h3>
             </div>
 
@@ -1008,7 +849,7 @@
         <!-- 4단계: 유형·알고리즘 선정 -->
         <div class="section-card space-y-4">
             <div class="flex items-center gap-4">
-                <div class="step-badge">4</div>
+                <div class="step-badge bg-teal-600">4</div>
                 <h3 class="text-xl font-bold text-slate-800">유형·알고리즘 선정</h3>
             </div>
             <p class="text-base text-slate-600 leading-relaxed">
@@ -1020,7 +861,7 @@
         <!-- 5단계: 모델 생성 -->
         <div class="section-card space-y-6">
             <div class="flex items-center gap-4">
-                <div class="step-badge">5</div>
+                <div class="step-badge bg-teal-600">5</div>
                 <h3 class="text-xl font-bold text-slate-800">모델 생성</h3>
             </div>
             <p class="text-base text-slate-600 leading-relaxed">
@@ -1086,7 +927,7 @@
         <!-- 6단계: 성능 평가 -->
         <div class="section-card space-y-6">
             <div class="flex items-center gap-4">
-                <div class="step-badge">6</div>
+                <div class="step-badge bg-teal-600">6</div>
                 <h3 class="text-xl font-bold text-slate-800">성능 평가</h3>
             </div>
             <p class="text-base text-slate-600 leading-relaxed">
@@ -1178,7 +1019,7 @@
         <!-- 평가를 마친 뒤: 모델 활용 -->
         <div class="section-card space-y-4">
             <div class="flex items-center gap-4">
-                <div class="step-badge"><i class="fa-solid fa-play"></i></div>
+                <div class="step-badge bg-teal-600"><i class="fa-solid fa-play"></i></div>
                 <h3 class="text-xl font-bold text-slate-800">평가를 마친 모델 활용하기</h3>
             </div>
             <p class="text-base text-slate-600 leading-relaxed">

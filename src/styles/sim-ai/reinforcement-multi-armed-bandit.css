@@ -1,0 +1,78 @@
+/* Multi-Armed Bandit 시뮬레이터(simulator/ai/reinforcement-multi-armed-bandit.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-reinforcement-multi-armed-bandit)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+/* 자동 실행 중에는 같은 버튼이 「일시정지」가 된다. 색은 여기서만 바꾼다(JS 는 클래스만 켠다). */
+:where(.sim-reinforcement-multi-armed-bandit) #btnRun.state-running {
+    background-color: #f43f5e !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-reinforcement-multi-armed-bandit) #btnRun.state-running:hover {
+        background-color: #e11d48 !important;
+    }
+}
+
+:where(.sim-reinforcement-multi-armed-bandit) .machine-card {
+    transition: all 0.15s ease-out; /* 빠른 클릭에 반응하도록 시간 단축 */
+    cursor: pointer;
+    position: relative;
+    /* 「실제 확률 표시」를 켜면 카드에 한 줄이 붙는다. 그 줄 자리를 늘 잡아 두어야
+       켜고 끌 때 아래 그래프가 들썩이지 않는다. */
+    min-height: 11.25rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-reinforcement-multi-armed-bandit) .machine-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 순수 CSS로만 클릭 피드백 처리 (JS 딜레이 제거) */
+:where(.sim-reinforcement-multi-armed-bandit) .machine-card:active {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Toggle Switch CSS */
+:where(.sim-reinforcement-multi-armed-bandit) .toggle-checkbox:checked {
+    right: 0;
+    border-color: #68D391;
+}
+
+:where(.sim-reinforcement-multi-armed-bandit) .toggle-checkbox:checked + .toggle-label {
+    background-color: #f59e0b; /* 자바스크립트 동적 주입 제거하고 CSS로 일원화 */
+}
+
+:where(.sim-reinforcement-multi-armed-bandit) .toggle-checkbox:checked + .toggle-label + .dot {
+    transform: translateX(100%);
+}
+
+/* 보상 플로팅 텍스트 애니메이션 */
+@keyframes floatUpAndFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -25px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -40px) scale(1);
+            }
+}
+
+:where(.sim-reinforcement-multi-armed-bandit) .reward-floating {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 900;
+    pointer-events: none;
+    z-index: 50;
+    animation: floatUpAndFade 0.8s ease-out forwards;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}

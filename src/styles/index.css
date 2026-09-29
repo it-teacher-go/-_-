@@ -4,16 +4,345 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 @import "./_code-copy.css";   /* 코드 블록 복사 버튼 (마크업은 빌드가 넣는다) */
+@import "./_theme.css";       /* 라이트 · 다크 테마와 토글 단추 (색 유틸리티의 짝은 tailwind/theme.js) */
 
 @config "../tailwind/index.config.js";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* 변형(md: · hover:)을 여기 둔다 — 적지 않으면 맨 끝에 붙어 아래로 옮겨 온 페이지 틀을 이긴다(_tailwind.css 머리 주석). */
+@tailwind variants;
 
 @layer base {
     body {
         word-break: keep-all;       /* 한국어 단어 단위 줄바꿈 */
         overflow-wrap: break-word;  /* 긴 낱말이 컨테이너를 뚫을 때 fallback */
     }
+}
+
+/* ════════════════════════════════════════════════════════════
+   첫 화면(index.html · 거기서 구워 내는 simulator/index.html)과 개인정보 처리방침의 틀.
+   두 페이지의 <style>에 있던 것을 옮겨 왔다 — **페이지에 다시 적지 않는다**(`check -- colors`).
+   두 페이지가 이름을 다르게 쓰는 것(hero · 인쇄)은 <body>의 `page-home` · `page-privacy`로 가른다.
+   다크 짝은 각 규칙 바로 아래에 둔다. 처리방침에는 토글이 없어(종이로 나가는 문서) 짝이 없다.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── 두 페이지 공통 ── */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: #f8fafc;
+}
+
+:root[data-theme="dark"] body {
+    background-color: var(--surface-page);
+}
+
+/* ── 첫 화면 ─────────────────────────────────────────────────
+   hero 배경. **단색을 함께 깐다.** 그러데이션은 background-image라 그림 배경을 그리지 않는 곳
+   (인쇄, 화면 그대로 뽑는 PDF 내보내기)에서 통째로 사라지는데, 그때 색이 남아 있지 않으면
+   흰 바탕에 흰 글자가 되어 머리말이 빈칸으로 나간다. */
+.page-home .hero-gradient {
+    background-color: #7650c8;
+    background-image:
+        radial-gradient(ellipse 70% 90% at 50% 115%, rgba(255, 186, 150, 0.45) 0%, rgba(232, 128, 150, 0.22) 40%, transparent 72%),
+        linear-gradient(100deg, #3f52c2 0%, #7650c8 50%, #c0568f 100%);
+}
+
+/* 스크롤하면 위에 붙는 nav */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="dark"] .sticky-nav {
+    background-color: color-mix(in srgb, var(--surface-card) 90%, transparent);
+    border-bottom-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+/* 과목 카드 — 윗변에 과목 색 줄(`border-t-*`)을 둔다. 다크 짝은 그 줄을 덮지 않고 세 변만 칠한다. */
+.section-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    border: 1px solid #cbd5e1;
+    transition: all 0.3s ease;
+}
+
+:root[data-theme="dark"] .section-card {
+    background: var(--surface-card);
+    border-right-color: var(--surface-raised);
+    border-bottom-color: var(--surface-raised);
+    border-left-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+:root[data-theme="dark"] .section-card:not([class*="border-t-"]) {
+    border-top-color: var(--surface-raised);
+}
+
+@media (min-width: 768px) {
+    .section-card { padding: clamp(1.25rem, 4vw, 2.5rem); }
+}
+
+@media (hover: hover) {
+    .section-card:hover {
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--surface-card);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    :root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+        background: var(--surface-edge);
+    }
+}
+
+/* 강의노트 · 시뮬레이터로 가는 링크 카드. hover 색은 과목마다 `.theme-*`가 변수로 준다. */
+.link-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 1rem;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+:root[data-theme="dark"] .link-card {
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+/* 좁은 화면에서는 1열로 쌓여 카드 수만큼 길어지므로 위아래 여백과 카드 간격을 줄인다.
+   높이는 글 한 줄 + 여백이라 누르는 자리(44px)는 남는다. */
+@media (max-width: 767px) {
+    .link-card { padding: 0.625rem 1rem; }
+    main .grid:has(> .link-card) { gap: 0.5rem; }
+}
+
+/* 카드 안의 작은 원형 불릿 */
+.link-card div {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    margin-right: 0.75rem;
+    transition: all 0.2s;
+}
+
+:root[data-theme="dark"] .link-card div {
+    background-color: var(--surface-edge);
+}
+
+/* 불릿 대신 아이콘을 두는 카드(시뮬레이터). 폭을 고정해 글자 왼쪽을 맞춘다. */
+.link-card i {
+    width: 1.25rem;
+    text-align: center;
+    margin-right: 0.75rem;
+    color: #94a3b8;
+    transition: all 0.2s;
+}
+
+:root[data-theme="dark"] .link-card i {
+    color: var(--ink-soft);
+}
+
+.link-card span {
+    font-weight: 500;
+    color: #334155;
+    transition: color 0.2s;
+}
+
+:root[data-theme="dark"] .link-card span {
+    color: var(--ink-body);
+}
+
+/* hover — 마우스가 있는 기기에서만 */
+@media (hover: hover) {
+    .link-card:hover {
+        transform: translateY(-0.25rem);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        border-color: var(--theme-border, #7c3aed);
+    }
+
+    .link-card:hover div {
+        background-color: var(--theme-color, #a855f7);
+        transform: scale(1.25);
+    }
+
+    .link-card:hover span {
+        color: var(--theme-text, #7e22ce);
+    }
+
+    .link-card:hover i {
+        color: var(--theme-color, #a855f7);
+        transform: scale(1.15);
+    }
+}
+
+/* 과목마다의 hover 색 — 라이트는 300 · 500 · 700, 다크는 짙은 바탕에서 읽히도록 500 · 400 · 200. */
+.theme-purple { --theme-border: #d8b4fe; --theme-color: #a855f7; --theme-text: #7e22ce; }
+.theme-indigo { --theme-border: #a5b4fc; --theme-color: #6366f1; --theme-text: #4338ca; }
+.theme-teal   { --theme-border: #5eead4; --theme-color: #14b8a6; --theme-text: #0f766e; }
+.theme-blue   { --theme-border: #93c5fd; --theme-color: #3b82f6; --theme-text: #1d4ed8; }
+.theme-orange { --theme-border: #fdba74; --theme-color: #f97316; --theme-text: #c2410c; }
+.theme-rose   { --theme-border: #fda4af; --theme-color: #f43f5e; --theme-text: #be123c; }
+.theme-lime   { --theme-border: #a3e635; --theme-color: #65a30d; --theme-text: #3f6212; }
+
+:root[data-theme="dark"] .theme-purple { --theme-border: #a855f7; --theme-color: #c084fc; --theme-text: #e9d5ff; }
+:root[data-theme="dark"] .theme-indigo { --theme-border: #6366f1; --theme-color: #818cf8; --theme-text: #c7d2fe; }
+:root[data-theme="dark"] .theme-teal   { --theme-border: #14b8a6; --theme-color: #2dd4bf; --theme-text: #99f6e4; }
+:root[data-theme="dark"] .theme-blue   { --theme-border: #3b82f6; --theme-color: #60a5fa; --theme-text: #bfdbfe; }
+:root[data-theme="dark"] .theme-orange { --theme-border: #f97316; --theme-color: #fb923c; --theme-text: #fed7aa; }
+:root[data-theme="dark"] .theme-rose   { --theme-border: #f43f5e; --theme-color: #fb7185; --theme-text: #fecdd3; }
+:root[data-theme="dark"] .theme-lime   { --theme-border: #84cc16; --theme-color: #a3e635; --theme-text: #d9f99d; }
+
+/* 좁은 화면의 가로 알약 줄 — 스크롤바를 감춘다 */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* 이 화면은 링크 목록이라 종이에 뽑을 일이 드물지만, 뽑았을 때 머리말이 빈칸으로 나가지는 않아야 한다.
+   색을 빼고 검은 글자로 찍는다. **요소 이름까지 붙여 특정도를 올린다** — 머리말이 `text-white`를 달고 있다.
+   누르는 것(버튼 · 위로 가기)은 종이에서 할 일이 없으므로 뺀다. */
+@media print {
+    .page-home { background: #fff; }
+
+    .page-home header.hero-gradient {
+        background: #fff;
+        color: #000;
+        padding: 0 0 1rem;
+        border-bottom: 1px solid #cbd5e1;
+    }
+
+    .page-home header.hero-gradient h1,
+    .page-home header.hero-gradient p {
+        color: #000;
+        opacity: 1;
+    }
+
+    .page-home header.hero-gradient > div > span,
+    .page-home header.hero-gradient a,
+    .page-home #offline-build-time,
+    .page-home .sticky-nav,
+    .page-home #scrollTopBtn {
+        display: none;
+    }
+
+    .page-home .section-card { border: 0; box-shadow: none; padding: 0; }
+    .page-home h2, .page-home h3 { break-after: avoid; }
+    .page-home .link-card { break-inside: avoid; }
+}
+
+/* ── 개인정보 처리방침 ───────────────────────────────────────
+   첫 화면과 같은 머리말 배경. 짙은 바탕에 흰 글자다. **단색을 함께 깐다** — 그림 배경을 그리지 않는
+   곳(인쇄, PDF 내보내기)에서 그러데이션이 사라져도 흰 바탕에 흰 글자가 되지 않게. */
+.page-privacy .hero-gradient {
+    background-color: #6366f1;
+    background-image: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+}
+
+/* 본문 카드. 좁은 화면에서 여백이 본문 칸을 먹지 않게 clamp로 준다. */
+.doc-card {
+    background: white;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    border: 1px solid #cbd5e1;
+}
+
+/* 본문 성격의 글이 든 표. 375px에서 눌리지 않게 바닥을 준다. */
+.page-privacy table.table-prose {
+    min-width: 32rem;
+}
+
+.page-privacy a.ext-link {
+    color: #4338ca;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-all;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .page-privacy a.ext-link:hover {
+        color: #312e81;
+    }
+}
+
+/* 이 문서는 인쇄되어 서류로 나간다. 종이에서는 색을 빼고 검은 글자로 찍는다.
+   **요소 이름까지 붙여 특정도를 올린다** — 머리말이 `text-white`를 달고 있다. */
+@media print {
+    .page-privacy { background: #fff; }
+
+    .page-privacy header.hero-gradient {
+        background: #fff;
+        color: #000;
+        padding: 0 0 1rem;
+        border-bottom: 1px solid #cbd5e1;
+    }
+
+    .page-privacy header.hero-gradient h1,
+    .page-privacy header.hero-gradient p {
+        color: #000;
+        opacity: 1;
+    }
+
+    /* 「Privacy Policy」 배지. 장식이라 종이에서는 뺀다. */
+    .page-privacy header.hero-gradient span { display: none; }
+
+    .page-privacy main { padding-top: 1rem; }
+    .page-privacy .doc-card { border: 0; box-shadow: none; padding: 0; }
+
+    /* 쪽 경계에서 끊기면 읽기 어려운 것들. */
+    .page-privacy h2 { break-after: avoid; }
+    .page-privacy :is(tr, li) { break-inside: avoid; }
+
+    /* 종이에는 스크롤이 없다. 잘라 내지 말고 그대로 편다. */
+    .page-privacy .overflow-x-auto { overflow: visible; }
+
+    .page-privacy a.ext-link { color: #000; }
+    .page-privacy footer { display: none; }
 }

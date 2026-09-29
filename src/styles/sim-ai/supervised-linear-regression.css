@@ -1,0 +1,23 @@
+/* 선형 회귀 (Linear Regression) 시뮬레이터(simulator/ai/supervised-linear-regression.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-supervised-linear-regression)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+/* 1. 기본 상태 (학습 가능) */
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-supervised-linear-regression) #btnTrain.state-ready:hover {
+        background-color: #1d4ed8; /* 더 진한 파랑 */
+    }
+}
+
+/* 2. 학습 중 또는 완료 상태 (비활성화) */
+:where(.sim-supervised-linear-regression) #btnTrain:disabled {
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+    opacity: 0.8;
+}
+
+/* 학습 중 상태 전용 (Navy) */
+:where(.sim-supervised-linear-regression) #btnTrain.state-loading {
+    background-color: #1e3a8a !important;
+}

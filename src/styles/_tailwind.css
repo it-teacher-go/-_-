@@ -1,0 +1,13 @@
+/* Tailwind가 굽는 층. 진입 CSS가 @import 한다.
+
+   **따로 떼어 둔 까닭** — `@import`는 다른 문장보다 앞에 와야 해서, 진입 CSS에 `@tailwind`를 바로 적으면
+   그 뒤에 공용 틀(_note.css)을 가져올 수 없다. 틀은 유틸리티보다 뒤에 와야 하므로(→ _note.css 머리 주석)
+   진입 CSS는 `_tailwind.css` → `_note.css` 순서로 가져온다.
+
+   **`@tailwind variants`를 반드시 적는다.** 적지 않으면 Tailwind는 `md:` · `hover:` 같은 변형 유틸리티를
+   **스타일시트 맨 끝**에 붙인다. 그러면 틀이 변형보다 앞에 놓여 `md:p-8`이 카드 여백을 이긴다 — 틀이 페이지
+   <style>에 있던 때(변형보다도 뒤)와 승부가 뒤집힌다. 여기 적으면 변형이 유틸리티 바로 뒤, 틀보다 앞에 온다. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;

@@ -1,0 +1,97 @@
+/* Wumpus World 시뮬레이터(simulator/ai/wumpus-world.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-wumpus-world)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+/* 무대 안의 탭. 고른 것이 무엇인지 **색만이 아니라 굵기와 밑줄로도** 보이게 한다 —
+   빔프로젝터에서 옅은 색 차이는 뒷자리에서 사라진다. */
+        /* **탭 줄 아래 구분선을 없앤다.** `.sim-tabbar` 는 sticky 라 밑줄을 하나 긋는데,
+           이 페이지는 탭이 색으로 이미 켜진 곳을 말하고 있어서 선이 하나 더 그이면
+           머리글과 무대가 두 번 갈린 것처럼 보인다. cs 시뮬레이터의 탭 줄은 그대로 둔다. */
+:where(.sim-wumpus-world) #mode-tabs {
+    border-bottom: 0;
+}
+
+:where(.sim-wumpus-world) .mode-tab {
+    padding: 0.6rem 1.1rem;
+    border-radius: 0.75rem;
+    border: 2px solid #e2e8f0;
+    background: #fff;
+    color: #64748b;
+    font-weight: 700;
+}
+
+:root[data-theme="dark"] :where(.sim-wumpus-world) .mode-tab:not(.is-on) {
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-wumpus-world) .mode-tab:hover {
+        background: #f8fafc;
+    }
+
+    :root[data-theme="dark"] :where(.sim-wumpus-world) .mode-tab:not(.is-on):hover {
+        background: var(--surface-line);
+    }
+}
+
+:where(.sim-wumpus-world) .mode-tab.is-on {
+    background: #4f46e5;
+    border-color: #4338ca;
+    color: #fff;
+}
+
+:where(.sim-wumpus-world) .section-card {
+    background: white;
+    /* 모바일에서는 좌우 여백을 줄인다. main 의 px-6 와 겹쳐 2.5rem 을 그대로 두면
+       375px 화면에서 좌우로 128px을 잃어 격자가 246px까지 쪼그라든다. */
+    padding: 1.25rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+    :where(.sim-wumpus-world) .section-card {
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+    }
+}
+
+:where(.sim-wumpus-world) .quiz-btn.correct {
+    background: #4f46e5 !important;
+    color: white !important;
+}
+
+:where(.sim-wumpus-world) .quiz-btn.wrong {
+    background: #f43f5e !important;
+    color: white !important;
+}
+
+:where(.sim-wumpus-world) .not-symbol {
+    font-size: 2.5rem;
+    font-weight: 900;
+    vertical-align: middle;
+    line-height: 0;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+:where(.sim-wumpus-world) .cell-transition {
+    transition: all 0.3s ease;
+    aspect-ratio: 1 / 1;
+}
+
+:where(.sim-wumpus-world) .sensor-icon {
+    margin-top: 2px;
+}
+
+:where(.sim-wumpus-world) .toggle-checkbox:checked {
+    right: 0;
+    border-color: #68D391;
+}
+
+:where(.sim-wumpus-world) .toggle-checkbox:checked + .toggle-label {
+    background-color: #68D391;
+}

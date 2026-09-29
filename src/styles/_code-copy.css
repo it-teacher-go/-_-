@@ -6,7 +6,8 @@
    그러면 「빌드가 리터럴로 있는 클래스만 굽는다」는 규칙에 예외가 하나 생긴다.
 
    **어두운 코드 블록과 밝은 코드 블록에 같은 버튼이 얹힌다.** 대부분은 Prism 테마라
-   어둡지만 테마를 안 준 <pre>도 있어서, 어느 쪽에서도 읽히는 밝은 칩으로 두었다. */
+   어둡지만 테마를 안 준 <pre>도 있어서, 어느 쪽에서도 읽히는 밝은 칩으로 두었다.
+   다크 테마의 짝은 이 파일 끝에 있다. */
 
 .code-block {
     position: relative;
@@ -62,6 +63,22 @@
 @media not all and (hover: hover) and (pointer: fine) {
     .code-copy {
         opacity: 1;
+    }
+}
+
+/* 다크 — 옅게 두면 짙은 바탕에 가라앉아 읽히지 않는다. 늘 또렷하게 두고 대신 차분한 색을 준다.
+   색 이름은 src/tailwind/theme.js 가 내려 준다. 복사됨(`is-done`)은 그 색을 지킨다. */
+:root[data-theme="dark"] .code-copy:not(.is-done) {
+    opacity: 1;
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :root[data-theme="dark"] .code-copy:not(.is-done):hover {
+        color: var(--ink-strong);
+        background: var(--surface-line);
     }
 }
 

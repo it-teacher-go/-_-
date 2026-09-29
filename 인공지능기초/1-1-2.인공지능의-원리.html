@@ -6,115 +6,11 @@
     <title>인공지능의 원리</title>
     <link rel="stylesheet" href="/src/styles/ai-basics.css">
     <script type="module" src="/src/entries/인공지능기초/1-1-2.인공지능의-원리.js"></script>
-    <style>
-        code, kbd, samp, pre,
-        body .font-mono {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-            "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
-            "Malgun Gothic", monospace;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-            "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #0f766e 100%);
-        }
-
-        .sticky-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background-color: rgba(255,255,255,0.9);
-            border-bottom: 1px solid rgba(226,232,240,0.8);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-
-        .section-card {
-            background: white;
-            padding: clamp(1.25rem, 4vw, 2.5rem);
-            border-radius: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-        }
-
-        .quiz-btn {
-            width: 100%;
-            padding: 1.25rem;
-            text-align: left;
-            border-radius: 1rem;
-            border: 2px solid #e2e8f0;
-            background-color: #f8fafc;
-            font-weight: 500;
-            color: #374151;
-            font-size: 1rem;
-            transition: all 0.25s ease;
-            cursor: pointer;
-        }
-        @media (hover: hover) and (pointer: fine) {
-            .quiz-btn:hover { background: #f0fdfa; border-color: #5eead4; }
-        }
-        .quiz-btn.correct { background: #0d9488; color: white; border-color: #0d9488; }
-        .quiz-btn.wrong   { background: #f43f5e; color: white; border-color: #f43f5e; }
-        .quiz-btn.disabled { opacity: 0.5; pointer-events: none; }
-
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        @media (hover: hover) and (pointer: fine) {
-            ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        }
-
-        table { border-collapse: collapse; width: 100%; }
-
-        /* 본문이 긴 셀이 있거나 열이 많은 표는 좁은 화면에서 눌리는 대신
-           overflow-x-auto 래퍼 안에서 가로 스크롤되게 한다. */
-        table.table-prose { min-width: 32rem; }
-        th, td {
-            border: 1px solid #e2e8f0;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 1rem;
-        }
-        thead th { background-color: #f1f5f9; font-weight: 700; color: #334155; }
-        tbody tr:nth-child(even) { background-color: #f8fafc; }
-        @media (hover: hover) and (pointer: fine) {
-            tbody tr:hover { background-color: #ede9fe; }
-        }
-
-        .arrow-pulse {
-            animation: pulse-arrow 2s infinite;
-        }
-        @keyframes pulse-arrow {
-            0%   { transform: translateX(0); opacity: 0.5; }
-            50%  { transform: translateX(5px); opacity: 1; }
-            100% { transform: translateX(0); opacity: 0.5; }
-        }
-
-    
-        /* 코드 블록이 좁은 화면에서 화면 밖으로 넘치는 것을 막는다.
-           white-space:pre 를 유지해 들여쓰기 원형을 보존하고, 넘치는 줄은
-           코드 블록 안에서만 가로로 스크롤된다. flex 자식일 때 정상적으로
-           줄어들도록 min-width:0 을 함께 준다. */
-        body pre {
-            overflow-x: auto;
-            max-width: 100%;
-            min-width: 0;
-        }
-    </style>
 </head>
-<body class="text-slate-900">
+<body class="text-slate-900 quiz-teal-teal600">
 
 <!-- ── Hero ── -->
-<header id="top" class="hero-gradient text-white py-32 px-6 relative overflow-hidden">
+<header id="top" class="hero-gradient hero-indigo600-violet600-teal700 text-white py-32 px-6 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
         <i class="fa-solid fa-brain absolute top-10 left-10 text-8xl transform -rotate-12"></i>
         <i class="fa-solid fa-robot absolute bottom-10 right-10 text-9xl"></i>

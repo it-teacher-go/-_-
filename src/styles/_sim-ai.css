@@ -1,0 +1,246 @@
+/* AI 시뮬레이터(simulator/ai/)가 함께 쓰는 틀. simulator.css가 **`_sim-cs.css` 다음, 편별 파일(sim-ai/<편>.css) 앞에**
+   @import 한다 — 편의 변형이 이 공통 규칙을 덮어야 하기 때문이다. 유틸리티보다 뒤라야 하는 까닭은 _note.css 머리 주석과 같다.
+   **그 편들의 <style>에 이 틀을 다시 적지 않는다**(`check -- colors`).
+
+   **`:where(.sim-ai)` 아래에만 건다.** 같은 simulator.css를 CS 시뮬레이터도 링크하므로 AI 시뮬레이터의 <body>에 단
+   `sim-ai`로 범위를 좁힌다. `:where()`는 특정도가 0이라 편의 <style>에 있을 때와 똑같이 계산된다.
+   편마다 다른 hero는 이름 클래스(`hero-…`)로, 그 편만 쓰는 틀은 sim-ai/<편>.css에 둔다.
+   다크 짝은 각 규칙 바로 아래에 둔다 — 바탕 · 글자 이름(`--surface-*` · `--ink-*`)은 src/tailwind/theme.js가 내려 준다. */
+
+/* ── 글꼴과 바탕 ── */
+body:where(.sim-ai) {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: #f8fafc;
+}
+
+/* 글자색도 준다 — 여러 편이 body에 짙은 글자색을 박아 두었다(편별 파일의 body 규칙). */
+:root[data-theme="dark"] body:where(.sim-ai) {
+    background-color: var(--surface-page);
+    color: var(--ink-body);
+}
+
+/* 코드 · 모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지는 것을 막는다. */
+:where(.sim-ai) :is(code, kbd, samp, pre),
+body:where(.sim-ai) .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
+    "Malgun Gothic", monospace;
+}
+
+body:where(.sim-ai) pre {
+    overflow-x: auto;
+    max-width: 100%;
+    min-width: 0;
+}
+
+:where(.sim-ai) .math-font {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: -0.5px;
+}
+
+/* ── hero ── 편마다 이름 클래스(`<header class="hero-gradient hero-…">`)가 색을 준다.
+   이름은 그러데이션의 색과 단계를 차례로 적은 것이다. 편마다 색이 다른 것은 결정 기록 D-042에 있다. */
+:where(.sim-ai) .hero-gradient {
+    background: var(--sim-hero);
+}
+
+.hero-amber500-orange500 { --sim-hero: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); }
+.hero-amber600-orange600-orange500 { --sim-hero: linear-gradient(135deg, #d97706 0%, #ea580c 50%, #f97316 100%); }
+.hero-blue600-blue500-indigo500-violet500 { --sim-hero: linear-gradient(135deg, #2563eb 0%, #3b82f6 35%, #6366f1 65%, #8b5cf6 100%); }
+.hero-emerald400-teal500 { --sim-hero: linear-gradient(135deg, #34d399 0%, #14b8a6 100%); }
+.hero-emerald600-emerald500-teal500-sky500 { --sim-hero: linear-gradient(135deg, #059669 0%, #10b981 35%, #14b8a6 65%, #0ea5e9 100%); }
+.hero-indigo600-indigo500-violet500 { --sim-hero: linear-gradient(135deg, #4f46e5 0%, #6366f1 45%, #8b5cf6 100%); }
+.hero-lime600-green500-emerald500 { --sim-hero: linear-gradient(135deg, #65a30d 0%, #22c55e 40%, #10b981 100%); }
+.hero-orange400-orange500-rose500 { --sim-hero: linear-gradient(135deg, #fb923c 0%, #f97316 35%, #f43f5e 100%); }
+.hero-pink400-pink600-pink500 { --sim-hero: linear-gradient(135deg, #f472b6 0%, #db2777 50%, #ec4899 100%); }
+.hero-pink600-pink500-rose500 { --sim-hero: linear-gradient(135deg, #db2777 0%, #ec4899 40%, #f43f5e 100%); }
+.hero-purple600-fuchsia600-pink500 { --sim-hero: linear-gradient(135deg, #9333ea 0%, #c026d3 40%, #ec4899 100%); }
+.hero-rose600-pink500-purple500 { --sim-hero: linear-gradient(135deg, #e11d48 0%, #ec4899 45%, #a855f7 100%); }
+.hero-sky600-sky500-blue500 { --sim-hero: linear-gradient(135deg, #0284c7 0%, #0ea5e9 45%, #3b82f6 100%); }
+.hero-teal600-cyan600-cyan500 { --sim-hero: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #06b6d4 100%); }
+.hero-teal700-teal500-cyan500-blue500 { --sim-hero: linear-gradient(135deg, #0f766e 0%, #14b8a6 40%, #06b6d4 65%, #3b82f6 100%); }
+.hero-violet500-fuchsia600-pink500 { --sim-hero: linear-gradient(135deg, #8b5cf6 0%, #c026d3 45%, #ec4899 100%); }
+.hero-violet600-purple400-purple500 { --sim-hero: linear-gradient(135deg, #7c3aed 0%, #c084fc 50%, #a855f7 100%); }
+.hero-violet600-purple500-fuchsia500 { --sim-hero: linear-gradient(135deg, #7c3aed, #a855f7, #d946ef); }
+
+/* ── nav · 카드 ── */
+:where(.sim-ai) .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="dark"] :where(.sim-ai) .sticky-nav {
+    background-color: color-mix(in srgb, var(--surface-card) 90%, transparent);
+    border-bottom-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+:where(.sim-ai) .section-card {
+    background: white;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+:root[data-theme="dark"] :where(.sim-ai) .section-card {
+    background: var(--surface-card);
+    border-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+/* ── 퀴즈 선택지 ── 맞음 · 틀림으로 굳은 단추는 그 색을 지킨다. */
+:where(.sim-ai) .quiz-btn {
+    width: 100%;
+    padding: 1.25rem;
+    text-align: left;
+    border-radius: 1rem;
+    border: 2px solid #e2e8f0;
+    background-color: #f8fafc;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.25s ease;
+}
+
+:root[data-theme="dark"] :where(.sim-ai) .quiz-btn:not(.correct, .wrong, .quiz-right, .quiz-wrong) {
+    color: var(--ink-body);
+    background-color: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-ai) .quiz-btn:hover {
+        background: #f0fdfa;
+        border-color: #5eead4;
+    }
+
+    :root[data-theme="dark"] :where(.sim-ai) .quiz-btn:not(.correct, .wrong, .quiz-right, .quiz-wrong):hover {
+        background-color: var(--surface-line);
+        border-color: var(--surface-edge);
+    }
+}
+
+:where(.sim-ai) .quiz-btn.correct {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+:where(.sim-ai) .quiz-btn.wrong {
+    background: #f43f5e;
+    color: white;
+    border-color: #f43f5e;
+}
+
+:where(.sim-ai) .quiz-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ── 단추 ── */
+:where(.sim-ai) .tab-btn {
+    transition: all 0.2s;
+}
+
+:root[data-theme="dark"] :where(.sim-ai) .tab-btn:not(.active) {
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :root[data-theme="dark"] :where(.sim-ai) .tab-btn:not(.active):hover {
+        background: var(--surface-line);
+    }
+}
+
+:where(.sim-ai) button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+:where(.sim-ai) .btn-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* 회귀 시뮬레이터의 학습 단추 — 끝남 · 발산을 색으로 알린다. */
+:where(.sim-ai) #btnTrain {
+    transition: all 0.2s ease;
+}
+
+:where(.sim-ai) #btnTrain.state-complete {
+    background-color: #10b981 !important;
+    color: white !important;
+}
+
+:where(.sim-ai) #btnTrain.state-complete:disabled {
+    opacity: 1;
+}
+
+:where(.sim-ai) #btnTrain.state-diverged {
+    background-color: #e11d48 !important;
+    color: white !important;
+}
+
+/* ── 스크롤 막대 ── AI 시뮬레이터 페이지에서만 바꾼다 — 화면의 막대(html)와 안쪽 칸의 막대 둘 다.
+   범위 없이 두면 같은 simulator.css를 쓰는 CS 시뮬레이터의 막대 폭까지 바뀌어 칸의 폭이 달라진다. */
+:where(html:has(> body.sim-ai))::-webkit-scrollbar,
+:where(.sim-ai) ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+:where(html:has(> body.sim-ai))::-webkit-scrollbar-track,
+:where(.sim-ai) ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+:root[data-theme="dark"] :where(html:has(> body.sim-ai))::-webkit-scrollbar-track,
+:root[data-theme="dark"] :where(.sim-ai) ::-webkit-scrollbar-track {
+    background: var(--surface-card);
+}
+
+:where(html:has(> body.sim-ai))::-webkit-scrollbar-thumb,
+:where(.sim-ai) ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+:root[data-theme="dark"] :where(html:has(> body.sim-ai))::-webkit-scrollbar-thumb,
+:root[data-theme="dark"] :where(.sim-ai) ::-webkit-scrollbar-thumb {
+    background: var(--surface-line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(html:has(> body.sim-ai))::-webkit-scrollbar-thumb:hover,
+    :where(.sim-ai) ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    :root[data-theme="dark"] :where(html:has(> body.sim-ai))::-webkit-scrollbar-thumb:hover,
+    :root[data-theme="dark"] :where(.sim-ai) ::-webkit-scrollbar-thumb:hover {
+        background: var(--surface-edge);
+    }
+}
+
+/* ── 본문 속 표 ── 편들이 Tailwind 클래스로 꾸민 표의 선 · 머리 칸을 다크에 맞춘다.
+   색이 내용인 표(`data-keep-color`)는 건드리지 않는다. */
+:root[data-theme="dark"] :where(.sim-ai) :is(th, td):not([data-keep-color] *) {
+    border-color: var(--surface-line);
+}
+
+:root[data-theme="dark"] :where(.sim-ai) thead th:not([data-keep-color] *) {
+    color: var(--ink-body);
+    background-color: var(--surface-raised);
+}

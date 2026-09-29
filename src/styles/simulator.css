@@ -8,18 +8,41 @@
 @import "prismjs/themes/prism-tomorrow.css";
 @import "./_code-copy.css";   /* 코드 블록 복사 버튼 (마크업은 빌드가 넣는다) */
 @import "./_sim-ui.css";      /* 시뮬레이터 JS 가 만드는 요소의 모양 — JS 에 Tailwind 클래스를 적지 않는다 */
+@import "./_theme.css";       /* 라이트 · 다크 테마와 토글 단추 (색 유틸리티의 짝은 tailwind/theme.js) */
+@import "./_tailwind.css";    /* @tailwind 층(변형 포함) */
+@import "./_sim-cs.css";      /* CS 시뮬레이터 다섯 편의 틀 — 유틸리티보다 뒤라야 한다(_note.css 머리 주석) */
+@import "./_sim-ai.css";      /* AI 시뮬레이터의 공통 틀 — 편별 파일보다 앞이라야 편의 변형이 덮는다 */
+/* AI 시뮬레이터 편마다의 틀. 새 AI 시뮬레이터를 만들면 여기 한 줄을 더한다. */
+@import "./sim-ai/computer-vision-ml5.css";
+@import "./sim-ai/deep-learning.css";
+@import "./sim-ai/reinforcement-gridworld.css";
+@import "./sim-ai/reinforcement-multi-armed-bandit.css";
+@import "./sim-ai/search-8-puzzle.css";
+@import "./sim-ai/search-bfs-dfs.css";
+@import "./sim-ai/search-heuristic.css";
+@import "./sim-ai/search-n-queen.css";
+@import "./sim-ai/search-river-crossing.css";
+@import "./sim-ai/search-tower-of-hanoi.css";
+@import "./sim-ai/supervised-decision-tree.css";
+@import "./sim-ai/supervised-k-nn.css";
+@import "./sim-ai/supervised-linear-regression.css";
+@import "./sim-ai/supervised-logistic-regression.css";
+@import "./sim-ai/supervised-multiple-linear-regression.css";
+@import "./sim-ai/supervised-svm.css";
+@import "./sim-ai/wumpus-world.css";
 
 @config "../tailwind/simulator.config.js";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
     body {
         word-break: keep-all;       /* 한국어 단어 단위 줄바꿈 */
         overflow-wrap: break-word;  /* 긴 낱말이 컨테이너를 뚫을 때 fallback */
     }
+}
+
+/* 시뮬레이터 스물세 편이 모두 같은 것. 편의 <style>에 다시 적지 않는다. */
+html {
+    scroll-behavior: smooth;
 }
 
 /* ============================================================
@@ -88,11 +111,22 @@
     transition: background-color 0.15s, color 0.15s;
 }
 
+:root[data-theme="dark"] .fs-btn {
+    color: var(--ink-soft);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
 /* 호버가 되는 기기에서만 — 터치 기기에서는 누른 뒤 호버 색이 붙어 남는다. */
 @media (hover: hover) and (pointer: fine) {
     .fs-btn:hover {
         background: #e2e8f0;
         color: #1e293b;
+    }
+
+    :root[data-theme="dark"] .fs-btn:hover {
+        color: var(--ink-strong);
+        background: var(--surface-line);
     }
 }
 
@@ -127,6 +161,10 @@
        그쪽이 이긴다 — 여기 값은 **안여백이 없는 상자의 기본값**이다.
        없으면 위는 뜨고 좌우는 붙어 페이지마다 들쭉날쭉해진다. */
     padding: 1.25rem;
+}
+
+:root[data-theme="dark"] .fs-stage:is(:fullscreen, .fs-on) {
+    background: var(--surface-page);
 }
 
 /* 화면을 꽉 채우는 짜임 — 남는 높이를 그림에 준다.
@@ -265,6 +303,11 @@
     background: rgb(255 255 255 / 92%);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid #e2e8f0;
+}
+
+:root[data-theme="dark"] .sim-tabbar {
+    background: color-mix(in srgb, var(--surface-card) 92%, transparent);
+    border-bottom-color: var(--surface-raised);
 }
 
 /* 전체 화면에서는 무대의 안여백을 뚫고 화면 폭을 다 쓴다. */
@@ -630,6 +673,11 @@
     border-left: 1px solid #e2e8f0;
 }
 
+/* 다크 — 위의 무대 안 가름선들(탭 줄 · 조작 칸 · 두 무리 사이)은 색만 바꾼다. 굵기와 자리는 위 규칙이 정한다. */
+:root[data-theme="dark"] :is(.fs-stage .sim-tabbar, .sim-deck .fs-side, .sim-deck .sim-panel + .sim-panel) {
+    border-color: var(--surface-raised);
+}
+
 /* 설명 띠 — **높이를 못박는다.** 한 줄이든 세 줄이든 같은 높이라, 단계를 넘겨도 그 아래
    그림과 재생 줄이 제자리에 있다. 넘치면 띠 안에서 스크롤한다. 좁은 화면은 글이 더
    접히므로 한 줄 더 잡는다. */
@@ -644,6 +692,11 @@
     border-radius: 0.75rem;
     background: #fff1f2;
     border: 1px solid #fecdd3;
+}
+
+:root[data-theme="dark"] .fs-stage.sim-deck .sim-say {
+    background: color-mix(in srgb, #f43f5e 12%, var(--surface-card));
+    border-color: color-mix(in srgb, #f43f5e 40%, var(--surface-card));
 }
 
 @media (min-width: 1024px) {

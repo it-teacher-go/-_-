@@ -1,0 +1,40 @@
+/* 다중 선형 회귀 (Multiple Linear Regression) 시뮬레이터(simulator/ai/supervised-multiple-linear-regression.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-supervised-multiple-linear-regression)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+body:where(.sim-supervised-multiple-linear-regression) {
+    font-family: "Pretendard Variable", Pretendard, sans-serif;
+    background-color: #f8fafc;
+}
+
+:where(.sim-supervised-multiple-linear-regression) .section-card {
+    background: white;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    border: 1px solid #f1f5f9;
+}
+
+:where(.sim-supervised-multiple-linear-regression) button:disabled,
+:where(.sim-supervised-multiple-linear-regression) input:disabled,
+:where(.sim-supervised-multiple-linear-regression) textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-supervised-multiple-linear-regression) #btnTrain.state-ready:hover {
+        background-color: #1d4ed8;
+    }
+}
+
+:where(.sim-supervised-multiple-linear-regression) #btnTrain:disabled {
+    cursor: not-allowed;
+    transform: none !important;
+    opacity: 0.8;
+}
+
+:where(.sim-supervised-multiple-linear-regression) #btnTrain.state-loading {
+    background-color: #1e3a8a !important;
+}

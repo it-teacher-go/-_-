@@ -1,0 +1,175 @@
+/* 하노이의 탑 시뮬레이터(simulator/ai/search-tower-of-hanoi.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-search-tower-of-hanoi)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+:where(.sim-search-tower-of-hanoi) .section-card {
+    background-color: white;
+    border-radius: 1.5rem;
+    padding: clamp(1.25rem, 4vw, 3rem);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    border: 1px solid #f1f5f9;
+}
+
+@media (max-width: 768px) {
+    :where(.sim-search-tower-of-hanoi) .section-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+}
+
+/* ── 하노이 타워 시각화 ── */
+:where(.sim-search-tower-of-hanoi) .hanoi-scene {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 1rem 0.5rem 0;
+    background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 1rem;
+    border: 2px solid #fcd34d;
+    position: relative;
+}
+
+:where(.sim-search-tower-of-hanoi) .peg-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 0.5rem;
+    min-width: 0;
+    border-radius: 0.75rem;
+    transition: background 0.2s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-search-tower-of-hanoi) .peg-col:hover {
+        background: rgba(234, 88, 12, 0.07);
+    }
+}
+
+:where(.sim-search-tower-of-hanoi) .peg-col.selected {
+    background: rgba(234, 88, 12, 0.15); outline: 2px solid #ea580c; outline-offset: 2px;
+}
+
+:where(.sim-search-tower-of-hanoi) .peg-label {
+    font-weight: 900;
+    font-size: 1.125rem;
+    color: #92400e;
+    margin-bottom: 0.5rem;
+}
+
+:where(.sim-search-tower-of-hanoi) .peg-disks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 160px;
+}
+
+@media (max-width: 480px) {
+    :where(.sim-search-tower-of-hanoi) .peg-disks {
+        min-height: 120px;
+    }
+}
+
+/* 전체 화면에서는 기둥을 남는 높이만큼 세운다. 평소 높이 그대로 두면 1366×768 에서도
+   화면 아래 4분의 1 이 비었다(2026-09-25 브라우저 실측). 원판도 함께 키워 뒷자리에서 보이게 한다. */
+:where(.sim-search-tower-of-hanoi) .fs-stage:is(:fullscreen, .fs-on) .peg-disks {
+    min-height: max(160px, calc(100vh - 400px));
+}
+
+:where(.sim-search-tower-of-hanoi) .fs-stage:is(:fullscreen, .fs-on) .disk {
+    height: 34px; font-size: 1.25rem;
+}
+
+/* 기둥 막대 */
+:where(.sim-search-tower-of-hanoi) .peg-rod {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    background: #a16207;
+    border-radius: 5px 5px 0 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* 바닥 판 */
+:where(.sim-search-tower-of-hanoi) .peg-base {
+    width: 100%;
+    height: 14px;
+    background: #a16207;
+    border-radius: 0.4rem;
+    z-index: 2;
+    position: relative;
+}
+
+:where(.sim-search-tower-of-hanoi) .disk {
+    position: relative;
+    z-index: 1;
+    border-radius: 6px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    color: white;
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 480px) {
+    :where(.sim-search-tower-of-hanoi) .disk {
+        height: 22px; font-size: 1rem;
+    }
+}
+
+:where(.sim-search-tower-of-hanoi) .disk.lifting {
+    opacity: 0.7;
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* ── 상태 그래프 (n=3, 삼각형 배치) ── */
+:where(.sim-search-tower-of-hanoi) .graph-svg {
+    width: 100%;
+    max-width: 700px;
+    /* `margin: 0 auto` 로 쓰면 세로 여백까지 0으로 못박아,
+       HTML 이 붙인 `mb-*` 가 조용히 지워진다(특정도가 같아 나중에 온 이쪽이 이긴다).
+       가운데 정렬만 하려는 것이므로 가로만 건드린다. */
+    margin-inline: auto;
+    display: block;
+    overflow: visible;
+}
+
+/* ── 코드 블록 ── */
+:where(.sim-search-tower-of-hanoi) pre {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    overflow-x: auto;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+:where(.sim-search-tower-of-hanoi) .tab-btn.active {
+    background: #ea580c;
+    color: white;
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+}
+
+:where(.sim-search-tower-of-hanoi) .tab-panel {
+    display: none;
+}
+
+:where(.sim-search-tower-of-hanoi) .tab-panel.active {
+    display: block;
+}

@@ -4,7 +4,11 @@
 // `simulator/index.html`은 index.html에서 구워 낸 것이라 쓰는 클래스가 그 부분집합이다.
 // 굳이 함께 적는 것은 **같은 CSS를 링크하는 페이지를 여기에 다 적어 두기 위해서다** —
 // 나중에 구운 쪽에만 있는 클래스가 생겨도 저절로 굽힌다. → tools/checks/sim-index.mjs
+import theme from './theme.js';
+
 export default {
+    // 라이트 · 다크 색의 짝 — 색 유틸리티가 CSS 변수를 읽는다. → ./theme.js
+    presets: [theme(['index.html', 'simulator/index.html', 'privacy/index.html'])],
     // hover: 는 마우스처럼 호버가 되는 기기에서만 켠다 — 터치 기기에서는 누른 뒤 호버 색이 붙어 남는다.
     future: { hoverOnlyWhenSupported: true },
     content: ['./index.html', './simulator/index.html', './privacy/index.html'],

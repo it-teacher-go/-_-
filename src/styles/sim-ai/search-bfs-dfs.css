@@ -1,0 +1,150 @@
+/* 맹목적 탐색 (BFS & DFS) 시뮬레이터(simulator/ai/search-bfs-dfs.html)만 쓰는 틀. _sim-ai.css가 @import 한다.
+   **`:where(.sim-search-bfs-dfs)` 아래에만 건다** — 다른 시뮬레이터가 같은 이름을 다르게 쓴다. `:where()`는 특정도가 0이라
+   편의 <style>에 있을 때와 똑같이 계산된다. 다크 짝은 각 규칙 바로 아래에 둔다. */
+
+body:where(.sim-search-bfs-dfs) {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+/* --- Grid Search 관련 스타일 --- */
+:where(.sim-search-bfs-dfs) .tool-btn.tool-active {
+    background: #6366f1;
+    border-color: #4f46e5;
+    color: white;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-search-bfs-dfs) .tool-btn.tool-active:hover {
+        background: #6366f1;
+        border-color: #4f46e5;
+    }
+}
+
+:where(.sim-search-bfs-dfs) #grid-container {
+    display: grid;
+    gap: 2px;
+    background: #e2e8f0;
+    border: 2px solid #cbd5e1;
+    border-radius: .5rem;
+    padding: 2px;
+    max-width: 500px;
+    margin: auto;
+    /* 터치로 벽을 드래그하는 동안 페이지가 스크롤되지 않도록 */
+    touch-action: none;
+}
+
+/* 전체 화면에서는 폭이 아니라 **남는 높이**가 격자 크기를 정한다.
+   줄이 `repeat(N, 1fr)` 이라 상자가 세로로 눌리면 칸이 그대로 납작해진다 —
+   `.grid-cell` 의 `aspect-ratio` 는 줄 높이가 정해진 순간 힘을 잃는다.
+   그래서 상자를 「남는 높이만큼」 갖게 하고 폭이 따라오게 뒤집는다. */
+:where(.sim-search-bfs-dfs) .fs-stage:is(:fullscreen, .fs-on) #grid-container {
+    flex: 1 1 0;
+    width: auto;
+    height: 100%;
+    min-height: 0;
+    max-width: 100%;
+    aspect-ratio: 1;
+    margin-inline: auto;
+    overflow: hidden;
+}
+
+:where(.sim-search-bfs-dfs) .grid-cell {
+    aspect-ratio: 1;
+    background: white;
+    border-radius: .25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* fs-figure: 격자 칸 «안»에 앉는 글자라 칸 크기가 천장이다 */
+    font-size: .8rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(.sim-search-bfs-dfs) .grid-cell:hover {
+        background-color: #f1f5f9;
+    }
+}
+
+:where(.sim-search-bfs-dfs) .cell-wall {
+    background: #475569 !important;
+}
+
+:where(.sim-search-bfs-dfs) .cell-start {
+    background: #10b981 !important;
+    color: white;
+    font-weight: bold;
+}
+
+:where(.sim-search-bfs-dfs) .cell-end {
+    background: #ef4444 !important;
+    color: white;
+    font-weight: bold;
+}
+
+:where(.sim-search-bfs-dfs) .cell-discovered {
+    background: #bae6fd !important;
+}
+
+:where(.sim-search-bfs-dfs) .cell-visited {
+    background: #3b82f6 !important;
+}
+
+:where(.sim-search-bfs-dfs) .cell-path {
+    background: #f59e0b !important;
+}
+
+/* --- Tree Search 관련 스타일 --- */
+:where(.sim-search-bfs-dfs) .tree-network {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    min-height: 260px;
+    background-color: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+
+:root[data-theme="dark"] :where(.sim-search-bfs-dfs) .tree-network {
+    background: var(--surface-card);
+    border-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+:where(.sim-search-bfs-dfs) .control-panel {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+:root[data-theme="dark"] :where(.sim-search-bfs-dfs) .control-panel {
+    background: var(--surface-card);
+    border-color: var(--surface-raised);
+    box-shadow: none;
+}
+
+/* 교실 화면(전체 화면)에서는 조작 패널의 세로가 빠듯하다.
+   1366x768에서 실행 제어 버튼 셋이 스크롤 밖으로 밀려나 눌러 볼 수가 없었다.
+   **전체 화면일 때만** 묶음 사이 틈과 토글의 보조 설명을 줄인다 —
+   평소 화면에서는 설명이 그대로 있어야 학생이 혼자 조작할 수 있다. */
+:where(.sim-search-bfs-dfs) .fs-stage:is(:fullscreen, .fs-on) #graph-panel {
+    gap: 0.5rem;
+}
+
+/* 구분선과 제목 아래 여백도 함께 줄인다. 셋을 다 줄여야 1024x768(구형 4:3
+   교실 화면)에서도 실행 제어 버튼이 스크롤 안에 들어온다. */
+:where(.sim-search-bfs-dfs) .fs-stage:is(:fullscreen, .fs-on) #graph-panel > hr {
+    display: none;
+}
+
+:where(.sim-search-bfs-dfs) .fs-stage:is(:fullscreen, .fs-on) #graph-panel .panel-head {
+    padding-bottom: 0.25rem;
+}
+
+:where(.sim-search-bfs-dfs) .fs-stage:is(:fullscreen, .fs-on) #graph-panel .opt-hint {
+    display: none;
+}

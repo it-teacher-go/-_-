@@ -24,6 +24,7 @@
 //   tools/vite/strip-crossorigin.js   원본에 없던 속성 제거
 //   tools/vite/classic-scripts.js     모듈 스크립트를 평범한 스크립트로 (file:// 대응)
 //   tools/vite/copy-code-button.js    코드 블록마다 복사 버튼을 얹는다
+//   tools/vite/theme-toggle.js        라이트 · 다크 토글과 테마를 정하는 스크립트를 넣는다
 //   tools/vite/drop-ttf-fallback.js   아무도 받지 않는 ttf 대체 경로를 지운다 (PostCSS)
 //   tools/vite/subset-icon-font.js    아이콘 폰트를 실제로 쓰는 글자만 남기고 깎는다
 //   tools/vite/third-party-notices.js 번들에 들어간 제3자 라이선스 고지를 굽는다
@@ -39,6 +40,7 @@ import copyLectureAssets from './tools/vite/copy-lecture-assets.js';
 import stripCrossorigin from './tools/vite/strip-crossorigin.js';
 import classicScripts from './tools/vite/classic-scripts.js';
 import copyCodeButton from './tools/vite/copy-code-button.js';
+import themeToggle from './tools/vite/theme-toggle.js';
 import dropTtfFallback from './tools/vite/drop-ttf-fallback.js';
 import subsetIconFont from './tools/vite/subset-icon-font.js';
 import thirdPartyNotices from './tools/vite/third-party-notices.js';
@@ -69,6 +71,9 @@ export default {
     // 데스크톱 브라우저의 좁은 창으로는 끝까지 확인되지 않는다.
     // 같은 망에 있는 사람 누구나 열 수 있으므로 개발 서버에만 해당한다(빌드는 무관).
     server: { host: true, port: Number(process.env.PORT) || 5173 },
+    // 미리 묶을 의존성은 페이지 진입점을 훑어 처음에 다 찾는다. 두지 않으면 브라우저 검사가 페이지를
+    // 여는 도중에 새 의존성을 만나 Vite 가 다시 불러오고, 그 사이에 잰 페이지는 CSS 없이 재진다.
+    optimizeDeps: { entries: ['src/entries/**/*.js'] },
     // CSS 파이프라인. 별도 postcss.config.js를 두지 않는다 — 빌드 설정은 이 파일 하나다.
     // 단위별 설정은 각 CSS가 @config 로 자기 것을 가리키므로 여기 base는 기본값일 뿐이다.
     css: {
@@ -88,6 +93,7 @@ export default {
         injectCode(), // pre 코드 주입
         copyCodeButton(), // 주입이 끝난 뒤에 Copy 버튼을 감싼다 — 주입된 코드에도 버튼이 붙어야 한다.
         siteFavicon(), // 모든 페이지에 사이트 아이콘 두 줄 — 정본은 luminousky.com, 사본을 두지 않는다.
+        themeToggle(), // 강의노트와 첫 화면의 hero에 라이트 · 다크 토글. 어느 페이지인지는 tools/vite/theme-pages.js.
         // Vite 빌드
         vendorPublic(),
         copyLectureAssets(),

@@ -5,16 +5,184 @@
 @import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 @import "./_code-copy.css";   /* 코드 블록 복사 버튼 (마크업은 빌드가 넣는다) */
 @import "./_quiz.css";        /* 퀴즈 스크립트가 만드는 요소의 모양 — 스크립트에 Tailwind 클래스를 적지 않는다 */
+@import "./_theme.css";       /* 라이트 · 다크 테마와 토글 단추 (색 유틸리티의 짝은 tailwind/theme.js) */
+@import "./_tailwind.css";    /* @tailwind 층(변형 포함) */
+@import "./_note.css";        /* 강의노트의 틀 — 유틸리티보다 뒤라야 한다(_note.css 머리 주석) */
 
 @config "../tailwind/data-science.config.js";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
     body {
         word-break: keep-all;       /* 한국어 단어 단위 줄바꿈 */
         overflow-wrap: break-word;  /* 긴 낱말이 컨테이너를 뚫을 때 fallback */
     }
+}
+
+/* 강의노트 틀(_note.css)의 과목 색. 이름의 뜻은 _note.css 머리 주석에 있다. */
+:root {
+    --note-hero: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+    --note-tint: #eef2ff;
+    --note-rim: #a5b4fc;
+    --note-solid: #4f46e5;
+    --note-tag-ink: #9a3412;
+    --note-tag-bg: #ffedd5;
+    --note-tag-line: #fdba74;
+}
+
+/* ════════════════════════════════════════════════════════════
+   이 과목만 쓰는 틀 — 편마다 <style>에 있던 것을 옮겨 왔다.
+   **이름은 과목 안에서 한 번만 정의한다.** 편마다 조금씩 다르면 수식어 클래스로 가른다(말풍선의 `speech-lg`).
+   다크 짝은 각 규칙 바로 아래에 둔다(_note.css와 같은 규칙).
+   ════════════════════════════════════════════════════════════ */
+
+/* ── 말풍선 ── 대화 · 리뷰 장면을 CSS로 표현한다. 몸통 색은 Tailwind 바탕 클래스(`bg-indigo-100` 따위)가 준다.
+   **꼬리는 몸통의 바탕을 물려받는 삼각형이다**(`background: inherit`) — 꼬리 색을 따로 적지 않으므로
+   몸통 색을 바꾸거나 다크로 바뀌어도 둘이 함께 간다. `speech-lg`는 여백이 큰 풍선(1-1-1). */
+.speech {
+    position: relative;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+.speech-lg {
+    padding: 1rem 1.25rem;
+}
+
+.speech::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    width: 20px;
+    height: 10px;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.speech-left::after { left: 1.5rem; }
+.speech-right::after { right: 1.5rem; }
+.speech-lg.speech-left::after { left: 2rem; }
+.speech-lg.speech-right::after { right: 2rem; }
+
+/* ── 오렌지 위젯 노드 ── 스크린샷 대신 쓰는 도식의 칸. 네모 하나가 위젯 하나다.
+   위젯 이름과 연결 순서만 정확하면 학생이 실제 화면에서 따라갈 수 있다. */
+.widget-node {
+    background: #ffffff;
+    border: 2px solid #fdba74;
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    min-width: 9.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.06);
+}
+
+:root[data-theme="dark"] .widget-node {
+    background: var(--surface-raised);
+    border-color: color-mix(in srgb, #f97316 55%, var(--surface-card)); /* 라이트 orange-300 선의 짝 */
+    box-shadow: none;
+}
+
+/* ── 단계 흐름(1-1-1 · 1-1-2) ── 좁은 화면에서는 세로로 접히고, 넓은 화면에서만 화살표가 붙는다. */
+.flow-step {
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .flow-arrow::after {
+        content: "\f061"; /* fa-arrow-right */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        right: -1.35rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #c7d2fe;
+        font-size: 1rem;
+    }
+}
+
+/* ── 직무 변화 화살표(1-1-2) ── '예전 → 지금'. 좁은 화면에서는 아래를, 넓은 화면에서는 오른쪽을 향한다. */
+.shift-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a5b4fc;
+    font-size: 1.5rem;
+}
+
+/* ── 스마트폰 목업(1-2-1) ── 실제 화면을 그린 그림이라 `data-keep-color` 섬이다. 다크 짝이 없다. */
+.phone {
+    border: 4px solid #cbd5e1;
+    border-radius: 2rem;
+    background: #ffffff;
+}
+
+/* ── 산점도(1-2-2) ── 점을 퍼센트로 배치해 어떤 폭에서도 비율이 유지된다.
+   축 눈금은 HTML 텍스트라 text-base 아래로 내려가지 않는다. */
+.plot {
+    position: relative;
+    border-left: 2px solid #94a3b8;
+    border-bottom: 2px solid #94a3b8;
+    background-image: linear-gradient(#f1f5f9 1px, transparent 1px),
+    linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
+    background-size: 25% 25%;
+    height: 240px;
+}
+
+:root[data-theme="dark"] .plot {
+    border-color: var(--surface-edge);
+    background-image: linear-gradient(var(--surface-raised) 1px, transparent 1px),
+    linear-gradient(90deg, var(--surface-raised) 1px, transparent 1px);
+}
+
+.dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    border-radius: 50%;
+    background: #4f46e5;
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+}
+
+:root[data-theme="dark"] .dot {
+    background: #818cf8; /* indigo-400 */
+    border-color: var(--surface-card);
+}
+
+/* ── 빈 표 칸(1-3-1) ── 통합 결과에서 값이 없는 자리를 빗금으로 눈에 띄게 표시한다. */
+.empty-cell {
+    background-image: repeating-linear-gradient(45deg, #f1f5f9 0 6px, #ffffff 6px 12px);
+}
+
+:root[data-theme="dark"] .empty-cell {
+    background-image: repeating-linear-gradient(45deg, var(--surface-raised) 0 6px, var(--surface-card) 6px 12px);
+}
+
+/* ── 수식 상자(2-2-1) ── 수식은 코드가 아니므로 본문 글꼴을 그대로 쓰되 배경으로만 구별한다. */
+.formula {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1e293b;
+    text-align: center;
+    overflow-x: auto;
+}
+
+:root[data-theme="dark"] .formula {
+    color: var(--ink-strong);
+    background: var(--surface-raised);
+    border-color: var(--surface-line);
+}
+
+.formula sub {
+    font-size: 1rem;
+}
+
+/* ── 넓은 표(2-3-1 · 2-3-2) ── 열이 8개를 넘고 머리글이 긴 표는 32rem으로도 각 열이 100px 아래로 눌린다. */
+table.table-wide {
+    min-width: 68rem;
 }

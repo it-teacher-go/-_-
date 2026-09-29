@@ -17,75 +17,11 @@
             options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
         };
     </script>
-    <style>
-        /* 코드·모노스페이스 요소의 한글이 시스템 기본 글꼴로 떨어지는 것을 막는다.
-           라틴 문자는 모노스페이스, 한글은 Pretendard로 렌더링된다. */
-        code, kbd, samp, pre,
-        body .font-mono {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-            "Courier New", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
-            "Malgun Gothic", monospace;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-            background-color: #f8fafc;
-        }
-        .sticky-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background-color: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .section-card {
-            background: white;
-            border-radius: 1.5rem;
-            padding: clamp(1.25rem, 4vw, 2rem);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-            border: 1px solid #f1f5f9;
-        }
-
-        /* 본문 성격의 긴 셀이 좁은 화면에서 눌려 찌그러지는 것을 막는다.
-           래퍼의 overflow-x-auto 안에서 가로 스크롤된다. */
-        table.table-prose {
-            min-width: 32rem;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            ::-webkit-scrollbar-thumb:hover {
-                background: #94a3b8;
-            }
-        }
-    </style>
 </head>
-<body class="text-slate-900">
+<body class="text-slate-900 note-own-tables">
 
 <!-- Hero Section -->
-<header class="text-white py-32 px-6 relative overflow-hidden"
-        style="background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);">
+<header class="hero-gradient hero-violet700-violet600 text-white py-32 px-6 relative overflow-hidden">
     <div class="max-w-6xl mx-auto relative z-10 text-center">
         <span class="inline-block px-4 py-1.5 bg-white/20 rounded-full font-bold mb-6 backdrop-blur-sm border border-white/30 text-base">인공지능 기초</span>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight break-keep">

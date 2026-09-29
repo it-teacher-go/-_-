@@ -31,6 +31,8 @@ const CHECKS = {
     'privacy': 'tests/privacy.test.mjs',
     'classes': 'tests/classes.test.mjs',
     'hover': 'tests/hover.test.mjs',
+    // 페이지 HTML에 박은 색(<style> · style="") — 색은 Tailwind 클래스와 공용 CSS에서만 온다
+    'colors': 'tests/colors.test.mjs',
     // 격자 트랙 목록의 `fr` 옆 `auto` — 옛 사파리에서 그 트랙이 0으로 접힌다
     'grid': 'tests/grid.test.mjs',
     'code': 'tests/code.test.mjs',
@@ -45,8 +47,12 @@ const CHECKS = {
     'prose': 'tests/prose.test.mjs',
     // 검사가 제 할 일을 하는가 — 일부러 틀리게 쓴 조각(`tests/fixtures/`)을 넣어 본다
     'fixtures': 'tests/fixtures.test.mjs',
+    // 돌연변이가 아직 과녁을 겨누는가(글자만 본다 — 돌연변이를 돌리는 것은 `npm run mutate`)
+    'mutate-targets': 'tests/mutate-targets.test.mjs',
     // 진짜 브라우저(Chromium)에서 잰 화면 — 겹침 · 넘침 · 닿지 않는 조작
     'layout': 'tests/browser/sim-layout.test.mjs',
+    // 다크 테마 — 토글이 도는가 · 글자가 AAA 대비를 넘는가 · 밝은 칸이 남지 않았는가(진짜 브라우저)
+    'dark': 'tests/browser/dark.test.mjs',
     // 시뮬레이터 동작 — 아래 SIMS 표를 차례로 돈다. 뒤에 SIMS 의 이름을 주면 그것만.
     'sim': null,
     // 산출물. 빌드가 있어야 하므로 기본 목록에서 빠지고 이름으로만 부른다.
@@ -78,6 +84,8 @@ const SIM_BY_NAME_ONLY = new Set(['sort']);
 const AUDITS = {
     pre: 'tools/audits/pre.mjs',
     svg: 'tools/audits/svg.mjs',
+    // CSS를 옮기기 전후의 계산된 스타일 견주기(save → 고친다 → diff)
+    styles: 'tools/audits/styles.mjs',
     narrow: 'tools/audits/narrow.mjs',
     josa: 'tools/audits/josa.mjs',
     lemma: 'tools/audits/lemma.mjs',

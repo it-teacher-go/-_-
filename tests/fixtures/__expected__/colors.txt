@@ -1,0 +1,2 @@
+ERROR   ✗ tests/fixtures/colors.html: 색 5곳 — 8행 <style> #ffffff · 8행 <style> rgb( · 9행 <style> white · 15행 <p style> #1e293b · 16행 <div style> hsl(
+ERROR 색은 Tailwind 색 클래스나 공용 CSS(src/styles/)로 준다. 색이 곧 내용이면 data-keep-color 안에 둔다 (까닭은 tools/checks/colors.mjs 머리 주석)

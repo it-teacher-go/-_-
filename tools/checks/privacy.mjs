@@ -2,7 +2,7 @@
 //
 // `privacy/index.html` 은 바깥에 내놓는 정본이고, 그 안에는 코드에 매인 단정이 넷 있다.
 //
-//     제4조  브라우저 저장소에 아무것도 남기지 않는다
+//     제4조  브라우저 저장소에는 화면 밝기 선택(`theme`) 하나만 남긴다
 //     제7조  바깥으로 나가는 요청은 밝힌 것뿐이다
 //     제8조  카메라를 쓰는 시뮬레이터는 컴퓨터 비전 하나뿐이다
 //     (링크) 첫 화면과 시뮬레이터 입구에서 이 방침으로 가는 길이 있다
@@ -19,8 +19,12 @@ import {ROOT, Report, htmlFiles, read, rel, walk} from '../lib/repo.mjs';
 
 const POLICY = 'privacy/index.html';
 
-// 제4조 — 「쿠키를 심지 않고 브라우저 저장소에 자료를 남기지 않는다」.
+// 제4조 — 「쿠키를 심지 않고, 브라우저 저장소에는 화면 밝기 선택 하나만 남긴다」.
 const STORAGE_RE = /\b(localStorage|sessionStorage|indexedDB|document\.cookie)\b/g;
+// 그 하나를 남기는 곳은 이 파일 하나뿐이고, 거기서도 `localStorage` 의 `theme` 이름만 읽고 쓴다.
+// 빌드가 모든 페이지에 넣는 스크립트라 `tools/vite/` 도 함께 훑는다.
+const THEME_STORE = 'tools/vite/theme-toggle.js';
+const THEME_USE_RE = /^localStorage\.(getItem|setItem)\(\s*['"]theme['"]/;
 
 // 제7조 — 소스가 스스로 부르는 바깥 요청. 방침의 표에 적힌 것과 같아야 한다.
 const FETCH_RE = /fetch\(\s*['"]https?:\/\/([^/'"]+)/g;
@@ -45,12 +49,24 @@ export function check() {
         r.error(`✗ ${POLICY}이 없다. 사이트가 방침 없이 나간다`);
         return r;
     }
-    const files = [...htmlFiles(), ...walk(path.join(ROOT, 'src/entries'), {ext: ['.js']})];
+    const files = [
+        ...htmlFiles(),
+        ...walk(path.join(ROOT, 'src/entries'), {ext: ['.js']}),
+        ...walk(path.join(ROOT, 'tools/vite'), {ext: ['.js']}),
+    ];
     const cameras = new Set();
+    let themeUses = 0;
     for (const p of files) {
         const f = rel(p), src = read(p);
         for (const m of src.matchAll(STORAGE_RE)) {
-            r.error(`  ✗ ${f}: 「${m[1]}」 — 방침 제4조가 「브라우저 저장소에 자료를 남기지 않는다」고 못박았다`);
+            const use = f === THEME_STORE && src.slice(m.index).match(THEME_USE_RE);
+            if (use) {
+                // 방침이 적은 것은 「남긴다」 — 읽기만 남고 쓰기가 사라지면 없는 것을 설명한다.
+                if (use[1] === 'setItem') themeUses += 1;
+                continue;
+            }
+            r.error(`  ✗ ${f}: 「${m[1]}」 — 방침 제4조는 브라우저 저장소에 화면 밝기 선택 하나만 남긴다고 적었다` +
+                ` (${THEME_STORE}의 localStorage 'theme' 만 된다)`);
         }
         for (const m of src.matchAll(FETCH_RE)) {
             if (!ALLOWED_FETCH_HOSTS.has(m[1])) {
@@ -59,6 +75,9 @@ export function check() {
             }
         }
         if (CAMERA_RE.test(src)) cameras.add(f);
+    }
+    if (!themeUses) {
+        r.error(`  ✗ ${THEME_STORE}: 화면 밝기 선택을 남기지 않게 되었다 — 방침 제4조를 그대로 두면 없는 것을 설명한다`);
     }
     for (const f of [...cameras].filter((x) => !CAMERA_PAGES.has(x)).sort()) {
         r.error(`  ✗ ${f}: 카메라를 쓴다 — 방침 제8조는 컴퓨터 비전 하나뿐이라고 적었다`);
