@@ -3,6 +3,6 @@
 # ---
 print(7 > 3)      # True
 print(7 < 3)      # False
-print(7 == 7)     # True    같은지 묻는 것은 등호 두 개
+print(7 == 7)     # True    같은지 비교하는 것은 등호 두 개
 print(7 != 7)     # False
-print("a" < "b")  # True    글자도 비교할 수 있다 (사전 순서)
+print("a" < "b")  # True    문자열도 비교할 수 있다 (사전 순서)

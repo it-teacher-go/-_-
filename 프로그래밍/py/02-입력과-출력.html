@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>여러 값을 한 줄로 내보내고, 사이에 넣을 것과 끝에 붙일 것을 바꿀 수 있다.</li>
-                    <li>키보드로 값을 받아 변수에 담을 수 있다.</li>
-                    <li>받은 값이 왜 언제나 글자인지 설명하고, 계산에 쓰기 위해 바꿀 수 있다.</li>
-                    <li>한 줄에 들어온 값 여러 개를 나누어 각각의 변수에 담을 수 있다.</li>
+                    <li>여러 값을 한 줄에 출력하고, 값 사이에 넣을 것과 끝에 붙일 것을 바꿀 수 있다.</li>
+                    <li>키보드로 값을 입력받아 변수에 저장할 수 있다.</li>
+                    <li>입력받은 값이 왜 언제나 문자열인지 설명하고, 계산에 쓸 수 있게 변환할 수 있다.</li>
+                    <li>한 줄에 입력된 여러 값을 나누어 각각의 변수에 저장할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -57,10 +57,10 @@
             <span class="font-black text-xl tracking-tight text-slate-800">입력과 출력</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#out" class="hover:text-orange-600 transition">내보내기</a>
+            <a href="#out" class="hover:text-orange-600 transition">출력하기</a>
             <a href="#option" class="hover:text-orange-600 transition">사이와 끝</a>
-            <a href="#in" class="hover:text-orange-600 transition">받아들이기</a>
-            <a href="#many" class="hover:text-orange-600 transition">여러 값 받기</a>
+            <a href="#in" class="hover:text-orange-600 transition">입력받기</a>
+            <a href="#many" class="hover:text-orange-600 transition">여러 값 입력받기</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -70,31 +70,31 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 화면에 내보내기 ===== -->
+    <!-- ===== 화면에 출력하기 ===== -->
     <section id="out" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">화면에 내보내기</h2>
+            <h2 class="text-3xl font-black text-slate-900">화면에 출력하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">쉼표로 나열하면 알아서 이어 줍니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">쉼표로 나열하면 여러 값을 한 줄에 출력합니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                변수에 담아 둔 값은 그대로는 보이지 않습니다. 사람이 보려면
-                <strong>화면으로 내보내야</strong> 합니다.
+                변수에 저장한 값은 그대로는 보이지 않습니다. 사람이 보려면
+                <strong>화면에 출력해야</strong> 합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/02.출력.py"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">쉼표로 나열하면 세 가지가 저절로 됩니다</p>
+                <p class="font-black text-lg text-orange-900">쉼표로 나열하면 세 가지가 자동으로 이루어집니다</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
-                    <li>값 사이에 <strong>빈칸 하나</strong>가 들어간다.</li>
-                    <li>글자와 수를 <strong>섞어 놓아도</strong> 된다.</li>
+                    <li>값 사이에 <strong>공백 하나</strong>가 들어간다.</li>
+                    <li>문자열과 숫자를 <strong>섞어 놓아도</strong> 된다.</li>
                     <li>끝에서 <strong>줄이 바뀐다.</strong></li>
                 </ul>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    이 가운데 사이의 빈칸과 끝의 줄바꿈은 <strong>바꿀 수 있는 기본값</strong>입니다. 바꾸는 방법은 「사이에 넣을 것과 끝에 붙일 것」 절에서 봅니다.
+                    이 가운데 값 사이의 공백과 끝의 줄바꿈은 <strong>바꿀 수 있는 기본값</strong>입니다. 바꾸는 방법은 「사이에 넣을 것과 끝에 붙일 것」 절에서 봅니다.
                 </p>
             </div>
 
@@ -103,19 +103,19 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>print("점수는", 90)</code>은 됩니다. 그런데
                     <code>print("점수는" + 90)</code>은 <strong>오류가 납니다.</strong>
-                    쉼표는 <strong>「나열해 달라」</strong>이고 더하기는 <strong>「이어 붙여 달라」</strong>인데,
-                    글자와 수는 이어 붙일 수 없기 때문입니다.
+                    쉼표는 <strong>「나열하라」</strong>는 뜻이고 더하기는 <strong>「이어 붙이라」</strong>는 뜻인데,
+                    문자열과 숫자는 이어 붙일 수 없기 때문입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    쉼표 쪽이 편하지만 <strong>빈칸이 저절로 들어가는 것</strong>은 알아 두세요 &mdash;
-                    <code>print(score, "점")</code>은 <strong>「90 점」</strong>으로 나옵니다.
+                    쉼표 쪽이 편하지만 <strong>공백이 자동으로 들어간다는 점</strong>은 알아 두세요 &mdash;
+                    <code>print(score, "점")</code>은 <strong>「90 점」</strong>으로 출력됩니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>print("합계:", 100, "원")</code>은 빈칸이 몇 개 들어간 채로 나올까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>print("합계:", 100, "원")</code>은 공백이 몇 개 들어간 채로 출력될까요?</p>
         </div>
     </section>
 
@@ -124,139 +124,139 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">사이에 넣을 것과 끝에 붙일 것</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">기본값을 바꾸면 표도 만들고 한 줄에 이어 붙일 수도 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">기본값을 바꾸면 표 모양으로 출력하거나 여러 번의 출력을 한 줄에 이어 붙일 수 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                값 <strong>사이</strong>에 들어가는 것을 바꾸려면 <code>sep</code>을 줍니다.
-                「구분해 주는 것」이라는 뜻입니다.
+                값 <strong>사이</strong>에 들어가는 것을 바꾸려면 <code>sep</code>을 지정합니다.
+                구분자(separator)를 줄인 이름입니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/02.sep.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <strong>끝</strong>에 붙는 것을 바꾸려면 <code>end</code>를 줍니다.
-                기본값이 줄바꿈이라, <code>end=""</code>처럼 빈 글자를 주면 줄이 안 바뀝니다.
+                <strong>끝</strong>에 붙는 것을 바꾸려면 <code>end</code>를 지정합니다.
+                기본값이 줄바꿈이므로, <code>end=""</code>처럼 빈 문자열을 지정하면 줄이 바뀌지 않습니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/02.end.py"></code></pre>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">둘을 나누어 기억합니다</p>
+                <p class="font-black text-lg text-slate-900"><code>sep</code>과 <code>end</code>는 들어가는 위치가 다릅니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>sep</code>은 <strong>한 번의 출력 「안」에서</strong> 값과 값 사이에 들어갑니다.
                     <code>end</code>는 <strong>그 출력이 끝난 「뒤」에</strong> 붙습니다.
-                    그래서 값이 하나뿐이면 <code>sep</code>은 아무 일도 하지 않습니다.
+                    그래서 값이 하나뿐이면 <code>sep</code>은 아무 역할도 하지 않습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">여러 값을 줄마다 하나씩 찍고 싶다면 <code>sep</code>과 <code>end</code> 가운데 무엇을 어떻게 주면 될까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">여러 값을 한 줄에 하나씩 출력하려면 <code>sep</code>과 <code>end</code> 가운데 무엇을 어떻게 지정하면 될까요?</p>
         </div>
     </section>
 
-    <!-- ===== 키보드로 받아들이기 ===== -->
+    <!-- ===== 키보드로 입력받기 ===== -->
     <section id="in" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">키보드로 받아들이기</h2>
+            <h2 class="text-3xl font-black text-slate-900">키보드로 입력받기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">받은 값은 수처럼 보여도 글자입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">입력받은 값은 숫자처럼 보여도 문자열입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>input</code>은 사용자가 엔터를 칠 때까지 기다렸다가, 친 것을 그대로 돌려줍니다.
-                괄호 안에 물어보는 말을 적어 두면 <strong>기다리기 전에 먼저 찍어</strong> 줍니다.
+                <code>input</code>은 사용자가 엔터 키를 누를 때까지 기다렸다가, 입력한 내용을 그대로 결과로 돌려줍니다. 이렇게 결과를 돌려주는 것을 반환(return)이라고 합니다.
+                괄호 안에 안내 문구를 적어 두면 <strong>입력을 기다리기 전에 먼저 출력</strong>해 줍니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/02.입력.py"></code></pre>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>받은 것은 「언제나」 글자입니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>입력받은 값은 「언제나」 문자열입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    17을 쳤는데 <code>type</code>으로 물어보면 <code>str</code>이라고 답합니다.
-                    <strong>화면에 보이는 모양이 같다고 같은 종류인 것이 아닙니다.</strong>
-                    그래서 <code>age + 1</code>을 하면 <strong>글자와 수를 더할 수 없다</strong>며 멈춥니다.
+                    17을 입력해도 <code>type</code>으로 확인하면 <code>str</code>입니다.
+                    <strong>화면에 보이는 모양이 같다고 자료형이 같은 것은 아닙니다.</strong>
+                    그래서 <code>age + 1</code>을 실행하면 <strong>문자열과 숫자를 더할 수 없다</strong>는 오류가 나며 멈춥니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    처음 배울 때 거의 모두 한 번은 겪습니다. 값의 종류를 바꾸는 <strong>형 변환</strong>이
-                    바로 여기서 필요해집니다.
+                    처음 배울 때 거의 누구나 한 번은 겪는 오류입니다. 값의 자료형을 바꾸는 <strong>형 변환</strong>이
+                    바로 여기서 필요합니다.
                 </p>
             </div>
 
             <pre class="language-python"><code class="language-python" data-src="code/02.형변환입력.py"></code></pre>
 
             <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>받자마자 바꿔 두는 편이 낫습니다</p>
+                <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>입력받자마자 변환해 두는 편이 낫습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int(input(&hellip;))</code>처럼 <strong>받는 자리에서 곧바로</strong> 바꿔 두면,
-                    그 뒤로는 그냥 수처럼 쓰면 됩니다. 나중에 쓸 때마다 바꾸면
+                    <code>int(input(&hellip;))</code>처럼 <strong>입력받는 줄에서 곧바로</strong> 변환해 두면,
+                    그 뒤로는 그냥 숫자처럼 쓰면 됩니다. 나중에 쓸 때마다 변환하면
                     <strong>한 군데를 빠뜨리기 쉽습니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    다만 <strong>수가 아닌 것을 치면 그 자리에서 오류가 납니다.</strong>
-                    「열일곱」이라고 치면 수로 바꿀 수 없기 때문입니다.
+                    다만 <strong>숫자가 아닌 것을 입력하면 그 줄에서 바로 오류가 납니다.</strong>
+                    「열일곱」은 정수로 변환할 수 없기 때문입니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">나이를 받아 <strong>글자 그대로</strong> 두면 <code>age * 2</code>는 무엇이 될까요? 오류일까요, 아니면 다른 결과일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">나이를 입력받아 <strong>문자열 그대로</strong> 두면 <code>age * 2</code>는 무엇이 될까요? 오류일까요, 아니면 다른 결과일까요?</p>
         </div>
     </section>
 
-    <!-- ===== 한 줄에 들어온 여러 값 ===== -->
+    <!-- ===== 한 줄로 입력된 여러 값 ===== -->
     <section id="many" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">한 줄에 들어온 여러 값</h2>
+            <h2 class="text-3xl font-black text-slate-900">한 줄로 입력된 여러 값</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">두 번 물어볼 수도 있고, 한 번에 받아 나눌 수도 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">두 번 입력받을 수도 있고, 한 번에 입력받아 나눌 수도 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                값이 여럿이면 <code>input</code>을 여러 번 써도 됩니다. 그런데 사용자가
-                「80 91」처럼 한 줄에 치는 편이 편할 때가 많습니다.
-                그러면 받은 글자를 <strong>빈칸에서 잘라</strong> 나누어야 합니다.
+                값이 여럿이면 <code>input</code>을 여러 번 써도 됩니다. 그런데 사용자는
+                「80 91」처럼 한 줄에 입력하는 쪽이 더 편할 때가 많습니다.
+                그러면 입력받은 문자열을 <strong>공백을 기준으로 나누어야</strong> 합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/02.두값.py"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">자른 결과는 값 여러 개가 늘어선 것입니다</p>
+                <p class="font-black text-lg text-orange-900">나눈 결과는 여러 값을 모은 리스트입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>split</code>은 <strong>빈칸을 기준으로 잘라</strong> 조각을 <strong>순서대로 늘어놓아</strong> 줍니다.
-                    <code>['80', '91']</code>처럼 대괄호로 묶여 나오고,
-                    <strong>앞에서부터 0번, 1번</strong>으로 세어 꺼냅니다.
+                    <code>split</code>은 <strong>공백을 기준으로 문자열을 나누고</strong>, 나뉜 값을 <code>['80', '91']</code>처럼 대괄호로 묶어 순서대로 늘어놓습니다.
+                    이렇게 여러 값을 순서대로 모은 것을 리스트(list)라고 합니다.
+                    리스트의 값은 <strong>앞에서부터 0번, 1번</strong>으로 번호를 세어 꺼냅니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>잘라도 여전히 글자입니다.</strong> 따옴표가 그대로 붙어 있는 것이 그 표시입니다.
-                    그래서 꺼낸 다음 <code>int</code>로 바꿔 주어야 합니다.
+                    <strong>나누어도 여전히 문자열입니다.</strong> 값마다 따옴표가 붙어 있는 것이 그 표시입니다.
+                    그래서 꺼낸 다음 <code>int</code>로 변환해야 합니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                「잘라서 하나씩 꺼내 바꾸기」는 값이 늘어날수록 길어집니다.
-                <strong>자른 조각 전부에 같은 변환을 걸어</strong> 한 줄로 줄일 수 있습니다.
+                「나누고, 하나씩 꺼내 변환하기」는 값이 늘어날수록 코드가 길어집니다.
+                <strong>나눈 값 전부에 같은 변환을 한꺼번에 적용하면</strong> 한 줄로 줄일 수 있습니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/02.map.py"></code></pre>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">한 줄을 셋으로 나누어 읽습니다</p>
+                <p class="font-black text-lg text-slate-900">이 한 줄을 세 부분으로 나누어 읽습니다</p>
                 <ol class="space-y-2 text-base text-slate-700 list-decimal list-outside pl-5">
-                    <li><code>input(&hellip;)</code> &mdash; 한 줄을 통째로 받는다. <code>"80 91"</code></li>
-                    <li><code>.split()</code> &mdash; 빈칸에서 자른다. <code>['80', '91']</code></li>
-                    <li><code>map(int, &hellip;)</code> &mdash; <strong>조각마다 <code>int</code>를 걸어</strong> 준다.</li>
+                    <li><code>input(&hellip;)</code> &mdash; 한 줄을 통째로 입력받는다. <code>"80 91"</code></li>
+                    <li><code>.split()</code> &mdash; 공백을 기준으로 나눈다. <code>['80', '91']</code></li>
+                    <li><code>map(int, &hellip;)</code> &mdash; <strong>나눈 값마다 <code>int</code>를 적용</strong>한다.</li>
                 </ol>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    왼쪽의 <code>kor, eng</code>는 <strong>나온 값을 순서대로 나누어 담습니다.</strong>
-                    <strong>왼쪽 이름의 개수와 값의 개수가 맞아야</strong> 하고,
-                    어긋나면 오류가 납니다 &mdash; 사용자가 값을 하나만 치면 그렇게 됩니다.
+                    왼쪽의 <code>kor, eng</code>에는 <strong>나온 값이 순서대로 하나씩 대입됩니다.</strong>
+                    <strong>왼쪽 변수의 개수와 값의 개수가 같아야</strong> 하고,
+                    다르면 오류가 납니다 &mdash; 사용자가 값을 하나만 입력하면 그렇게 됩니다.
                 </p>
             </div>
 
@@ -265,7 +265,7 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">쉼표로 구분해 「80,91」처럼 치게 하려면 <code>split</code>에 무엇을 알려 주어야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">쉼표로 구분해 「80,91」처럼 입력받으려면 <code>split</code>의 괄호 안에 무엇을 넣어야 할까요?</p>
         </div>
     </section>
 
@@ -280,8 +280,8 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">쉼표로 나열</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    사이에 <strong>빈칸 하나</strong>가 들어가고 끝에서 줄이 바뀐다.
-                    글자와 수를 섞어도 된다 &mdash; 더하기로는 안 된다.
+                    값 사이에 <strong>공백 하나</strong>가 들어가고 끝에서 줄이 바뀐다.
+                    문자열과 숫자를 섞어도 된다 &mdash; 더하기로는 안 된다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -292,19 +292,19 @@
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">받은 것은 글자</h3>
+                <h3 class="text-xl font-black text-slate-900">입력은 언제나 문자열</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>input</code>이 돌려주는 것은 <strong>언제나 글자</strong>다.
-                    계산에 쓰려면 <code>int</code>·<code>float</code>로 바꾼다.
-                    받는 자리에서 바로 바꿔 두는 편이 안전하다.
+                    <code>input</code>이 반환하는 값은 <strong>언제나 문자열</strong>이다.
+                    계산에 쓰려면 <code>int</code>·<code>float</code>로 변환한다.
+                    입력받는 줄에서 바로 변환해 두는 편이 안전하다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">한 줄에 여러 값</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>.split()</code>으로 빈칸에서 자르고,
-                    <code>map(int, &hellip;)</code>으로 <strong>조각마다 변환</strong>을 건다.
-                    왼쪽 이름 개수와 값 개수가 맞아야 한다.
+                    <code>.split()</code>으로 공백을 기준으로 나누고,
+                    <code>map(int, &hellip;)</code>으로 <strong>나눈 값마다 변환</strong>을 적용한다.
+                    왼쪽 변수의 개수와 값의 개수가 같아야 한다.
                 </p>
             </div>
         </div>
@@ -321,16 +321,16 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>age = input()</code>으로 17을 받았다. <code>age + 1</code>은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'input이 돌려준 것은 글자입니다. 수로 더해지지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'input이 반환한 값은 문자열입니다. 숫자처럼 더해지지 않습니다.')">
                     ① 18
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '글자와 수는 더할 수 없어 오류가 납니다. int로 바꾸어야 합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '문자열과 숫자는 더할 수 없어 오류가 납니다. int로 변환해야 합니다.')">
                     ② 오류가 난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '이어 붙이려면 양쪽이 다 글자여야 합니다. 1은 수입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '이어 붙이려면 양쪽이 모두 문자열이어야 합니다. 1은 숫자입니다.')">
                     ③ 171
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '값이 사라지지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '문자열과 숫자를 더하려 하면 오류가 나므로 아무 일 없이 지나가지 않습니다.')">
                     ④ 아무 일도 일어나지 않는다
                 </button>
             </div>
@@ -339,16 +339,16 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>print("가", end="")</code> 다음에 <code>print("나")</code>를 하면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'end가 빈 글자라 줄이 바뀌지 않아 한 줄에 이어 붙습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'end가 빈 문자열이라 줄이 바뀌지 않으므로 한 줄에 이어서 출력됩니다.')">
                     ① 한 줄에 <code>가나</code>
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '줄바꿈을 없앴으므로 두 줄이 되지 않습니다.')">
                     ② 두 줄로 <code>가</code>와 <code>나</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '사이에 빈칸을 넣는 것은 sep입니다. 게다가 여기는 출력이 두 번입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '값 사이에 공백을 넣는 것은 sep입니다. 게다가 여기서는 print가 두 번 실행됩니다.')">
                     ③ <code>가 나</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'end에는 아무 글자나 줄 수 있습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'end에는 어떤 문자열이든 지정할 수 있습니다.')">
                     ④ 오류가 난다
                 </button>
             </div>
@@ -357,17 +357,17 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. <code>input().split()</code>의 결과에 대한 설명으로 <strong>틀린</strong> 것은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '자른 조각도 여전히 글자입니다. 그래서 int로 바꿔야 합니다.')">
-                    ① 잘라 놓으면 수로 바뀌어 있다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '나눈 값도 여전히 문자열입니다. 그래서 int로 변환해야 합니다.')">
+                    ① 나누면 숫자로 바뀐다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '자를 기준을 알려 주지 않으면 빈칸을 기준으로 자릅니다.')">
-                    ② 아무것도 알려 주지 않으면 빈칸에서 자른다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '나눌 기준을 지정하지 않으면 공백을 기준으로 나눕니다.')">
+                    ② 기준을 지정하지 않으면 공백을 기준으로 나눈다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '잘린 조각은 앞에서부터 0번으로 셉니다.')">
-                    ③ 잘린 조각은 앞에서부터 0번으로 센다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '나뉜 값은 앞에서부터 0번으로 셉니다.')">
+                    ③ 나뉜 값은 앞에서부터 0번으로 센다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '이름 개수와 값 개수가 어긋나면 오류가 납니다.')">
-                    ④ 나누어 담을 때 이름 개수와 값 개수가 맞아야 한다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '변수의 개수와 값의 개수가 다르면 오류가 납니다.')">
+                    ④ 여러 변수에 나누어 대입할 때 변수의 개수와 값의 개수가 같아야 한다
                 </button>
             </div>
         </div>

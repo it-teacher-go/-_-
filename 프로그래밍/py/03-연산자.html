@@ -38,8 +38,8 @@
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
                     <li>산술 연산자로 계산할 수 있고, 두 가지 나눗셈이 어떻게 다른지 설명할 수 있다.</li>
-                    <li>글자에 쓰는 더하기와 곱하기가 무엇을 하는지 설명할 수 있다.</li>
-                    <li>비교와 논리 연산으로 조건을 세울 수 있고, 결과가 참·거짓임을 안다.</li>
+                    <li>문자열에 쓰는 더하기와 곱하기가 무엇을 하는지 설명할 수 있다.</li>
+                    <li>비교 연산과 논리 연산으로 조건식을 만들 수 있고, 그 결과가 참·거짓임을 안다.</li>
                     <li>값의 이진수 자릿수(비트)를 직접 다루는 연산이 무엇인지 알고, 어디에 쓰이는지 말할 수 있다.</li>
                 </ol>
             </div>
@@ -57,10 +57,10 @@
             <span class="font-black text-xl tracking-tight text-slate-800">연산자</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#arith" class="hover:text-orange-600 transition">계산하기</a>
-            <a href="#text" class="hover:text-orange-600 transition">글자에 쓰는 기호</a>
-            <a href="#compare" class="hover:text-orange-600 transition">비교하고 묶기</a>
-            <a href="#bit" class="hover:text-orange-600 transition">비트를 다루기</a>
+            <a href="#arith" class="hover:text-orange-600 transition">산술 연산자</a>
+            <a href="#text" class="hover:text-orange-600 transition">문자열 연산</a>
+            <a href="#compare" class="hover:text-orange-600 transition">비교와 논리</a>
+            <a href="#bit" class="hover:text-orange-600 transition">비트 연산</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -70,12 +70,12 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 계산하는 기호 ===== -->
+    <!-- ===== 산술 연산자 ===== -->
     <section id="arith" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">계산하는 기호</h2>
+            <h2 class="text-3xl font-black text-slate-900">산술 연산자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">나눗셈이 두 가지인 것만 조심하면 나머지는 계산기와 같습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">나눗셈이 두 가지라는 점만 조심하면 나머지는 계산기와 같습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -85,9 +85,9 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-28">기호</th>
+                        <th class="w-28">연산자</th>
                         <th class="w-36">하는 일</th>
-                        <th>보기</th>
+                        <th>특징</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -125,15 +125,15 @@
                 <pre class="language-python"><code class="language-python" data-src="code/03.나눗셈.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>6 / 3</code>이 <code>2</code>가 아니라 <strong><code>2.0</code></strong>입니다.
-                    화면에 찍힌 <code>2.0</code>을 보고 「왜 소수점이 붙지?」 하고 놀라는 까닭이 이것입니다.
-                    <strong>정수로 받고 싶으면 <code>//</code></strong>를 씁니다(양쪽이 정수일 때).
+                    화면에 출력된 <code>2.0</code>을 보고 「왜 소수점이 붙지?」 하고 놀랐다면 이 때문입니다.
+                    <strong>결과를 정수로 얻으려면 <code>//</code></strong>를 씁니다(양쪽이 정수일 때).
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>//</code>는 <strong>버림이 아니라 내림</strong>입니다.
                     <code>-7 // 2</code>는 <code>-3</code>이 아니라 <strong><code>-4</code></strong>가 됩니다 &mdash;
                     음수를 다룰 때만 드러나는 차이입니다.
-                    나머지도 이 몫에 맞춰 정해져 <code>-7 % 2</code>는 <code>1</code>입니다.
-                    C처럼 0 쪽으로 자르는 언어에서는 같은 식이 <code>-3</code>과 <code>-1</code>을 내므로, 음수를 나눌 때는 언어마다 확인합니다.
+                    나머지도 이 몫에 맞춰 계산되므로 <code>-7 % 2</code>는 <code>1</code>입니다.
+                    C처럼 몫의 소수점 아래를 그냥 버리는 언어에서는 같은 식의 결과가 <code>-3</code>과 <code>-1</code>이므로, 음수를 나눌 때는 언어마다 규칙을 확인합니다.
                 </p>
             </div>
 
@@ -141,31 +141,31 @@
                 <p class="font-black text-lg text-orange-900">나머지는 어디에 쓰는가</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
                     <li><strong>짝수인지 홀수인지</strong> &mdash; <code>n % 2</code>가 0이면 짝수다.</li>
-                    <li><strong>단위를 나눌 때</strong> &mdash; 135초는 <code>135 // 60</code>분 <code>135 % 60</code>초.</li>
-                    <li><strong>몇 개마다 한 번</strong> &mdash; <code>i % 10</code>이 0일 때만, 곧 <code>i</code>가 10의 배수일 때만 줄을 바꾼다.</li>
+                    <li><strong>단위를 바꿀 때</strong> &mdash; 135초는 <code>135 // 60</code>분 <code>135 % 60</code>초.</li>
+                    <li><strong>몇 개마다 한 번</strong> &mdash; <code>i % 10</code>이 0일 때만, 즉 <code>i</code>가 10의 배수일 때만 줄을 바꾼다.</li>
                 </ul>
             </div>
 
             <pre class="language-python"><code class="language-python" data-src="code/03.전체.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                여기서 <code>//</code>를 <code>/</code>로 바꾸면 「2.25 분」처럼 나옵니다.
-                <strong>몫과 나머지는 한 짝</strong>이라 이런 계산에서 늘 함께 씁니다.
+                여기서 <code>//</code>를 <code>/</code>로 바꾸면 「2.25 분」처럼 출력됩니다.
+                <strong>몫과 나머지는 한 쌍</strong>이라 이런 계산에서 늘 함께 씁니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">오늘이 무슨 요일인지 세는 프로그램을 만든다면 <code>%</code>를 어디에 쓸 수 있을까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">며칠 뒤가 무슨 요일인지 계산하는 프로그램을 만든다면 <code>%</code>를 어디에 쓸 수 있을까요?</p>
         </div>
     </section>
 
-    <!-- ===== 글자에 쓰는 기호 ===== -->
+    <!-- ===== 문자열에 쓰는 연산자 ===== -->
     <section id="text" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">글자에 쓰는 기호</h2>
+            <h2 class="text-3xl font-black text-slate-900">문자열에 쓰는 연산자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">같은 기호인데 양쪽이 글자면 하는 일이 달라집니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">같은 연산자라도 양쪽이 문자열이면 하는 일이 달라집니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -176,27 +176,27 @@
                     <p class="font-black text-base text-slate-900"><code>+</code>는 이어 붙인다</p>
                     <p class="text-base text-slate-700 leading-relaxed">
                         <code>"안녕" + "하세요"</code>는 <code>안녕하세요</code>.
-                        <strong>양쪽이 다 글자여야</strong> 합니다.
+                        <strong>양쪽이 모두 문자열이어야</strong> 합니다.
                     </p>
                 </div>
                 <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-5 space-y-2 min-w-0">
                     <p class="font-black text-base text-slate-900"><code>*</code>는 반복한다</p>
                     <p class="text-base text-slate-700 leading-relaxed">
-                        <code>"-" * 20</code>은 줄 하나를 긋습니다.
-                        구분선을 그릴 때 손으로 스무 번 적지 않아도 됩니다.
+                        <code>"-" * 20</code>은 <code>-</code>를 20번 반복해 구분선 하나를 만듭니다.
+                        손으로 스무 번 입력하지 않아도 됩니다.
                     </p>
                 </div>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>글자와 수는 이어 붙일 수 없습니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>문자열과 숫자는 이어 붙일 수 없습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>"점수: " + 90</code>은 오류입니다. 파이썬이 <strong>이어 붙이라는 건지 더하라는 건지 알 수 없기</strong> 때문에
-                    짐작하지 않고 멈춥니다. <code>str(90)</code>으로 <strong>한쪽을 맞춰</strong> 주어야 합니다.
+                    <code>"점수: " + 90</code>은 오류입니다. 파이썬은 <strong>이어 붙이라는 것인지 더하라는 것인지 판단할 수 없어</strong>
+                    추측하지 않고 오류를 냅니다. <code>str(90)</code>으로 <strong>한쪽의 자료형을 맞춰</strong> 주어야 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     같은 일을 <strong>쉼표로 나열해서</strong> 할 수도 있습니다 &mdash;
-                    <code>print("점수:", 90)</code>은 그냥 됩니다. 다만 <strong>빈칸이 하나 들어갑니다.</strong>
+                    <code>print("점수:", 90)</code>은 오류 없이 실행됩니다. 다만 <strong>공백이 하나 들어갑니다.</strong>
                 </p>
             </div>
         </div>
@@ -207,12 +207,12 @@
         </div>
     </section>
 
-    <!-- ===== 비교하고 묶기 ===== -->
+    <!-- ===== 비교 연산자와 논리 연산자 ===== -->
     <section id="compare" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">비교하고 묶기</h2>
+            <h2 class="text-3xl font-black text-slate-900">비교 연산자와 논리 연산자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">조건을 세우는 데 쓰는 기호들입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">조건식을 만들 때 쓰는 연산자입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -221,17 +221,16 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">결과는 <code>True</code>와 <code>False</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    참과 거짓 둘 중 하나를 나타내는 <strong>논리값</strong>이 여기서 나옵니다. 비교의 결과는
-                    <strong>참 아니면 거짓</strong>, 둘 중 하나입니다.
-                    첫 글자가 <strong>대문자</strong>라는 점을 눈여겨보세요.
+                    비교 연산의 결과는 참 또는 거짓 가운데 하나이며, 이 값을 <strong>논리값</strong>이라고 합니다.
+                    <code>True</code>와 <code>False</code>는 첫 글자가 <strong>대문자</strong>라는 점을 눈여겨보세요.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>같은지 묻는 것은 <code>==</code>, 담는 것은 <code>=</code></p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>같은지 비교하는 것은 <code>==</code>, 대입하는 것은 <code>=</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>x = 5</code>는 담는 것이고 <code>x == 5</code>는 묻는 것입니다.
-                    <strong>가장 자주 나는 오타</strong>이니 조건을 쓸 때마다 등호 개수를 세어 보세요.
+                    <code>x = 5</code>는 x에 5를 대입하고, <code>x == 5</code>는 x가 5와 같은지 비교합니다.
+                    <strong>가장 자주 하는 실수</strong>이니 조건식을 쓸 때마다 등호 개수를 확인하세요.
                 </p>
             </div>
 
@@ -239,15 +238,15 @@
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>수학처럼 이어 쓸 수 있습니다</p>
                 <pre class="language-python"><code class="language-python" data-src="code/03.연달아.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>80 &lt;= score &lt; 90</code>이 <strong>뜻대로 동작합니다.</strong>
-                    많은 언어에서는 이렇게 쓰면 엉뚱한 결과가 나오는데, 파이썬은
-                    <strong>「80 이상이면서 90 미만」으로 읽어</strong> 줍니다.
+                    <code>80 &lt;= score &lt; 90</code>이 <strong>의도한 대로 동작합니다.</strong>
+                    많은 언어에서는 이렇게 쓰면 엉뚱한 결과가 나오지만, 파이썬은
+                    <strong>「80 이상이면서 90 미만」으로 해석합니다.</strong>
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                조건 여럿을 묶을 때는 <strong>논리 연산자</strong>를 씁니다.
-                기호가 아니라 영어 낱말이라 소리 내어 읽으면 뜻이 그대로 들립니다.
+                조건 여러 개를 묶을 때는 <strong>논리 연산자</strong>를 씁니다.
+                기호가 아니라 영어 단어라서 소리 내어 읽으면 뜻이 그대로 드러납니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/03.논리.py"></code></pre>
@@ -256,9 +255,9 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-28">낱말</th>
+                        <th class="w-28">연산자</th>
                         <th class="w-36">읽는 법</th>
-                        <th>참이 되는 때</th>
+                        <th>참이 되는 경우</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -275,23 +274,24 @@
                     <tr>
                         <td><code>not</code></td>
                         <td>아니다</td>
-                        <td>뒤에 오는 것이 <strong>거짓</strong>일 때</td>
+                        <td>뒤에 오는 조건이 <strong>거짓</strong>일 때</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>답이 정해지면 오른쪽은 아예 계산하지 않습니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>결과가 정해지면 오른쪽은 아예 계산하지 않습니다</p>
                 <pre class="language-python"><code class="language-python" data-src="code/03.단축평가.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>and</code>는 왼쪽이 거짓이면 오른쪽을 볼 것도 없이 거짓입니다.
+                    <code>and</code>는 왼쪽이 거짓이면 오른쪽을 볼 필요도 없이 거짓입니다.
                     그래서 <strong>오른쪽을 건너뜁니다</strong> &mdash; <code>count</code>가 0이므로
                     <code>total / count</code>는 <strong>아예 계산되지 않습니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    만약 계산했다면 0으로 나누어 <strong>그 자리에서 오류가 납니다.</strong>
-                    「먼저 안전한지 확인하고, 안전할 때만 계산한다」를 한 줄에 담을 수 있는 것이 이 성질 덕분입니다.
+                    만약 계산했다면 0으로 나누게 되어 바로 오류가 납니다.
+                    이처럼 결과가 정해지는 순간 나머지를 계산하지 않는 성질을 <strong>단축 평가(short-circuit evaluation)</strong>라고 합니다.
+                    덕분에 「먼저 안전한지 확인하고, 안전할 때만 계산한다」를 한 줄로 쓸 수 있습니다.
                     <strong>확인하는 조건을 반드시 왼쪽에 두어야</strong> 합니다.
                 </p>
             </div>
@@ -299,23 +299,23 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">점수가 60점 미만이거나 100점을 넘으면 「잘못된 값」이라고 판단하려면 조건을 어떻게 쓸까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">점수가 60점 미만이거나 100점을 넘으면 「잘못된 값」으로 판단하려면 조건식을 어떻게 쓸까요?</p>
         </div>
     </section>
 
-    <!-- ===== 비트를 직접 다루기 ===== -->
+    <!-- ===== 비트 연산자 ===== -->
     <section id="bit" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">이진수 자릿수(비트)를 직접 다루기</h2>
+            <h2 class="text-3xl font-black text-slate-900">비트 연산자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">수를 「이진수 자릿수의 줄」로 보고 다루는 연산입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">수를 이진수로 나타내고, 자릿수(비트) 하나하나를 다루는 연산입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
                 지금까지의 연산은 수를 하나의 값으로 다뤘습니다.
-                <strong>비트 연산</strong>은 같은 수를 0과 1이 늘어선 줄로 보고
-                자리마다 따로 다룹니다.
+                <strong>비트 연산</strong>은 같은 수를 0과 1이 늘어선 이진수로 보고,
+                이진수의 자릿수인 비트(bit)마다 따로 계산합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/03.비트.py"></code></pre>
@@ -324,15 +324,15 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-28">기호</th>
-                        <th class="w-44">자리마다 하는 일</th>
-                        <th>12와 10으로</th>
+                        <th class="w-28">연산자</th>
+                        <th class="w-44">비트마다 하는 일</th>
+                        <th>12와 10의 예</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><code>&amp;</code></td>
-                        <td>둘 다 1인 자리만 1</td>
+                        <td>둘 다 1인 비트만 1</td>
                         <td>1100 &amp; 1010 = 1000 = 8</td>
                     </tr>
                     <tr>
@@ -347,12 +347,12 @@
                     </tr>
                     <tr>
                         <td><code>&lt;&lt;</code></td>
-                        <td>왼쪽으로 밀기</td>
+                        <td>비트를 왼쪽으로 이동</td>
                         <td>1100 &rarr; 11000, 값은 2배</td>
                     </tr>
                     <tr>
                         <td><code>&gt;&gt;</code></td>
-                        <td>오른쪽으로 밀기</td>
+                        <td>비트를 오른쪽으로 이동</td>
                         <td>1100 &rarr; 110, 값은 2로 나눈 몫</td>
                     </tr>
                     </tbody>
@@ -362,20 +362,20 @@
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900"><code>and</code>와 <code>&amp;</code>는 다릅니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    낱말로 된 <code>and</code>·<code>or</code>는 <strong>조건 전체</strong>를 보고 참·거짓을 냅니다.
-                    기호인 <code>&amp;</code>·<code>|</code>는 <strong>이진수 자릿수(비트) 하나하나</strong>를 봅니다.
-                    <strong>이름이 비슷해 바꿔 쓰기 쉬운데 하는 일이 전혀 다릅니다.</strong>
-                    조건을 묶을 때는 <strong>낱말 쪽</strong>을 씁니다.
+                    영어 단어로 된 <code>and</code>·<code>or</code>는 <strong>조건 전체</strong>를 보고 참·거짓을 냅니다.
+                    기호인 <code>&amp;</code>·<code>|</code>는 <strong>비트 하나하나</strong>를 계산합니다.
+                    <strong>이름이 비슷해 헷갈리기 쉽지만 하는 일이 전혀 다릅니다.</strong>
+                    조건을 묶을 때는 <strong>영어 단어로 된 쪽</strong>을 씁니다.
                 </p>
             </div>
 
             <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>어디에 쓰이나</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    켜짐/꺼짐 같은 <strong>참·거짓 여러 개를 수 하나에 눌러 담을 때</strong>,
-                    그리고 <strong>색깔 값처럼 한 수 안에 여러 정보가 들어 있을 때</strong> 씁니다.
-                    일상적인 계산에는 잘 나오지 않으므로
-                    <strong>「자리마다 따로 다루는 연산이 있다」는 것</strong>까지만 알아 두면 됩니다.
+                    켜짐/꺼짐 같은 <strong>참·거짓 여러 개를 수 하나에 모아 저장할 때</strong>,
+                    그리고 <strong>색상 값처럼 수 하나에 여러 정보가 들어 있을 때</strong> 씁니다.
+                    일상적인 계산에는 잘 쓰이지 않으므로
+                    <strong>「비트마다 따로 계산하는 연산이 있다」는 것</strong>까지만 알아 두면 됩니다.
                 </p>
             </div>
         </div>
@@ -398,21 +398,21 @@
                 <h3 class="text-xl font-black text-slate-900">나눗셈 둘</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>/</code>는 <strong>딱 떨어져도 실수</strong>를 준다.
-                    정수끼리 나눠 정수로 받으려면 <code>//</code>. <code>//</code>는 버림이 아니라 내림이다.
+                    정수끼리 나누어 정수 결과를 얻으려면 <code>//</code>. <code>//</code>는 버림이 아니라 내림이다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">글자에 쓰는 기호</h3>
+                <h3 class="text-xl font-black text-slate-900">문자열 연산</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>+</code>는 이어 붙이고 <code>*</code>는 반복한다.
-                    <strong>글자와 수는 이어 붙일 수 없다</strong> &mdash; <code>str</code>로 맞추거나 쉼표로 나열한다.
+                    <strong>문자열과 숫자는 이어 붙일 수 없다</strong> &mdash; <code>str</code>로 자료형을 맞추거나 쉼표로 나열한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">조건 세우기</h3>
+                <h3 class="text-xl font-black text-slate-900">비교와 논리 연산</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    결과는 <code>True</code>·<code>False</code>. 묶을 때는 낱말 <code>and</code>·<code>or</code>·<code>not</code>.
-                    <code>80 &lt;= score &lt; 90</code>처럼 이어 써도 뜻대로 동작한다.
+                    결과는 <code>True</code>·<code>False</code>. 조건을 묶을 때는 <code>and</code>·<code>or</code>·<code>not</code>.
+                    <code>80 &lt;= score &lt; 90</code>처럼 이어 써도 의도한 대로 동작한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -425,8 +425,8 @@
             <div class="section-card space-y-2 md:col-span-2">
                 <h3 class="text-xl font-black text-slate-900">비트 연산</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    수를 0과 1의 줄로 보고 이진수 자릿수(비트)마다 따로 다룬다.
-                    <code>&amp;</code>·<code>|</code>는 비트 하나하나를 보고, 조건을 묶는 <code>and</code>·<code>or</code>와는 하는 일이 다르다.
+                    수를 이진수로 보고 비트마다 따로 계산한다.
+                    <code>&amp;</code>·<code>|</code>는 비트 하나하나를 계산하므로, 조건을 묶는 <code>and</code>·<code>or</code>와 하는 일이 다르다.
                 </p>
             </div>
         </div>
@@ -443,13 +443,13 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>print(6 / 3)</code>의 결과는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '딱 떨어져도 / 는 실수를 줍니다. 2.0이 나옵니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '/ 는 나누어떨어져도 결과가 실수라서 2.0이 나옵니다.')">
                     ① 2
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '/ 는 언제나 실수를 줍니다. 정수로 받으려면 // 를 씁니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '/ 의 결과는 언제나 실수입니다. 정수 결과가 필요하면 // 를 씁니다.')">
                     ② 2.0
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '나눗셈은 정상적으로 됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '0으로 나누는 것이 아니므로 오류 없이 계산됩니다.')">
                     ③ 오류가 난다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '그것은 6 % 3의 결과입니다.')">
@@ -461,16 +461,16 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>print("점수: " + 90)</code>을 고치는 방법으로 <strong>맞지 않는</strong> 것은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '&quot;점수: &quot;는 수처럼 생긴 글자가 아니라서 int로 바꾸는 자리에서 오류가 납니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '&quot;점수: &quot;는 정수 모양의 문자열이 아니라서 int로 변환하는 순간 오류가 납니다.')">
                     ① <code>int("점수: ") + 90</code>으로 바꾼다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 수를 글자로 바꿔 양쪽을 맞춥니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 숫자를 문자열로 바꿔 양쪽 자료형을 맞춥니다.')">
                     ② <code>"점수: " + str(90)</code>으로 바꾼다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 쉼표로 나열하면 섞어도 됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 쉼표로 나열하면 문자열과 숫자를 섞어도 됩니다.')">
                     ③ <code>print("점수:", 90)</code>으로 바꾼다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 90을 따옴표로 감싸면 글자끼리가 됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 90을 따옴표로 감싸면 문자열끼리 이어 붙이게 됩니다.')">
                     ④ <code>"점수: " + "90"</code>으로 바꾼다
                 </button>
             </div>
@@ -479,7 +479,7 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '전혀 다릅니다. and는 조건 전체를, &는 이진수 자릿수(비트) 하나하나를 봅니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '전혀 다릅니다. and는 조건 전체를 보고, &는 비트 하나하나를 계산합니다.')">
                     ① <code>and</code>와 <code>&amp;</code>는 같은 일을 하는 다른 표기다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '//는 내림이라 -7 // 2는 -3이 아니라 -4입니다.')">
@@ -488,8 +488,8 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '왼쪽이 거짓이면 오른쪽은 계산되지 않습니다.')">
                     ③ <code>and</code>의 왼쪽이 거짓이면 오른쪽은 계산되지 않는다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '파이썬은 이어 쓴 비교를 뜻대로 읽어 줍니다.')">
-                    ④ <code>80 &lt;= score &lt; 90</code>은 뜻대로 동작한다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '파이썬은 이어 쓴 비교를 의도한 대로 해석합니다.')">
+                    ④ <code>80 &lt;= score &lt; 90</code>은 의도한 대로 동작한다
                 </button>
             </div>
         </div>
