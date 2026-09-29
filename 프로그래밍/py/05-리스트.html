@@ -21,7 +21,7 @@
             리스트
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-변수 하나에 값 하나씩 담다 보면<br>
+변수 하나에 값 하나씩 저장하다 보면<br>
             <strong>서른 명의 점수에서 막힙니다.</strong>
         </p>
     </div>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>값 여러 개를 한 이름으로 담고, 몇 개가 들었는지 셀 수 있다.</li>
+                    <li>여러 값을 리스트 하나에 저장하고, 요소의 개수를 구할 수 있다.</li>
                     <li>인덱스로 값을 꺼내고 바꿀 수 있으며, 왜 0부터 세는지 설명할 수 있다.</li>
-                    <li>값을 넣고 빼고, 일부를 잘라 낼 수 있다.</li>
-                    <li>합계·최댓값·정렬처럼 통째로 다루는 방법을 쓸 수 있고, 이름을 하나 더 붙였을 때 무슨 일이 생기는지 안다.</li>
+                    <li>요소를 추가하거나 삭제하고, 리스트의 일부를 잘라 낼 수 있다.</li>
+                    <li>합계·최댓값·정렬처럼 리스트 전체를 한 번에 다루는 방법을 쓸 수 있고, 리스트에 이름을 하나 더 붙였을 때 무슨 일이 생기는지 안다.</li>
                 </ol>
             </div>
         </div>
@@ -82,7 +82,7 @@
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                학생 네 명의 점수를 담으려면 변수 하나에 값 하나씩 담는 방식으로는
+                학생 네 명의 점수를 변수 하나에 값 하나씩 저장하는 방식으로 다루려면
                 <code>score1</code>, <code>score2</code>, <code>score3</code>, <code>score4</code>처럼
                 변수를 네 개 만들어야 합니다. 서른 명이면 서른 개입니다.
                 게다가 <strong>몇 명인지 미리 모르면 아예 만들 수가 없습니다.</strong>
@@ -91,8 +91,8 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">리스트(list)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>값 여러 개를 한 이름으로 담고, 순서를 지켜 늘어놓는</strong> 자리입니다.
-                    이름은 하나인데 안에 든 값은 얼마든지 늘어날 수 있습니다.
+                    <strong>여러 값을 순서대로 저장하고 한 이름으로 다루는</strong> 자료형입니다.
+                    리스트에 저장된 값 하나하나를 요소(element)라고 합니다. 이름은 하나지만 요소는 얼마든지 늘어날 수 있습니다.
                 </p>
             </div>
 
@@ -102,25 +102,25 @@
                 <p class="font-black text-lg text-slate-900">번호가 붙은 사물함 한 줄</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     복도에 사물함이 나란히 붙어 있다고 생각하면 편합니다.
-                    <strong>사물함 줄 전체의 이름</strong>이 <code>scores</code>이고,
+                    <strong>사물함 줄 전체의 이름</strong>이 <code>scores</code>이고, 사물함 한 칸이 요소 하나입니다.
                     <strong>칸마다 번호</strong>가 붙어 있어 「몇 번 칸」이라고 부르면 그 안의 값을 꺼낼 수 있습니다. 이 번호를 인덱스(index)라고 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>len</code>은 <strong>칸이 몇 개인지</strong> 세어 줍니다.
-                    사람이 늘면 칸도 늘어나므로, <strong>몇 명인지 몰라도</strong> 코드는 그대로 둘 수 있습니다.
+                    <code>len</code>은 <strong>요소가 몇 개인지</strong> 세어 반환합니다.
+                    학생이 늘면 요소도 늘어나므로, <strong>몇 명인지 몰라도</strong> 코드는 그대로 둘 수 있습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                담는 것이 수일 필요는 없습니다. <code>["가", "나", "다"]</code>처럼 글자도 되고,
-                종류가 섞여도 됩니다. 다만 섞어 두면 꺼내 쓸 때 종류를 일일이 확인해야 하므로
-                대개 같은 종류로 모읍니다.
+                요소가 숫자일 필요는 없습니다. <code>["가", "나", "다"]</code>처럼 문자열도 되고,
+                자료형이 섞여도 됩니다. 다만 섞어 두면 꺼내 쓸 때 자료형을 일일이 확인해야 하므로
+                대개 같은 자료형끼리 모읍니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">빈 리스트를 만들려면 어떻게 쓸까요? 그때 <code>len</code>은 무엇을 돌려줄까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">빈 리스트를 만들려면 어떻게 쓸까요? 그때 <code>len</code>은 무엇을 반환할까요?</p>
         </div>
     </section>
 
@@ -129,7 +129,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">인덱스로 꺼내고 바꾸기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">첫 칸의 인덱스가 1이 아니라 0인 데는 까닭이 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">첫 요소의 인덱스가 1이 아니라 0인 데는 이유가 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -138,20 +138,20 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">왜 0부터 셀까</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    번호를 <strong>「몇 번째인가」가 아니라 「맨 앞에서 몇 칸 떨어져 있는가」</strong>로 세기 때문입니다.
-                    첫 칸은 맨 앞에서 <strong>0칸 떨어져</strong> 있으니 인덱스 0, 그다음이 인덱스 1입니다.
+                    인덱스를 <strong>「몇 번째인가」가 아니라 「맨 앞에서 얼마나 떨어져 있는가」</strong>로 세기 때문입니다.
+                    첫 요소는 맨 앞에서 <strong>0만큼 떨어져</strong> 있으니 인덱스 0, 그다음 요소가 인덱스 1입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     그래서 <strong>마지막 인덱스는 개수보다 하나 작습니다.</strong>
-                    네 개가 들었으면 마지막은 인덱스 3입니다. 이 한 칸 차이가
+                    요소가 네 개면 마지막 인덱스는 3입니다. 이 하나 차이가
                     <strong>처음 배울 때 가장 자주 틀리는 부분</strong>입니다.
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">뒤에서 세는 번호</p>
+                <p class="font-black text-lg text-slate-900">뒤에서 세는 인덱스</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>-1</code>은 <strong>맨 뒤</strong>, <code>-2</code>는 뒤에서 둘째입니다.
+                    <code>-1</code>은 <strong>맨 뒤</strong>, <code>-2</code>는 뒤에서 두 번째입니다.
                     「마지막 값」을 꺼내려고 <code>scores[len(scores) - 1]</code>이라고 쓸 필요가 없습니다.
                     <strong>뒤에서 셀 때만 1부터</strong> 시작한다는 점을 눈여겨보세요 &mdash;
                     <code>-0</code>은 0과 같아서 쓸 수 없기 때문입니다.
@@ -159,31 +159,31 @@
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>없는 칸을 부르면 그 자리에서 멈춥니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>없는 인덱스를 쓰면 그 줄에서 멈춥니다</p>
                 <pre class="language-python"><code class="language-python" data-src="code/05.범위밖.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>IndexError</code>는 <strong>「그런 칸은 없다」</strong>는 뜻입니다.
-                    대개 <strong>하나 차이</strong>로 납니다 &mdash; 개수를 번호로 착각한 경우입니다.
-                    오류를 만나면 <strong>개수와 마지막 번호를 나란히 적어</strong> 보세요.
+                    <code>IndexError</code>는 <strong>「그런 인덱스는 없다」</strong>는 뜻입니다.
+                    대개 <strong>하나 차이</strong>로 납니다 &mdash; 개수를 마지막 인덱스로 착각한 경우입니다.
+                    오류를 만나면 <strong>개수와 마지막 인덱스를 나란히 적어</strong> 보세요.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                자리를 지정해 <strong>값을 갈아 끼울</strong> 수도 있습니다.
+                인덱스를 지정해 <strong>요소의 값을 바꿀</strong> 수도 있습니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/05.바꾸기.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                글자의 나열은 이렇게 바꿀 수 없습니다. 꺼내 보는 것은 되지만
-                자리를 지정해 갈아 끼우려 하면 오류가 납니다. <strong>리스트는 고쳐 쓰는 것</strong>이고
-                글자의 나열은 한번 만들면 그대로인 것이라는 차이입니다.
+                문자열은 이렇게 바꿀 수 없습니다. 인덱스로 글자를 꺼내 볼 수는 있지만,
+                인덱스를 지정해 다른 글자로 바꾸려 하면 오류가 납니다. <strong>리스트는 만든 뒤에도 고칠 수 있고</strong>
+                문자열은 한번 만들면 바꿀 수 없다는 차이입니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">값이 다섯 개인 리스트에서 <code>scores[5]</code>는 왜 오류일까요? 마지막 값을 부르려면 무엇이라고 써야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">값이 다섯 개인 리스트에서 <code>scores[5]</code>는 왜 오류일까요? 마지막 값을 꺼내려면 무엇이라고 써야 할까요?</p>
         </div>
     </section>
 
@@ -192,7 +192,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">넣고 빼기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">칸 수를 미리 정해 두지 않아도 됩니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">요소의 개수를 미리 정해 두지 않아도 됩니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -209,51 +209,51 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>맨 뒤에 붙이기</td>
+                        <td>맨 뒤에 추가하기</td>
                         <td><code>append(값)</code></td>
                         <td>가장 많이 쓴다</td>
                     </tr>
                     <tr>
-                        <td>사이에 끼우기</td>
-                        <td><code>insert(자리, 값)</code></td>
-                        <td>뒤의 값들이 한 칸씩 밀린다</td>
+                        <td>원하는 위치에 삽입하기</td>
+                        <td><code>insert(인덱스, 값)</code></td>
+                        <td>그 뒤의 요소들이 한 자리씩 뒤로 밀린다</td>
                     </tr>
                     <tr>
-                        <td>값을 찾아 지우기</td>
+                        <td>값을 찾아 삭제하기</td>
                         <td><code>remove(값)</code></td>
-                        <td><strong>자리가 아니라 값</strong>을 준다. 없으면 오류</td>
+                        <td><strong>인덱스가 아니라 값</strong>을 지정한다. 없으면 오류</td>
                     </tr>
                     <tr>
-                        <td>빼내면서 받기</td>
+                        <td>꺼내면서 삭제하기</td>
                         <td><code>pop()</code></td>
-                        <td>맨 뒤를 빼고 <strong>그 값을 돌려준다</strong></td>
+                        <td>맨 뒤 요소를 삭제하고 <strong>그 값을 반환한다</strong></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>remove</code>는 「값」, <code>pop</code>은 「자리」</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>remove</code>는 「값」, <code>pop</code>은 「인덱스」</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>remove(2)</code>는 <strong>「2라는 값을 찾아 지워라」</strong>이고
-                    <code>pop(2)</code>는 <strong>「인덱스 2인 칸을 빼내라」</strong>입니다.
-                    <strong>둘을 바꿔 쓰면 엉뚱한 것이 지워지는데 오류 없이 지나갈 때가 많아</strong> 알아채기 어렵습니다.
+                    <code>pop(2)</code>는 <strong>「인덱스 2의 요소를 꺼내라」</strong>입니다.
+                    <strong>둘을 바꿔 쓰면 엉뚱한 요소가 삭제되는데도 오류 없이 실행될 때가 많아</strong> 알아채기 어렵습니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    같은 값이 여럿이면 <code>remove</code>는 <strong>앞에서 만난 하나만</strong> 지웁니다.
+                    같은 값이 여럿이면 <code>remove</code>는 <strong>맨 앞에서 처음 찾은 하나만</strong> 삭제합니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                이 넷은 <strong>리스트 자체를 고칩니다.</strong> 새 리스트를 돌려주는 것이 아니라
-                원래 있던 것을 바꿔 놓습니다.
-                「통째로 다루기」 절의 <code>sort</code>에서 이 차이가 다시 문제가 됩니다.
+                이 네 가지는 <strong>리스트 자체를 고칩니다.</strong> 새 리스트를 반환하지 않고
+                원래 리스트를 바꿉니다.
+                「통째로 다루기」 절의 <code>sort</code>에서 이 차이가 다시 중요해집니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">맨 「앞」에 값을 넣으려면 어떻게 할까요? 그때 원래 있던 값들의 번호는 어떻게 될까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">맨 「앞」에 값을 넣으려면 어떻게 할까요? 그때 원래 있던 요소들의 인덱스는 어떻게 될까요?</p>
         </div>
     </section>
 
@@ -262,7 +262,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">일부만 잘라 내기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">끝 번호가 「포함되지 않는」 것에는 이유가 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">끝 인덱스가 「포함되지 않는」 것에는 이유가 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -271,6 +271,7 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">「어디부터 어디 앞까지」로 읽습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
+                    대괄호 안에 범위를 적어 리스트의 일부를 잘라 내는 것을 슬라이싱(slicing)이라고 합니다.
                     <code>scores[1:3]</code>은 <strong>인덱스 1부터 인덱스 3 「앞」까지</strong>, 그러니까 인덱스 1과 2입니다.
                     인덱스 3은 들어가지 않습니다.
                 </p>
@@ -284,19 +285,19 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">비워 두면 끝까지</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    앞을 비우면 <strong>처음부터</strong>, 뒤를 비우면 <strong>끝까지</strong>입니다.
+                    콜론 앞을 비우면 <strong>처음부터</strong>, 콜론 뒤를 비우면 <strong>끝까지</strong>입니다.
                     둘 다 비운 <code>[:]</code>는 <strong>통째로</strong>가 되고,
                     이것으로 「이름을 하나 더 붙이면」 절의 문제를 풉니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>잘라 낸 결과는 새 리스트</strong>입니다. 원래 것은 건드리지 않습니다.
+                    <strong>잘라 낸 결과는 새 리스트</strong>입니다. 원래 리스트는 바뀌지 않습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 인덱스와 달리 <strong>슬라이싱은 범위를 넘겨도 오류가 나지 않습니다.</strong>
-                <code>scores[1:100]</code>은 있는 데까지만 잘라 줍니다.
-                같은 대괄호인데 규칙이 다른 것이니 헷갈리지 않게 조심하세요.
+                <code>scores[1:100]</code>은 있는 요소까지만 잘라 냅니다.
+                같은 대괄호를 쓰지만 규칙이 다르니 헷갈리지 않게 주의하세요.
             </p>
         </div>
 
@@ -311,7 +312,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">통째로 다루기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">하나씩 꺼내지 않고 한 번에 묻는 방법들입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">요소를 하나씩 꺼내지 않고 리스트 전체를 한 번에 다루는 방법입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -319,9 +320,9 @@
 
             <p class="text-base text-slate-700 leading-relaxed">
                 <code>sum</code>·<code>max</code>·<code>min</code>·<code>len</code>은
-                <strong>리스트를 통째로 넘기면 답을 돌려줍니다.</strong>
-                평균은 따로 없으므로 합계를 개수로 나눠 구합니다.
-                <code>in</code>은 들어 있는지를 참·거짓으로 답합니다.
+                <strong>리스트를 통째로 넘기면 결과를 반환합니다.</strong>
+                평균을 구하는 함수는 따로 없으므로 합계를 개수로 나눠 구합니다.
+                <code>in</code>은 값이 리스트에 들어 있는지를 참·거짓으로 알려 줍니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/05.정렬.py"></code></pre>
@@ -334,18 +335,18 @@
                         <tr>
                             <th class="w-36">무엇</th>
                             <th class="w-44">원래 리스트</th>
-                            <th>돌려주는 것</th>
+                            <th>반환값</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td><code>sorted(scores)</code></td>
                             <td>그대로 둔다</td>
-                            <td><strong>줄 세운 새 리스트</strong></td>
+                            <td><strong>정렬한 새 리스트</strong></td>
                         </tr>
                         <tr>
                             <td><code>scores.sort()</code></td>
-                            <td><strong>직접 줄 세운다</strong></td>
+                            <td><strong>직접 정렬한다</strong></td>
                             <td><code>None</code>(값이 없음)</td>
                         </tr>
                         </tbody>
@@ -354,23 +355,22 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>사진을 찍어 정리해 보는 것</strong>과 <strong>서랍을 실제로 정리하는 것</strong>의 차이입니다.
                     <code>new = scores.sort()</code>라고 쓰면 <code>new</code>에는
-                    줄 세운 리스트가 아니라 <strong><code>None</code></strong>이 들어갑니다.
+                    정렬된 리스트가 아니라 <strong><code>None</code></strong>이 저장됩니다. 아주 흔한 실수입니다.
                     <code>None</code>은 파이썬이 <strong>「값이 없음」을 나타낼 때 쓰는 특별한 값</strong>으로,
-                    돌려줄 것이 없는 기능은 이것을 돌려줍니다.
-                    이것이 아주 흔한 실수입니다.
+                    반환할 값이 없는 명령은 <code>None</code>을 반환합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>원래 순서를 지켜야 하면 <code>sorted</code></strong>,
                     지킬 필요가 없으면 <code>sort</code>를 씁니다.
-                    큰 순으로 줄 세우려면 <code>reverse=True</code>를 함께 줍니다.
+                    큰 값부터 정렬하려면 괄호 안에 <code>reverse=True</code>를 지정합니다.
                 </p>
             </div>
 
             <pre class="language-python"><code class="language-python" data-src="code/05.전체.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>map</code>이 돌려준 것을 <code>list(&hellip;)</code>로 감싼 것에 눈길을 두세요.
-                <code>map</code>이 돌려준 것은 개수를 셀 수도 없고 한 번 끝까지 꺼내 쓰면 비어 버립니다. 감싸야 <strong>리스트가 되어</strong> <code>len</code>으로 세고 여러 번 꺼내 쓸 수 있습니다.
+                <code>map</code>이 반환한 결과를 <code>list(&hellip;)</code>로 감싼 점을 눈여겨보세요.
+                <code>map</code>이 반환한 결과는 개수를 셀 수 없고, 한 번 끝까지 꺼내 쓰면 비어 버립니다. <code>list</code>로 감싸야 <strong>리스트가 되어</strong> <code>len</code>으로 개수를 세고 여러 번 꺼내 쓸 수 있습니다.
             </p>
         </div>
 
@@ -390,9 +390,9 @@
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                변수에 값을 「담는다」고 흔히 말하지만, 파이썬에서 대입은 정확히는 <strong>값에 이름을 붙이는 일</strong>입니다.
+                변수에 값을 「저장한다」고 흔히 말하지만, 파이썬에서 대입은 정확히는 <strong>값에 이름을 붙이는 일</strong>입니다.
                 <code>score = 90</code>은 90이라는 값에 <code>score</code>라는 이름표를 붙인 것이고, 다시 대입하면 이름표를 다른 값으로 옮겨 붙입니다.
-                수 하나를 다룰 때는 두 설명이 같은 결과를 내지만, 리스트에서는 차이가 드러납니다.
+                숫자 하나를 다룰 때는 두 설명이 같은 결과를 내지만, 리스트에서는 차이가 드러납니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/05.같이가리킨다.py"></code></pre>
@@ -401,13 +401,13 @@
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>b = a</code>는 사물함을 복제하지 않습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>같은 사물함 줄에 이름표를 하나 더 붙인 것</strong>뿐입니다.
-                    <code>b</code>에 값을 넣으면 <code>a</code>로 봐도 들어가 있습니다.
+                    <code>b</code>에 값을 추가하면 <code>a</code>로 확인해도 들어가 있습니다.
                     <strong>둘이 같은 것을 가리키고 있으니까요.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>a = 3</code>, <code>b = a</code> 뒤에 <code>a = 5</code>라고 하면 <code>b</code>는 3 그대로입니다.
                     <code>a = 5</code>는 <strong>이름표 <code>a</code>를 5로 옮겨 붙인 것</strong>이지 3을 고친 것이 아니기 때문입니다.
-                    <code>b.append(4)</code>는 이름을 새로 담지 않고 <strong>가리키는 리스트 자체를 고치므로</strong> <code>a</code>로 봐도 바뀝니다.
+                    <code>b.append(4)</code>는 이름표를 옮겨 붙이지 않고 <strong>가리키는 리스트 자체를 고치므로</strong> <code>a</code>로 확인해도 바뀌어 있습니다.
                 </p>
             </div>
 
@@ -417,14 +417,14 @@
                     <code>c = a[:]</code>는 <strong>통째로 잘라 새 리스트</strong>를 만듭니다.
                     이제 <code>c</code>를 고쳐도 <code>a</code>는 그대로입니다.
                     다만 새로 만드는 것은 바깥 리스트 하나뿐입니다. 리스트 안에 또 리스트가 들어 있으면 안쪽 리스트는 두 이름이 함께 가리키므로,
-                    지금은 수나 글자를 담은 리스트까지만 이 방법으로 복사합니다.
+                    지금은 숫자나 문자열이 저장된 리스트만 이 방법으로 복사합니다.
                     <strong>「일부만 잘라 내기」 절에서 「잘라 낸 결과는 새 리스트」라고 한 것</strong>이 여기서 쓰입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 이 성질은 불편한 함정이기도 하지만 쓸모도 있습니다.
-                값이 수천 개여도 이름을 하나 더 붙이는 데는 시간이 들지 않고,
+                요소가 수천 개여도 이름을 하나 더 붙이는 데는 시간이 들지 않고,
                 여러 이름으로 같은 자료를 함께 다룰 수 있습니다.
                 다만 쓸 때마다 <strong>복사인지 이름표인지</strong>를 확인합니다.
             </p>
@@ -432,7 +432,7 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>b = a</code> 뒤에 <code>b = [1, 2]</code>라고 「통째로 다시 담으면」 <code>a</code>도 바뀔까요? 앞의 <code>b.append(4)</code>와 무엇이 다를까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>b = a</code> 뒤에 <code>b = [1, 2]</code>라고 「새 리스트를 대입하면」 <code>a</code>도 바뀔까요? 앞의 <code>b.append(4)</code>와 무엇이 다를까요?</p>
         </div>
     </section>
 
@@ -447,15 +447,15 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">인덱스는 0부터</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    「맨 앞에서 몇 칸 떨어졌나」로 센다. <strong>마지막 번호는 개수보다 하나 작다.</strong>
-                    뒤에서 셀 때는 <code>-1</code>부터. 없는 칸을 부르면 <code>IndexError</code>.
+                    「맨 앞에서 얼마나 떨어졌나」로 센다. <strong>마지막 인덱스는 개수보다 하나 작다.</strong>
+                    뒤에서 셀 때는 <code>-1</code>부터. 없는 인덱스를 쓰면 <code>IndexError</code>.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">넣고 빼기</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>append</code>는 맨 뒤, <code>insert</code>는 사이.
-                    <strong><code>remove</code>는 값, <code>pop</code>은 자리</strong>를 받는다 &mdash; 바꿔 쓰면 오류 없이 틀릴 수 있다.
+                    <strong><code>remove</code>는 값, <code>pop</code>은 인덱스</strong>를 받는다 &mdash; 바꿔 쓰면 오류 없이 틀릴 수 있다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -468,8 +468,8 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>sorted</code>와 <code>sort</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>sorted</code>는 새 리스트를 돌려주고 원래 것을 두고,
-                    <code>sort</code>는 원래 것을 직접 줄 세우고 <code>None</code>을 돌려준다.
+                    <code>sorted</code>는 원래 리스트를 그대로 두고 정렬한 새 리스트를 반환한다.
+                    <code>sort</code>는 원래 리스트를 직접 정렬하고 <code>None</code>을 반환한다.
                 </p>
             </div>
             <div class="section-card space-y-2 md:col-span-2">
@@ -496,13 +496,13 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '값이 네 개면 마지막 인덱스는 3입니다. 인덱스 4는 없어 IndexError가 납니다.')">
                     ① <code>scores[4]</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '마지막 번호는 개수보다 하나 작습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '마지막 인덱스는 개수보다 하나 작습니다.')">
                     ② <code>scores[3]</code>
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '-1은 맨 뒤입니다.')">
                     ③ <code>scores[-1]</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '길이에서 하나를 빼면 마지막 번호입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '길이에서 하나를 빼면 마지막 인덱스입니다.')">
                     ④ <code>scores[len(scores) - 1]</code>
                 </button>
             </div>
@@ -511,14 +511,14 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>new = scores.sort()</code>를 실행하면 <code>new</code>에는 무엇이 들어 있나?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'sort는 원래 리스트를 직접 줄 세우고, 줄 세운 리스트를 돌려주지 않습니다.')">
-                    ① 줄 세운 리스트
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'sort는 원래 리스트를 직접 정렬할 뿐, 정렬된 리스트를 반환하지 않습니다.')">
+                    ① 정렬된 리스트
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'sort는 돌려줄 것이 없어서, 「값이 없음」을 나타내는 특별한 값 None이 new에 담깁니다. 새 리스트를 받고 싶으면 sorted를 씁니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'sort는 반환할 값이 없으므로 「값이 없음」을 나타내는 특별한 값 None이 new에 저장됩니다. 정렬된 새 리스트가 필요하면 sorted를 씁니다.')">
                     ② 「값이 없음」을 나타내는 <code>None</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '원래 리스트는 scores가 그대로 가지고 있고, 줄 세워진 상태입니다.')">
-                    ③ 줄 세우기 전의 리스트
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '원래 리스트는 scores가 계속 가리키고 있고, 이미 정렬된 상태입니다.')">
+                    ③ 정렬하기 전의 리스트
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '오류는 나지 않습니다. 그래서 알아채기 어렵습니다.')">
                     ④ 오류가 난다
@@ -532,7 +532,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'b = a 는 복사가 아니라 같은 리스트에 이름을 하나 더 붙인 것입니다.')">
                     ① <code>[1, 2, 3]</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '둘이 같은 리스트를 가리키므로 a로 봐도 4가 들어 있습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '둘이 같은 리스트를 가리키므로 a로 확인해도 4가 들어 있습니다.')">
                     ② <code>[1, 2, 3, 4]</code>
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'a가 사라지지 않습니다.')">

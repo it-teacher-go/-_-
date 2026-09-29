@@ -6,7 +6,7 @@ attend = True
 
 if attend:
     if score >= 60:
-        print("합격")      # 합격    두 겹 들여쓴 자리
+        print("합격")      # 합격    두 단계 들여쓴 줄
     else:
         print("불합격")
 else:
