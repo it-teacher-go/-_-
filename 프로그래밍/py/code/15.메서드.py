@@ -11,9 +11,9 @@ class Student:
         return round((self.kor + self.eng) / 2, 1)
 
     def passed(self):
-        return self.average() >= 60             # 메서드가 메서드를 부를 수도 있다
+        return self.average() >= 60             # 메서드 안에서 다른 메서드를 호출할 수도 있다
 
 
 a = Student("학생 A", 90, 65)
-print(a.average())      # 77.5      괄호 안이 비어 있다 — self는 자동으로 들어간다
+print(a.average())      # 77.5      괄호 안이 비어 있다 — self에는 a가 자동으로 전달된다
 print(a.passed())       # True

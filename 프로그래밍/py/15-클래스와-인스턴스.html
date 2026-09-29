@@ -22,7 +22,7 @@
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
             값은 딕셔너리로 묶을 수 있습니다. 그런데 <strong>그 값으로 하는 일</strong>은 아직 밖에 있습니다.<br>
-            값과 하는 일을 한 자리에 두는 방법입니다.
+            값과 그 값으로 하는 일을 한곳에 묶는 방법을 배웁니다.
         </p>
     </div>
 </header>
@@ -38,9 +38,9 @@
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
                     <li>클래스와 인스턴스의 관계를 설명할 수 있다.</li>
-                    <li><code>__init__</code>으로 인스턴스를 만들 때 값을 채울 수 있다.</li>
+                    <li>생성자 <code>__init__</code>으로 인스턴스를 만들 때 속성의 값을 정할 수 있다.</li>
                     <li><code>self</code>가 무엇을 가리키는지 알고 속성을 다룰 수 있다.</li>
-                    <li>메서드를 만들어 값과 하는 일을 한 자리에 둘 수 있다.</li>
+                    <li>메서드를 정의해 값과 그 값으로 하는 일을 한 클래스에 묶을 수 있다.</li>
                     <li>다룰 값과 하는 일에 따라 딕셔너리와 클래스 중 맞는 쪽을 고를 수 있다.</li>
                 </ol>
             </div>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">학생 한 명의 값을 딕셔너리로 묶으면 이름과 점수를 리스트 여럿에 흩어 담을 때의 문제는 풀립니다. 이름과 점수가 <strong>한 덩어리</strong>로 다니기 때문입니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">학생 한 명의 값을 딕셔너리로 묶으면 이름과 점수를 리스트 여러 개에 나누어 저장할 때의 문제는 해결됩니다. 이름과 점수가 <strong>한 딕셔너리에 함께</strong> 저장되기 때문입니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/15.딕셔너리로.py"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 280" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
@@ -94,9 +94,9 @@
                     <text x="145" y="200" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">함수</text>
                     <text x="145" y="224" font-size="16" fill="#334155" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">average(student)</text>
                     <line x1="145" y1="146" x2="145" y2="174" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="5 4"/>
-                    <text x="145" y="264" font-size="16" fill="#be123c" font-weight="700" text-anchor="middle">칸을 빠뜨려도 「부를 때까지」 모른다</text>
+                    <text x="145" y="264" font-size="16" fill="#be123c" font-weight="700" text-anchor="middle">키를 빠뜨려도 「호출할 때까지」 모른다</text>
                     <line x1="300" y1="40" x2="300" y2="276" stroke="#e2e8f0" stroke-width="2"/>
-                    <text x="438" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">한 자리에 함께</text>
+                    <text x="438" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">한곳에 함께</text>
                     <rect x="310" y="50" width="258" height="184" rx="12" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5"/>
                     <text x="438" y="80" font-size="17" fill="#047857" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">class Student</text>
                     <rect x="330" y="96" width="218" height="62" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
@@ -104,23 +104,23 @@
                     <text x="439" y="146" font-size="16" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">self.eng = 65</text>
                     <rect x="330" y="168" width="218" height="48" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
                     <text x="439" y="198" font-size="16" fill="#047857" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">average(self)</text>
-                    <text x="438" y="264" font-size="16" fill="#047857" font-weight="700" text-anchor="middle">빠뜨리면 「만들 때」 걸린다</text>
+                    <text x="438" y="264" font-size="16" fill="#047857" font-weight="700" text-anchor="middle">빠뜨리면 「만들 때」 오류가 난다</text>
                 </svg>
             </div>
-            <p class="text-base text-slate-700 leading-relaxed">그런데 그 값으로 하는 일인 <code>average</code>는 <strong>딕셔너리 밖에</strong> 있습니다. 둘이 따로 있으면 두 가지가 어긋납니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">그런데 그 값으로 하는 일인 <code>average</code>는 <strong>딕셔너리 밖에</strong> 있습니다. 값과 함수가 따로 있으면 두 가지 문제가 생깁니다.</p>
             <div class="bg-white border-l-4 border-l-rose-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">어떤 칸이 있어야 하는지 아무 데도 적혀 있지 않습니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>c</code>는 <code>eng</code> 칸을 빠뜨린 채 <strong>아무 일 없이 만들어집니다.</strong> 잘못은 <code>average(c)</code>를 <strong>부를 때가 되어서야</strong> 드러납니다. 만든 자리와 걸리는 자리가 멀어서 <strong>찾기 어렵습니다.</strong></p>
+                <p class="font-black text-lg text-slate-900">어떤 키가 있어야 하는지 어디에도 정해져 있지 않습니다</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>c</code>는 <code>eng</code> 키가 빠진 채로 <strong>아무 오류 없이 만들어집니다.</strong> 이 잘못은 <code>average(c)</code>를 <strong>호출할 때가 되어서야</strong> 드러납니다. 딕셔너리를 만든 곳과 오류가 난 곳이 멀리 떨어져 있어서 <strong>원인을 찾기 어렵습니다.</strong></p>
             </div>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">함수가 어떤 딕셔너리를 받아야 하는지도 적혀 있지 않습니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>average(student)</code>는 이름만 봐서는 <strong>어떤 칸을 쓰는지</strong> 알 수 없습니다. 본문을 읽어야 <code>kor</code>과 <code>eng</code>가 필요하다는 것을 압니다.</p>
+                <p class="font-black text-lg text-slate-900">함수가 어떤 딕셔너리를 전달받아야 하는지도 드러나지 않습니다</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>average(student)</code>는 함수 이름과 매개변수만 봐서는 <strong>어떤 키를 쓰는지</strong> 알 수 없습니다. 함수 본문을 읽어야 <code>kor</code>과 <code>eng</code>가 필요하다는 것을 알 수 있습니다.</p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">딕셔너리에 <code>eng</code> 대신 <code>english</code>라고 적었다면 언제 알게 될까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">딕셔너리를 만들 때 <code>eng</code> 대신 <code>english</code>라는 키를 썼다면 그 잘못을 언제 알게 될까요?</p>
         </div>
     </section>
 
@@ -129,29 +129,29 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">틀을 만들고 찍어 내기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">무슨 값을 갖는지 한 자리에 적어 둡니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">어떤 값을 갖는지 한곳에 정해 둡니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed"><strong>어떤 것이 무슨 값을 갖는지</strong>를 미리 정해 두면 칸을 빠뜨리는 문제가 사라집니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><strong>어떤 값을 가져야 하는지</strong> 미리 정해 두면 값을 빠뜨리는 문제를 막을 수 있습니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/15.틀.py"></code></pre>
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">클래스(class)</p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>어떤 것이 무슨 값을 갖는지 정해 둔 틀</strong>입니다. 여기서 만드는 틀에는 값이 들어 있지 않고, 값은 인스턴스마다 붙입니다. 클래스 자체에 값을 두는 방법도 있지만 지금은 인스턴스가 갖는 값까지만 씁니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>같은 종류의 대상이 어떤 값을 갖는지 정해 둔 틀</strong>입니다. 여기서 만드는 클래스에는 값이 들어 있지 않고, 값은 인스턴스마다 따로 저장합니다. 클래스 자체에 값을 두는 방법도 있지만 이번 시간에는 인스턴스가 갖는 값만 다룹니다.</p>
             </div>
             <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">인스턴스(instance)</p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>그 틀로 실제로 만들어 낸 것 하나하나</strong>입니다. 각자 자기 값을 갖습니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>클래스로 실제로 만들어 낸 대상 하나하나</strong>입니다. 인스턴스마다 자기 값을 따로 갖습니다.</p>
             </div>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 344" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위에 클래스 틀 상자가 하나 있고 거기서 화살표 셋이 내려와 학생 A, 학생 B, 학생 C 세 인스턴스 상자가 각자 다른 값을 담고 있다">
+                     role="img" aria-label="위에 클래스 틀 상자가 하나 있고 거기서 화살표 셋이 내려와 학생 A, 학생 B, 학생 C 세 인스턴스 상자가 각자 다른 값을 갖고 있다">
                     <defs><marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#047857"/></marker></defs>
                     <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">틀은 하나, 찍어 낸 것은 여럿</text>
                     <rect x="178" y="50" width="220" height="92" rx="12" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/>
                     <text x="288" y="78" font-size="17" fill="#047857" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">class Student</text>
                     <text x="288" y="104" font-size="16" fill="#64748b" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">name · kor · eng</text>
-                    <text x="288" y="128" font-size="16" fill="#64748b" text-anchor="middle">무슨 값을 갖는지만 정한다</text>
+                    <text x="288" y="128" font-size="16" fill="#64748b" text-anchor="middle">어떤 값을 갖는지만 정한다</text>
                     <path d="M288 146 C288 172, 100 176, 100 200" fill="none" stroke="#047857" stroke-width="2.5" marker-end="url(#mk)"/>
                     <rect x="10" y="206" width="180" height="96" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
                     <text x="100" y="234" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">학생 A</text>
@@ -175,14 +175,14 @@
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/15.여럿.py"></code></pre>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">같은 틀로 만들어도 서로 다른 하나입니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>a.kor = 95</code>는 <strong><code>a</code>의 값만</strong> 바꿉니다. <code>b</code>는 그대로입니다. 틀은 <strong>모양만 정할 뿐</strong> 값은 인스턴스마다 따로 있습니다.</p>
+                <p class="font-black text-lg text-slate-900">같은 클래스로 만들어도 서로 다른 인스턴스입니다</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>a.kor = 95</code>는 <strong><code>a</code>의 값만</strong> 바꿉니다. <code>b</code>는 그대로입니다. 클래스는 <strong>구조만 정할 뿐</strong> 값은 인스턴스마다 따로 있습니다.</p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>Student</code>라는 틀 자체에는 <code>kor</code> 값이 있을까요, 없을까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>Student</code> 클래스 자체에는 <code>kor</code> 값이 있을까요, 없을까요?</p>
         </div>
     </section>
 
@@ -191,16 +191,16 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900"><code>__init__</code>과 <code>self</code></h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">만들 때 딱 한 번 실행되는 함수입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">인스턴스를 만들 때마다 한 번 실행되는 함수입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">틀만으로는 값이 채워지지 않습니다. <strong>값을 채워 넣는 함수</strong>가 따로 있습니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>class Student:</code>라고 쓰기만 해서는 인스턴스에 값이 저장되지 않습니다. <strong>인스턴스의 값을 저장하는 함수</strong>를 클래스 안에 따로 정의합니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 422" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위에서 Student를 부르면 아래 __init__ 안으로 들어가고, self 점 이름들이 채워져 맨 아래의 학생 A 인스턴스가 만들어진다">
+                     role="img" aria-label="위에서 Student를 호출하면 아래 __init__ 안으로 들어가고, self 점 속성들에 값이 저장되어 맨 아래의 학생 A 인스턴스가 만들어진다">
                     <defs><marker id="ini" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#047857"/></marker></defs>
-                    <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">만들 때 「한 번」 실행되어 칸을 채운다</text>
+                    <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">만들 때 「한 번」 실행되어 속성에 값을 저장한다</text>
                     <rect x="102" y="52" width="372" height="46" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5"/>
                     <text x="288" y="82" font-size="17" fill="#334155" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">Student("학생 A", 90, 65)</text>
                     <line x1="288" y1="102" x2="288" y2="130" stroke="#047857" stroke-width="3" marker-end="url(#ini)"/>
@@ -216,21 +216,21 @@
                     <line x1="194" y1="322" x2="382" y2="322" stroke="#f97316" stroke-width="1.5"/>
                     <text x="288" y="346" font-size="16" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">kor = 90</text>
                     <text x="288" y="368" font-size="16" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">eng = 65</text>
-                    <text x="288" y="408" font-size="16" fill="#64748b" text-anchor="middle">self는 「지금 만들고 있는 바로 그 하나」다</text>
+                    <text x="288" y="408" font-size="16" fill="#64748b" text-anchor="middle">self는 「지금 만들고 있는 바로 그 인스턴스」다</text>
                 </svg>
             </div>
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900"><code>__init__</code></p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>새로 하나를 찍어 낼 때 딱 한 번 실행되는 함수</strong>입니다. <strong>빈 칸을 채워 넣는 단계</strong>라고 보면 됩니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>인스턴스를 새로 만들 때마다 자동으로 한 번 호출되는 함수</strong>입니다. <strong>인스턴스의 값을 처음 저장하는 단계</strong>라고 보면 됩니다. 이런 역할을 하는 <code>__init__</code>을 생성자(constructor)라고 합니다.</p>
             </div>
             <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900"><code>self</code></p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>지금 다루고 있는 바로 그 하나</strong>를 가리키는 말입니다. <code>self.kor</code>는 「<strong>이 학생의</strong> <code>kor</code>」입니다. <code>self</code>는 파이썬이 정해 둔 낱말이 아니라, 클래스 안 함수의 첫째 매개변수에 모두가 약속해 붙이는 이름입니다.</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>self.kor</code>처럼 인스턴스에 붙은 이름을 <strong>속성</strong>(attribute)이라고 합니다. 함수 안에서 만든 보통 이름은 함수가 끝나면 사라지지만, 속성은 지역 변수가 아니라 인스턴스에 붙어 남으므로 <code>__init__</code>이 끝난 뒤에도 <code>a.name</code>으로 꺼낼 수 있습니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>지금 다루고 있는 인스턴스 자신</strong>을 가리키는 매개변수입니다. <code>__init__</code>에서는 지금 만들고 있는 인스턴스를 가리키므로, <code>self.kor</code>는 「<strong>이 학생의</strong> <code>kor</code>」입니다. <code>self</code>는 파이썬의 예약어가 아니라, 클래스 안에 정의한 함수의 첫 번째 매개변수에 관례로 붙이는 이름입니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>name</code> · <code>kor</code>처럼 인스턴스에 속한 변수를 <strong>속성</strong>(attribute)이라고 하고, <code>self.kor</code> · <code>a.name</code>처럼 점을 찍어 사용합니다. 함수 안에서 만든 지역 변수는 함수가 끝나면 사라지지만, 속성은 인스턴스에 저장되므로 <code>__init__</code>이 끝난 뒤에도 <code>a.name</code>으로 꺼낼 수 있습니다.</p>
             </div>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">빠뜨리면 만들 때 걸립니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>Student("학생 B", 85)</code>는 <strong>그 자리에서</strong> <code>TypeError</code>를 냅니다. 딕셔너리로 할 때는 <strong>한참 뒤에야</strong> 드러나던 잘못이 <strong>만드는 순간</strong> 걸리는 것입니다.</p>
+                <p class="font-black text-lg text-slate-900">값을 빠뜨리면 만들 때 오류가 납니다</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>Student("학생 B", 85)</code>는 <code>__init__</code>에 전달할 인자가 하나 모자라므로 <strong>그 줄에서</strong> <code>TypeError</code>가 발생합니다. 딕셔너리를 쓸 때는 <strong>한참 뒤에야</strong> 드러나던 잘못이 <strong>인스턴스를 만드는 순간</strong> 드러나는 것입니다.</p>
             </div>
         </div>
 
@@ -245,19 +245,19 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">하는 일까지 함께 두기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">값과 그 값으로 하는 일이 한 자리에 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">값과 그 값으로 하는 일이 한 클래스 안에 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">이제 <code>average</code>를 <strong>틀 안으로</strong> 옮깁니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">이제 <code>average</code>를 <strong>클래스 안으로</strong> 옮깁니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/15.메서드.py"></code></pre>
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">메서드(method)</p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>클래스 안에 넣어 둔 함수</strong>입니다. <strong>자기 속성을 갖고 일하는 함수</strong>라고 보면 됩니다. 문자열의 <code>upper</code>나 리스트의 <code>append</code>처럼 값에 딸린 함수도 모두 <code>str</code> · <code>list</code>라는 클래스에 딸린 메서드입니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>클래스 안에 정의한 함수</strong>입니다. 첫 번째 매개변수 <code>self</code>로 <strong>그 인스턴스의 속성을 사용하는 함수</strong>라고 보면 됩니다. 생성자 <code>__init__</code>도 메서드입니다. 앞에서 「값에 딸린 함수」로 배운 문자열의 <code>upper</code>나 리스트의 <code>append</code>도 <code>str</code> · <code>list</code> 클래스에 정의된 메서드이고, 문자열 값과 리스트 값은 각각 그 클래스의 인스턴스입니다.</p>
             </div>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 404" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위에서 a 점 average 괄호를 부르면 Student 점 average 괄호 a로 바뀌고, 아래에 a와 b 두 인스턴스가 각자 다른 값을 갖고 있어 결과가 다르게 나온다">
+                     role="img" aria-label="위에서 a 점 average 괄호를 호출하면 Student 점 average 괄호 a와 같이 실행되고, 아래에 a와 b 두 인스턴스가 각자 다른 값을 갖고 있어 결과가 다르게 나온다">
                     <defs><marker id="md" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">괄호 안이 비어 있는데 어떻게 값을 아는가</text>
                     <rect x="158" y="52" width="260" height="46" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
@@ -265,7 +265,7 @@
                     <line x1="288" y1="102" x2="288" y2="130" stroke="#c2410c" stroke-width="3" marker-end="url(#md)"/>
                     <rect x="88" y="138" width="400" height="46" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5"/>
                     <text x="288" y="168" font-size="17" fill="#334155" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">Student.average(a)</text>
-                    <text x="288" y="208" font-size="16" fill="#64748b" text-anchor="middle">점 앞의 것이 self로 「저절로」 들어간다</text>
+                    <text x="288" y="208" font-size="16" fill="#64748b" text-anchor="middle">점 앞의 인스턴스가 self에 「자동으로」 전달된다</text>
                     <rect x="58" y="236" width="220" height="88" rx="10" fill="#ffffff" stroke="#f97316" stroke-width="2.5"/>
                     <text x="168" y="262" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">a</text>
                     <text x="168" y="288" font-size="16" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">kor = 90</text>
@@ -276,13 +276,13 @@
                     <text x="408" y="310" font-size="16" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">eng = 80</text>
                     <text x="168" y="352" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">a.average() &rarr; 77.5</text>
                     <text x="408" y="352" font-size="16" fill="#0369a1" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">b.average() &rarr; 82.5</text>
-                    <text x="288" y="390" font-size="16" fill="#0f172a" font-weight="700" text-anchor="middle">같은 메서드인데 「누가 불렀는가」에 따라 답이 다르다</text>
+                    <text x="288" y="390" font-size="16" fill="#0f172a" font-weight="700" text-anchor="middle">같은 메서드도 「어느 인스턴스로 호출했나」에 따라 결과가 다르다</text>
                 </svg>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/15.self.py"></code></pre>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">괄호가 비어 있는데도 값을 압니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>a.average()</code>는 실제로 <code>Student.average(a)</code>로 실행됩니다. <strong>점 앞의 것이 <code>self</code>에 저절로 들어가기</strong> 때문에 괄호 안에 아무것도 적지 않아도 됩니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>a.average()</code>는 <code>Student.average(a)</code>와 같이 실행됩니다. <strong>점 앞의 인스턴스 <code>a</code>가 <code>self</code>에 자동으로 전달되므로</strong> 괄호 안에 인자를 쓰지 않아도 됩니다.</p>
             </div>
             <div class="overflow-x-auto">
                 <table class="table-prose">
@@ -305,38 +305,38 @@
                         <td><strong>안에 함께</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>칸을 빠뜨리면</strong></td>
-                        <td>쓸 때 걸린다</td>
-                        <td><strong>만들 때 걸린다</strong></td>
+                        <td><strong>값을 빠뜨리면</strong></td>
+                        <td>사용할 때 오류가 난다</td>
+                        <td><strong>만들 때 오류가 난다</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>부르는 법</strong></td>
+                        <td><strong>호출 방법</strong></td>
                         <td><code>average(a)</code></td>
                         <td><code>a.average()</code></td>
                     </tr>
                     <tr>
-                        <td><strong>어울리는 것</strong></td>
+                        <td><strong>알맞은 경우</strong></td>
                         <td>값만 잠깐 묶을 때</td>
-                        <td><strong>값과 하는 일이 늘 함께 다닐 때</strong></td>
+                        <td><strong>값과 하는 일을 늘 함께 쓸 때</strong></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="bg-white border-l-4 border-l-slate-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">딕셔너리가 못한 것이 아닙니다</p>
-                <p class="text-base text-slate-700 leading-relaxed">값을 잠깐 묶어 넘기는 경우에는 <strong>딕셔너리가 더 가볍습니다.</strong> 클래스를 고르는 것은 <strong>같은 값에 하는 일이 여럿 붙고, 그것이 계속 함께 다닐 때</strong>입니다.</p>
+                <p class="font-black text-lg text-slate-900">딕셔너리가 부족한 것은 아닙니다</p>
+                <p class="text-base text-slate-700 leading-relaxed">값을 잠깐 묶어 전달하는 경우에는 <strong>딕셔너리가 더 간단합니다.</strong> 클래스가 알맞은 것은 <strong>같은 값으로 하는 일이 여럿이고, 값과 그 일을 늘 함께 쓸 때</strong>입니다.</p>
             </div>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">배운 것을 모으면 파일에서 읽어 인스턴스를 만들고 보고서를 내놓는 프로그램이 됩니다. <code>성적.csv</code>는 한 줄에 「이름,국어,영어」를 적은 파일이고, 여기서는 학생 A·B 두 줄 끝에 <code>학생 C,40,55</code> 줄을 더해 세 줄로 두었습니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">배운 것을 모으면 파일을 읽어 인스턴스를 만들고 결과를 출력하는 프로그램이 됩니다. <code>성적.csv</code>는 한 줄에 「이름,국어,영어」를 쓴 파일이고, 여기서는 학생 A·B 두 줄 끝에 <code>학생 C,40,55</code> 줄을 더해 세 줄로 두었습니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/15.전체.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed"><code>report</code>는 자기 <code>average</code>를 불러 씁니다. 메서드가 메서드를 부를 때도 <code>self.</code>를 붙입니다 &mdash; <strong>「이 학생의 평균」</strong>이라는 뜻이기 때문입니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>report</code>는 같은 인스턴스의 <code>average</code>를 호출합니다. 메서드 안에서 다른 메서드를 호출할 때도 <code>self.</code>를 붙입니다. <strong>「이 학생의 평균」</strong>이라는 뜻이기 때문입니다.</p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>report</code> 안에서 <code>average()</code>라고만 적으면 어떻게 될까요? <code>self.</code>가 왜 필요한지 설명해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>report</code> 안에서 <code>average()</code>라고만 쓰면 어떻게 될까요? <code>self.</code>가 왜 필요한지 설명해 보세요.</p>
         </div>
     </section>
 
@@ -349,24 +349,24 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">틀과 찍어 낸 것은 다르다</h3>
-                <p class="text-base text-slate-700 leading-relaxed">클래스는 무슨 값을 갖는지 정해 둔 틀이고 인스턴스는 그 틀로 만들어 낸 하나하나다. 값은 <strong>인스턴스마다 따로</strong> 있다.</p>
+                <h3 class="text-xl font-black text-slate-900">클래스와 인스턴스는 다르다</h3>
+                <p class="text-base text-slate-700 leading-relaxed">클래스는 어떤 값을 갖는지 정해 둔 틀이고, 인스턴스는 그 클래스로 만든 대상 하나하나다. 속성 값은 <strong>인스턴스마다 따로</strong> 있다.</p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900"><code>__init__</code>은 값을 채운다</h3>
-                <p class="text-base text-slate-700 leading-relaxed">새로 하나 만들 때 딱 한 번 실행된다. 필요한 값을 빠뜨리면 <strong>만드는 그 자리에서</strong> 걸린다.</p>
+                <h3 class="text-xl font-black text-slate-900">생성자 <code>__init__</code>은 속성에 처음 값을 저장한다</h3>
+                <p class="text-base text-slate-700 leading-relaxed">인스턴스를 만들 때마다 자동으로 한 번 호출된다. 필요한 인자를 빠뜨리면 <strong>인스턴스를 만드는 그 줄에서</strong> 오류가 난다.</p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900"><code>self</code>는 지금 그 하나</h3>
-                <p class="text-base text-slate-700 leading-relaxed"><code>self.kor</code>는 「이 학생의 <code>kor</code>」이다. <code>a.average()</code>는 실제로 <code>Student.average(a)</code>로 실행된다.</p>
+                <h3 class="text-xl font-black text-slate-900"><code>self</code>는 인스턴스 자신</h3>
+                <p class="text-base text-slate-700 leading-relaxed"><code>self.kor</code>는 「이 학생의 <code>kor</code>」이다. <code>a.average()</code>는 <code>Student.average(a)</code>와 같이 실행된다.</p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">메서드는 자기 값을 갖고 일한다</h3>
-                <p class="text-base text-slate-700 leading-relaxed">괄호가 비어 있어도 되는 것은 <strong>점 앞의 것이 <code>self</code>로 들어가기</strong> 때문이다. 같은 메서드라도 누가 불렀는가에 따라 답이 다르다.</p>
+                <h3 class="text-xl font-black text-slate-900">메서드는 인스턴스의 속성을 사용한다</h3>
+                <p class="text-base text-slate-700 leading-relaxed">괄호가 비어 있어도 되는 것은 <strong>점 앞의 인스턴스가 <code>self</code>에 전달되기</strong> 때문이다. 같은 메서드라도 어느 인스턴스로 호출했는가에 따라 결과가 다르다.</p>
             </div>
             <div class="section-card space-y-2 md:col-span-2">
-                <h3 class="text-xl font-black text-slate-900">무엇을 고를지는 「함께 다니는가」로</h3>
-                <p class="text-base text-slate-700 leading-relaxed">값만 잠깐 묶는 경우에는 딕셔너리가 가볍다. 같은 값에 하는 일이 여럿 붙고 계속 함께 다닌다면 클래스다.</p>
+                <h3 class="text-xl font-black text-slate-900">선택 기준은 「값과 하는 일을 늘 함께 쓰는가」</h3>
+                <p class="text-base text-slate-700 leading-relaxed">값만 잠깐 묶는 경우에는 딕셔너리가 간단하다. 같은 값으로 하는 일이 여럿이고 값과 그 일을 늘 함께 쓴다면 클래스가 알맞다.</p>
             </div>
         </div>
     </section>
@@ -381,35 +381,35 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>a = Student("학생 A", 90, 65)</code>에서 <code>a</code>는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '클래스는 Student 쪽입니다. a는 그 틀로 만들어 낸 것입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '클래스는 Student입니다. a는 그 클래스로 만든 인스턴스입니다.')">
                     ① 클래스
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '틀로 실제로 찍어 낸 하나입니다. 자기 값을 갖습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'a는 Student 클래스로 실제로 만든 인스턴스이며 자기 속성 값을 갖습니다.')">
                     ② 인스턴스
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '메서드는 클래스 안에 넣어 둔 함수입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '메서드는 클래스 안에 정의한 함수입니다.')">
                     ③ 메서드
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '생김새가 비슷해 보여도 클래스로 만든 것입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'a는 딕셔너리가 아니라 Student 클래스로 만든 인스턴스입니다.')">
                     ④ 딕셔너리
                 </button>
             </div>
         </div>
 
         <div id="q2" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">2. <code>a.average()</code>의 괄호가 비어 있어도 되는 까닭은?</p>
+            <p class="font-black text-lg text-slate-900">2. <code>a.average()</code>의 괄호가 비어 있어도 되는 이유는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '알아서 찾는 것이 아니라 점 앞의 것이 넘어가는 것입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '파이썬이 값을 찾는 것이 아니라 점 앞의 인스턴스가 self에 전달되는 것입니다.')">
                     ① 파이썬이 값을 알아서 찾아 주기 때문
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'a.average()는 실제로 Student.average(a)로 실행됩니다.')">
-                    ② <strong>점 앞의 <code>a</code>가 <code>self</code>로 들어가기 때문</strong>
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'a.average()는 Student.average(a)와 같이 실행되어 a가 self에 전달됩니다.')">
+                    ② <strong>점 앞의 <code>a</code>가 <code>self</code>에 전달되기 때문</strong>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'def average(self)처럼 self를 받고 있습니다.')">
-                    ③ <code>average</code>가 값을 받지 않기 때문
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'def average(self)처럼 매개변수 self가 있습니다.')">
+                    ③ <code>average</code>에 매개변수가 없기 때문
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '__init__은 만들 때 한 번 실행될 뿐입니다.')">
-                    ④ <code>__init__</code>이 미리 넣어 두었기 때문
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '__init__은 인스턴스를 만들 때 한 번 호출될 뿐입니다.')">
+                    ④ <code>__init__</code>이 값을 미리 저장해 두었기 때문
                 </button>
             </div>
         </div>
@@ -417,16 +417,16 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. <code>a.kor = 95</code>를 실행하면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '값은 인스턴스마다 따로 있습니다. b는 그대로입니다.')">
-                    ① 같은 틀로 만든 <code>b</code>의 <code>kor</code>도 95가 된다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '속성 값은 인스턴스마다 따로 있습니다. b는 그대로입니다.')">
+                    ① 같은 클래스로 만든 <code>b</code>의 <code>kor</code>도 95가 된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'a.kor = 95 는 a 에 붙은 kor 만 바꿉니다. Student 틀에는 kor 이 없습니다.')">
-                    ② <code>Student</code> 틀의 <code>kor</code>이 95가 된다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'a.kor = 95는 a의 속성 kor만 바꿉니다. Student 클래스에는 kor이 없습니다.')">
+                    ② <code>Student</code> 클래스의 <code>kor</code>이 95가 된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '각자 자기 값을 가지므로 a만 바뀝니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '인스턴스마다 속성 값을 따로 가지므로 a만 바뀝니다.')">
                     ③ <code>a</code>의 <code>kor</code>만 95가 된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '속성은 이렇게 바꿀 수 있습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '속성 값은 대입문으로 바꿀 수 있습니다.')">
                     ④ 오류가 난다
                 </button>
             </div>

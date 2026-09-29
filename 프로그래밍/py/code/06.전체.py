@@ -1,4 +1,4 @@
-scores = list(map(int, input("점수를 빈칸으로 나누어 입력하세요: ").split()))
+scores = list(map(int, input("점수를 공백으로 나누어 입력하세요: ").split()))
 
 total = 0
 passed = []

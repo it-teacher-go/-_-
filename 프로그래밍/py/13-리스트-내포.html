@@ -21,8 +21,8 @@
             리스트 내포
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            담을 곳을 만들고, 순회하고, 담는 <strong>세 줄</strong>.<br>
-            한 줄로 적을 수 있습니다. 그래야 하는지는 또 다른 문제입니다.
+            빈 리스트를 만들고, 순회하고, 추가하는 <strong>세 줄</strong>을<br>
+            한 줄로 쓸 수 있습니다. 언제 그렇게 쓸지는 따로 판단해야 합니다.
         </p>
     </div>
 </header>
@@ -37,9 +37,9 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>리스트 내포로 반복과 담기를 한 줄로 적을 수 있다.</li>
-                    <li>내포의 세 조각을 구별하고 적는 차례와 실행 차례가 다름을 설명할 수 있다.</li>
-                    <li><code>if</code>를 붙여 거르면서 담을 수 있다.</li>
+                    <li>리스트 내포로 반복문과 요소 추가를 한 줄로 쓸 수 있다.</li>
+                    <li>내포의 세 부분을 구별하고, 쓰는 순서와 실행 순서가 다름을 설명할 수 있다.</li>
+                    <li><code>if</code>를 붙여 조건에 맞는 값만 골라 리스트를 만들 수 있다.</li>
                     <li>중괄호를 써서 딕셔너리와 집합을 만들 수 있다.</li>
                     <li>한 줄로 쓸지 반복으로 풀지 판단하는 기준을 말할 수 있다.</li>
                 </ol>
@@ -59,7 +59,7 @@
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
             <a href="#make" class="hover:text-orange-600 transition">세 줄이 한 줄로</a>
-            <a href="#parts" class="hover:text-orange-600 transition">세 조각</a>
+            <a href="#parts" class="hover:text-orange-600 transition">세 부분</a>
             <a href="#filter" class="hover:text-orange-600 transition">조건 붙이기</a>
             <a href="#limit" class="hover:text-orange-600 transition">어디까지 한 줄로</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
@@ -76,63 +76,63 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">세 줄이 한 줄로</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">새 기능이 아니라 짧게 적는 법입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">새 기능이 아니라 짧게 쓰는 방법입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">리스트를 만들어 값을 담는 코드는 <strong>대개 같은 모양</strong>입니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">리스트를 만들어 값을 추가하는 코드는 <strong>대개 같은 구조</strong>입니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/13.반복.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed">빈 리스트를 만들고, 순회하면서, 담습니다. 이 모양이 너무 자주 나와서 파이썬에는 <strong>한 줄로 적는 문법</strong>이 따로 있습니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">빈 리스트를 만들고, 순회하면서, 값을 추가합니다. 이 구조가 워낙 자주 나오므로 파이썬에는 <strong>이를 한 줄로 쓰는 문법</strong>이 따로 있습니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 314" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="위에 세 줄짜리 반복 코드가 있고 아래로 화살표가 내려가 한 줄짜리 리스트 내포 코드가 놓여 있다">
                     <defs><marker id="cp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
-                    <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">「만들고 · 순회하고 · 담는」 세 줄이 한 줄이 된다</text>
+                    <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">「만들고 · 순회하고 · 추가하는」 세 줄이 한 줄이 된다</text>
                     <rect x="40" y="56" width="496" height="124" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5"/>
-                    <text x="64" y="80" font-size="16" fill="#64748b" text-anchor="start">반복으로 담는 방법</text>
+                    <text x="64" y="80" font-size="16" fill="#64748b" text-anchor="start">반복문으로 만들면</text>
                     <text x="64" y="110" font-size="17" fill="#334155" font-weight="700" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">squares = []</text>
                     <text x="64" y="138" font-size="17" fill="#334155" font-weight="700" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">for n in nums:</text>
                     <text x="64" y="166" font-size="17" fill="#334155" font-weight="700" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">    squares.append(n * n)</text>
                     <line x1="288" y1="186" x2="288" y2="214" stroke="#c2410c" stroke-width="3" marker-end="url(#cp)"/>
                     <rect x="40" y="222" width="496" height="76" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
-                    <text x="64" y="246" font-size="16" fill="#c2410c" text-anchor="start">리스트 내포로 적으면</text>
+                    <text x="64" y="246" font-size="16" fill="#c2410c" text-anchor="start">리스트 내포로 쓰면</text>
                     <text x="64" y="278" font-size="17" fill="#c2410c" font-weight="700" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">squares = [n * n for n in nums]</text>
                 </svg>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/13.내포.py"></code></pre>
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">리스트 내포(list comprehension)</p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>순회하면서 만든 값으로 리스트를 바로 만드는 문법</strong>입니다. 대괄호 안에 <strong>담을 것</strong>을 먼저 적고 <strong><code>for</code></strong>를 뒤에 붙입니다. 만들어지는 리스트는 빈 리스트를 만들어 순회하며 담는 세 줄과 <strong>같습니다.</strong></p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>순회하면서 만든 값으로 리스트를 바로 만드는 문법</strong>입니다. 대괄호 안에 <strong>리스트에 넣을 값</strong>을 먼저 쓰고 <strong><code>for</code></strong>를 뒤에 붙입니다. 이렇게 만든 리스트는 빈 리스트를 만들고 순회하며 요소를 추가하는 세 줄의 결과와 <strong>같습니다.</strong></p>
             </div>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">빈 리스트를 만들지 않습니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>squares = []</code>가 없어졌습니다. 내포는 <strong>리스트를 통째로 만들어</strong> 이름에 붙입니다. 그래서 <strong>담을 곳을 미리 준비하는 줄을 빠뜨릴 일이 없습니다.</strong></p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>squares = []</code>가 없어졌습니다. 내포는 <strong>리스트를 한 번에 완성해</strong> 변수에 대입합니다. 그래서 <strong>빈 리스트를 미리 만드는 줄을 빠뜨릴 일이 없습니다.</strong></p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>[n * n for n in nums]</code>를 실행한 뒤 <code>n</code>을 찍으면 어떻게 될까요? 반복으로 쓴 쪽과 비교해 보면 어떨까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>[n * n for n in nums]</code>를 실행한 뒤 <code>n</code>을 출력하면 어떻게 될까요? 반복문으로 쓴 코드에서 같은 일을 하면 결과가 어떻게 다를까요?</p>
         </div>
     </section>
 
 
     <section id="parts" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">세 조각으로 나누어 보기</h2>
+            <h2 class="text-3xl font-black text-slate-900">세 부분으로 나누어 보기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">적는 차례와 실행 차례가 다릅니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">쓰는 순서와 실행 순서가 다릅니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">내포 한 줄은 <strong>세 조각</strong>으로 되어 있습니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">내포 한 줄은 <strong>세 부분</strong>으로 이루어져 있습니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 242" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="왼쪽부터 담을 것 n 곱하기 n, 어디서 순회하나 for n in nums, 거를 조건 if n 나머지 2가 0 세 상자가 있고 각각 3번 1번 2번 순서 표가 붙어 있다">
-                    <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">내포는 세 조각이다</text>
+                     role="img" aria-label="왼쪽부터 넣을 값 n 곱하기 n, 어디서 순회하나 for n in nums, 골라낼 조건 if n 나머지 2가 0 세 상자가 있고 각각 3번 1번 2번 순서 표가 붙어 있다">
+                    <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">내포는 세 부분으로 이루어진다</text>
                     <circle cx="95" cy="62" r="15" fill="#ffffff" stroke="#c2410c" stroke-width="2.5"/>
                     <text x="95" y="68" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle">3</text>
-                    <text x="95" y="102" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">담을 것</text>
+                    <text x="95" y="102" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">넣을 값</text>
                     <rect x="20" y="116" width="150" height="56" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
                     <text x="95" y="150" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">n * n</text>
                     <circle cx="290" cy="62" r="15" fill="#ffffff" stroke="#0369a1" stroke-width="2.5"/>
@@ -142,50 +142,50 @@
                     <text x="290" y="150" font-size="16" fill="#0369a1" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">for n in nums</text>
                     <circle cx="483" cy="62" r="15" fill="#ffffff" stroke="#047857" stroke-width="2.5"/>
                     <text x="483" y="68" font-size="16" fill="#047857" font-weight="700" text-anchor="middle">2</text>
-                    <text x="483" y="102" font-size="17" fill="#047857" font-weight="700" text-anchor="middle">거를 조건</text>
+                    <text x="483" y="102" font-size="17" fill="#047857" font-weight="700" text-anchor="middle">골라낼 조건</text>
                     <rect x="406" y="116" width="154" height="56" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5"/>
                     <text x="483" y="150" font-size="16" fill="#047857" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">if n % 2 == 0</text>
-                    <text x="288" y="202" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">적는 차례와 「실행 차례」가 다르다</text>
-                    <text x="288" y="228" font-size="16" fill="#64748b" text-anchor="middle">순회하고(1) → 거르고(2) → 담는다(3)</text>
+                    <text x="288" y="202" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">쓰는 순서와 「실행 순서」가 다르다</text>
+                    <text x="288" y="228" font-size="16" fill="#64748b" text-anchor="middle">순회하고(1) → 조건을 검사하고(2) → 넣는다(3)</text>
                 </svg>
             </div>
             <div class="overflow-x-auto">
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-32">조각</th>
-                        <th class="w-40">적는 자리</th>
+                        <th class="w-32">부분</th>
+                        <th class="w-40">쓰는 위치</th>
                         <th>하는 일</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><strong>담을 것</strong></td>
+                        <td><strong>넣을 값</strong></td>
                         <td>대괄호 <strong>맨 앞</strong></td>
                         <td>리스트에 들어갈 값을 만든다</td>
                     </tr>
                     <tr>
                         <td><code>for</code></td>
                         <td>가운데</td>
-                        <td>어디서 무엇을 순회할지 정한다</td>
+                        <td>무엇을 순회할지 정한다</td>
                     </tr>
                     <tr>
                         <td><code>if</code></td>
                         <td>맨 뒤 (없어도 된다)</td>
-                        <td>담을 것만 남기고 거른다</td>
+                        <td>조건이 참인 값만 남긴다</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">맨 앞에 적지만 맨 나중에 하는 일입니다</p>
-                <p class="text-base text-slate-700 leading-relaxed">코드는 <strong>담을 것 → <code>for</code> → <code>if</code></strong> 차례로 적지만, 실제로는 <strong><code>for</code>로 순회하고 → <code>if</code>로 거르고 → 담습니다.</strong> <strong>적는 차례를 실행 차례로 읽으면 헷갈립니다.</strong> 「무엇을 만들지를 먼저 밝히고, 어디서 가져올지는 뒤에 적는다」고 읽으면 됩니다.</p>
+                <p class="font-black text-lg text-slate-900">맨 앞에 쓰지만 맨 나중에 실행됩니다</p>
+                <p class="text-base text-slate-700 leading-relaxed">코드는 <strong>넣을 값 → <code>for</code> → <code>if</code></strong> 순서로 쓰지만, 실제로는 <strong><code>for</code>로 순회하고 → <code>if</code>로 조건을 검사하고 → 리스트에 넣습니다.</strong> <strong>쓰는 순서를 실행 순서로 읽으면 헷갈립니다.</strong> 「무엇을 만들지 먼저 밝히고, 어디서 가져올지는 뒤에 쓴다」고 읽으면 됩니다.</p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>[n if n % 2 == 0 for n in nums]</code>처럼 거르는 <code>if</code>를 <code>for</code>보다 앞에 적어 실행하면 어떻게 될까요? 거르는 조건을 <code>for</code> 뒤에 두어야 하는 까닭을 실행 차례로 설명해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>[n if n % 2 == 0 for n in nums]</code>처럼 값을 골라내는 <code>if</code>를 <code>for</code>보다 앞에 써서 실행하면 어떻게 될까요? 이 조건을 <code>for</code> 뒤에 두어야 하는 이유를 실행 순서로 설명해 보세요.</p>
         </div>
     </section>
 
@@ -194,14 +194,14 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">조건 붙이기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">거르는 일까지 한 줄에 들어갑니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">값을 골라내는 일까지 한 줄에 들어갑니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed"><code>for</code> 뒤에 <code>if</code>를 붙이면 <strong>맞는 것만 담습니다.</strong></p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>for</code> 뒤에 <code>if</code>를 붙이면 <strong>조건이 참인 값만 리스트에 넣습니다.</strong></p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 292" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위에 1부터 6까지 여섯 칸이 있고 가운데 조건 띠를 지나면서 홀수는 가위표로 막히고 짝수 2 4 6만 아래로 내려와 세 칸에 담긴다">
+                     role="img" aria-label="위에 1부터 6까지 여섯 상자가 있고 가운데 조건 띠를 지나면서 홀수는 가위표로 막히고 짝수 2 4 6만 아래로 내려와 세 상자에 들어간다">
                     <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">조건에 맞는 것만 아래로 내려온다</text>
                     <rect x="24" y="56" width="82" height="48" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
@@ -237,17 +237,17 @@
                 </svg>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/13.조건.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed">두 코드는 같은 일을 합니다. 반복으로 쓴 쪽은 네 줄, 내포로 쓴 쪽은 한 줄입니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">두 코드는 같은 일을 합니다. 반복문으로 쓴 쪽은 네 줄, 내포로 쓴 쪽은 한 줄입니다.</p>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900"><code>if</code>는 담기 전에 거릅니다</p>
-                <p class="text-base text-slate-700 leading-relaxed">조건에 맞지 않는 값은 <strong>아예 리스트에 들어가지 않습니다.</strong> 그래서 결과 리스트의 길이가 <strong>원래보다 짧아질 수 있습니다.</strong> 순회하는 개수와 담기는 개수가 다르다는 점을 잊지 않아야 합니다.</p>
+                <p class="font-black text-lg text-slate-900"><code>if</code>는 리스트에 넣기 전에 검사합니다</p>
+                <p class="text-base text-slate-700 leading-relaxed">조건이 거짓인 값은 <strong>아예 리스트에 들어가지 않습니다.</strong> 그래서 결과 리스트의 길이가 <strong>원래 리스트보다 짧아질 수 있습니다.</strong> 순회하는 횟수와 리스트에 들어가는 요소의 개수가 다를 수 있다는 점을 기억해야 합니다.</p>
             </div>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">글자를 손질하는 일에도 자주 씁니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">문자열을 정리하거나 변환할 때도 자주 씁니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/13.글자.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed"><code>[int(v) for v in values[1:]]</code>은 「이름 뒤의 값들을 하나씩 수로 바꿔 담아라」입니다. 텍스트 파일에서 읽은 값은 언제나 글자이므로 이 모양이 자주 나옵니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>[int(v) for v in values[1:]]</code>은 「이름 뒤의 값을 하나씩 정수로 변환해 리스트로 만들어라」라는 뜻입니다. 텍스트 파일에서 읽은 값은 언제나 문자열이므로 이런 코드가 자주 나옵니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -258,7 +258,7 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>[n for n in nums if n % 2 == 0]</code>과 <code>[n % 2 == 0 for n in nums]</code>는 각각 무엇을 담을까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>[n for n in nums if n % 2 == 0]</code>과 <code>[n % 2 == 0 for n in nums]</code>는 각각 어떤 값으로 리스트를 만들까요?</p>
         </div>
     </section>
 
@@ -271,7 +271,7 @@
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">내포는 <strong>줄 수를 줄여 주지만 읽기까지 쉽게 해 주지는 않습니다.</strong></p>
+            <p class="text-base text-slate-700 leading-relaxed">내포는 <strong>줄 수를 줄여 주지만, 코드를 늘 읽기 쉽게 만들어 주지는 않습니다.</strong></p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 316" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="세 줄이 있다. 위의 둘은 초록 동그라미에 O가 붙어 있고 맨 아래 것은 붉은 동그라미에 X가 붙어 있다">
@@ -285,36 +285,36 @@
                     <text x="38" y="169" font-size="18" fill="#047857" font-weight="700" text-anchor="middle">O</text>
                     <rect x="68" y="136" width="492" height="52" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
                     <text x="88" y="160" font-size="16" fill="#047857" font-weight="700" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">[n for n in nums if n > 0]</text>
-                    <text x="88" y="180" font-size="16" fill="#64748b" text-anchor="start">거르는 조건이 하나다</text>
+                    <text x="88" y="180" font-size="16" fill="#64748b" text-anchor="start">조건이 하나다</text>
                     <circle cx="38" cy="238" r="18" fill="#fff1f2" stroke="#be123c" stroke-width="2.5"/>
                     <text x="38" y="245" font-size="18" fill="#be123c" font-weight="700" text-anchor="middle">X</text>
                     <rect x="68" y="212" width="492" height="52" rx="8" fill="#fff1f2" stroke="#be123c" stroke-width="2"/>
                     <text x="88" y="236" font-size="16" fill="#be123c" font-weight="700" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">[[r[0], 평균(r)] for r in rows if 평균(r) >= 60]</text>
                     <text x="88" y="256" font-size="16" fill="#64748b" text-anchor="start">같은 계산이 두 번, 일이 셋</text>
-                    <text x="288" y="302" font-size="16" fill="#64748b" text-anchor="middle">한 줄에 담긴 「일의 수」가 기준이지 글자 수가 아니다</text>
+                    <text x="288" y="302" font-size="16" fill="#64748b" text-anchor="middle">기준은 글자 수가 아니라 한 줄에 들어간 「일의 수」다</text>
                 </svg>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/13.읽기.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed">내포로 쓴 한 줄은 조건을 통과한 줄에서 <strong>평균을 두 번 계산</strong>합니다. 거를 때 한 번, 담을 때 한 번입니다. 반복으로 푼 쪽은 <code>avg</code>라는 이름을 붙여 한 번만 계산합니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">내포로 쓴 한 줄은 조건을 통과한 학생마다 <strong>평균을 두 번 계산</strong>합니다. 조건을 검사할 때 한 번, 리스트에 넣을 값을 만들 때 한 번입니다. 반복문으로 쓴 쪽은 평균을 <code>avg</code>라는 변수에 저장해 한 번만 계산합니다.</p>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">기준은 「한 줄에 든 일의 수」입니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>담는 일 하나</strong>, 거기에 <strong>거르는 조건 하나</strong>까지가 한눈에 읽힙니다. 여기에 <strong>계산에 이름을 붙여야 하거나</strong> <strong>중간 결과를 다시 써야 한다면</strong> 반복으로 풀어 쓰는 편이 낫습니다. 글자 수가 아니라 <strong>일의 수</strong>가 기준입니다.</p>
+                <p class="font-black text-lg text-slate-900">기준은 「한 줄에 들어간 일의 수」입니다</p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>값을 만드는 일 하나</strong>에 <strong>조건 하나</strong>까지는 한눈에 읽힙니다. 여기에 더해 <strong>계산 결과를 변수에 저장해야 하거나</strong> <strong>중간 결과를 다시 써야 한다면</strong> 반복문으로 풀어 쓰는 편이 낫습니다. 글자 수가 아니라 <strong>일의 수</strong>가 기준입니다.</p>
             </div>
             <div class="bg-white border-l-4 border-l-slate-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">읽는 사람에는 나 자신도 들어갑니다</p>
-                <p class="text-base text-slate-700 leading-relaxed">코드는 쓰는 시간보다 <strong>읽는 시간이 깁니다.</strong> 한 줄로 줄여 놓고 일주일 뒤에 못 읽는다면 줄인 것이 손해입니다.</p>
+                <p class="font-black text-lg text-slate-900">코드를 읽는 사람에는 나 자신도 포함됩니다</p>
+                <p class="text-base text-slate-700 leading-relaxed">코드는 쓰는 시간보다 <strong>읽는 시간이 깁니다.</strong> 한 줄로 줄여 놓고 일주일 뒤에 스스로 읽지 못한다면 줄인 것이 오히려 손해입니다.</p>
             </div>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">파일에서 읽어 평균을 내는 프로그램을 내포로 적으면 이렇게 됩니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">파일을 읽어 평균을 구하는 프로그램에 내포를 쓰면 다음과 같습니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/13.전체.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed">줄을 자르는 일과 수로 바꾸는 일은 각각 하나씩이라 한 줄이 알맞고, 평균을 내어 찍는 일은 이름을 붙여 가며 반복으로 풀었습니다. <strong>한 프로그램 안에서도 일마다 따로 고릅니다.</strong></p>
+            <p class="text-base text-slate-700 leading-relaxed">줄을 쉼표를 기준으로 나누는 일과 점수를 정수로 변환하는 일은 각각 일이 하나뿐이라 내포 한 줄이 알맞습니다. 학생마다 이름과 점수를 변수에 저장해 평균을 출력하는 일은 반복문으로 풀었습니다. <strong>한 프로그램 안에서도 일마다 알맞은 방법을 따로 고릅니다.</strong></p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">내포로 쓴 한 줄에서 평균이 두 번 계산되는 것을 어떻게 확인할 수 있을까요? 평균을 내는 함수가 화면에 무언가를 찍는다면 몇 줄이 찍힐까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">내포로 쓴 한 줄에서 평균이 두 번 계산되는 것을 어떻게 확인할 수 있을까요? 평균을 구하는 함수가 호출될 때마다 화면에 한 줄을 출력한다면 모두 몇 줄이 출력될까요?</p>
         </div>
     </section>
 
@@ -327,16 +327,16 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">새 기능이 아니라 적는 법이다</h3>
-                <p class="text-base text-slate-700 leading-relaxed"><code>[n * n for n in nums]</code>는 빈 리스트를 만들고 순회하며 담는 세 줄과 같은 리스트를 만든다.</p>
+                <h3 class="text-xl font-black text-slate-900">새 기능이 아니라 쓰는 방법이다</h3>
+                <p class="text-base text-slate-700 leading-relaxed"><code>[n * n for n in nums]</code>는 빈 리스트를 만들고 순회하며 요소를 추가하는 세 줄과 같은 리스트를 만든다.</p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">세 조각으로 되어 있다</h3>
-                <p class="text-base text-slate-700 leading-relaxed">담을 것 · <code>for</code> · <code>if</code>. <code>if</code>는 없어도 되고, 있으면 담기 전에 거른다.</p>
+                <h3 class="text-xl font-black text-slate-900">세 부분으로 이루어진다</h3>
+                <p class="text-base text-slate-700 leading-relaxed">넣을 값 · <code>for</code> · <code>if</code>. <code>if</code>는 없어도 되고, 있으면 리스트에 넣기 전에 조건을 검사한다.</p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">적는 차례와 실행 차례가 다르다</h3>
-                <p class="text-base text-slate-700 leading-relaxed">맨 앞에 적은 담을 것이 실제로는 <strong>맨 나중</strong>에 일어난다. 순회하고 → 거르고 → 담는다.</p>
+                <h3 class="text-xl font-black text-slate-900">쓰는 순서와 실행 순서가 다르다</h3>
+                <p class="text-base text-slate-700 leading-relaxed">맨 앞에 쓴 넣을 값이 실제로는 <strong>맨 나중</strong>에 계산된다. 순회하고 → 조건을 검사하고 → 리스트에 넣는다.</p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">중괄호를 쓰면 다른 것이 나온다</h3>
@@ -344,7 +344,7 @@
             </div>
             <div class="section-card space-y-2 md:col-span-2">
                 <h3 class="text-xl font-black text-slate-900">기준은 글자 수가 아니라 일의 수다</h3>
-                <p class="text-base text-slate-700 leading-relaxed">담기 하나에 조건 하나까지가 한눈에 읽힌다. <strong>계산에 이름을 붙여야 하면</strong> 반복으로 풀어 쓰는 편이 낫다.</p>
+                <p class="text-base text-slate-700 leading-relaxed">값을 만드는 일 하나에 조건 하나까지는 한눈에 읽힌다. <strong>계산 결과를 변수에 저장해야 하면</strong> 반복문으로 풀어 쓰는 편이 낫다.</p>
             </div>
         </div>
     </section>
@@ -359,7 +359,7 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>[n * 2 for n in [1, 2, 3]]</code>의 결과는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '각 값에 2를 곱해 담습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '각 값에 2를 곱한 결과로 리스트를 만듭니다.')">
                     ① <code>[2, 4, 6]</code>
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '리스트를 두 번 이어 붙이는 것이 아닙니다.')">
@@ -368,7 +368,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '값 하나가 아니라 리스트가 만들어집니다.')">
                     ③ <code>6</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '담을 것에 n * 2를 적었으므로 두 배가 됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '넣을 값에 n * 2를 썼으므로 각 값이 두 배가 됩니다.')">
                     ④ <code>[1, 2, 3]</code>
                 </button>
             </div>
@@ -377,17 +377,17 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>[n for n in nums if n &gt; 0]</code>에서 <code>if</code>가 하는 일은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '담기 전에 거릅니다. 맞지 않는 값은 아예 들어가지 않습니다.')">
-                    ① 담은 뒤에 걸러 낸다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '리스트에 넣기 전에 검사합니다. 조건이 거짓인 값은 아예 들어가지 않습니다.')">
+                    ① 리스트에 넣은 뒤에 골라낸다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '그래서 결과 리스트가 원래보다 짧아질 수 있습니다.')">
-                    ② 담기 전에 걸러 낸다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '조건이 거짓인 값은 들어가지 않으므로 결과 리스트가 원래보다 짧아질 수 있습니다.')">
+                    ② 리스트에 넣기 전에 골라낸다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '그것은 [n &gt; 0 for n in nums]입니다. 자리가 다릅니다.')">
-                    ③ 조건이 참인지 거짓인지를 담는다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '그것은 [n &gt; 0 for n in nums]입니다. 조건식을 쓴 위치가 다릅니다.')">
+                    ③ 조건이 참인지 거짓인지를 리스트에 넣는다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '차례는 그대로입니다.')">
-                    ④ 순회하는 차례를 바꾼다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'if는 순회하는 순서를 바꾸지 않습니다.')">
+                    ④ 순회하는 순서를 바꾼다
                 </button>
             </div>
         </div>
@@ -396,16 +396,16 @@
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>내포로 쓰지 않는 편이 나은</strong> 경우는?</p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '일이 하나뿐이라 한 줄이 알맞습니다.')">
-                    ① 각 값을 두 배로 만들어 담는다
+                    ① 각 값을 두 배로 만들어 리스트에 넣는다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '거르는 조건 하나까지는 한눈에 읽힙니다.')">
-                    ② 0보다 큰 값만 골라 담는다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '조건 하나까지는 한눈에 읽힙니다.')">
+                    ② 0보다 큰 값만 골라 리스트에 넣는다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '같은 계산이 두 번 들어갑니다. 이름을 붙여 반복으로 푸는 편이 낫습니다.')">
-                    ③ <strong>계산 결과를 조건에도 쓰고 담을 때도 쓴다</strong>
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '같은 계산이 두 번 들어갑니다. 결과를 변수에 저장하고 반복문으로 푸는 편이 낫습니다.')">
+                    ③ <strong>계산 결과를 조건에도 쓰고 리스트에 넣을 값에도 쓴다</strong>
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '일이 하나뿐입니다.')">
-                    ④ 글자 앞뒤의 공백을 떼어 담는다
+                    ④ 문자열 앞뒤의 공백을 없애 리스트에 넣는다
                 </button>
             </div>
         </div>

@@ -2,7 +2,7 @@
 # check: none
 # ---
 def read_scores(path):
-    """파일에서 이름과 점수를 읽어 딕셔너리로 돌려준다."""
+    """파일에서 이름과 점수를 읽어 딕셔너리로 반환한다."""
     table = {}
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
