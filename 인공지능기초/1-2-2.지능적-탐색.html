@@ -121,9 +121,8 @@
 
             <!-- 분류 도해 -->
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 540 250" role="img" class="mx-auto block"
-                     aria-label="지능적 탐색이 맹목적 탐색과 정보 이용 탐색으로 나뉘고, 각각 두 가지 대표 알고리즘으로 다시 나뉘는 분류도"
-                     style="min-width:620px; width:100%; height:auto; max-width:620px;">
+                <svg viewBox="0 0 540 250" role="img" class="mx-auto block min-w-[620px] w-full h-auto max-w-[620px]"
+                     aria-label="지능적 탐색이 맹목적 탐색과 정보 이용 탐색으로 나뉘고, 각각 두 가지 대표 알고리즘으로 다시 나뉘는 분류도">
                     <!-- 연결선 -->
                     <path d="M118 125 H150 V68 H196" fill="none" stroke="#94a3b8" stroke-width="2"/>
                     <path d="M118 125 H150 V182 H196" fill="none" stroke="#94a3b8" stroke-width="2"/>
@@ -972,10 +971,10 @@
         existingToasts.forEach(t => t.remove());
         const toast = document.createElement('div');
         const icon = type === 'success'
-            ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>'
-            : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+            ? '<i class="fa-solid fa-circle-check quiz-mark"></i>'
+            : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#059669' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon} <span>${message}</span>`;
         document.body.appendChild(toast);
         setTimeout(() => {

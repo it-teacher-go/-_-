@@ -981,11 +981,11 @@
 
         const toast = document.createElement('div');
         const icon = type === 'success'
-            ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>'
-            : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+            ? '<i class="fa-solid fa-circle-check quiz-mark"></i>'
+            : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
 
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#4f46e5' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon}<span>${message}</span>`;
         document.body.appendChild(toast);
 

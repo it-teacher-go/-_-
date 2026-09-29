@@ -1087,7 +1087,7 @@
         const content = document.getElementById('answer-content');
         const icon = document.getElementById('answer-icon');
         content.classList.toggle('hidden');
-        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        icon.classList.toggle('chevron-open', !content.classList.contains('hidden'));
     }
 </script>
 

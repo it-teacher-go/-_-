@@ -115,11 +115,11 @@ function htmlUnder(dir) {
     return out;
 }
 
-/** 폴더 · 파일들의 HTML과 `src/styles/*.css`에서 쓰인 (속성, 색) 쌍. */
+/** 폴더 · 파일들의 HTML과 `src/styles/` 아래 모든 CSS(하위 폴더 포함)에서 쓰인 (속성, 색) 쌍. */
 function usedPairs(paths) {
     const files = [
         ...paths.flatMap((d) => (d.endsWith('.html') ? [path.join(ROOT, d)] : htmlUnder(path.join(ROOT, d)))),
-        ...fs.readdirSync(path.join(ROOT, 'src/styles')).filter((f) => f.endsWith('.css'))
+        ...fs.readdirSync(path.join(ROOT, 'src/styles'), {recursive: true}).filter((f) => f.endsWith('.css'))
             .map((f) => path.join(ROOT, 'src/styles', f)),
     ];
     // 색 없이 `border`만 쓴 선은 기본 선 색(gray-200)을 읽는다. 클래스에 이름이 안 나오므로 늘 넣는다.

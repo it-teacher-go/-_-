@@ -361,7 +361,7 @@
             <div class="bg-white rounded-2xl border border-teal-100 p-5 overflow-x-auto">
                 <!-- viewBox 왼쪽을 -60까지 넓혀 레벨 라벨 자리를 만든다.
                      레벨 2의 첫 노드가 x=5에서 시작해, 0부터 그리면 라벨과 겹친다. -->
-                <svg class="w-full h-auto max-w-3xl mx-auto" viewBox="-60 0 720 310" style="min-width:720px" role="img"
+                <svg class="w-full h-auto max-w-3xl mx-auto min-w-[720px]" viewBox="-60 0 720 310" role="img"
                      aria-label="할아버지 아래에 아버지·작은아버지·고모가 있고, 아버지 아래에 나와 여동생, 작은아버지 아래에 사촌동생이 있는 가계도">
                     <!-- 간선 -->
                     <path d="M330 64 V92 H130 V120" fill="none" stroke="#0d9488" stroke-width="3"/>
@@ -491,10 +491,10 @@
                         내비게이션의 경로 안내, 게임 속 캐릭터의 이동, 로봇의 장애물 회피처럼
                         <strong>지도 위에서 길을 찾는 일</strong>에 널리 쓰입니다.
                     </p>
-                    <div class="bg-[#282c34] rounded-xl p-4 font-mono text-base text-slate-300 leading-relaxed">
+                    <div class="code-frame rounded-xl p-4 font-mono text-base text-slate-300 leading-relaxed">
                         f(n) = g(n) + h(n)<br><br>
-                        <span class="text-[#7dd3fc]">g(n)</span>: 출발지로부터 「실제」 거리<br>
-                        <span class="text-[#86efac]">h(n)</span>: 목적지까지의 「예상」 거리
+                        <span class="text-sky-300">g(n)</span>: 출발지로부터 「실제」 거리<br>
+                        <span class="text-green-300">h(n)</span>: 목적지까지의 「예상」 거리
                     </div>
                 </div>
             </div>
@@ -575,7 +575,7 @@
                             내비게이션처럼 자유롭게 이동할 수 있는 실제 지도에서 남은 거리를 추정할 때 주로 사용합니다.
                         </p>
                         <div class="overflow-x-auto">
-                            <svg class="w-full h-auto max-w-sm mx-auto" viewBox="0 0 280 230" style="min-width:260px" role="img"
+                            <svg class="w-full h-auto max-w-sm mx-auto min-w-[260px]" viewBox="0 0 280 230" role="img"
                                  aria-label="가로 4칸 세로 3칸 떨어진 두 점을 직선으로 이으면 5칸">
                                 <g stroke="#e2e8f0" stroke-width="2">
                                     <line x1="40" x2="240" y1="20" y2="20"/>
@@ -611,7 +611,7 @@
                             8-퍼즐이나 미로처럼 대각선 이동 없이 격자 모양으로만 움직일 수 있는 문제에서 주로 사용합니다.
                         </p>
                         <div class="overflow-x-auto">
-                            <svg class="w-full h-auto max-w-sm mx-auto" viewBox="0 0 280 230" style="min-width:260px" role="img"
+                            <svg class="w-full h-auto max-w-sm mx-auto min-w-[260px]" viewBox="0 0 280 230" role="img"
                                  aria-label="같은 두 점을 격자를 따라 가면 가로 4칸 더하기 세로 3칸으로 7칸">
                                 <g stroke="#e2e8f0" stroke-width="2">
                                     <line x1="40" x2="240" y1="20" y2="20"/>
@@ -747,9 +747,8 @@
             </p>
 
             <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 overflow-x-auto">
-                <svg viewBox="0 0 520 300" role="img"
-                     aria-label="부모 노드 P 아래에 자식 Q와 R이 달린 트리. 간선에는 이동 비용, 노드 아래에는 h값, 노드 옆에는 g와 f값이 적혀 있다."
-                     style="width:100%;max-width:520px;display:block;margin:0 auto;min-width:480px">
+                <svg class="w-full max-w-[520px] block mx-auto min-w-[480px]" viewBox="0 0 520 300" role="img"
+                     aria-label="부모 노드 P 아래에 자식 Q와 R이 달린 트리. 간선에는 이동 비용, 노드 아래에는 h값, 노드 옆에는 g와 f값이 적혀 있다.">
                     <!-- 간선 -->
                     <line x1="260" x2="130" y1="70" y2="200" stroke="#94a3b8" stroke-width="4"/>
                     <line x1="260" x2="390" y1="70" y2="200" stroke="#94a3b8" stroke-width="4"/>
@@ -845,9 +844,8 @@
             </div>
 
             <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 overflow-x-auto">
-                <svg viewBox="0 0 700 410" role="img"
-                     aria-label="루트 A 아래 B·C·D가 있고, B 아래 E·F, C 아래 G·H, D 아래 I·J가 있으며, F 아래 K, H 아래 목표 L, J 아래 M이 달린 트리"
-                     style="width:100%;max-width:700px;display:block;margin:0 auto;min-width:640px">
+                <svg class="w-full max-w-[700px] block mx-auto min-w-[640px]" viewBox="0 0 700 410" role="img"
+                     aria-label="루트 A 아래 B·C·D가 있고, B 아래 E·F, C 아래 G·H, D 아래 I·J가 있으며, F 아래 K, H 아래 목표 L, J 아래 M이 달린 트리">
                     <!-- 간선 -->
                     <g stroke="#94a3b8" stroke-width="4">
                         <line x1="330" x2="110" y1="45" y2="145"/>
@@ -1101,9 +1099,8 @@
             </div>
 
             <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 overflow-x-auto">
-                <svg viewBox="0 0 700 490" role="img"
-                     aria-label="루트 A 아래 B·C·D가 있고, B 아래 E·F, C 아래 G·H, D 아래 I가 있으며, E 아래 J, G 아래 K·L, I 아래 M, K 아래 목표 N, M 아래 O가 달린 트리"
-                     style="width:100%;max-width:700px;display:block;margin:0 auto;min-width:640px">
+                <svg class="w-full max-w-[700px] block mx-auto min-w-[640px]" viewBox="0 0 700 490" role="img"
+                     aria-label="루트 A 아래 B·C·D가 있고, B 아래 E·F, C 아래 G·H, D 아래 I가 있으며, E 아래 J, G 아래 K·L, I 아래 M, K 아래 목표 N, M 아래 O가 달린 트리">
                     <g stroke="#94a3b8" stroke-width="4">
                         <line x1="330" x2="110" y1="45" y2="140"/>
                         <line x1="330" x2="330" y1="45" y2="140"/>
@@ -1327,9 +1324,8 @@
             </p>
 
             <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 overflow-x-auto">
-                <svg viewBox="0 0 700 410" role="img"
-                     aria-label="루트 A 아래 B·C·D가 있고, B 아래 E·F, C 아래 G·H, D 아래 I·J가 있으며, F 아래 목표 K, H 아래 목표 L이 달린 트리"
-                     style="width:100%;max-width:700px;display:block;margin:0 auto;min-width:640px">
+                <svg class="w-full max-w-[700px] block mx-auto min-w-[640px]" viewBox="0 0 700 410" role="img"
+                     aria-label="루트 A 아래 B·C·D가 있고, B 아래 E·F, C 아래 G·H, D 아래 I·J가 있으며, F 아래 목표 K, H 아래 목표 L이 달린 트리">
                     <g stroke="#94a3b8" stroke-width="4">
                         <line x1="330" x2="110" y1="45" y2="145"/>
                         <line x1="330" x2="330" y1="45" y2="145"/>
@@ -1474,7 +1470,7 @@
                         길 지도 — 선 위의 숫자는 <span class="text-sky-600">구간 거리</span>, 노드 아래 숫자는 <span
                             class="text-emerald-600">h(n)</span>
                     </p>
-                    <svg class="w-full h-auto max-w-3xl mx-auto" viewBox="0 0 700 390" style="min-width:700px" role="img"
+                    <svg class="w-full h-auto max-w-3xl mx-auto min-w-[700px]" viewBox="0 0 700 390" role="img"
                          aria-label="S에서 A와 B로, B에서 C와 D로, C와 D에서 G로 이어지는 길 지도와 각 노드의 g, h, f 값">
                         <!-- 간선 -->
                         <g stroke="#94a3b8" stroke-width="4">
@@ -2290,10 +2286,10 @@
         existingToasts.forEach(t => t.remove());
         const toast = document.createElement('div');
         const icon = type === 'success'
-            ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>'
-            : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+            ? '<i class="fa-solid fa-circle-check quiz-mark"></i>'
+            : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#059669' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon} <span>${message}</span>`;
         document.body.appendChild(toast);
         setTimeout(() => {

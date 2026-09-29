@@ -203,9 +203,8 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 500 235" role="img" class="mx-auto block"
-                     aria-label="같은 계산 상자 세 개가 왼쪽에서 오른쪽으로 이어지고, 각 상자는 아래에서 소리 조각을 받아 위로 글자를 내놓으며, 앞 상자가 만든 요약값을 다음 상자에 넘겨준다"
-                     style="min-width:575px; width:100%; height:auto; max-width:575px;">
+                <svg viewBox="0 0 500 235" role="img" class="mx-auto block min-w-[575px] w-full h-auto max-w-[575px]"
+                     aria-label="같은 계산 상자 세 개가 왼쪽에서 오른쪽으로 이어지고, 각 상자는 아래에서 소리 조각을 받아 위로 글자를 내놓으며, 앞 상자가 만든 요약값을 다음 상자에 넘겨준다">
                     <defs>
                         <marker id="rnnArrow" viewBox="0 0 10 10" refX="9" refY="5"
                                 markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -382,8 +381,8 @@
                 <p class="text-slate-600 text-base leading-relaxed">
                     문장을 뜻을 가진 가장 작은 단위(형태소)로 쪼개고, 누가 무엇을 했는지 단어 간의 문법적 관계를 분석합니다.
                 </p>
-                <div class="bg-[#282c34] rounded-xl overflow-hidden">
-                    <div class="flex items-center px-4 py-2 bg-[#1e2227] border-b border-[#111]">
+                <div class="code-frame rounded-xl overflow-hidden">
+                    <div class="flex items-center px-4 py-2 code-frame-deep border-b code-frame-rule">
                         <div class="flex space-x-1.5">
                             <div class="w-3 h-3 rounded-full bg-rose-500"></div>
                             <div class="w-3 h-3 rounded-full bg-amber-500"></div>
@@ -391,7 +390,7 @@
                         </div>
                     </div>
                     <div class="p-4 font-mono text-base overflow-x-auto">
-                        <p class="text-[#abb2bf]">오늘 뉴스에서 기온이 35도가 넘는다고 해.</p>
+                        <p class="code-frame-ink">오늘 뉴스에서 기온이 35도가 넘는다고 해.</p>
                         <p class="text-emerald-400 mt-2">➔ [오늘/명사] [뉴스/명사] [에서/조사] [기온/명사] [이/조사] [35도/숫자+명사] ...</p>
                     </div>
                 </div>
@@ -538,9 +537,8 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 480 205" role="img" class="mx-auto block"
-                     aria-label="빈칸이 있는 문장 뒤에 올 낱말 후보 네 개와 각각의 확률을 가로 막대로 나타낸 그림"
-                     style="min-width:550px; width:100%; height:auto; max-width:550px;">
+                <svg viewBox="0 0 480 205" role="img" class="mx-auto block min-w-[550px] w-full h-auto max-w-[550px]"
+                     aria-label="빈칸이 있는 문장 뒤에 올 낱말 후보 네 개와 각각의 확률을 가로 막대로 나타낸 그림">
                     <g font-size="14" fill="#334155">
                         <text x="10" y="24" font-weight="700" fill="#6d28d9">「오늘 점심에 김밥을 ____」 다음에 올 낱말은?</text>
 
@@ -890,11 +888,11 @@
 
         const toast = document.createElement('div');
         const icon = type === 'success'
-            ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>'
-            : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+            ? '<i class="fa-solid fa-circle-check quiz-mark"></i>'
+            : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
 
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#0284c7' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon}<span>${message}</span>`;
         document.body.appendChild(toast);
         currentToast = toast;

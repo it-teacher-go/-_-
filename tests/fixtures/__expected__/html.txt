@@ -11,6 +11,7 @@ ERROR tests/fixtures/html/1-1.틀린-제목.html:25 [고정폭 래퍼] <div> min
 ERROR tests/fixtures/html/1-1.틀린-제목.html:26 [고정폭 래퍼] <div> min-width 480px > 340px
 ERROR tests/fixtures/html/1-1.틀린-제목.html:27 [글자 크기(SVG)] SVG font-size 14 → 375px에서 약 6.0px
 ERROR tests/fixtures/html/1-1.틀린-제목.html:27 [글자 크기(SVG)] SVG font-size 20.0px → 375px에서 약 8.5px
+ERROR tests/fixtures/html/1-1.틀린-제목.html:28 [글자 크기(SVG)] SVG font-size 24 → 375px에서 약 8.0px
 ERROR tests/fixtures/html/1-1.틀린-제목.html:29 [금지 요소] 밝은 그러데이션 배경 — background-color가 투명으로 남아 다크모드 확장에서 글자만 밝아진다. 단색 <code>bg-sky-50</code>로 준다
 ERROR tests/fixtures/html/1-1.틀린-제목.html:31 [금지 요소] 「견주다」 — 「비교하다」로 쓴다
 ERROR tests/fixtures/html/1-1.틀린-제목.html:31 [금지 요소] 「되풀이」 — 「반복」로 쓴다

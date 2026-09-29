@@ -304,7 +304,7 @@
 
             <div class="space-y-3">
                 <div class="overflow-x-auto">
-                    <svg viewBox="0 0 576 212" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                    <svg viewBox="0 0 576 212" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                          role="img" aria-label="세 칸을 나란히 놓아 비교한 그림. 정형은 크기가 같은 칸이 반듯하게 늘어선 격자, 반정형은 길이가 제각각이지만 앞에 이름표가 붙은 조각들, 비정형은 경계도 이름표도 없는 덩어리로 그렸다">
                         <text x="96" y="28" font-size="19" fill="#065f46" font-weight="700" text-anchor="middle">정형</text>
                         <text x="96" y="50" font-size="16" fill="#64748b" text-anchor="middle">칸이 정해져 있다</text>
@@ -693,28 +693,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #0d9488; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

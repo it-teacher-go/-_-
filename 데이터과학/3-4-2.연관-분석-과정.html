@@ -579,7 +579,7 @@
                 </p>
 
                 <div class="overflow-x-auto">
-                    <svg viewBox="0 0 576 224" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                    <svg viewBox="0 0 576 224" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                          role="img" aria-label="왼쪽 컵라면 동그라미와 오른쪽 이온음료 동그라미를 두 화살표가 잇는다. 위쪽 가는 화살표는 컵라면에서 이온음료로 가며 값이 0.6이고, 아래쪽 굵은 화살표는 이온음료에서 컵라면으로 가며 값이 1.0이다">
                         <defs><marker id="cf-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker><marker id="cf-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#4f46e5"/></marker></defs>
                         <text x="288" y="30" font-size="17" fill="#475569" font-weight="700" text-anchor="middle">컵라면 &rarr; 이온음료 = 0.6</text>
@@ -867,14 +867,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">항목 집합</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">itemset</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-slate-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>있을 수 있는 <strong>모든 조합</strong>을 만든 것</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-slate-400"></i><span>있을 수 있는 <strong>모든 조합</strong>을 만든 것</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-slate-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>항목이 <strong>하나 늘 때마다 조합은 두 배 남짓</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-slate-400"></i><span>항목이 <strong>하나 늘 때마다 조합은 두 배 남짓</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-slate-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>그래서 <strong>버리는 일이 먼저</strong>다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-slate-400"></i><span>그래서 <strong>버리는 일이 먼저</strong>다</span>
                     </li>
                 </ul>
             </div>
@@ -885,17 +882,13 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">지지도</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">support</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-indigo-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>함께 든 트랜잭션 수 &divide; <strong>전체</strong> 트랜잭션 수</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-indigo-400"></i><span>함께 든 트랜잭션 수 &divide; <strong>전체</strong> 트랜잭션 수</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-indigo-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>최소 지지도</strong>를 넘으면 <strong>빈발 항목 집합</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-indigo-400"></i><span><strong>최소 지지도</strong>를 넘으면 <strong>빈발 항목 집합</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-indigo-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>문턱은 <strong>사람이 정한다</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-indigo-400"></i><span>문턱은 <strong>사람이 정한다</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-indigo-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>항목을 더 넣으면 지지도는 커지지 않으므로, 문턱을 못 넘은 짝을 품은 묶음은 세지 않고 버린다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-indigo-400"></i><span>항목을 더 넣으면 지지도는 커지지 않으므로, 문턱을 못 넘은 짝을 품은 묶음은 세지 않고 버린다</span>
                     </li>
                 </ul>
             </div>
@@ -906,14 +899,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">향상도</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">lift</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>지지도(A, B) &divide; <strong>두 지지도의 곱</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>지지도(A, B) &divide; <strong>두 지지도의 곱</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>1보다 크면</strong> 연관, <strong>1이면</strong> 우연, <strong>1보다 작으면</strong> 따로</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span><strong>1보다 크면</strong> 연관, <strong>1이면</strong> 우연, <strong>1보다 작으면</strong> 따로</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>많이 팔려서 겹친 것을 <strong>걸러 낸다</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>많이 팔려서 겹친 것을 <strong>걸러 낸다</strong></span>
                     </li>
                 </ul>
             </div>
@@ -924,14 +914,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">신뢰도와 연관 규칙</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">confidence &middot; association rule</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-amber-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>함께 든 트랜잭션 수 &divide; <strong>A가 든</strong> 트랜잭션 수</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-amber-400"></i><span>함께 든 트랜잭션 수 &divide; <strong>A가 든</strong> 트랜잭션 수</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-amber-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>방향이 있다.</strong> A &rarr; B와 B &rarr; A의 값이 다르다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-amber-400"></i><span><strong>방향이 있다.</strong> A &rarr; B와 B &rarr; A의 값이 다르다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-amber-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>값이 큰 규칙이 <strong>늘 써먹기 좋은 것은 아니다</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-amber-400"></i><span>값이 큰 규칙이 <strong>늘 써먹기 좋은 것은 아니다</strong></span>
                     </li>
                 </ul>
             </div>
@@ -1135,28 +1122,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #4f46e5; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

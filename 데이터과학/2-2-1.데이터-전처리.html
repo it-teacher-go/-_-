@@ -669,8 +669,8 @@
                 </p>
 
                 <div class="overflow-x-auto">
-                    <svg viewBox="0 0 576 190" style="min-width:576px"
-                         class="w-full h-auto max-w-xl mx-auto bg-white rounded-xl border border-slate-200"
+                    <svg viewBox="0 0 576 190"
+                         class="w-full h-auto max-w-xl mx-auto bg-white rounded-xl border border-slate-200 min-w-[576px]"
                          role="img" aria-label="상자 그림의 각 부분에 이름표가 달려 있다. 왼쪽부터 이상치 점 둘, 최솟값(수염 끝) 세로선, Q1에서 Q3까지를 잇는 분홍 상자, 그 안의 중앙값 세로선, 최댓값(수염 끝) 세로선, 오른쪽 이상치 점 둘이 있고, 상자의 폭이 IQR로 표시되어 있다">
                         <text x="48" y="36" font-size="17" fill="#f43f5e" font-weight="700" text-anchor="middle">이상치</text>
                         <line x1="48" y1="44" x2="48" y2="92" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="4 3"/>
@@ -1740,14 +1740,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">데이터 전처리</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">분석에 적합하게 가공하기</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-sky-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>결측치 처리</strong> &middot; <strong>이상치 처리</strong> &middot; <strong>정규화</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-sky-400"></i><span><strong>결측치 처리</strong> &middot; <strong>이상치 처리</strong> &middot; <strong>정규화</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-sky-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>2022년의 한 조사에서 데이터 과학자들은 시간의 약 <strong>37.75%</strong>를 데이터 준비에 쓴다고 답했다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-sky-400"></i><span>2022년의 한 조사에서 데이터 과학자들은 시간의 약 <strong>37.75%</strong>를 데이터 준비에 쓴다고 답했다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-sky-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>목적과 데이터가 다르므로 <strong>절대적인 표준 방법은 없다</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-sky-400"></i><span>목적과 데이터가 다르므로 <strong>절대적인 표준 방법은 없다</strong></span>
                     </li>
                 </ul>
             </div>
@@ -1758,14 +1755,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">결측치</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">missing value</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-indigo-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>특정 <strong>속성값이 누락된 것</strong> &mdash; 무응답 &middot; 기기 오류</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-indigo-400"></i><span>특정 <strong>속성값이 누락된 것</strong> &mdash; 무응답 &middot; 기기 오류</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-indigo-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>제거법</strong> &mdash; 쉽지만 <strong>데이터 손실</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-indigo-400"></i><span><strong>제거법</strong> &mdash; 쉽지만 <strong>데이터 손실</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-indigo-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>대체법</strong> &mdash; 남기지만 <strong>결과가 왜곡될 수 있음</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-indigo-400"></i><span><strong>대체법</strong> &mdash; 남기지만 <strong>결과가 왜곡될 수 있음</strong></span>
                     </li>
                 </ul>
             </div>
@@ -1776,14 +1770,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">이상치</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">outlier</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>논리적 기준</strong> &mdash; 현실에서 있을 수 없는 값(혈압 828)</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span><strong>논리적 기준</strong> &mdash; 현실에서 있을 수 없는 값(혈압 828)</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>통계적 기준</strong> &mdash; 상자 그림(개별) &middot; 산점도(두 속성)</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span><strong>통계적 기준</strong> &mdash; 상자 그림(개별) &middot; 산점도(두 속성)</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>IQR = Q3&minus;Q1, 이상치 기준 = <strong>Q1&minus;1.5&times;IQR · Q3+1.5&times;IQR</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span>IQR = Q3&minus;Q1, 이상치 기준 = <strong>Q1&minus;1.5&times;IQR · Q3+1.5&times;IQR</strong></span>
                     </li>
                 </ul>
             </div>
@@ -1794,17 +1785,13 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">정규화</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">normalization</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>속성값의 <strong>범위를 일치</strong>시켜 왜곡을 막는다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>속성값의 <strong>범위를 일치</strong>시켜 왜곡을 막는다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>범위를 맞추는 두 방법 &mdash; <strong>최소-최대 정규화</strong>(0~1) &middot; <strong>표준화</strong>(평균 0, 표준 편차 1)</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>범위를 맞추는 두 방법 &mdash; <strong>최소-최대 정규화</strong>(0~1) &middot; <strong>표준화</strong>(평균 0, 표준 편차 1)</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>의사결정트리 기반 모델 &middot; pH 같은 값에는 <strong>필요 없을 수 있음</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>의사결정트리 기반 모델 &middot; pH 같은 값에는 <strong>필요 없을 수 있음</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>이상치를 먼저 처리</strong>한 뒤 정규화해야 값이 좁은 구간에 몰리지 않는다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span><strong>이상치를 먼저 처리</strong>한 뒤 정규화해야 값이 좁은 구간에 몰리지 않는다</span>
                     </li>
                 </ul>
             </div>
@@ -2016,28 +2003,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #4f46e5; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

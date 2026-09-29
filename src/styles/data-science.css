@@ -37,7 +37,7 @@
 
 /* ── 말풍선 ── 대화 · 리뷰 장면을 CSS로 표현한다. 몸통 색은 Tailwind 바탕 클래스(`bg-indigo-100` 따위)가 준다.
    **꼬리는 몸통의 바탕을 물려받는 삼각형이다**(`background: inherit`) — 꼬리 색을 따로 적지 않으므로
-   몸통 색을 바꾸거나 다크로 바뀌어도 둘이 함께 간다. `speech-lg`는 여백이 큰 풍선(1-1-1). */
+   몸통 색을 바꾸거나 다크로 바뀌어도 둘이 함께 간다. `speech-lg`는 여백이 큰 풍선. */
 .speech {
     position: relative;
     border-radius: 1rem;
@@ -81,7 +81,7 @@
     box-shadow: none;
 }
 
-/* ── 단계 흐름(1-1-1 · 1-1-2) ── 좁은 화면에서는 세로로 접히고, 넓은 화면에서만 화살표가 붙는다. */
+/* ── 단계 흐름 ── 좁은 화면에서는 세로로 접히고, 넓은 화면에서만 화살표가 붙는다. */
 .flow-step {
     position: relative;
 }
@@ -100,7 +100,7 @@
     }
 }
 
-/* ── 직무 변화 화살표(1-1-2) ── '예전 → 지금'. 좁은 화면에서는 아래를, 넓은 화면에서는 오른쪽을 향한다. */
+/* ── 직무 변화 화살표 ── '예전 → 지금'. 좁은 화면에서는 아래를, 넓은 화면에서는 오른쪽을 향한다. */
 .shift-arrow {
     display: flex;
     align-items: center;
@@ -109,14 +109,14 @@
     font-size: 1.5rem;
 }
 
-/* ── 스마트폰 목업(1-2-1) ── 실제 화면을 그린 그림이라 `data-keep-color` 섬이다. 다크 짝이 없다. */
+/* ── 스마트폰 목업 ── 실제 화면을 그린 그림이라 `data-keep-color` 섬이다. 다크 짝이 없다. */
 .phone {
     border: 4px solid #cbd5e1;
     border-radius: 2rem;
     background: #ffffff;
 }
 
-/* ── 산점도(1-2-2) ── 점을 퍼센트로 배치해 어떤 폭에서도 비율이 유지된다.
+/* ── 산점도 ── 점을 퍼센트로 배치해 어떤 폭에서도 비율이 유지된다.
    축 눈금은 HTML 텍스트라 text-base 아래로 내려가지 않는다. */
 .plot {
     position: relative;
@@ -150,7 +150,7 @@
     border-color: var(--surface-card);
 }
 
-/* ── 빈 표 칸(1-3-1) ── 통합 결과에서 값이 없는 자리를 빗금으로 눈에 띄게 표시한다. */
+/* ── 빈 표 칸 ── 통합 결과에서 값이 없는 자리를 빗금으로 눈에 띄게 표시한다. */
 .empty-cell {
     background-image: repeating-linear-gradient(45deg, #f1f5f9 0 6px, #ffffff 6px 12px);
 }
@@ -159,7 +159,7 @@
     background-image: repeating-linear-gradient(45deg, var(--surface-raised) 0 6px, var(--surface-card) 6px 12px);
 }
 
-/* ── 수식 상자(2-2-1) ── 수식은 코드가 아니므로 본문 글꼴을 그대로 쓰되 배경으로만 구별한다. */
+/* ── 수식 상자 ── 수식은 코드가 아니므로 본문 글꼴을 그대로 쓰되 배경으로만 구별한다. */
 .formula {
     background: #f8fafc;
     border: 1px solid #cbd5e1;
@@ -182,7 +182,7 @@
     font-size: 1rem;
 }
 
-/* ── 넓은 표(2-3-1 · 2-3-2) ── 열이 8개를 넘고 머리글이 긴 표는 32rem으로도 각 열이 100px 아래로 눌린다. */
+/* ── 넓은 표 ── 열이 8개를 넘고 머리글이 긴 표는 32rem으로도 각 열이 100px 아래로 눌린다. */
 table.table-wide {
     min-width: 68rem;
 }

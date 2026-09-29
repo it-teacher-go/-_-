@@ -248,7 +248,7 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg class="w-full h-auto max-w-[660px] mx-auto" style="min-width:660px" viewBox="0 0 660 300"
+                <svg class="w-full h-auto max-w-[660px] mx-auto min-w-[660px]" viewBox="0 0 660 300"
                      xmlns="http://www.w3.org/2000/svg" role="img"
                      aria-label="레이블이 있으면 지도학습으로 가고 맞히려는 값이 범주면 분류 수치면 회귀, 레이블이 없으면 비지도학습의 군집화로 가는 갈림길 그림">
                     <rect fill="#ffffff" height="300" width="660" x="0" y="0"></rect>
@@ -514,9 +514,9 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">일곱 단계</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">seven steps</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>문제 정의 &rarr; 수집 &rarr; 전처리 &rarr; <strong>모델 선정</strong></span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>학습 &rarr; <strong>성능 평가와 개선</strong> &rarr; 적용</span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>한 줄로 흐르지 않고, <strong>돌아가는 것이 정상</strong>이다</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span>문제 정의 &rarr; 수집 &rarr; 전처리 &rarr; <strong>모델 선정</strong></span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span>학습 &rarr; <strong>성능 평가와 개선</strong> &rarr; 적용</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span>한 줄로 흐르지 않고, <strong>돌아가는 것이 정상</strong>이다</span></li>
                 </ul>
             </div>
             <div class="section-card border-t-4 border-violet-500">
@@ -526,9 +526,9 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">모델 고르기</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">choosing the model</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>레이블이 <strong>있으면 지도학습</strong>, 없으면 비지도학습</span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>맞히려는 값이 <strong>범주면 분류, 수치면 회귀</strong></span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>맞히려는 값을 묻는 물음의 답은 <strong>1단계에서 어떻게 적었느냐</strong>가 정한다</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span>레이블이 <strong>있으면 지도학습</strong>, 없으면 비지도학습</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span>맞히려는 값이 <strong>범주면 분류, 수치면 회귀</strong></span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span>맞히려는 값을 묻는 물음의 답은 <strong>1단계에서 어떻게 적었느냐</strong>가 정한다</span></li>
                 </ul>
             </div>
             <div class="section-card border-t-4 border-emerald-500">
@@ -538,9 +538,9 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">성능 측정하기</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">evaluating</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>훈련 데이터와 <strong>테스트 데이터를 나눈다</strong></span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>가르칠 때 본 문제로 시험 보면 <strong>외운 것과 배운 것을 구분할 수 없다</strong></span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>고칠 때는 <strong>한 번에 하나만</strong>, 그리고 적어 둔다</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>훈련 데이터와 <strong>테스트 데이터를 나눈다</strong></span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>가르칠 때 본 문제로 시험 보면 <strong>외운 것과 배운 것을 구분할 수 없다</strong></span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>고칠 때는 <strong>한 번에 하나만</strong>, 그리고 적어 둔다</span></li>
                 </ul>
             </div>
             <div class="section-card border-t-4 border-rose-500">
@@ -550,9 +550,9 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">쓸 때 살필 것</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">when it goes live</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span><strong>배우지 못한 상황</strong>을 밝혀 적는다</span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span>사람에 관한 결정에는 <strong>사람이 확인하는 단계</strong>를 둔다</span></li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0" style="font-size:0.5rem"></i><span><strong>쓰임새를 좁혀 적어</strong> 다른 데 쓰이는 것을 줄인다</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span><strong>배우지 못한 상황</strong>을 밝혀 적는다</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span>사람에 관한 결정에는 <strong>사람이 확인하는 단계</strong>를 둔다</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span><strong>쓰임새를 좁혀 적어</strong> 다른 데 쓰이는 것을 줄인다</span></li>
                 </ul>
             </div>
         </div>
@@ -678,28 +678,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #0d9488; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

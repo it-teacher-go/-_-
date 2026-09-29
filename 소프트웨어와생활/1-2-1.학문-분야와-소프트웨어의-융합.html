@@ -95,7 +95,7 @@
                 <div class="bg-slate-100 border border-slate-300 rounded-2xl p-5 space-y-3">
                     <p class="font-black text-base text-slate-900">도구로 쓰기</p>
                     <div class="overflow-x-auto">
-                        <svg viewBox="0 0 480 190" class="w-full h-auto mx-auto" style="min-width:480px;max-width:480px"
+                        <svg viewBox="0 0 480 190" class="w-full h-auto mx-auto min-w-[480px] max-w-[480px]"
                              role="img" aria-label="원래 하던 일이라는 상자에서 화살표가 나가 같은 일이라는 상자로 이어지고, 가운데에 소프트웨어 상자가 얹혀 있다. 결과 상자에는 더 빠르고 깔끔하게라고 적혀 있다.">
                             <rect x="14" y="70" width="136" height="60" rx="12" fill="#e2e8f0" stroke="#64748b" stroke-width="2.5"/>
                             <text x="82" y="96" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">원래 하던 일</text>
@@ -126,7 +126,7 @@
                 <div class="bg-lime-50 border border-lime-200 rounded-2xl p-5 space-y-3">
                     <p class="font-black text-base text-lime-950">융합</p>
                     <div class="overflow-x-auto">
-                        <svg viewBox="0 0 480 190" class="w-full h-auto mx-auto" style="min-width:480px;max-width:480px"
+                        <svg viewBox="0 0 480 190" class="w-full h-auto mx-auto min-w-[480px] max-w-[480px]"
                              role="img" aria-label="원래 하던 일 상자와 소프트웨어 상자가 만나 새로 가능해진 일이라는 상자로 이어진다. 결과 상자에는 백 년 치 소설의 낱말 쓰임 흐름 보기라고 적혀 있다.">
                             <rect x="14" y="30" width="136" height="54" rx="12" fill="#ecfccb" stroke="#4d7c0f" stroke-width="2.5"/>
                             <text x="82" y="52" font-size="17" fill="#1a2e05" font-weight="700" text-anchor="middle">원래 하던 일</text>
@@ -296,7 +296,7 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 208" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 208" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="네 개의 상자가 왼쪽에서 오른쪽으로 화살표로 이어진다. 물음 정하기, 숫자로 바꾸기, 계산 맡기기, 분야의 말로 되읽기 순서이며 각 상자에 번호와 이름이 적혀 있다. 마지막 상자에서 첫 상자로 되돌아가는 화살표가 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">어느 분야든 이 네 단계를 지난다</text>
 
@@ -716,28 +716,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #4d7c0f; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

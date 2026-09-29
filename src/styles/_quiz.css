@@ -2,21 +2,42 @@
    @import 한다. **퀴즈 스크립트에는 이 뜻 이름만 적는다** — JS 문자열에 Tailwind 클래스를 적으면
    `npm run check -- classes` 가 빨간불을 켠다.
 
-   선택지 버튼 자체의 맞음 · 틀림 색(`.correct` · `.wrong` · `.disabled`)은 페이지 `<style>` 에 있다.
-   과목마다 색이 달라서다. 토스트의 바탕색도 같은 까닭으로 스크립트가 `style` 로 준다. */
+   선택지 버튼 자체의 맞음 · 틀림 색(`.correct` · `.wrong` · `.disabled`)은 `_note.css`에 있고, 과목 색은
+   과목 진입 CSS의 `--note-*` 변수가 준다. **스크립트는 `style`을 쓰지 않는다**(`check -- inline-css`). */
 
 /* 누른 선택지 · 해설 · 토스트 앞머리의 아이콘 */
 .quiz-mark { @apply mr-2; }
 
-/* 아래로 떠오르는 토스트. `quiz-toast-show` 를 붙이면 올라와 보이고, 떼면 가라앉아 사라진다. */
+/* 아래로 떠오르는 토스트. `quiz-toast-show` 를 붙이면 올라와 보이고, 떼면 가라앉아 사라진다.
+   맞으면 `quiz-toast-ok`(과목 색 `--note-solid` — 인공지능기초는 편의 `quiz-…` 클래스가 준다), 틀리면 `quiz-toast-no`. */
 .quiz-toast {
-    @apply fixed bottom-10 left-1/2 -translate-x-1/2 px-8 py-4 rounded-2xl text-white font-bold shadow-2xl
-        transition-all transform translate-y-20 opacity-0 z-[1000] flex items-center;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    z-index: 9999;
+    max-width: 90vw;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+    opacity: 0;
+    transform: translateX(-50%) translateY(2rem);
+    transition: all 0.3s ease;
 }
-.quiz-toast.quiz-toast-show { @apply translate-y-0 opacity-100; }
-.quiz-toast-wide { @apply max-w-xl w-full; }
-.quiz-toast-icon { @apply mr-2 text-xl; }
-.quiz-toast-text { @apply leading-snug; }
+.quiz-toast.quiz-toast-show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+.quiz-toast-ok { background: var(--note-solid); }
+.quiz-toast-no { background: #f43f5e; }
+
+/* 다크 — 짙은 페이지 위에서는 그림자가 안 보이므로 선을 한 줄 두른다. 바탕은 흰 글자를 얹는 채움이라 그대로 둔다. */
+:root[data-theme="dark"] .quiz-toast {
+    box-shadow: 0 0 0 1px var(--surface-line), 0 8px 24px rgb(0 0 0 / 0.5);
+}
 
 /* 선택지 아래에 나타나는 해설 상자 */
 .quiz-feedback { @apply rounded-xl p-4 text-base font-medium border; }

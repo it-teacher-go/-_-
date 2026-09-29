@@ -388,8 +388,7 @@
                         <!-- 진행 바 -->
                         <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
                             <div id="iq-progress-bar"
-                                 class="iq-progress-fill sim-nq-bar h-3 rounded-full"
-                                 style="width: 0%"></div>
+                                 class="iq-progress-fill sim-nq-bar h-3 rounded-full w-0"></div>
                         </div>
                         <p class="text-slate-400 text-base mt-2">목표: <span class="font-bold" id="iq-goal-text">8개 모두 배치 + 충돌 없음</span>
                         </p>
@@ -566,7 +565,7 @@
 
                     </div>
 
-                    <div class="flex-1 min-h-[350px] w-full h-full relative overflow-hidden bg-[#0f172a]"
+                    <div class="flex-1 min-h-[350px] w-full h-full relative overflow-hidden sim-nq-tree-stage"
                          id="dfsTreeContainer">
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-500 text-center space-y-4 pointer-events-none z-10"
                              id="treePlaceholder">
@@ -624,7 +623,7 @@
             </p>
 
             <div class="relative">
-                <div class="absolute top-0 right-0 bg-[#2d2d2d] border-b border-l border-slate-700 text-slate-400 px-3 py-1 rounded-bl-lg rounded-tr-lg font-bold z-10">
+                <div class="absolute top-0 right-0 sim-nq-code-lang border-b border-l border-slate-700 text-slate-400 px-3 py-1 rounded-bl-lg rounded-tr-lg font-bold z-10">
                     Python
                 </div>
                 <pre><code class="language-python" data-src="code/search-n-queen.py"></code></pre>

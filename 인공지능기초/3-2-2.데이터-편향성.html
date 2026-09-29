@@ -289,8 +289,7 @@
                 아래 흐름에서 <span class="text-rose-600 font-bold">붉은 글씨</span>는 그 단계에서 던져야 할 물음입니다.
             </p>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 560 270" role="img" class="mx-auto block" aria-label="원시 데이터에서 활용까지 여섯 단계와 각 단계에서 편향이 스며드는 지점"
-                     style="min-width:640px; width:100%; height:auto; max-width:640px;">
+                <svg viewBox="0 0 560 270" role="img" class="mx-auto block min-w-[640px] w-full h-auto max-w-[640px]" aria-label="원시 데이터에서 활용까지 여섯 단계와 각 단계에서 편향이 스며드는 지점">
                     <defs>
                         <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
                             <path d="M0,0 L7,3.2 L0,6.4 z" fill="#94a3b8"/>
@@ -1027,10 +1026,10 @@
         existingToasts.forEach(t => t.remove());
 
         const toast = document.createElement('div');
-        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>' : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-mark"></i>' : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
 
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#4f46e5' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon} <span>${message}</span>`;
         document.body.appendChild(toast);
 

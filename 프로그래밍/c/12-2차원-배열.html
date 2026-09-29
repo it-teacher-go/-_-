@@ -181,7 +181,7 @@
 
             <pre class="language-c"><code class="language-c" data-src="code/12.순회.c#중첩"></code></pre>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 272" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 272" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="세 줄 네 칸짜리 표를 왼쪽 위부터 오른쪽으로 순회하고 줄이 끝나면 다음 줄로 내려가 열두 칸을 차례로 지나간다">
                     <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">바깥이 줄을 고르고 안쪽이 그 줄을 순회한다</text>
                     <rect x="152" y="44" width="88" height="62" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -284,7 +284,7 @@
             <pre class="language-c"><code class="language-c" data-src="code/12.한줄.c#주소"></code></pre>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 340" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 340" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="위쪽은 세 줄 네 칸짜리 표이고 아래쪽은 같은 열두 칸을 한 줄로 늘어놓은 모습이다. 줄이 차례로 이어 붙어 있어 메모리에는 줄바꿈이 없다">
                     <defs>
                         <marker id="ar12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -416,7 +416,7 @@
         <div class="section-card space-y-6">
             <pre class="language-c"><code class="language-c" data-src="code/12.넘기기.c"></code></pre>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 250" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 250" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="열두 칸이 한 줄로 놓여 있고 인덱스 0 · 4 · 8인 칸에서 각 줄이 시작한다. 다음 줄이 어디서 시작하는지는 열 크기를 알아야 계산할 수 있다">
                     <defs><marker id="ar12f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">메모리에는 줄바꿈이 없다</text>
@@ -654,28 +654,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #ea580c; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

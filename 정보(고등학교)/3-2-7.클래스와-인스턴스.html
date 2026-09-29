@@ -160,8 +160,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <svg class="w-full h-auto max-w-[560px] mx-auto" viewBox="0 0 560 200"
-                     style="min-width:560px" xmlns="http://www.w3.org/2000/svg" role="img"
+                <svg class="w-full h-auto max-w-[560px] mx-auto min-w-[560px]" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" role="img"
                      aria-label="하나의 클래스에서 여러 인스턴스가 만들어지는 그림">
                     <defs>
                         <marker id="ar-cls" markerWidth="12" markerHeight="10" refX="11" refY="5"
@@ -522,14 +521,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">왜 묶는가</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">따로 두면 어긋난다</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>목록을 나누어 두면 <strong>같은 인덱스가 같은 대상을 가리켜야</strong> 한다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span>목록을 나누어 두면 <strong>같은 인덱스가 같은 대상을 가리켜야</strong> 한다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>그 약속은 <strong>코드에 적혀 있지 않다</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span>그 약속은 <strong>코드에 적혀 있지 않다</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>어긋나도 <strong>오류가 나지 않는다</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span>어긋나도 <strong>오류가 나지 않는다</strong></span>
                     </li>
                 </ul>
             </div>
@@ -540,14 +536,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">클래스와 인스턴스</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">class &amp; instance</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>클래스</strong> &mdash; 무슨 값을 갖고 무슨 일을 하는지 정해 둔 틀. 값은 인스턴스마다 따로 갖는다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span><strong>클래스</strong> &mdash; 무슨 값을 갖고 무슨 일을 하는지 정해 둔 틀. 값은 인스턴스마다 따로 갖는다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>인스턴스</strong> &mdash; 그 틀로 찍어 낸 하나. 각자 자기 값을 갖는다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span><strong>인스턴스</strong> &mdash; 그 틀로 찍어 낸 하나. 각자 자기 값을 갖는다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><code>self</code>는 <strong>지금 다루고 있는 바로 그 하나</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span><code>self</code>는 <strong>지금 다루고 있는 바로 그 하나</strong></span>
                     </li>
                 </ul>
             </div>
@@ -558,14 +551,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">속성과 메서드</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">값과 할 줄 아는 일</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>속성</strong> &mdash; 인스턴스가 갖는 값. <code>hero.name</code>처럼 점으로 꺼낸다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span><strong>속성</strong> &mdash; 인스턴스가 갖는 값. <code>hero.name</code>처럼 점으로 꺼낸다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>메서드</strong> &mdash; <strong>자기 속성을 갖고 일하는</strong> 함수</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span><strong>메서드</strong> &mdash; <strong>자기 속성을 갖고 일하는</strong> 함수</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>점 앞에 있는 것이 매개변수 <code>self</code>로 들어간다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span>점 앞에 있는 것이 매개변수 <code>self</code>로 들어간다</span>
                     </li>
                 </ul>
             </div>
@@ -576,14 +566,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">언제 쓰나</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">구별해서 쓴다</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>값이 <strong>한 덩어리로 다녀야</strong> 하고 <strong>딸린 일이 있을 때</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>값이 <strong>한 덩어리로 다녀야</strong> 하고 <strong>딸린 일이 있을 때</strong></span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>같은 모양을 <strong>여럿 만들어야</strong> 할 때</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>같은 모양을 <strong>여럿 만들어야</strong> 할 때</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>값 하나에 딸린 일도 없으면 <strong>변수로 충분</strong>하다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>값 하나에 딸린 일도 없으면 <strong>변수로 충분</strong>하다</span>
                     </li>
                 </ul>
             </div>
@@ -732,28 +719,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #0d9488; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

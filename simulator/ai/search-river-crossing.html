@@ -222,20 +222,18 @@
                     <!-- 왼쪽 강가 -->
                     <div class="bank" id="leftBank">
                         <div class="bank-label">왼쪽 강가</div>
-                        <div class="text-3xl" id="leftFarmer" style="display:none">👨‍🌾</div>
+                        <div class="text-3xl hidden" id="leftFarmer">👨‍🌾</div>
                     </div>
                     <!-- 강(배) -->
                     <div class="river-col">
                         <div class="river-waves"></div>
                         <div class="boat" id="boat">
-                            <div class="farmer-token" id="boatFarmer" style="display:none">👨‍🌾</div>
-                            <div class="text-2xl" id="boatCargo" style="display:none;font-size:1.5rem"></div>
                         </div>
                     </div>
                     <!-- 오른쪽 강가 -->
                     <div class="bank" id="rightBank">
                         <div class="bank-label">오른쪽 강가</div>
-                        <div class="text-3xl" id="rightFarmer" style="display:none">👨‍🌾</div>
+                        <div class="text-3xl hidden" id="rightFarmer">👨‍🌾</div>
                     </div>
                 </div>
 
@@ -318,8 +316,6 @@
                     <div class="river-col">
                         <div class="river-waves"></div>
                         <div class="boat" id="aiBoat">
-                            <div class="farmer-token" id="aiBoatFarmer" style="display:none">👨‍🌾</div>
-                            <div id="aiBoatCargo" style="display:none;font-size:1.5rem"></div>
                         </div>
                     </div>
                     <div class="bank" id="aiRightBank">
@@ -780,10 +776,8 @@ function renderManual() {
     const leftFarmer = document.getElementById('leftFarmer');
 
     // 농부 표시
-    leftFarmer.style.display = f === 0 ? 'block' : 'none';
-    document.getElementById('rightFarmer').style.display = f === 1 ? 'block' : 'none';
-    document.getElementById('boatFarmer').style.display = 'none';
-    document.getElementById('boatCargo').style.display = 'none';
+    leftFarmer.classList.toggle('hidden', f !== 0);
+    document.getElementById('rightFarmer').classList.toggle('hidden', f !== 1);
 
     // 기존 entity-btn 제거
     leftBank.querySelectorAll('.entity-btn').forEach(e => e.remove());
@@ -874,8 +868,6 @@ function renderAI() {
 
     leftBank.querySelectorAll('.entity-btn,.farmer-token').forEach(e => e.remove());
     rightBank.querySelectorAll('.entity-btn,.farmer-token').forEach(e => e.remove());
-    document.getElementById('aiBoatFarmer').style.display = 'none';
-    document.getElementById('aiBoatCargo').style.display = 'none';
 
     // 농부
     const ft = document.createElement('div');

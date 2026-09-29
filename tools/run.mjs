@@ -31,8 +31,8 @@ const CHECKS = {
     'privacy': 'tests/privacy.test.mjs',
     'classes': 'tests/classes.test.mjs',
     'hover': 'tests/hover.test.mjs',
-    // 페이지 HTML에 박은 색(<style> · style="") — 색은 Tailwind 클래스와 공용 CSS에서만 온다
-    'colors': 'tests/colors.test.mjs',
+    // 페이지 HTML이 스스로 정한 CSS(<style> · style="" · 임의 색 클래스) — 모양은 클래스로만 준다
+    'inline-css': 'tests/inline-css.test.mjs',
     // 격자 트랙 목록의 `fr` 옆 `auto` — 옛 사파리에서 그 트랙이 0으로 접힌다
     'grid': 'tests/grid.test.mjs',
     'code': 'tests/code.test.mjs',

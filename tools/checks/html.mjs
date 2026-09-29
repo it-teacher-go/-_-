@@ -65,6 +65,12 @@ function twMinW(cls) {
     return m ? parseFloat(m[1]) * (m[2] === 'px' ? 1 : 16) : null;
 }
 
+/** Tailwind 임의값 클래스 `max-w-[576px]` · `max-w-[30rem]` 을 px 로 읽는다(반응형 변형 `md:max-w-[…]`은 뺀다). */
+function twMaxW(cls) {
+    const m = cls.match(/(?<![-\w:])max-w-\[([\d.]+)(px|rem)\]/);
+    return m ? parseFloat(m[1]) * (m[2] === 'px' ? 1 : 16) : null;
+}
+
 const fix = (x, d) => x.toFixed(d);
 
 /** 태그 중첩 · 테이블 래퍼 · SVG 글자 크기를 한 번의 훑기로 검사한다. */
@@ -128,6 +134,7 @@ export class Checker {
      * SVG 는 줄지 않고 래퍼가 가로로 스크롤된다. min-width 는 SVG 자신뿐 아니라 **조상 요소**에도
      * 붙는다 — `<div class="min-w-[480px]"><svg class="w-full">` 처럼. 그래서 조상의 인라인 style 과
      * Tailwind `min-w-[…]` 클래스까지 함께 본다(이 저장소의 SVG 는 모두 `w-full` 이다).
+     * max-width 는 SVG 자신의 것만 — 인라인 style 이나 `max-w-[…]` 클래스.
      */
     viewboxScale() {
         let idx = -1;
@@ -141,7 +148,8 @@ export class Checker {
         const vbW = Number(parts[2]);
         if (!Number.isFinite(vbW) || parts[2] === '' || vbW <= 0) return 1;
         let drawn = RENDER_W;
-        const mx = styleLen(a.style || '', 'max-width');
+        let mx = styleLen(a.style || '', 'max-width');
+        if (mx === null) mx = twMaxW(a.class || '');
         if (mx !== null) drawn = Math.min(drawn, mx);
         for (const [, , anc] of this.stack.slice(0, idx + 1)) {
             let mn = styleLen(anc.style || '', 'min-width');

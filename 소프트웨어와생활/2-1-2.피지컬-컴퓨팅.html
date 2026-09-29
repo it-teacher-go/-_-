@@ -94,7 +94,7 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 260" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 260" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="현실 세계에서 센서로, 센서에서 마이크로컨트롤러로, 마이크로컨트롤러에서 구동기로, 구동기에서 다시 현실 세계로 이어지는 고리가 그려져 있다. 각 상자에 이름과 하는 일이 적혀 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">감지하고 &middot; 판단하고 &middot; 반응한다</text>
 
@@ -661,28 +661,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #4d7c0f; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

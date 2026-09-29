@@ -81,7 +81,7 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 224" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 224" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="다섯 개의 번호가 붙은 상자가 왼쪽에서 오른쪽으로 이어진다. 질문 설정, 수집, 정제, 탐색, 해석 순서이며 세 번째 상자가 가장 크게 그려져 있고 가장 오래 걸린다고 적혀 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">분석은 다섯 걸음으로 돈다</text>
 
@@ -355,7 +355,7 @@
             <p class="font-black text-lg text-slate-800">평균이 같아도 전혀 다른 두 반</p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 244" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 244" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="두 개의 점 그래프가 위아래로 놓여 있다. 위쪽 1반은 점들이 가운데에 몰려 있고, 아래쪽 2반은 점들이 양쪽 끝에 나뉘어 있다. 두 그래프 모두 평균이 같은 자리에 표시되어 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">평균은 같지만 모양은 전혀 다르다</text>
 
@@ -473,7 +473,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 216" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 216" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="세 가지 설명이 나란히 그려져 있다. 첫째는 대출이 성적을 올린다, 둘째는 성적 때문에 대출이 는다, 셋째는 시험 기간이라는 다른 것이 둘 다를 끌어올린다는 그림이며 각각 상자에 이름이 적혀 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">함께 움직였다면 설명은 여럿이다</text>
 
@@ -778,28 +778,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #4d7c0f; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

@@ -122,8 +122,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <svg class="w-full h-auto max-w-[560px] mx-auto" viewBox="0 0 560 200"
-                     style="min-width:560px" xmlns="http://www.w3.org/2000/svg" role="img"
+                <svg class="w-full h-auto max-w-[560px] mx-auto min-w-[560px]" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" role="img"
                      aria-label="바깥에서 값을 받아 처리하고 다시 바깥으로 내보내는 흐름 그림">
                     <defs>
                         <marker id="ar-io" markerWidth="12" markerHeight="10" refX="11" refY="5"
@@ -520,14 +519,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">입력과 출력</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">input &amp; output</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>값을 코드에 박아 두면 <strong>그 한 경우에만</strong> 쓸 수 있다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span>값을 코드에 박아 두면 <strong>그 한 경우에만</strong> 쓸 수 있다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>받을 길이 생기면 <strong>코드를 고치지 않고</strong> 여러 경우에 쓴다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span>받을 길이 생기면 <strong>코드를 고치지 않고</strong> 여러 경우에 쓴다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-teal-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>키보드로 받고 화면으로 내보내는 길이 <strong>표준 입출력</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-teal-400"></i><span>키보드로 받고 화면으로 내보내는 길이 <strong>표준 입출력</strong></span>
                     </li>
                 </ul>
             </div>
@@ -538,14 +534,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">받은 값은 글자다</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">가장 자주 걸리는 함정</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>숫자를 쳐 넣어도 <strong>문자열</strong>로 들어온다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span>숫자를 쳐 넣어도 <strong>문자열</strong>로 들어온다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>계산하려면 <code>int</code>나 <code>float</code>으로 <strong>바꿔 주어야</strong> 한다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span>계산하려면 <code>int</code>나 <code>float</code>으로 <strong>바꿔 주어야</strong> 한다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-rose-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>무엇이 들어올지 모르므로 <strong>있는 그대로 받아 두는 것</strong>이다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-rose-400"></i><span>무엇이 들어올지 모르므로 <strong>있는 그대로 받아 두는 것</strong>이다</span>
                     </li>
                 </ul>
             </div>
@@ -556,14 +549,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">내보내기</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">print</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>숫자만 덜렁 찍으면 <strong>읽는 사람이 알 수 없다</strong> &mdash; 설명을 함께 붙인다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>숫자만 덜렁 찍으면 <strong>읽는 사람이 알 수 없다</strong> &mdash; 설명을 함께 붙인다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><code>sep</code>은 값 사이, <code>end</code>는 줄 끝을 바꾼다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span><code>sep</code>은 값 사이, <code>end</code>는 줄 끝을 바꾼다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-emerald-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>화면에 찍는 것은 <strong>저장이 아니다</strong></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-emerald-400"></i><span>화면에 찍는 것은 <strong>저장이 아니다</strong></span>
                     </li>
                 </ul>
             </div>
@@ -574,14 +564,11 @@
                 <h3 class="text-xl font-bold text-slate-800 mb-1">파일 입출력</h3>
                 <p class="text-base font-medium text-slate-400 mb-3">끝나도 남는 기억</p>
                 <ul class="space-y-2 text-base text-slate-600 leading-relaxed">
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span>변수는 <strong>프로그램이 도는 동안만</strong> 값을 들고 있다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span>변수는 <strong>프로그램이 도는 동안만</strong> 값을 들고 있다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><strong>열고 &rarr; 쓰거나 읽고 &rarr; 닫는</strong> 세 단계다</span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span><strong>열고 &rarr; 쓰거나 읽고 &rarr; 닫는</strong> 세 단계다</span>
                     </li>
-                    <li class="flex gap-2"><i class="fa-solid fa-circle text-violet-400 mt-1.5 shrink-0"
-                                              style="font-size:0.5rem"></i><span><code>'w'</code>는 <strong>있던 내용을 지운다</strong> &mdash; 덧붙이려면 <code>'a'</code></span>
+                    <li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-violet-400"></i><span><code>'w'</code>는 <strong>있던 내용을 지운다</strong> &mdash; 덧붙이려면 <code>'a'</code></span>
                     </li>
                 </ul>
             </div>
@@ -730,28 +717,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #0d9488; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

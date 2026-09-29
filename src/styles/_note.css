@@ -83,6 +83,14 @@ body {
     box-shadow: none;
 }
 
+/* ── 글머리 점 ── `<li class="flex gap-2"><i class="fa-solid fa-circle bullet-dot text-sky-400"></i><span>…`
+   크기 · 첫 줄에 맞춘 위 여백 · 줄지 않음이 한 몸이다. 색은 팔레트 클래스가 준다(다크 짝은 theme.js). */
+.bullet-dot {
+    font-size: 0.5rem;
+    margin-top: 0.375rem;
+    flex-shrink: 0;
+}
+
 /* ── 퀴즈 선택지 ─────────────────────────────────────────── */
 .quiz-btn {
     width: 100%;

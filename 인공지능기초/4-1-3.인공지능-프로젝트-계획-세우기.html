@@ -934,9 +934,6 @@
         buttons.forEach(b => {
             if (!('label' in b.dataset)) b.dataset.label = b.innerHTML;
             b.classList.add('disabled');
-            if (b !== btn) {
-                b.style.opacity = '0.5';
-            }
         });
 
         // 정답/오답 표시
@@ -954,7 +951,6 @@
         setTimeout(() => {
             buttons.forEach(b => {
                 b.classList.remove('correct', 'wrong', 'disabled');
-                b.style.opacity = '1';
                 // 원래 HTML 로 되돌린다
                 b.innerHTML = b.dataset.label;
             });
@@ -967,10 +963,10 @@
         existingToasts.forEach(t => t.remove());
 
         const toast = document.createElement('div');
-        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>' : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-mark"></i>' : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
 
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#4f46e5' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon} <span>${message}</span>`;
         document.body.appendChild(toast);
 

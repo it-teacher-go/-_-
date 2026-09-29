@@ -84,7 +84,7 @@
             <pre class="language-python"><code class="language-python" data-src="code/13.반복.py"></code></pre>
             <p class="text-base text-slate-700 leading-relaxed">빈 리스트를 만들고, 순회하면서, 담습니다. 이 모양이 너무 자주 나와서 파이썬에는 <strong>한 줄로 적는 문법</strong>이 따로 있습니다.</p>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 314" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 314" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="위에 세 줄짜리 반복 코드가 있고 아래로 화살표가 내려가 한 줄짜리 리스트 내포 코드가 놓여 있다">
                     <defs><marker id="cp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">「만들고 · 순회하고 · 담는」 세 줄이 한 줄이 된다</text>
@@ -127,7 +127,7 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">내포 한 줄은 <strong>세 조각</strong>으로 되어 있습니다.</p>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 242" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 242" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="왼쪽부터 담을 것 n 곱하기 n, 어디서 순회하나 for n in nums, 거를 조건 if n 나머지 2가 0 세 상자가 있고 각각 3번 1번 2번 순서 표가 붙어 있다">
                     <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">내포는 세 조각이다</text>
                     <circle cx="95" cy="62" r="15" fill="#ffffff" stroke="#c2410c" stroke-width="2.5"/>
@@ -200,7 +200,7 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed"><code>for</code> 뒤에 <code>if</code>를 붙이면 <strong>맞는 것만 담습니다.</strong></p>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 292" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 292" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="위에 1부터 6까지 여섯 칸이 있고 가운데 조건 띠를 지나면서 홀수는 가위표로 막히고 짝수 2 4 6만 아래로 내려와 세 칸에 담긴다">
                     <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">조건에 맞는 것만 아래로 내려온다</text>
@@ -273,7 +273,7 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">내포는 <strong>줄 수를 줄여 주지만 읽기까지 쉽게 해 주지는 않습니다.</strong></p>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 316" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 316" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="세 줄이 있다. 위의 둘은 초록 동그라미에 O가 붙어 있고 맨 아래 것은 붉은 동그라미에 X가 붙어 있다">
                     <text x="288" y="28" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">짧다고 늘 좋은 것은 아니다</text>
                     <circle cx="38" cy="86" r="18" fill="#ecfdf5" stroke="#047857" stroke-width="2.5"/>
@@ -454,28 +454,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #ea580c; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

@@ -120,7 +120,7 @@ body :is(.explore-input, .fill-in):focus {
     background: var(--surface-card);
 }
 
-/* ── 단계 번호 · 흐름 화살표(2-1-5 · 2-1-6 · 2-1-7) ── 번호 원의 색은 편마다 Tailwind 바탕 클래스로 준다. */
+/* ── 단계 번호 · 흐름 화살표 ── 번호 원의 색은 편마다 Tailwind 바탕 클래스로 준다. */
 .step-badge {
     width: 2.5rem;
     height: 2.5rem;
@@ -146,7 +146,7 @@ body :is(.explore-input, .fill-in):focus {
     color: var(--ink-faint);
 }
 
-/* ── 모델 만들기 흐름의 위젯 칩(2-1-7) ── */
+/* ── 모델 만들기 흐름의 위젯 칩 ── */
 .widget-chip {
     display: inline-flex;
     align-items: center;
@@ -169,7 +169,7 @@ body :is(.explore-input, .fill-in):focus {
     content: '';
 }
 
-/* ── 놀이터로 가는 링크 카드의 그러데이션 테두리(2-2-1) ── 안쪽 카드와의 틈(p-1)으로 테두리가 보인다.
+/* ── 놀이터로 가는 링크 카드의 그러데이션 테두리 ── 안쪽 카드와의 틈(p-1)으로 테두리가 보인다.
    그림 배경이라 단색을 함께 깐다(인쇄 · 그림 배경이 빠지는 곳). 강조색이라 두 테마 모두 그대로 둔다. */
 .link-frame-pink {
     background-color: #db2777;
@@ -181,7 +181,7 @@ body :is(.explore-input, .fill-in):focus {
     background-image: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #0284c7 100%);
 }
 
-/* ── JSON 예시(2-1-2) ── 두 테마 모두 짙은 상자다(코드 블록과 같은 원칙). */
+/* ── JSON 예시 ── 두 테마 모두 짙은 상자다(코드 블록과 같은 원칙). */
 .json-sample {
     background: #1e293b;
     color: #e2e8f0;
@@ -202,7 +202,22 @@ body :is(.explore-input, .fill-in):focus {
 .json-sample .value { color: #86efac; }
 .json-sample .punct { color: #94a3b8; }
 
-/* ── 추론 화살표(1-1-2) ── */
+/* ── 편집기 창을 흉내 낸 코드 틀 ── One Dark 편집기의 색이다.
+   코드 블록과 같은 원칙으로 두 테마 모두 짙은 상자라 다크 짝이 없다. 모양(둥근 모 · 여백 · 그림자)은 마크업의 유틸리티가 준다. */
+.code-frame { background-color: #282c34; }        /* 창 바탕 */
+.code-frame-deep { background-color: #1e2227; }   /* 한 단 짙은 칸(제목 줄 · 코드 칸) */
+.code-frame-rule { border-color: #111111; }       /* 제목 줄 아래 선 */
+.code-frame-ink { color: #abb2bf; }               /* 코드 글자 */
+
+/* ── 열린 답의 쉐브론 ── 답 칸이 보이면 스크립트가 붙인다. */
+.chevron-open { transform: rotate(180deg); }
+
+/* ── 판단 방법 비교 표 ── 4열에 긴 글이 들어 32rem으로는 칸이 눌린다. 틀(table.table-prose)보다 뒤에 와서 이긴다. */
+table.table-prose.table-roomy {
+    min-width: 540px;
+}
+
+/* ── 추론 화살표 ── */
 .arrow-pulse {
     animation: pulse-arrow 2s infinite;
 }
@@ -213,7 +228,7 @@ body :is(.explore-input, .fill-in):focus {
     100% { transform: translateX(0); opacity: 0.5; }
 }
 
-/* ── 맹목적 · 정보 이용 탐색 비교 격자(1-2-2) ── 짙은 패널(bg-slate-900) 위의 칸이다. 두 테마 모두 그대로 둔다. */
+/* ── 맹목적 · 정보 이용 탐색 비교 격자 ── 짙은 패널(bg-slate-900) 위의 칸이다. 두 테마 모두 그대로 둔다. */
 .mini-grid {
     display: grid;
     grid-template-columns: repeat(11, 26px);
@@ -241,7 +256,7 @@ body :is(.explore-input, .fill-in):focus {
 .mc.s { background: #2563eb; }
 .mc.g { background: #10b981; }
 
-/* ── 막대그래프 · 산점도(2-1-4) ── 색은 편에서 Tailwind 바탕 클래스로 준다. */
+/* ── 막대그래프 · 산점도 ── 색은 편에서 Tailwind 바탕 클래스로 준다. */
 .bar-group {
     display: flex;
     align-items: flex-end;
@@ -268,7 +283,7 @@ body :is(.explore-input, .fill-in):focus {
     transform: translate(-50%, -50%);
 }
 
-/* ── 음성 파형(2-2-3) ── */
+/* ── 음성 파형 ── */
 .wave-container {
     display: flex;
     align-items: center;
@@ -300,7 +315,7 @@ body :is(.explore-input, .fill-in):focus {
     }
 }
 
-/* ── 탐색과 문제 해결(1-2-1) ─────────────────────────────── */
+/* ── 탐색과 문제 해결 ─────────────────────────────── */
 /* 문제 모델링 탭 */
 .tab-bar {
     position: sticky;

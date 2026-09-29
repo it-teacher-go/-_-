@@ -162,7 +162,7 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 300" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 300" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="네 개의 칸이 두 줄 두 칸으로 놓여 있다. 왼쪽 위 막대그래프는 크기 비교, 오른쪽 위 선그래프는 시간에 따른 흐름, 왼쪽 아래 산점도는 두 값의 관계, 오른쪽 아래 원그래프는 전체 중의 비율이라고 적혀 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">무엇을 보여 주려는가로 고른다</text>
 
@@ -282,7 +282,7 @@
                 <div class="bg-rose-50 border border-rose-200 rounded-2xl p-5 space-y-3">
                     <p class="font-black text-base text-rose-900">세로축을 20부터 그린 것</p>
                     <div class="overflow-x-auto">
-                        <svg viewBox="0 0 480 240" class="w-full h-auto mx-auto" style="min-width:480px;max-width:480px"
+                        <svg viewBox="0 0 480 240" class="w-full h-auto mx-auto min-w-[480px] max-w-[480px]"
                              role="img" aria-label="세로축이 20부터 시작한 막대그래프. 3월 22, 4월 21, 5월 27, 6월 21이며 5월 막대가 다른 것보다 몇 배 높아 보인다.">
                             <path d="M60 200 L456 200" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
                             <path d="M60 40 L60 200" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
@@ -309,7 +309,7 @@
                 <div class="bg-lime-50 border border-lime-200 rounded-2xl p-5 space-y-3">
                     <p class="font-black text-base text-lime-950">세로축을 0부터 그린 것</p>
                     <div class="overflow-x-auto">
-                        <svg viewBox="0 0 480 240" class="w-full h-auto mx-auto" style="min-width:480px;max-width:480px"
+                        <svg viewBox="0 0 480 240" class="w-full h-auto mx-auto min-w-[480px] max-w-[480px]"
                              role="img" aria-label="세로축이 0부터 시작한 막대그래프. 같은 값인 3월 22, 4월 21, 5월 27, 6월 21이며 네 막대의 높이가 비슷하다.">
                             <path d="M60 200 L456 200" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
                             <path d="M60 40 L60 200" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
@@ -733,28 +733,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #4d7c0f; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

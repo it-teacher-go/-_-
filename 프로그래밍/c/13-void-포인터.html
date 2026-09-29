@@ -176,7 +176,7 @@
 
             <pre class="language-c"><code class="language-c" data-src="code/13.캐스트.c"></code></pre>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 268" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 268" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="실수 하나가 담긴 8바이트를 double 포인터로 읽으면 다 읽지만 int 포인터로 읽으면 앞의 4바이트만 읽고 나머지를 버린다">
                     <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">double d = 3.5;&#160;&#160;&#160;8바이트에 나뉘어 담겨 있다</text>
                     <g transform="translate(0,22)">
@@ -243,7 +243,7 @@
             <pre class="language-c"><code class="language-c" data-src="code/13.바이트.c"></code></pre>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 260" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 260" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="정수 하나가 담긴 4바이트를 int 포인터로 읽으면 하나의 값이 되고 char 포인터로 읽으면 바이트마다 따로 읽힌다. 담긴 것은 그대로이고 읽는 방법만 다르다">
                     <text x="20" y="28" font-size="17" font-weight="700" fill="#0f172a">int num = 0x12345678;&#160;&#160;&#160;&#160;담긴 것은 그대로다</text>
 
@@ -512,28 +512,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #ea580c; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

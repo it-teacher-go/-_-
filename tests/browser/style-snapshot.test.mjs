@@ -33,7 +33,7 @@ const PROPS = [
     'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'lineHeight', 'letterSpacing',
     'textAlign', 'textDecorationLine', 'textTransform', 'whiteSpace', 'wordBreak', 'overflowWrap',
     'minWidth', 'maxWidth', 'minHeight', 'maxHeight', 'gap', 'flexDirection', 'alignItems', 'justifyContent',
-    'gridTemplateColumns', 'transform', 'cursor', 'listStyleType', 'content',
+    'gridTemplateColumns', 'transform', 'cursor', 'listStyleType', 'content', 'touchAction', 'pointerEvents',
 ];
 
 const PAGES = Object.keys(import.meta.glob(['/*.html', '/*/**/*.html', '!**/node_modules/**', '!/dist*/**', '!/tests/**']))

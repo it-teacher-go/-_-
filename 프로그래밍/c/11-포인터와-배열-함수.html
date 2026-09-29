@@ -89,7 +89,7 @@
             <pre class="language-c"><code class="language-c" data-src="code/11.배열이름.c"></code></pre>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 246" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 246" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="다섯 칸짜리 배열에서 첫 칸만 강조되어 있고 아래에서 화살표가 그 칸을 가리킨다. score와 앰퍼샌드 score 0번과 포인터 p가 모두 그 첫 칸이 있는 자리를 뜻한다">
                     <defs>
                         <marker id="ar11a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -173,7 +173,7 @@
             <pre class="language-c"><code class="language-c" data-src="code/11.산술.c"></code></pre>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 290" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 290" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="같은 열두 바이트를 위아래로 나란히 놓았다. int 포인터는 4바이트짜리 묶음의 시작마다 서고 char 포인터는 1바이트마다 선다. 위아래 바이트의 위치가 같으므로 int 한 걸음이 char 네 걸음과 같다는 것이 보인다">
                     <text x="20" y="30" font-size="17" font-weight="700" fill="#0f172a">같은 열두 바이트인데 한 걸음의 크기가 다르다</text>
                     <g transform="translate(0,22)">
@@ -310,7 +310,7 @@
 
             <pre class="language-c"><code class="language-c" data-src="code/11.맞바꾸기.c"></code></pre>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 306" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 306" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="위쪽은 값을 베껴 넘겨 함수 안 사본만 바뀌는 모습이고 아래쪽은 자리를 넘겨 함수가 부른 쪽의 변수를 직접 바꾸는 모습이다">
                     <defs><marker id="ar11f1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker><marker id="ar11f2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
                     <text x="20" y="26" font-size="17" fill="#334155" font-weight="700">swap(x, y) &mdash; 값을 베껴 넘긴다</text>
@@ -613,28 +613,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #ea580c; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

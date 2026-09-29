@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>스스로 CSS를 정한 조각</title>
+    <!-- 걸린다(R1): 색이 없어도 <style> 은 <style> 이다 -->
+    <style>
+        .card { margin: 0; }
+    </style>
+</head>
+<body>
+<!-- 걸린다(R2): 색이 아닌 style 도, svg 안 · 섬 안의 style 도 -->
+<div style="min-width:576px">넓은 칸</div>
+<svg viewBox="0 0 10 10"><rect fill="#f97316" style="stroke:#000000" width="10" height="10"/></svg>
+<table data-keep-color>
+    <tr><td style="background:#1e3a8a">1</td></tr>
+</table>
+<!-- 걸린다(R3): 섬 밖의 임의 색 클래스 -->
+<div class="bg-[#282c34] rounded-xl">
+    <p class="text-[#abb2bf] hover:border-[rgb(1_2_3)]">코드 창</p>
+    <p class="[color:red]">임의 속성</p>
+    <p class="bg-[tomato]">이름 색</p>
+</div>
+<!-- 안 걸린다: 섬 · svg 안의 임의 색, 임의값 크기 · 위치, 표현 속성 -->
+<table class="text-slate-900" data-keep-color>
+    <tr><td class="bg-[#1e3a8a] text-white">1</td></tr>
+</table>
+<svg viewBox="0 0 10 10" class="min-w-[576px] max-w-[576px]"><g class="fill-[#f97316]"><rect width="10" height="10"/></g></svg>
+<div class="h-[13%] left-[33.3%] bottom-[50%] w-[72%] text-[2rem] outline-[none] decoration-[wavy]">막대</div>
+<script>
+    // 걸린다(R4): 강의노트 스크립트가 스타일을 쓴다
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position: fixed';
+    toast.style.opacity = '1';
+    toast.innerHTML = '<span style="color:red">틀림</span>';
+    toast.style['color'] = 'red';
+    Object.assign(toast.style, {color: 'red'});
+    document.head.append(document.createElement('style'));
+    // 안 걸린다: 읽기 · 비교 · 클래스 토글
+    if (toast.style.opacity === '1') toast.classList.add('quiz-toast-show');
+</script>
+</body>
+</html>

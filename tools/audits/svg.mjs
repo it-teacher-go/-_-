@@ -30,6 +30,10 @@ const VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input'
 const MAXW_CLASS_RE = /(?:^|\s)max-w-(?:\[[^\]]+\]|xs|sm|md|lg|\d?xl|screen-\w+|prose|fit|min|max)(?=\s|$)/;
 // 폭 · 높이가 값으로 박혀 있으면(% 가 아니면) 아예 늘어나지 않는다.
 const FIXED_LEN_RE = /^\s*[\d.]+\s*(px)?\s*$/;
+// 같은 것을 Tailwind 클래스로 준 꼴 — 임의값 `w-[200px]` · `h-[180px]`, 눈금 `h-60`. 반응형 변형은 뺀다.
+const FIXED_W_CLASS_RE = /(?:^|\s)w-\[[\d.]+(?:px|rem)\](?=\s|$)/;
+const FIXED_H_CLASS_RE = /(?:^|\s)h-(?:\[[\d.]+(?:px|rem|vh)\]|\d+(?:\.5)?)(?=\s|$)/;
+const MINW_CLASS_RE = /(?:^|\s)min-w-\[([\d.]+)(px|rem)\](?=\s|$)/;
 
 /** [줄, viewBox 폭, min-width, 종류('천장'|'정렬'), 까닭] */
 export function scanFile(src) {
@@ -53,15 +57,17 @@ export function scanFile(src) {
         let why = null, widthCapped = null;
         const mc = cls.match(MAXW_CLASS_RE);
         if (FIXED_LEN_RE.test(a.width || '')) why = widthCapped = 'width 속성 고정';
+        else if (FIXED_W_CLASS_RE.test(cls)) why = widthCapped = 'Tailwind 폭 고정';
         else if (/max-width\s*:/.test(style)) why = widthCapped = 'style max-width';
         else if (mc) why = widthCapped = `Tailwind ${mc[0].trim()}`;
         else if (FIXED_LEN_RE.test(a.height || '')) why = 'height 속성 고정';
         else if (/max-height\s*:/.test(style)) why = 'style max-height';
         else if (words.includes('h-full') || /\bheight\s*:/.test(style)) {
             // 높이가 고정된 조상 안에서 h-full 이면 배율이 그 높이로 묶인다.
-            if (ancestors.some(([, , pa]) => /\bheight\s*:\s*[\d.]+(px|rem|vh)/.test(pa.style || ''))) why = '높이 고정 조상';
+            if (ancestors.some(([, , pa]) => /\bheight\s*:\s*[\d.]+(px|rem|vh)/.test(pa.style || '') ||
+                FIXED_H_CLASS_RE.test(pa.class || ''))) why = '높이 고정 조상';
         }
-        const m = style.match(/min-width\s*:\s*([\d.]+)(px|rem)/);
+        const m = style.match(/min-width\s*:\s*([\d.]+)(px|rem)/) || cls.match(MINW_CLASS_RE);
         const minW = m ? parseFloat(m[1]) * (m[2] === 'px' ? 1 : 16) : null;
         if (why) {
             if (!widthCapped) return;

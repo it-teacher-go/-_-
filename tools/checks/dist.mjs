@@ -22,6 +22,9 @@
 //    → `tools/vite/third-party-notices.js`.
 // 7. **사이트 아이콘(파비콘)이 모든 페이지에 들어갔는지** — 빌드가 넣는다(`tools/vite/site-favicon.js`).
 //    정본 주소를 가리키는지까지 본다. 사본을 두면 디자인이 갈라진다.
+// 8. **`<meta charset>` 이 첫 1024바이트 안에 있는지** — 그 앞에 긴 머리 주석을 두면 밀려난다.
+//    밀려나도 대개 멀쩡해 보여서 눈으로는 못 잡는다. 테마 스크립트는 빌드가 그 **뒤**에
+//    끼운다(`tools/vite/theme-toggle.js`).
 //
 // 사용법:
 //     npm run check -- dist                 # dist/
@@ -52,6 +55,8 @@ const NOTICE_MISSING_MARK = '라이선스 전문 파일을 동봉하지 않았�
 const CDN_RE = /https:\/\/(?:cdn|unpkg|cdnjs)[a-zA-Z0-9./_-]*/g;
 const URL_RE = /url\(\s*['"]?([^'")]+)['"]?\s*\)/g;
 const MODULE_SCRIPT_RE = /<script[^>]*type="module"/;
+// 브라우저가 문자 집합을 찾으려고 앞머리만 훑는 폭(HTML 표준). 이 밖에 두면 한글이 깨질 수 있다.
+const CHARSET_LIMIT = 1024;
 const SCRIPT_SRC_RE = /<script[^>]*src="([^"]+)"/g;
 
 export function check(args = []) {
@@ -99,6 +104,14 @@ export function check(args = []) {
                 new RegExp(`rel="${what}"`).test(m[0]) && m[0].includes(`href="${href}"`));
             if (!ok) r.error(`사이트 아이콘 빠짐: ${shown(h)} — <head> 에 rel="${what}" href="${href}" 가 없다(tools/vite/site-favicon.js)`);
         }
+    }
+
+    // 8. 문자 집합 선언이 첫 1024바이트 안에
+    for (const [h, html] of src) {
+        const at = html.search(/<meta\s+charset=/i);
+        if (at < 0) { r.error(`<meta charset> 이 없다: ${shown(h)}`); continue; }
+        const bytes = Buffer.byteLength(html.slice(0, at), 'utf8');
+        if (bytes > CHARSET_LIMIT) r.error(`<meta charset> 이 ${CHARSET_LIMIT}바이트 밖에 있다: ${shown(h)} — 머리 주석을 <meta charset> 뒤로 옮긴다`);
     }
 
     // 3. 태그 중첩

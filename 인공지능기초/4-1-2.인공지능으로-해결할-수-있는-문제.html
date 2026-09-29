@@ -318,7 +318,7 @@
 
         <div class="section-card space-y-8">
             <div class="overflow-x-auto">
-                <svg class="w-full h-auto max-w-[760px] mx-auto" style="min-width:676px" viewBox="0 0 760 240"
+                <svg class="w-full h-auto max-w-[760px] mx-auto min-w-[676px]" viewBox="0 0 760 240"
                      xmlns="http://www.w3.org/2000/svg" role="img"
                      aria-label="문제 정의, 데이터 수집, 데이터 전처리, 유형·알고리즘 선정, 모델 생성, 성능 평가의 여섯 단계가 차례로 이어지고 마지막 단계에서 앞 단계로 되돌아가는 도해">
                     <rect x="14" y="40" width="102" height="106" rx="16" fill="#eff6ff" stroke="#93c5fd"
@@ -697,9 +697,6 @@
         buttons.forEach(b => {
             if (!('label' in b.dataset)) b.dataset.label = b.innerHTML;
             b.classList.add('disabled');
-            if (b !== btn) {
-                b.style.opacity = '0.5';
-            }
         });
 
         // 정답/오답 표시
@@ -717,7 +714,6 @@
         setTimeout(() => {
             buttons.forEach(b => {
                 b.classList.remove('correct', 'wrong', 'disabled');
-                b.style.opacity = '1';
                 // 원래 HTML 로 되돌린다
                 b.innerHTML = b.dataset.label;
             });
@@ -730,10 +726,10 @@
         existingToasts.forEach(t => t.remove());
 
         const toast = document.createElement('div');
-        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>' : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-mark"></i>' : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
 
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#4f46e5' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon} <span>${message}</span>`;
         document.body.appendChild(toast);
 

@@ -81,7 +81,7 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 268" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 268" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="왼쪽 입력 상자에서 가운데 규칙 상자로, 규칙 상자에서 오른쪽 출력 상자로 화살표가 이어진다. 규칙 상자 아래에 시간 상자가 있고 규칙으로 되돌아가는 화살표가 있다. 상자마다 이름과 보기가 적혀 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">시뮬레이션을 이루는 네 부분</text>
 
@@ -352,7 +352,7 @@
             </p>
 
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 262" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 262" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="위쪽에 세 개의 짧은 규칙 상자가 있고, 아래로 화살표가 모여 전체 모습이라는 넓은 상자로 이어진다. 전체 모습 상자에는 아무도 정하지 않았지만 나타난 것이라고 적혀 있다.">
                     <text x="288" y="26" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">낱낱의 규칙이 전체 모습을 만든다</text>
 
@@ -758,28 +758,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #4d7c0f; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

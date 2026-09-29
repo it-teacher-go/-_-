@@ -4,7 +4,7 @@
      색 유틸리티(`bg-*` · `text-*` · `border-*`)의 짝   src/tailwind/theme.js (HTML은 고치지 않는다)
      다크의 바탕 · 글자 이름(`--surface-*` · `--ink-*`)  src/tailwind/theme.js 가 내려 준다
      틀의 짝                                          그 틀 곁, 라이트 규칙 바로 아래(_note.css · _sim-cs.css · _sim-ai.css ·
-                                                      과목 CSS · sim-ai/<편>.css …). 페이지 <style>에는 틀을 두지 않는다(`check -- colors`)
+                                                      과목 CSS · sim-ai/<편>.css …). 페이지 <style>에는 틀을 두지 않는다(`check -- inline-css`)
 
    **여기서 무채색 hex를 적지 않는다.** `--surface-*` · `--ink-*` 이름만 쓴다.
    **선택자는 `:root[data-theme="dark"]`로 시작한다.**

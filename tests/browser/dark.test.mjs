@@ -148,10 +148,19 @@ function measure(doc, win) {
     return {texts, bright};
 }
 
-/** 테마를 바꾸고 색이 다 옮겨 갈 때까지 기다린다 — 카드에 `transition: all` 이 걸려 있다. */
-async function setTheme(doc, theme) {
+/** 테마를 바꾼다. 카드 · 단추에 `transition` 이 걸려 있어, 그대로 두면 옮겨 가는 도중의 색을 잰다
+ *  (기다리는 시간을 정해 두면 검사가 한꺼번에 돌아 CPU가 바쁠 때 어긋난다). 그래서 잴 frame 에서만
+ *  전이를 끄고 곧바로 끝 색을 잰다. 애니메이션은 그대로 둔다 — 끄면 들어오며 나타나는 요소가
+ *  처음 모양에 멈춘다. 화면의 CSS는 건드리지 않는다. */
+function setTheme(doc, theme) {
+    if (!doc.getElementById('dark-test-still')) {
+        const s = doc.createElement('style');
+        s.id = 'dark-test-still';
+        s.textContent = '*,*::before,*::after{transition:none!important}';
+        doc.head.append(s);
+    }
     doc.documentElement.dataset.theme = theme;
-    await new Promise((r) => setTimeout(r, 700));
+    doc.defaultView.getComputedStyle(doc.body).color;
 }
 
 async function inspect(doc, win) {
@@ -180,9 +189,20 @@ function heroProblems(doc, win) {
     return shadow.includes('inset') ? [] : ['다크에서 hero에 짙은 막이 없다'];
 }
 
+/** 요소 뒤의 가장 가까운 불투명한 바탕(또는 그림 바탕)이 섬 `k` 안에 있는가. */
+function ownBackdrop(el, k, win) {
+    for (let p = el; p; p = p.parentElement) {
+        const cs = win.getComputedStyle(p);
+        const c = parse(cs.backgroundColor);
+        if (cs.backgroundImage !== 'none' || (c && c[3] >= 1)) return k.contains(p);
+    }
+    return false;
+}
+
 /**
  * `data-keep-color`를 단 요소(색 자체가 내용인 그림 · 표)가 다크에서도 라이트와 같은 색인가.
- * 필터가 걸리지 않고, 안쪽 요소의 글자색 · 바탕색 · 채움색이 라이트 때와 하나도 다르지 않아야 한다.
+ * 필터가 걸리지 않고, 안쪽 요소의 글자색 · 바탕색 · 채움색이 라이트 때와 하나도 다르지 않아야 하며,
+ * 글자 뒤에 깔린 바탕이 섬 안에서 와야 한다.
  */
 async function keepProblems(doc, win) {
     const keeps = [...doc.querySelectorAll('[data-keep-color]')];
@@ -202,6 +222,12 @@ async function keepProblems(doc, win) {
             out.push(`${where(k)}[data-keep-color]에 다크 필터가 걸렸다`);
             return;
         }
+        // 섬은 글자색과 함께 **바탕도 스스로 가진다.** 글자 뒤의 불투명한 바탕이 섬 밖(카드)에서 오면
+        // 라이트에서는 흰 카드라 안 보이다가 다크에서 짙은 카드가 비쳐 섬의 짙은 글자가 사라진다.
+        // SVG 속 글자는 보지 않는다(글자색이 `fill`이고 바탕이 그림 안에 있다).
+        const leak = [k, ...k.querySelectorAll('*')].find((el) => !el.closest('svg') && visible(el, win) &&
+            [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) && !ownBackdrop(el, k, win));
+        if (leak) out.push(`${where(k)}[data-keep-color] 안 ${where(leak)}의 바탕이 섬 밖에서 온다 (섬 요소에 바탕 클래스를 단다)`);
         const els = [k, ...k.querySelectorAll('*')];
         const j = light[i].findIndex((v, n) => v.some((x, m) => x !== dark[i][n][m]));
         if (j < 0) return;

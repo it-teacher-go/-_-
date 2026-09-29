@@ -82,7 +82,7 @@
             <p class="text-base text-slate-700 leading-relaxed">나이를 받아 쓰는 프로그램입니다. 사용자가 「스물」이라고 적으면 어떻게 될까요?</p>
             <pre class="language-python"><code class="language-python" data-src="code/14.멈춘다.py"></code></pre>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 288" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 288" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="왼쪽은 두 번째 줄에서 가위표로 막혀 세 번째 줄이 흐리게 남은 모습이고, 오른쪽은 try와 except로 감싸 건너뛴 뒤 마지막 줄까지 이어지는 모습이다">
                     <defs><marker id="ex" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#047857"/></marker></defs>
                     <text x="145" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">잡지 않으면 「거기서」 끝난다</text>
@@ -121,7 +121,7 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">멈추는 일에는 <strong>두 종류</strong>가 있고, 이번에 다루는 것은 그중 하나입니다. 멈추지 않는 오류도 하나 더 있어 오류는 모두 세 종류입니다.</p>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 254" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 254" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="왼쪽 문법 오류 칸과 오른쪽 실행 오류 칸이 나란히 있다. 문법 오류는 한 줄도 실행되지 않고, 실행 오류는 그 줄까지는 실행된 뒤 멈춘다">
                     <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">실행되기 「전에」 걸리는가, 실행되다 걸리는가</text>
                     <rect x="16" y="56" width="272" height="150" rx="12" fill="#fff1f2" stroke="#be123c" stroke-width="2.5"/>
@@ -168,7 +168,7 @@
             <p class="text-base text-slate-700 leading-relaxed"><code>try</code>와 <code>except</code>로 감싸면 <strong>멈추는 대신 다른 줄로 넘어갑니다.</strong></p>
             <pre class="language-python"><code class="language-python" data-src="code/14.잡기.py"></code></pre>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 360" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 360" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="try 안의 줄에서 갈림길이 나온다. 오류가 났으면 except 안으로, 나지 않았으면 else 안으로 가고, 둘 다 그 뒤의 줄로 이어진다">
                     <defs><marker id="tf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#be123c"/></marker><marker id="tt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#047857"/></marker></defs>
                     <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">오류가 났을 때와 나지 않았을 때</text>
@@ -293,7 +293,7 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed"><code>except:</code>라고만 적으면 <strong>모든 오류</strong>가 잡힙니다. 편해 보이지만 위험합니다.</p>
             <div class="overflow-x-auto">
-                <svg viewBox="0 0 576 348" class="w-full h-auto max-w-xl mx-auto" style="min-width:576px"
+                <svg viewBox="0 0 576 348" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="위쪽 좁게 잡기에서는 ValueError만 잡히고 나머지 둘은 멈춘다. 아래쪽 넓게 잡기에서는 셋 다 잡혀 오타로 난 NameError까지 감춰진다">
                     <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">그물을 넓게 치면 고칠 곳을 못 찾는다</text>
                     <text x="80" y="78" font-size="18" fill="#047857" font-weight="700" text-anchor="middle">좁게 잡기</text>
@@ -484,28 +484,16 @@
 
         const toast = document.createElement('div');
         toast.id = 'toast-msg';
-        toast.style.cssText = `
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(2rem);
-            padding: 1rem 1.5rem; border-radius: 1rem; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 9999; max-width: 90vw; text-align: center;
-            transition: all 0.3s ease; opacity: 0;
-            ${type === 'success'
-            ? 'background: #ea580c; color: white;'
-            : 'background: #f43f5e; color: white;'}
-        `;
+        toast.className = 'quiz-toast ' + (type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         const icon = document.createElement('i');
         icon.className = 'fa-solid quiz-mark ' + (type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark');
         toast.append(icon, message);
         document.body.appendChild(toast);
 
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
+        requestAnimationFrame(() => toast.classList.add('quiz-toast-show'));
 
         setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(2rem)';
+            toast.classList.remove('quiz-toast-show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }

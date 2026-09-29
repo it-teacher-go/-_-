@@ -395,3 +395,7 @@
                 opacity: 1;
             }
 }
+
+/* DFS 트리를 그리는 짙은 무대 · 코드 블록의 언어 이름표. 두 테마 모두 같은 색이다(다크 짝이 없다). */
+:where(.sim-search-n-queen) .sim-nq-tree-stage { background-color: #0f172a; }
+:where(.sim-search-n-queen) .sim-nq-code-lang { background-color: #2d2d2d; }  /* Prism tomorrow의 바탕 */

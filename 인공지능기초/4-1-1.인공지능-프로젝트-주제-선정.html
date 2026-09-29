@@ -152,7 +152,7 @@
                     나 &rarr; 주변 사람 &rarr; 사회로 한 겹씩 넓혀 가며 생각하는 방법)은 문제가 떠오르지 않을 때 쓰는
                     간단한 장치입니다. 특별한 도구가 필요하지 않고, 막힌 자리를 옮겨 주는 것만으로 새 문제가 딸려 나옵니다.</p>
                 <div class="overflow-x-auto">
-                    <svg class="w-full h-auto max-w-xl mx-auto" style="min-width:500px" viewBox="0 0 560 210"
+                    <svg class="w-full h-auto max-w-xl mx-auto min-w-[500px]" viewBox="0 0 560 210"
                          xmlns="http://www.w3.org/2000/svg" role="img"
                          aria-label="나를 가운데 두고 우리·타인, 사회 공동체로 범위가 한 겹씩 넓어지는 세 겹 도해">
                         <rect x="14" y="14" width="532" height="150" rx="26" fill="#ecfdf5" stroke="#6ee7b7"
@@ -894,9 +894,6 @@
         buttons.forEach(b => {
             if (!('label' in b.dataset)) b.dataset.label = b.innerHTML;
             b.classList.add('disabled');
-            if (b !== btn) {
-                b.style.opacity = '0.5';
-            }
         });
 
         // 정답/오답 표시
@@ -914,7 +911,6 @@
         setTimeout(() => {
             buttons.forEach(b => {
                 b.classList.remove('correct', 'wrong', 'disabled');
-                b.style.opacity = '1';
                 // 원래 HTML 로 되돌린다
                 b.innerHTML = b.dataset.label;
             });
@@ -927,10 +923,10 @@
         existingToasts.forEach(t => t.remove());
 
         const toast = document.createElement('div');
-        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-toast-icon"></i>' : '<i class="fa-solid fa-circle-xmark quiz-toast-icon"></i>';
+        const icon = type === 'success' ? '<i class="fa-solid fa-circle-check quiz-mark"></i>' : '<i class="fa-solid fa-circle-xmark quiz-mark"></i>';
 
         toast.className = 'toast-message quiz-toast';
-        toast.style.backgroundColor = type === 'success' ? '#4f46e5' : '#e11d48';
+        toast.classList.add(type === 'success' ? 'quiz-toast-ok' : 'quiz-toast-no');
         toast.innerHTML = `${icon} <span>${message}</span>`;
         document.body.appendChild(toast);
 
