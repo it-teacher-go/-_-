@@ -21,8 +21,8 @@
             연산자
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-기호 하나가 무슨 일을 하는지는<br>
-            <strong>양쪽에 놓인 값이 정합니다.</strong>
+연산자가 무슨 일을 하는지는<br>
+            <strong>양쪽 값의 자료형에 따라 달라지기도 합니다.</strong>
         </p>
     </div>
 </header>
@@ -38,9 +38,9 @@
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
                     <li>산술 연산자로 계산할 수 있고, 나머지 연산자가 어디에 쓰이는지 설명할 수 있다.</li>
-                    <li>복합 대입과 증감 연산자를 읽고, 앞에 붙일 때와 뒤에 붙일 때의 차이를 설명할 수 있다.</li>
-                    <li>비교와 논리 연산의 결과가 1과 0으로 나온다는 것을 알고 조건을 세울 수 있다.</li>
-                    <li>우선순위 때문에 뜻이 달라지는 식을 알아보고 괄호로 뜻을 못박을 수 있다.</li>
+                    <li>복합 대입 연산자와 증감 연산자를 읽고, 증감 연산자를 앞에 붙일 때와 뒤에 붙일 때의 차이를 설명할 수 있다.</li>
+                    <li>비교 연산과 논리 연산의 결과가 1과 0으로 나온다는 것을 알고 조건식을 만들 수 있다.</li>
+                    <li>우선순위 때문에 의미가 달라지는 식을 알아보고 괄호로 계산 순서를 분명히 할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -70,10 +70,10 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 계산하는 기호 ===== -->
+    <!-- ===== 산술 연산자 ===== -->
     <section id="arith" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">계산하는 기호</h2>
+            <h2 class="text-3xl font-black text-slate-900">산술 연산자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">나머지 연산자는 계산기에 없는데 프로그램에서는 자주 씁니다.</p>
         </div>
@@ -82,74 +82,75 @@
             <pre class="language-c"><code class="language-c" data-src="code/03.산술.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>+</code> <code>-</code> <code>*</code>는 계산기와 같고, <code>/</code>는 정수끼리 나누면 소수점 아래를 잘라 냅니다(<code>7 / 3</code>은 2). 낯선 것은 <code>%</code> 하나인데,
-                <strong>나누고 남은 것</strong>을 줍니다. 퍼센트가 아닙니다.
+                <code>+</code> <code>-</code> <code>*</code>는 계산기와 같고, <code>/</code>는 정수끼리 나누면 소수점 아래를 버립니다(<code>7 / 3</code>은 2). 처음 보는 것은 <code>%</code> 하나인데,
+                <strong>나누고 남은 값</strong>인 나머지를 구합니다. 퍼센트가 아닙니다.
             </p>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-orange-900">나머지는 어디에 쓰는가</p>
+                <p class="font-black text-lg text-orange-900">나머지 연산자의 쓰임</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
                     <li><strong>짝수인지 홀수인지</strong> &mdash; <code>n % 2</code>가 0이면 짝수다.</li>
-                    <li><strong>단위를 나눌 때</strong> &mdash; 135초는 <code>135 / 60</code>분 <code>135 % 60</code>초.</li>
-                    <li><strong>몇 개마다 한 번</strong> &mdash; <code>i % 10</code>이 0인 자리에서만 줄을 바꾼다.</li>
+                    <li><strong>단위를 바꿀 때</strong> &mdash; 135초는 <code>135 / 60</code>분 <code>135 % 60</code>초.</li>
+                    <li><strong>몇 개마다 한 번</strong> &mdash; <code>i % 10</code>이 0일 때만 줄을 바꾼다.</li>
                 </ul>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/03.전체.c"></code></pre>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>%</code>는 정수끼리만 됩니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>%</code>는 정수끼리만 쓸 수 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>7.5 % 2</code>는 <strong>컴파일이 안 됩니다.</strong> 실수에는 쓸 수 없습니다.
-                    <code>/</code>가 정수끼리면 몫만 남긴다는 것도 함께 기억해 두세요 &mdash;
-                    <strong>둘은 한 짝</strong>이라, 몫과 나머지를 같이 구할 때 특히 자주 씁니다.
+                    <code>7.5 % 2</code>는 <strong>컴파일 오류가 납니다.</strong> 실수에는 쓸 수 없습니다.
+                    <code>/</code>가 정수끼리면 몫만 남긴다는 것도 함께 기억해 두세요.
+                    <code>/</code>와 <code>%</code>는 몫과 나머지를 함께 구할 때 나란히 자주 쓰입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    음수가 끼면 파이썬과 결과가 달라집니다. C는 소수점 아래를 0 쪽으로 잘라 몫을 정하므로
+                    음수가 있으면 파이썬과 결과가 달라집니다. C는 나눗셈 결과의 소수점 아래를 0 쪽으로 버려 몫을 정하므로
                     <code>-7 / 2</code>는 -3, <code>-7 % 2</code>는 -1입니다. 파이썬에서는 각각 -4와 1이 나옵니다.
-                    그래서 홀수인지는 <code>n % 2 == 1</code>이 아니라 <code>n % 2 != 0</code>으로 묻는 편이 안전합니다.
+                    그래서 홀수인지는 <code>n % 2 == 1</code>이 아니라 <code>n % 2 != 0</code>으로 검사하는 편이 안전합니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">오늘이 무슨 요일인지 세는 프로그램을 만든다면 <code>%</code>를 어디에 쓸 수 있을까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">오늘이 무슨 요일인지 계산하는 프로그램을 만든다면 <code>%</code>를 어디에 쓸 수 있을까요?</p>
         </div>
     </section>
 
-    <!-- ===== 담으면서 계산하기 ===== -->
+    <!-- ===== 계산하면서 대입하기 ===== -->
     <section id="assign" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">담으면서 계산하기</h2>
+            <h2 class="text-3xl font-black text-slate-900">계산하면서 대입하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">짧게 쓰는 방법이지만, 짧아진 만큼 읽을 때 헷갈립니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>total = total + 5</code>처럼 자기 값을 꺼내 고쳐 담는 일이 워낙 잦아서
-                줄여 쓰는 방법이 따로 있습니다. <strong>복합 대입 연산자</strong>입니다.
+                <code>total = total + 5</code>처럼 변수의 값을 꺼내 계산한 뒤 다시 그 변수에 대입하는 일이 워낙 잦아서
+                줄여 쓰는 방법이 따로 있습니다. 바로 <strong>복합 대입 연산자(compound assignment operator)</strong>입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/03.복합대입.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code>가 모두 같은 방식입니다.
-                <strong>대입 규칙이 그대로 적용됩니다</strong> &mdash; 오른쪽을 먼저 계산하고 왼쪽에 담습니다.
+                <strong>대입 규칙이 그대로 적용됩니다.</strong> 오른쪽을 먼저 계산하고, 그 값과 왼쪽 변수를 연산한 결과를 왼쪽 변수에 대입합니다.
             </p>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">1씩 늘리고 줄이는 것은 더 짧게</p>
+                <p class="font-black text-lg text-slate-900">1씩 늘리고 줄일 때는 증감 연산자</p>
                 <pre class="language-c"><code class="language-c" data-src="code/03.증감.c"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>변수 값이 1 늘어난다는 결과는 둘 다 같습니다.</strong> 다른 것은
-                    <strong>그 줄에서 쓰이는 값</strong>입니다. 뒤에 붙이면 「쓰고 나서 늘리고」,
-                    앞에 붙이면 「늘리고 나서 쓴다」입니다.
+                    <code>++</code>와 <code>--</code>를 증감 연산자(increment·decrement operator)라고 하며, 변수 값을 1 늘리거나 줄입니다.
+                    <strong>변수 값이 1 늘어난다는 결과는 앞에 붙이든 뒤에 붙이든 같습니다.</strong> 다른 것은
+                    그 식에서 쓰이는 값입니다. 뒤에 붙이면 「먼저 쓰고 나서 늘리고」,
+                    앞에 붙이면 「먼저 늘리고 나서 쓴다」입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <code>a++;</code>처럼 <strong>한 줄에 혼자 있을 때는 둘이 완전히 같습니다.</strong>
-                    차이가 드러나는 것은 다른 식 속에 끼어 있을 때뿐입니다.
+                    그래서 <code>a++;</code>처럼 <strong>한 줄에 혼자 쓰일 때는 둘이 완전히 같습니다.</strong>
+                    차이는 다른 식 안에 들어 있을 때만 드러납니다.
                 </p>
             </div>
 
@@ -157,9 +158,9 @@
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>짧게 쓰는 것이 늘 좋은 것은 아닙니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>printf("%d %d", a++, ++a);</code>처럼 한 줄에 몰아 쓰면
-                    <strong>사람마다 다르게 읽고, C 표준도 결과를 정해 두지 않았습니다.</strong>
+                    <strong>읽는 사람마다 다르게 이해하고, C 표준도 결과를 정해 두지 않았습니다.</strong>
                     한 식에서 같은 변수를 두 번 바꾸면 컴파일러마다, 때로는 같은 컴파일러에서도 설정에 따라 다른 값이 나옵니다.
-                    줄여 쓰는 것보다 <strong>한 줄에 한 가지 일만 하는 편</strong>이 낫습니다.
+                    줄여 쓰기보다 <strong>한 줄에 한 가지 일만 하는 편</strong>이 낫습니다.
                 </p>
             </div>
         </div>
@@ -170,12 +171,12 @@
         </div>
     </section>
 
-    <!-- ===== 비교하고 묶기 ===== -->
+    <!-- ===== 비교 연산과 논리 연산 ===== -->
     <section id="compare" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">비교하고 묶기</h2>
+            <h2 class="text-3xl font-black text-slate-900">비교 연산과 논리 연산</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">참과 거짓이 따로 있는 것이 아니라 1과 0으로 나옵니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">C에서는 참과 거짓이 1과 0으로 나옵니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -185,25 +186,25 @@
                 <p class="font-black text-lg text-orange-900">참은 1, 거짓은 0</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     C에서는 <strong>비교 결과가 참·거짓 전용 값이 아니라 정수(<code>int</code>)로 나옵니다.</strong>
-                    그래서 <code>printf("%d", 7 &gt; 3)</code>이 1을 찍습니다.
+                    그래서 <code>printf("%d", 7 &gt; 3)</code>은 1을 출력합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    거꾸로 <strong>조건 자리에 아무 수나 놓을 수도 있습니다.</strong>
-                    <strong>0이면 거짓, 0이 아니면 전부 참</strong>으로 봅니다 &mdash; 1만 참인 것이 아닙니다.
+                    거꾸로 조건식에 아무 수나 쓸 수도 있습니다.
+                    <strong>0이면 거짓, 0이 아니면 모두 참</strong>으로 봅니다. 1만 참인 것이 아닙니다.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>같은지 묻는 것은 <code>==</code>, 담는 것은 <code>=</code></p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>같은지 비교하는 것은 <code>==</code>, 대입하는 것은 <code>=</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>if (x = 5)</code>라고 쓰면 x에 5를 담고, 그 5가 0이 아니므로 <strong>언제나 참이 됩니다.</strong>
-                    오류로 멈추지 않기 때문에 프로그램이 늘 같은 쪽으로만 갑니다.
-                    <strong>조건 자리에 등호가 하나만 있으면 의심하세요.</strong>
+                    <code>if (x = 5)</code>라고 쓰면 x에 5를 대입하고, 그 결과인 5가 0이 아니므로 <strong>언제나 참이 됩니다.</strong>
+                    오류로 멈추지 않기 때문에 프로그램이 늘 같은 쪽으로만 실행됩니다.
+                    <strong>조건식에 등호가 하나만 있으면 의심하세요.</strong>
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                조건 여럿을 묶을 때는 <strong>논리 연산자</strong>를 씁니다.
+                여러 조건을 하나로 묶을 때는 <strong>논리 연산자(logical operator)</strong>를 씁니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/03.논리.c"></code></pre>
@@ -212,9 +213,9 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-28">기호</th>
+                        <th class="w-28">연산자</th>
                         <th class="w-36">읽는 법</th>
-                        <th>참이 되는 때</th>
+                        <th>참이 되는 경우</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -231,7 +232,7 @@
                     <tr>
                         <td><code>!</code></td>
                         <td>아니다</td>
-                        <td>뒤에 오는 것이 <strong>거짓</strong>일 때</td>
+                        <td>뒤에 오는 조건이 <strong>거짓</strong>일 때</td>
                     </tr>
                     </tbody>
                 </table>
@@ -241,47 +242,49 @@
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>답이 정해지면 오른쪽은 아예 계산하지 않습니다</p>
                 <pre class="language-c"><code class="language-c" data-src="code/03.단축평가.c"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>&amp;&amp;</code>는 왼쪽이 거짓이면 오른쪽을 볼 것도 없이 거짓입니다.
+                    <code>&amp;&amp;</code>는 왼쪽이 거짓이면 오른쪽을 계산할 필요도 없이 거짓입니다.
                     그래서 <strong>오른쪽을 건너뜁니다.</strong> 위 코드에서 <code>count</code>가 0이므로
-                    <code>sum / count</code>는 <strong>아예 계산되지 않습니다.</strong>
+                    <code>sum / count</code>는 아예 계산되지 않습니다.
+                    이처럼 결과가 정해지면 나머지 계산을 건너뛰는 것을 단축 평가(short-circuit evaluation)라고 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    이 성질은 꼭 필요합니다. 만약 오른쪽까지 계산했다면
-                    정수를 0으로 나누게 되는데, C는 그 결과를 정해 두지 않았고 <strong>대개 프로그램이 그 자리에서 죽습니다.</strong>
-                    「먼저 안전한지 확인하고, 안전할 때만 계산한다」를 한 줄에 담을 수 있는 것이 이 성질 덕분입니다.
-                    <strong>확인하는 조건을 반드시 왼쪽에 두어야</strong> 합니다 &mdash; 순서를 바꾸면 막지 못합니다.
+                    단축 평가는 꼭 필요한 성질입니다. 만약 오른쪽까지 계산했다면
+                    정수를 0으로 나누게 되는데, C는 그 결과를 정해 두지 않았고 <strong>대개 프로그램이 그 줄에서 비정상 종료됩니다.</strong>
+                    「먼저 안전한지 확인하고, 안전할 때만 계산한다」를 한 줄로 쓸 수 있는 것도 단축 평가 덕분입니다.
+                    <strong>확인하는 조건을 반드시 왼쪽에 두어야</strong> 합니다. 순서를 바꾸면 0으로 나누는 것을 막지 못합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>||</code>는 반대로 왼쪽이 참이면 오른쪽을 건너뜁니다.
-                    <strong>건너뛸 수 있다는 것은 실행될지 안 될지 모른다는 뜻</strong>이므로,
-                    조건 안에 <strong>값을 바꾸는 식을 넣지 않는 편</strong>이 안전합니다.
+                    건너뛸 수 있다는 것은 오른쪽이 실행될지 안 될지 알 수 없다는 뜻이므로,
+                    조건식 안에 <strong>값을 바꾸는 식을 넣지 않는 편</strong>이 안전합니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                수학처럼 <code>80 &lt;= score &lt; 90</code>이라고 쓰면 뜻이 완전히 달라집니다.
-                왼쪽부터 차례로 계산해 <code>(80 &lt;= score)</code>가 1이나 0이 되고, 그것을 다시 90과 비교하기 때문에
-                <strong>언제나 참</strong>이 됩니다. 반드시 <code>score &gt;= 80 &amp;&amp; score &lt; 90</code>으로 나누어 씁니다.
+                수학처럼 <code>80 &lt;= score &lt; 90</code>이라고 쓰면 의미가 완전히 달라집니다.
+                왼쪽부터 차례로 계산해 <code>(80 &lt;= score)</code>가 1이나 0이 되고, 그 값을 다시 90과 비교하기 때문에
+                <strong>언제나 참</strong>이 됩니다. 반드시 <code>score &gt;= 80 &amp;&amp; score &lt; 90</code>처럼 두 조건으로 나누어 씁니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">점수가 60점 미만이거나 100점을 넘으면 「잘못된 값」이라고 판단하려면 조건을 어떻게 쓸까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">점수가 60점 미만이거나 100점을 넘으면 「잘못된 값」이라고 판단하려면 조건식을 어떻게 쓰면 될까요?</p>
         </div>
     </section>
 
-    <!-- ===== 먼저 계산되는 것 ===== -->
+    <!-- ===== 연산자 우선순위 ===== -->
     <section id="order" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">먼저 계산되는 것</h2>
+            <h2 class="text-3xl font-black text-slate-900">연산자 우선순위</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">헷갈리면 외우지 말고 괄호로 못박습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">헷갈리면 외우지 말고 괄호로 순서를 정해 줍니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                한 식에 기호가 여럿이면 <strong>먼저 계산되는 순서</strong>가 있습니다. 대체로 수학과 같습니다. 순서가 같은 것끼리 만나면(<code>*</code>와 <code>%</code>처럼) 왼쪽부터 계산합니다.
+                한 식에 연산자가 여럿이면 먼저 계산되는 순서가 있습니다. 이 순서를 <strong>우선순위(precedence)</strong>라고 하며, 대체로 수학과 같습니다.
+                <code>*</code>와 <code>%</code>처럼 우선순위가 같은 산술 연산자끼리 만나면 왼쪽부터 계산합니다.
             </p>
 
             <div class="overflow-x-auto">
@@ -290,29 +293,29 @@
                     <tr>
                         <th class="w-28">순서</th>
                         <th class="w-44">연산자</th>
-                        <th>메모</th>
+                        <th>설명</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>1</td>
                         <td><code>()</code></td>
-                        <td>괄호가 가장 먼저다. 헷갈리면 이것을 쓴다</td>
+                        <td>괄호가 가장 먼저다. 헷갈리면 괄호를 친다</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td><code>!</code> <code>++</code> <code>--</code> <code>(자료형)</code></td>
-                        <td>값 하나에 붙는 것들</td>
+                        <td>값 하나에 붙는 연산자</td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td><code>*</code> <code>/</code> <code>%</code></td>
-                        <td>곱하기 무리</td>
+                        <td>곱셈 · 나눗셈 · 나머지</td>
                     </tr>
                     <tr>
                         <td>4</td>
                         <td><code>+</code> <code>-</code></td>
-                        <td>더하기 무리</td>
+                        <td>덧셈 · 뺄셈</td>
                     </tr>
                     <tr>
                         <td>5</td>
@@ -322,17 +325,17 @@
                     <tr>
                         <td>6</td>
                         <td><code>==</code> <code>!=</code></td>
-                        <td><strong>크기 비교보다 늦다</strong></td>
+                        <td><strong>크기 비교보다 나중이다</strong></td>
                     </tr>
                     <tr>
                         <td>7</td>
                         <td><code>&amp;&amp;</code> &rarr; <code>||</code></td>
-                        <td>그리고가 또는보다 먼저다</td>
+                        <td>「그리고」가 「또는」보다 먼저다</td>
                     </tr>
                     <tr>
                         <td>8</td>
                         <td><code>=</code> <code>+=</code> &hellip;</td>
-                        <td>담는 것이 가장 늦다</td>
+                        <td>대입이 가장 나중이다</td>
                     </tr>
                     </tbody>
                 </table>
@@ -341,22 +344,22 @@
             <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>표를 외우는 것이 목표가 아닙니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    현장에서도 이 표를 다 외우고 쓰지는 않습니다. <strong>헷갈리는 자리에 괄호를 치는 것</strong>이
-                    더 빠르고, 나중에 읽는 사람에게도 낫습니다. 표는 <strong>남이 쓴 코드를 읽을 때</strong>
-                    「왜 이렇게 계산됐지?」를 풀어 보는 데 씁니다.
+                    실제 개발에서도 이 표를 다 외워서 쓰지는 않습니다. <strong>헷갈리는 곳에 괄호를 치는 것</strong>이
+                    더 빠르고, 나중에 읽는 사람도 이해하기 쉽습니다. 표는 <strong>다른 사람이 쓴 코드를 읽을 때</strong>
+                    「왜 이렇게 계산됐지?」를 확인하는 데 씁니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 다만 <code>&amp;&amp;</code>가 <code>||</code>보다 먼저라는 것 하나는 알아 두면 좋습니다.
-                <code>a || b &amp;&amp; c</code>는 <strong><code>a || (b &amp;&amp; c)</code></strong>로 읽힙니다 &mdash;
+                <code>a || b &amp;&amp; c</code>는 <strong><code>a || (b &amp;&amp; c)</code></strong>로 계산됩니다.
                 왼쪽부터 차례로 묶이지 않습니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>2 + 3 * 4 % 5</code>는 얼마일까요? 표의 순서대로 하나씩 확인하며 계산해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>2 + 3 * 4 % 5</code>는 얼마일까요? 표의 순서대로 하나씩 계산해 보세요.</p>
         </div>
     </section>
 
@@ -371,23 +374,23 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">나머지 <code>%</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    나누고 남은 것. <strong>정수끼리만</strong> 된다.
-                    짝수 판별, 단위 나누기, 몇 개마다 한 번에 쓴다.
+                    나누고 남은 값. <strong>정수끼리만</strong> 쓸 수 있다.
+                    짝수 판별, 단위 바꾸기, 몇 개마다 한 번 하는 일에 쓴다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">증감 연산자</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>변수가 1 늘어나는 결과는 같다.</strong> 다른 것은 그 줄에서 쓰이는 값 &mdash;
-                    <code>a++</code>는 쓰고 나서 늘리고, <code>++a</code>는 늘리고 나서 쓴다.
+                    <strong>변수가 1 늘어나는 결과는 같다.</strong> 다른 것은 그 식에서 쓰이는 값이다.
+                    <code>a++</code>는 먼저 쓰고 나서 늘리고, <code>++a</code>는 먼저 늘리고 나서 쓴다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">참과 거짓</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    비교 결과는 1과 0으로 나온다. 조건 자리에서는
-                    <strong>0이면 거짓, 0이 아니면 전부 참</strong>이다.
-                    같은지 묻는 것은 <code>==</code>, 담는 것은 <code>=</code>.
+                    비교 결과는 1과 0으로 나온다. 조건식에서는
+                    <strong>0이면 거짓, 0이 아니면 모두 참</strong>이다.
+                    같은지 비교하는 것은 <code>==</code>, 대입하는 것은 <code>=</code>.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -395,7 +398,7 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     대체로 수학과 같고 <code>&amp;&amp;</code>가 <code>||</code>보다 먼저다.
                     외우기보다 괄호를 친다.
-                    <code>80 &lt;= score &lt; 90</code>은 뜻이 달라지므로 나누어 쓴다.
+                    <code>80 &lt;= score &lt; 90</code>은 의미가 달라지므로 두 조건으로 나누어 쓴다.
                 </p>
             </div>
         </div>
@@ -410,25 +413,25 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. <code>int a = 5; printf("%d", a++);</code>가 찍는 값과, 찍은 뒤 <code>a</code>의 값은?</p>
+            <p class="font-black text-lg text-slate-900">1. <code>int a = 5; printf("%d", a++);</code>가 출력하는 값과, 출력한 뒤 <code>a</code>의 값은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '뒤에 붙이면 쓰고 나서 늘립니다. 5를 찍고 a는 6이 됩니다.')">
-                    ① 5를 찍고, <code>a</code>는 6
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '뒤에 붙이면 먼저 쓰고 나서 늘립니다. 5를 출력하고 a는 6이 됩니다.')">
+                    ① 5를 출력하고, <code>a</code>는 6
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '그것은 ++a일 때입니다. 뒤에 붙이면 쓰고 나서 늘립니다.')">
-                    ② 6을 찍고, <code>a</code>는 6
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '그것은 ++a일 때입니다. 뒤에 붙이면 먼저 쓰고 나서 늘립니다.')">
+                    ② 6을 출력하고, <code>a</code>는 6
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '늘어난 값이 사라지지 않습니다. a는 6이 됩니다.')">
-                    ③ 5를 찍고, <code>a</code>는 5
+                    ③ 5를 출력하고, <code>a</code>는 5
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '두 번 늘어나지 않습니다. ++는 한 번만 적용됩니다.')">
-                    ④ 5를 찍고, <code>a</code>는 7
+                    ④ 5를 출력하고, <code>a</code>는 7
                 </button>
             </div>
         </div>
 
         <div id="q2" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">2. 점수가 80점 이상 90점 미만인지 보려면?</p>
+            <p class="font-black text-lg text-slate-900">2. 점수가 80점 이상 90점 미만인지 검사하려면?</p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '왼쪽부터 계산되어 (80 <= score)가 1이나 0이 되고, 그것을 90과 비교합니다. 1도 0도 90보다 작으니 언제나 참이 됩니다.')">
                     ① <code>80 &lt;= score &lt; 90</code>
@@ -439,7 +442,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '||는 하나만 참이어도 참이라 80점 미만도 통과합니다.')">
                     ③ <code>score &gt;= 80 || score &lt; 90</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '=는 담는 것입니다. 비교하는 것이 아닙니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '=는 대입 연산자입니다. 비교하는 연산자가 아닙니다.')">
                     ④ <code>score = 80 &amp;&amp; score &lt; 90</code>
                 </button>
             </div>
@@ -449,7 +452,7 @@
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '1만 참인 것이 아닙니다. 0이 아니면 전부 참으로 봅니다. -3도 참입니다.')">
-                    ① 조건 자리에서 참으로 보는 값은 1뿐이다
+                    ① 조건식에서 참으로 보는 값은 1뿐이다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '실수에는 %를 쓸 수 없습니다.')">
                     ② <code>%</code>는 정수끼리만 쓸 수 있다
@@ -457,7 +460,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '&amp;&amp;는 왼쪽이 거짓이면 답이 이미 거짓으로 정해지므로 오른쪽은 건너뜁니다.')">
                     ③ <code>&amp;&amp;</code>의 왼쪽이 거짓이면 오른쪽은 계산되지 않는다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'x = 5는 비교가 아니라 x에 5를 담는 식이고, 그 값 5가 0이 아니라 늘 참이 됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'x = 5는 비교가 아니라 x에 5를 대입하는 식이고, 그 값 5가 0이 아니므로 늘 참이 됩니다.')">
                     ④ <code>if (x = 5)</code>는 언제나 참이 된다
                 </button>
             </div>

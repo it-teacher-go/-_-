@@ -21,7 +21,7 @@
             변수와 자료형
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            값을 담기 전에 <strong>자리의 크기부터 정해야</strong> 합니다.<br>
+            값을 저장하기 전에 <strong>저장할 공간의 크기부터 정해야</strong> 합니다.<br>
             C가 파이썬과 처음으로 달라지는 점입니다.
         </p>
     </div>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>변수를 선언한다는 것이 무슨 뜻인지 알고, 자료형을 적어 값을 담는 자리를 만들 수 있다.</li>
-                    <li>대입이 오른쪽부터 계산된다는 것을 알고, 값이 바뀌는 순서를 따라갈 수 있다.</li>
-                    <li>정수·실수·문자를 구별하고 각각에 맞는 자료형과 서식 문자를 고를 수 있다.</li>
-                    <li>정수끼리의 나눗셈에서 소수점 아래가 사라지는 까닭을 설명하고, 형 변환으로 이를 다룰 수 있다.</li>
+                    <li>변수를 선언한다는 것의 의미를 알고, 자료형을 지정해 변수를 선언할 수 있다.</li>
+                    <li>대입문은 오른쪽을 먼저 계산한다는 것을 알고, 값이 바뀌는 순서를 따라갈 수 있다.</li>
+                    <li>정수·실수·문자를 구별하고 각각에 맞는 자료형과 서식 지정자를 고를 수 있다.</li>
+                    <li>정수끼리의 나눗셈에서 소수점 아래가 사라지는 이유를 설명하고, 형 변환으로 이 문제를 해결할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <span class="font-black text-xl tracking-tight text-slate-800">변수와 자료형</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#box" class="hover:text-orange-600 transition">값을 담는 자리</a>
+            <a href="#box" class="hover:text-orange-600 transition">변수와 선언</a>
             <a href="#assign" class="hover:text-orange-600 transition">대입</a>
             <a href="#type" class="hover:text-orange-600 transition">자료형</a>
             <a href="#convert" class="hover:text-orange-600 transition">형 변환</a>
@@ -70,55 +70,59 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 값을 담아 두는 자리 ===== -->
+    <!-- ===== 값을 저장하는 변수 ===== -->
     <section id="box" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">값을 담아 두는 자리</h2>
+            <h2 class="text-3xl font-black text-slate-900">값을 저장하는 변수</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">C에서는 자리를 만들 때 무엇을 담을지 먼저 밝힙니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">C에서는 변수를 만들 때 어떤 자료형의 값을 저장할지 먼저 밝힙니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                계산 결과를 다음 줄에서 다시 쓰려면 어딘가에 담아 두어야 합니다.
-                값을 담아 두고 이름으로 다시 꺼내 쓰는 자리를 <strong>변수(variable)</strong>라고 합니다.
+                계산 결과를 다음 줄에서 다시 쓰려면 어딘가에 저장해 두어야 합니다.
+                값을 저장해 두고 이름으로 다시 꺼내 쓰는 메모리 공간을 <strong>변수(variable)</strong>라고 합니다.
             </p>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">선언(declaration)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    C는 자리를 만들 때 <strong>무엇을 담을 자리인지 먼저 적습니다.</strong>
-                    그 「무엇」에 해당하는 것이 <strong>자료형</strong>이고, 자료형이 정해지면
-                    <strong>그 자리가 차지할 크기</strong>도 함께 정해집니다.
+                    C는 변수를 만들 때 <strong>어떤 값을 저장할 변수인지 먼저 적습니다.</strong>
+                    그 「어떤 값」에 해당하는 것이 자료형이고, 이렇게 자료형과 이름을 적어 변수를 만드는 것을 선언이라고 합니다.
+                    자료형이 정해지면 <strong>변수가 메모리에서 차지할 크기</strong>도 함께 정해집니다.
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/01.변수.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>=</code>는 수학의 「같다」가 아닙니다. 오른쪽 값을 왼쪽 이름에 담으라는 명령이고,
-                이것을 <strong>대입</strong>이라고 부릅니다.
+                <code>=</code>는 수학의 「같다」가 아닙니다. 오른쪽 값을 왼쪽 변수에 저장하라는 명령이고,
+                이것을 <strong>대입(assignment)</strong>이라고 합니다.
             </p>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                여기 쓴 <code>printf</code>는 담긴 값을 화면에 내보내 눈으로 확인하려고 쓴 것입니다.
-                <code>%d</code>&middot;<code>%f</code>&middot;<code>%c</code>는 어떤 종류의 값을 그 자리에 끼워 넣을지 알려 주는 표시입니다.
-                지금은 담은 값이 제대로 들어갔는지 보는 용도로만 씁니다.
+                위 코드처럼 변수를 선언하면서 처음 값을 함께 저장하는 것은 <strong>초기화(initialization)</strong>라고 합니다.
+            </p>
+
+            <p class="text-base text-slate-700 leading-relaxed">
+                여기서 쓴 <code>printf</code>는 저장된 값을 화면에 출력해 눈으로 확인하는 명령입니다.
+                <code>%d</code>&middot;<code>%f</code>&middot;<code>%c</code>는 그 위치에 어떤 자료형의 값을 출력할지 알려 주는 표시로,
+                서식 지정자(format specifier)라고 합니다. 지금은 값이 제대로 저장되었는지 확인하는 용도로만 씁니다.
             </p>
         </div>
 
         <div class="section-card space-y-5">
-            <h3 class="text-2xl font-black text-slate-900">조각을 감싸는 틀</h3>
+            <h3 class="text-2xl font-black text-slate-900">코드를 감싸는 기본 구조</h3>
             <p class="text-base text-slate-700 leading-relaxed">
-                C는 코드가 정해진 틀 안에 있어야 실행됩니다. 지금까지 본 조각들은 설명을 위해 알맹이만 떼어 놓은 것이고,
-                실제로 실행해 보려면 이렇게 감싸야 합니다.
+                C 코드는 정해진 구조 안에 있어야 실행됩니다. 지금까지 본 코드는 설명을 위해 핵심 부분만 떼어 놓은 것이고,
+                실제로 실행하려면 이렇게 감싸야 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/01.전체.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                이 틀이 무엇을 하는지는 지금 몰라도 됩니다. 안쪽에 적은 줄들이 위에서 아래로 차례로 실행된다는
-                것만 알면 됩니다. 이 강의노트의 다른 조각들도 모두 이 안에 넣어야 돌아갑니다.
+                이 구조가 무엇을 하는지는 지금 몰라도 됩니다. 안쪽에 쓴 줄들이 위에서 아래로 차례로 실행된다는
+                것만 알면 됩니다. 이 강의노트의 다른 예시 코드도 모두 이 안에 넣어야 실행됩니다.
             </p>
         </div>
 
@@ -144,10 +148,10 @@
                     </tr>
                     <tr>
                         <td>대문자와 소문자는 다른 이름</td>
-                        <td><code>score</code>와 <code>Score</code>는 서로 다른 자리다</td>
+                        <td><code>score</code>와 <code>Score</code>는 서로 다른 변수다</td>
                     </tr>
                     <tr>
-                        <td>C가 쓰는 낱말은 쓸 수 없다</td>
+                        <td>C 문법에 쓰는 단어(예약어)는 쓸 수 없다</td>
                         <td><code>int</code>, <code>if</code>, <code>return</code> 등</td>
                     </tr>
                     </tbody>
@@ -155,14 +159,14 @@
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                규칙만 지키면 프로그램은 돌아갑니다. 그래도 <strong>무엇을 담았는지 알아볼 수 있는 이름</strong>을 붙이는 편이 좋습니다.
-                코드는 한 번 쓰고 끝나지 않고, 며칠 뒤의 자신이 다시 읽습니다.
+                규칙만 지키면 프로그램은 실행됩니다. 그래도 무엇을 저장했는지 알아볼 수 있는 이름을 붙이는 편이 좋습니다.
+                코드는 한 번 쓰고 끝나지 않고, 며칠 뒤의 자신이 다시 읽기 때문입니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">선언할 때 값을 담지 않고 <code>int score;</code>라고만 쓰면 그 자리에는 무엇이 들어 있을까요? 0일까요, 아니면 알 수 없는 값일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">초기화하지 않고 <code>int score;</code>라고만 선언하면 <code>score</code>에는 어떤 값이 들어 있을까요? 0일까요, 아니면 알 수 없는 값일까요?</p>
         </div>
     </section>
 
@@ -171,37 +175,37 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">대입은 오른쪽을 먼저 계산한다</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">이 한 가지만 붙들면 값이 바뀌는 순서가 보입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">이 한 가지만 기억하면 값이 바뀌는 순서가 보입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                처음 배울 때 가장 많이 걸려 넘어지는 줄이 이것입니다.
+                처음 배울 때 가장 많이 헷갈리는 줄이 바로 이것입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/01.대입.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 수학에서 count = count + 1은 성립하지 않는 식입니다. 어떤 수도 자기 자신보다 1 크지 않으니까요.
-                하지만 여기서는 등식이 아니라 <strong>순서가 있는 명령</strong>입니다.
+                하지만 C에서 이 줄은 등식이 아니라 <strong>순서가 있는 명령</strong>입니다.
             </p>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900">한 줄이 처리되는 순서</p>
                 <ol class="space-y-2 text-base text-slate-700 list-decimal list-outside pl-5">
-                    <li><strong>오른쪽</strong>을 먼저 계산한다 &mdash; <code>count</code>에 담긴 10을 꺼내 1을 더해 11을 얻는다.</li>
-                    <li>그 결과를 <strong>왼쪽 이름</strong>에 담는다 &mdash; <code>count</code>가 11이 된다.</li>
+                    <li><strong>오른쪽</strong>을 먼저 계산한다 &mdash; <code>count</code>에 저장된 10을 꺼내 1을 더해 11을 얻는다.</li>
+                    <li>그 결과를 <strong>왼쪽 변수</strong>에 저장한다 &mdash; <code>count</code>가 11이 된다.</li>
                 </ol>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    오른쪽을 계산하는 동안 <code>count</code>는 아직 <strong>10</strong>입니다. 값이 바뀌는 것은 마지막 순간입니다.
+                    오른쪽을 계산하는 동안 <code>count</code>는 아직 <strong>10</strong>입니다. 값은 마지막 단계에서 바뀝니다.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>왼쪽과 오른쪽은 하는 일이 다릅니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>10 = count;</code>라고 쓰면 오류가 납니다. 왼쪽은 <strong>담을 자리</strong>여야 하는데
-                    10은 자리가 아니라 값이기 때문입니다. <code>=</code>의 양쪽은 바꿔 쓸 수 없습니다.
+                    <code>10 = count;</code>라고 쓰면 오류가 납니다. 왼쪽에는 <strong>값을 저장할 변수</strong>가 와야 하는데
+                    10은 변수가 아니라 값이기 때문입니다. <code>=</code>의 양쪽은 서로 바꿔 쓸 수 없습니다.
                 </p>
             </div>
         </div>
@@ -212,20 +216,20 @@
         </div>
     </section>
 
-    <!-- ===== 자리마다 크기가 정해져 있다 ===== -->
+    <!-- ===== 자료형마다 크기가 정해져 있다 ===== -->
     <section id="type" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">자리마다 크기가 정해져 있다</h2>
+            <h2 class="text-3xl font-black text-slate-900">자료형마다 크기가 정해져 있다</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">무엇을 담을지 미리 밝히는 대신, 담을 수 있는 범위도 함께 정해집니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">자료형을 미리 밝히면 저장할 수 있는 값의 범위도 함께 정해집니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">자료형(data type)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    값이 <strong>어떤 종류인지</strong>를 가리킵니다. 종류가 정해지면
-                    그 값으로 <strong>무엇을 할 수 있는지</strong>, 그리고 <strong>얼마나 큰 자리를 차지하는지</strong>도 함께 정해집니다.
+                    값이 <strong>어떤 종류인지</strong>를 나타냅니다. 자료형이 정해지면
+                    그 값으로 무엇을 할 수 있는지, 그리고 <strong>메모리에서 얼마나 큰 공간을 차지하는지</strong>도 함께 정해집니다.
                 </p>
             </div>
 
@@ -234,8 +238,8 @@
                     <thead>
                     <tr>
                         <th class="w-28">자료형</th>
-                        <th class="w-36">담는 것</th>
-                        <th class="w-28">서식 문자</th>
+                        <th class="w-36">저장하는 값</th>
+                        <th class="w-28">서식 지정자</th>
                         <th>예</th>
                     </tr>
                     </thead>
@@ -254,9 +258,9 @@
                     </tr>
                     <tr>
                         <td><code>char</code></td>
-                        <td>글자 하나</td>
+                        <td>문자 하나</td>
                         <td><code>%c</code></td>
-                        <td><code>'A'</code>, <code>'7'</code> &mdash; 한글 한 글자는 담기지 않는다</td>
+                        <td><code>'A'</code>, <code>'7'</code> &mdash; 한글 한 글자는 저장할 수 없다</td>
                     </tr>
                     </tbody>
                 </table>
@@ -265,19 +269,19 @@
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-quote-right mr-2"></i>따옴표 두 종류를 구별합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>'A'</code>는 <strong>작은따옴표</strong>로 감싼 <strong>글자 하나</strong>이고,
-                    <code>"A"</code>는 <strong>큰따옴표</strong>로 감싼 <strong>글자의 나열</strong>입니다.
-                    담는 자리도 서로 다릅니다. 파이썬은 이 둘을 구별하지 않지만 C는 구별합니다.
+                    <code>'A'</code>는 작은따옴표로 감싼 <strong>문자 하나</strong>이고,
+                    <code>"A"</code>는 큰따옴표로 감싼 <strong>문자열(string)</strong>입니다.
+                    문자열은 문자를 차례로 이어 놓은 값이라, 글자가 하나뿐이어도 문자 하나와는 저장되는 방식이 다릅니다.
+                    파이썬은 두 따옴표를 구별하지 않지만 C는 구별합니다.
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">담을 수 있는 크기에는 한계가 있습니다</p>
+                <p class="font-black text-lg text-slate-900">저장할 수 있는 값에는 한계가 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int</code> 자리는 크기가 정해져 있어서 <strong>아주 큰 수는 담기지 않습니다.</strong>
-                    넘쳐도 대개 오류로 멈추지 않고 그대로 지나가는데, 그때 나온 <strong>결과는 믿을 수 없습니다</strong> &mdash;
-                    그래서 알아채기 어렵습니다. 정확한 한계는 컴퓨터와 컴파일러에 따라 다르므로
-                    <strong>「한계가 있다」는 것부터</strong> 기억해 두면 됩니다.
+                    <code>int</code> 변수는 메모리에서 차지하는 크기가 정해져 있어서 <strong>아주 큰 수는 저장할 수 없습니다.</strong>
+                    범위를 넘어도 대개 오류로 멈추지 않고 그대로 실행되는데, 그때 나온 결과는 믿을 수 없어서 알아채기 어렵습니다.
+                    정확한 범위는 컴퓨터와 컴파일러에 따라 다르므로 <strong>「범위에 한계가 있다」는 것부터</strong> 기억해 두면 됩니다.
                 </p>
             </div>
         </div>
@@ -288,27 +292,27 @@
         </div>
     </section>
 
-    <!-- ===== 종류가 다른 값이 만날 때 ===== -->
+    <!-- ===== 자료형이 다른 값이 만날 때 ===== -->
     <section id="convert" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">종류가 다른 값이 만날 때</h2>
+            <h2 class="text-3xl font-black text-slate-900">자료형이 다른 값이 만날 때</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">C에서 가장 자주 발목을 잡는 것은 정수끼리의 나눗셈입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                종류가 다른 값이 한 식에서 만나면 C가 알아서 한쪽을 맞춰 계산합니다.
-                이것을 <strong>자동 형 변환</strong>이라고 합니다.
+                자료형이 다른 값이 한 식에서 만나거나 다른 자료형의 변수에 대입되면 C가 알아서 자료형을 맞춥니다.
+                이것을 <strong>자동 형 변환(implicit type conversion)</strong>이라고 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/01.형변환.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                정수를 실수 자리에 담는 것은 넓은 자리로 옮기는 것이라 값이 그대로 살아 있습니다.
-                반대로 실수를 정수 자리에 담으면 소수점 아래가 잘립니다 &mdash; 반올림이 아닙니다.
-                C가 알아서 잘라 담기는 하지만, 이렇게 좁은 자리로 옮길 때는 <code>(int)</code>처럼 직접 적어
-                「알고 하는 일」임을 밝힙니다. 이것을 <strong>강제 형 변환</strong>이라고 합니다.
+                정수를 실수 변수에 저장하면 표현 범위가 더 넓은 자료형으로 옮기는 것이라 값이 그대로 유지됩니다.
+                반대로 실수를 정수 변수에 저장하면 소수점 아래가 잘립니다. 반올림이 아닙니다.
+                C가 알아서 잘라 저장하기는 하지만, 이렇게 좁은 자료형으로 바꿀 때는 <code>(int)</code>처럼 직접 적어
+                「의도한 변환」임을 밝힙니다. 이것을 <strong>강제 형 변환(type casting)</strong>이라고 합니다.
             </p>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-3">
@@ -316,11 +320,11 @@
                 <pre class="language-c"><code class="language-c" data-src="code/01.정수나눗셈.c"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
                     양쪽이 모두 정수이면 C는 <strong>정수끼리의 나눗셈</strong>을 합니다. 소수점 아래는 잘려 나가고 정수 부분만 남습니다.
-                    소수점 아래가 필요하면 <strong>한쪽을 실수로 만들어</strong> 주어야 합니다.
+                    소수점 아래가 필요하면 <strong>한쪽을 실수로 바꾸어</strong> 주어야 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    평균을 구하는 코드가 자꾸 딱 떨어지는 값만 내놓는다면 원인은 대개 정수끼리의 나눗셈입니다.
-                    오류로 멈추지 않고 그럴듯한 값을 내놓기 때문에 찾기가 어렵습니다.
+                    평균을 구하는 코드가 자꾸 소수점 아래가 없는 값만 출력한다면 원인은 대개 정수끼리의 나눗셈입니다.
+                    오류로 멈추지 않고 그럴듯한 값이 나오기 때문에 찾기가 어렵습니다.
                 </p>
             </div>
         </div>
@@ -342,30 +346,30 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">선언</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    자리를 만들 때 <strong>무엇을 담을지 먼저 적는다.</strong>
-                    자료형이 정해지면 그 자리의 크기도 함께 정해진다.
+                    변수를 만들 때 <strong>저장할 값의 자료형을 먼저 적는다.</strong>
+                    자료형이 정해지면 변수가 메모리에서 차지할 크기도 함께 정해진다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">대입의 순서</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>오른쪽을 먼저 계산</strong>하고 그 결과를 왼쪽에 담는다.
-                    오른쪽을 계산하는 동안 왼쪽 변수는 아직 옛 값을 가지고 있다.
+                    <strong>오른쪽을 먼저 계산</strong>하고 그 결과를 왼쪽 변수에 저장한다.
+                    오른쪽을 계산하는 동안 왼쪽 변수는 아직 이전 값을 가지고 있다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">자료형과 서식 문자</h3>
+                <h3 class="text-xl font-black text-slate-900">자료형과 서식 지정자</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>int</code>&nbsp;<code>%d</code>, <code>double</code>&nbsp;<code>%f</code>,
-                    <code>char</code>&nbsp;<code>%c</code>. <code>'A'</code>는 글자 하나,
-                    <code>"A"</code>는 글자의 나열로 서로 다르다.
+                    <code>char</code>&nbsp;<code>%c</code>. <code>'A'</code>는 문자 하나,
+                    <code>"A"</code>는 문자열로 서로 다르다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">정수끼리의 나눗셈</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     양쪽이 정수면 <strong>소수점 아래가 잘린다</strong> (<code>5 / 2</code>는 2).
-                    소수점 아래가 필요하면 한쪽을 실수로 만든다.
+                    소수점 아래가 필요하면 한쪽을 실수로 바꾼다.
                     오류로 멈추지 않으므로 찾기 어렵다.
                 </p>
             </div>
@@ -383,10 +387,10 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>int n = 4;</code> 다음에 <code>n = n * n;</code>을 실행하면 <code>n</code>은 얼마인가?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '오른쪽을 먼저 계산합니다. 4 × 4를 하고 나서 담습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '오른쪽을 먼저 계산합니다. 4 × 4를 계산한 뒤에 대입합니다.')">
                     ① 4 &mdash; 자기 자신을 곱했으니 그대로다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '오른쪽 4 × 4 = 16을 먼저 구하고, 그 16을 n에 담습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '오른쪽 4 × 4 = 16을 먼저 구하고, 그 16을 n에 대입합니다.')">
                     ② 16
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '등식이 아니라 명령입니다. 오류가 나지 않습니다.')">
@@ -422,13 +426,13 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '반올림하지 않고 소수점 아래를 잘라 냅니다. (int) 3.7은 3입니다.')">
                     ① <code>(int) 3.7</code>은 반올림해서 4가 된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '작은따옴표는 글자 하나, 큰따옴표는 글자의 나열입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '작은따옴표는 문자 하나, 큰따옴표는 문자열입니다.')">
                     ② <code>'A'</code>와 <code>"A"</code>는 서로 다른 값이다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '자료형을 적으면 그 자리의 크기도 함께 정해집니다.')">
-                    ③ 자료형은 담을 수 있는 값의 범위와도 관계가 있다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '자료형을 적으면 변수가 차지할 크기가 정해지고, 그 크기가 저장할 수 있는 값의 범위를 정합니다.')">
+                    ③ 자료형은 저장할 수 있는 값의 범위와도 관계가 있다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '= 의 왼쪽은 값을 담을 자리여야 하는데 10은 자리가 아니라 값이라 오류가 납니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '= 의 왼쪽에는 값을 저장할 변수가 와야 하는데 10은 변수가 아니라 값이라 오류가 납니다.')">
                     ④ <code>10 = count;</code>는 오류가 난다
                 </button>
             </div>
