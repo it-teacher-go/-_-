@@ -17,6 +17,7 @@ import {resolve} from 'node:path';
 
 import {ROOT, relPath} from './units.js';
 import {hasThemeToggle} from './theme-pages.js';
+import {SURFACE} from '../../src/tailwind/theme.js';
 
 const cfg = JSON.parse(readFileSync(resolve(ROOT, 'subjects.json'), 'utf-8'));
 
@@ -24,6 +25,11 @@ const LABEL = {light: '어두운 화면으로 바꾸기', dark: '밝은 화면�
 
 // ES5로 쓴다 — 모듈 스크립트가 아니고, 오래된 학교 컴퓨터의 브라우저에서도 테마만은 서야 한다.
 // 저장소 접근은 try로 감싼다. 저장소를 막아 둔 브라우저에서는 고른 것이 그 페이지에서만 산다.
+//
+// **CSS가 오기 전의 첫 화면도 어둡게.** `data-theme`만 붙이면 스타일시트를 받는 동안 브라우저가 기본 흰 바탕을
+// 그려, 다크인데도 한 번 희게 번쩍인다. 그래서 `<html>`에 `color-scheme`과 페이지 바탕색을 곧바로 준다
+// (바탕색은 CSS의 `--surface-page`와 같은 값 — 정본은 src/tailwind/theme.js의 `SURFACE`).
+// 인라인 스타일이지만 빌드가 굽는 스크립트라 `check -- inline-css`(강의노트 소스만 본다) 밖이다.
 export const SCRIPT = `(function () {
     var root = document.documentElement;
     var saved = null;
@@ -36,6 +42,8 @@ export const SCRIPT = `(function () {
     }
     function apply(theme) {
         root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        root.style.backgroundColor = theme === 'dark' ? '${SURFACE.page}' : '';
         label();
     }
     apply(chosen ? saved : (media && media.matches ? 'dark' : 'light'));

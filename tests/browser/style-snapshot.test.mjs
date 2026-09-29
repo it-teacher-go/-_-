@@ -71,7 +71,10 @@ test(`계산된 스타일 ${MODE === 'save' ? '저장' : '비교'} (${THEME})`, 
         while (queue.length) {
             const p = queue.shift();
             const {frame, win, doc} = await openFrame(encodeURI(p), W, H);
-            doc.documentElement.dataset.theme = THEME;
+            // 토글이 있는 페이지는 토글로 바꾼다 — 스크립트가 <html>에 주는 색 체계까지 함께 바뀐다.
+            const toggle = doc.querySelector('[data-theme-toggle]');
+            if (toggle && doc.documentElement.dataset.theme !== THEME) toggle.click();
+            else doc.documentElement.dataset.theme = THEME;
             await new Promise((r) => setTimeout(r, 700));   // `transition: all` 이 끝나기를 기다린다
             const now = snapshot(doc, win);
             frame.remove();

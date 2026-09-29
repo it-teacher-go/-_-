@@ -159,7 +159,8 @@ function setTheme(doc, theme) {
         s.textContent = '*,*::before,*::after{transition:none!important}';
         doc.head.append(s);
     }
-    doc.documentElement.dataset.theme = theme;
+    // 페이지가 실제로 쓰는 길(토글)로 바꾼다 — 스크립트가 <html>에 주는 색 체계 · 바탕까지 함께 바뀐다.
+    if (doc.documentElement.dataset.theme !== theme) doc.querySelector('[data-theme-toggle]').click();
     doc.defaultView.getComputedStyle(doc.body).color;
 }
 
@@ -257,7 +258,13 @@ test('강의노트 · 시뮬레이터 · 첫 화면마다 hero에 토글이 하�
                 btns[0].click();
                 if (root.dataset.theme === before) problems.push(`${p.slice(1)} — 눌러도 테마가 그대로다`);
                 if (btns[0].getAttribute('aria-label') === name) problems.push(`${p.slice(1)} — 눌러도 ${label(btns[0])} 이름이 그대로다`);
-                btns[0].click();
+                // CSS가 오기 전의 첫 화면 — 스크립트가 <html>에 색 체계와 (다크면) 바탕을 곧바로 준다.
+                for (let i = 0; i < 2; i++) {
+                    const t = root.dataset.theme;
+                    if (root.style.colorScheme !== t) problems.push(`${p.slice(1)} — ${t}인데 <html>의 color-scheme이 「${root.style.colorScheme}」다(CSS가 오기 전에 흰 바탕이 번쩍인다)`);
+                    if ((t === 'dark') !== Boolean(root.style.backgroundColor)) problems.push(`${p.slice(1)} — ${t}인데 <html> 바탕이 「${root.style.backgroundColor}」다`);
+                    if (i === 0) btns[0].click();
+                }
                 problems.push(...heroProblems(doc, frame.contentWindow).map((m) => `${p.slice(1)} — ${m}`));
                 problems.push(...(await keepProblems(doc, frame.contentWindow)).map((m) => `${p.slice(1)} — ${m}`));
             }

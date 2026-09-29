@@ -177,8 +177,9 @@ export const MUTANTS = [
     ['browser/dark', 'src/tailwind/theme.js', 'const TEXT_UP = {400: 300, 500: 300, 600: 300, 700: 200, 800: 100, 900: 50, 950: 50};', 'const TEXT_UP = {};', '다크에서 짙은 글자를 밝히지 않음'],
     ['browser/dark', 'tools/vite/theme-toggle.js', '        chosen = true;\n        apply(next);', '        chosen = true;', '토글을 눌러도 테마가 그대로'],
     ['browser/dark', 'src/styles/_theme.css', '    box-shadow: inset 0 0 0 100vmax', '    box-shadow: 0 0 0 0', '다크에서 hero가 그대로 밝음'],
+    ['browser/dark', 'tools/vite/theme-toggle.js', '        root.style.colorScheme = theme;\n', '', 'CSS가 오기 전 첫 화면이 다크에서도 흰 바탕으로 번쩍임'],
     ['browser/dark', 'src/styles/index.css', ':root[data-theme="dark"] .link-card span {\n    color: var(--ink-body);', ':root[data-theme="dark"] .link-card span {\n    color: #475569;', '첫 화면 링크 카드 글자가 다크에서 짙은 채로'],
-    ['browser/dark', 'tools/vite/theme-toggle.js', '    function apply(theme) {\n        root.dataset.theme = theme;\n        label();', '    function apply(theme) {\n        root.dataset.theme = theme;', '토글 단추 이름이 테마를 따라가지 않음'],
+    ['browser/dark', 'tools/vite/theme-toggle.js', '        label();\n    }\n    apply(chosen', '    }\n    apply(chosen', '토글 단추 이름이 테마를 따라가지 않음'],
 
     // ── 시뮬레이터 — 알고리즘에 그럴듯한 버그를 심는다 ────────────────────────
     ['sim-pages', 'src/entries/_lib/canvas-dpr.js', 'const dpr = window.devicePixelRatio || 1;', 'const dpr = 1;', '캔버스가 화면 배율을 무시'],
