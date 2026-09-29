@@ -1,7 +1,7 @@
 # ---
 # check: none
 # ---
-point = (3, 7)          # 소괄호로 묶는다
+point = (3, 7)          # 쉼표로 묶고, 보통 소괄호로 감싼다
 print(point)            # (3, 7)
 print(point[0])         # 3      인덱스로 꺼내는 것은 리스트와 같다
 print(len(point))       # 2

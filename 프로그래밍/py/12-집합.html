@@ -21,8 +21,8 @@
             집합
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            같은 값을 <strong>두 번 담지 않는</strong> 자료형입니다.<br>
-            겹친 것과 합친 것을 기호 하나로 구합니다.
+            같은 값을 <strong>두 번 저장하지 않는</strong> 자료형입니다.<br>
+            교집합과 합집합을 연산자 하나로 구합니다.
         </p>
     </div>
 </header>
@@ -37,11 +37,11 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>집합을 만들고 리스트에서 겹친 값을 걸러 낼 수 있다.</li>
-                    <li>리스트 · 딕셔너리 · 집합을 무엇으로 꺼내는지로 구별할 수 있다.</li>
-                    <li>교집합 · 합집합 · 차집합을 기호로 구할 수 있다.</li>
-                    <li>집합에 차례가 없다는 것을 알고 필요할 때 정렬해 순회할 수 있다.</li>
-                    <li>「있는지 묻는 일」에 집합이 강한 까닭과 그 대가를 설명할 수 있다.</li>
+                    <li>집합을 만들고, 리스트에서 중복된 값을 제거할 수 있다.</li>
+                    <li>리스트 · 딕셔너리 · 집합을 값을 꺼내는 방법으로 구별할 수 있다.</li>
+                    <li>교집합 · 합집합 · 차집합을 연산자로 구할 수 있다.</li>
+                    <li>집합에 순서가 없다는 것을 알고, 필요할 때 정렬해 순회할 수 있다.</li>
+                    <li>「값이 있는지 묻는 일」에 집합이 유리한 이유와 그 대가를 설명할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -58,9 +58,9 @@
             <span class="font-black text-xl tracking-tight text-slate-800">집합</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#why" class="hover:text-orange-600 transition">겹친 것 걸러 내기</a>
+            <a href="#why" class="hover:text-orange-600 transition">중복 제거</a>
             <a href="#compare" class="hover:text-orange-600 transition">셋을 나란히</a>
-            <a href="#ops" class="hover:text-orange-600 transition">겹치고 합치고 빼기</a>
+            <a href="#ops" class="hover:text-orange-600 transition">집합 연산</a>
             <a href="#fast" class="hover:text-orange-600 transition">있는지 묻는 일</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
@@ -74,20 +74,20 @@
 
     <section id="why" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">겹친 것을 걸러 내기</h2>
+            <h2 class="text-3xl font-black text-slate-900">중복된 값 제거하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">리스트로도 됩니다. 손이 많이 갈 뿐입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">투표 결과에서 <strong>어떤 것이 나왔는지</strong>만 알고 싶습니다. 몇 표인지는 지금 관심이 없습니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">투표 결과에서 <strong>어떤 것이 나왔는지</strong>만 알고 싶습니다. 몇 표인지는 지금 필요하지 않습니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/12.중복.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed"><code>if fruit not in kinds</code>로 <strong>이미 담았는지 매번 확인</strong>해야 합니다. 빠뜨리면 같은 값이 두 번 들어갑니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>if fruit not in kinds</code>로 <strong>이미 추가했는지 매번 확인</strong>해야 합니다. 이 조건을 빠뜨리면 같은 값이 두 번 추가됩니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 274" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위에 사과 포도 사과 바나나 사과 포도 여섯 칸이 있고 겹친 칸은 흐리게 그려져 있다. 아래로 화살표가 내려가 사과 포도 바나나 세 칸만 남는다">
+                     role="img" aria-label="위에 사과 포도 사과 바나나 사과 포도 여섯 요소가 있고 중복된 값은 흐리게 그려져 있다. 아래로 화살표가 내려가 사과 포도 바나나 세 요소만 남는다">
                     <defs><marker id="st" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
-                    <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">겹친 값이 「저절로」 하나로 합쳐진다</text>
+                    <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">중복된 값은 「자동으로」 하나만 남는다</text>
                     <rect x="20" y="52" width="84" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="62" y="82" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">사과</text>
                     <rect x="112" y="52" width="84" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -100,7 +100,7 @@
                     <text x="430" y="82" font-size="17" fill="#64748b" text-anchor="middle">사과</text>
                     <rect x="480" y="52" width="84" height="46" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
                     <text x="522" y="82" font-size="17" fill="#64748b" text-anchor="middle">포도</text>
-                    <text x="288" y="124" font-size="16" fill="#64748b" text-anchor="middle">리스트 &mdash; 나온 차례 그대로 여섯 칸</text>
+                    <text x="288" y="124" font-size="16" fill="#64748b" text-anchor="middle">리스트 &mdash; 나온 순서 그대로 요소 여섯 개</text>
                     <line x1="288" y1="140" x2="288" y2="172" stroke="#c2410c" stroke-width="3" marker-end="url(#st)"/>
                     <text x="360" y="162" font-size="17" fill="#c2410c" font-weight="700" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">set()</text>
                     <rect x="112" y="182" width="116" height="50" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
@@ -109,23 +109,23 @@
                     <text x="294" y="214" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">포도</text>
                     <rect x="360" y="182" width="116" height="50" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
                     <text x="418" y="214" font-size="18" fill="#0f172a" font-weight="700" text-anchor="middle">바나나</text>
-                    <text x="288" y="260" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle">집합 &mdash; 어떤 것이 나왔는지만 남은 세 칸</text>
+                    <text x="288" y="260" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle">집합 &mdash; 중복 없이 남은 요소 세 개</text>
                 </svg>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/12.만들기.py"></code></pre>
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">집합(set)</p>
-                <p class="text-base text-slate-700 leading-relaxed"><strong>같은 값을 두 번 담지 않고, 인덱스도 두지 않는 자료형</strong>입니다. 리스트가 <strong>「무엇이 몇 번째에 몇 개 있는가」</strong>를 담는다면, 집합은 <strong>「무엇이 들어 있는가」</strong>만 담습니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><strong>같은 값을 두 번 저장하지 않고, 인덱스도 없는 자료형</strong>입니다. 리스트가 <strong>「무엇이 몇 번째에 몇 개 있는가」</strong>를 저장한다면, 집합은 <strong>「무엇이 들어 있는가」</strong>만 저장합니다.</p>
             </div>
             <div class="bg-white border-l-4 border-l-rose-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">빈 중괄호는 집합이 아닙니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>{}</code>는 <strong>빈 딕셔너리</strong>입니다. 빈 집합은 <code>set()</code>이라야 합니다. 중괄호를 딕셔너리와 나눠 쓰기 때문에 생긴 일입니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>{}</code>는 <strong>빈 딕셔너리</strong>입니다. 빈 집합은 <code>set()</code>으로 만들어야 합니다. 집합과 딕셔너리가 같은 중괄호를 쓰는데, 빈 중괄호는 딕셔너리로 정해져 있기 때문입니다.</p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>set("바나나")</code>는 무엇이 될까요? 글자 하나하나가 값이 된다는 점에 주의해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>set("바나나")</code>는 무엇이 될까요? 문자열의 글자 하나하나가 요소가 된다는 점에 주의해 보세요.</p>
         </div>
     </section>
 
@@ -138,7 +138,7 @@
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">리스트 · 딕셔너리 · 집합은 값을 여럿 담는다는 점이 같습니다. 다른 것은 <strong>꺼내는 방법</strong>입니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">리스트 · 딕셔너리 · 집합은 여러 값을 저장한다는 점이 같습니다. 다른 것은 <strong>값을 꺼내는 방법</strong>입니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 272" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="왼쪽부터 리스트 딕셔너리 집합 세 칸이 나란히 있다. 리스트는 인덱스가, 딕셔너리는 키가 값 옆에 붙어 있고, 집합은 값만 있다">
@@ -157,7 +157,7 @@
                     <line x1="74" y1="184" x2="74" y2="224" stroke="#0ea5e9" stroke-width="2"/>
                     <text x="43" y="210" font-size="16" fill="#0369a1" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">[2]</text>
                     <text x="125" y="210" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">72</text>
-                    <text x="94" y="258" font-size="16" fill="#64748b" text-anchor="middle">차례가 뜻을 갖는다</text>
+                    <text x="94" y="258" font-size="16" fill="#64748b" text-anchor="middle">순서가 의미를 갖는다</text>
                     <text x="282" y="56" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle">딕셔너리</text>
                     <text x="282" y="78" font-size="16" fill="#64748b" text-anchor="middle">키로</text>
                     <rect x="200" y="92" width="164" height="40" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -172,9 +172,9 @@
                     <line x1="262" y1="184" x2="262" y2="224" stroke="#f97316" stroke-width="2"/>
                     <text x="231" y="210" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">C</text>
                     <text x="313" y="210" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">72</text>
-                    <text x="282" y="258" font-size="16" fill="#64748b" text-anchor="middle">이름이 값에 붙는다</text>
+                    <text x="282" y="258" font-size="16" fill="#64748b" text-anchor="middle">키가 값에 붙는다</text>
                     <text x="470" y="56" font-size="18" fill="#334155" font-weight="700" text-anchor="middle">집합</text>
-                    <text x="470" y="78" font-size="16" fill="#64748b" text-anchor="middle">꺼내지 않는다</text>
+                    <text x="470" y="78" font-size="16" fill="#64748b" text-anchor="middle">꺼낼 기준이 없다</text>
                     <rect x="388" y="92" width="164" height="40" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
                     <text x="470" y="118" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">90</text>
                     <rect x="388" y="138" width="164" height="40" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
@@ -202,59 +202,59 @@
                         <td><code>{90, 85}</code></td>
                     </tr>
                     <tr>
-                        <td><strong>꺼내기</strong></td>
+                        <td><strong>하나 골라 꺼내기</strong></td>
                         <td><code>a[0]</code></td>
                         <td><code>d["A"]</code></td>
-                        <td>없다</td>
+                        <td>없다(인덱스 · 키가 없다)</td>
                     </tr>
                     <tr>
-                        <td><strong>같은 값이 둘</strong></td>
+                        <td><strong>중복된 값</strong></td>
                         <td>된다</td>
                         <td>키는 안 된다</td>
                         <td>안 된다</td>
                     </tr>
                     <tr>
-                        <td><strong>차례</strong></td>
-                        <td>담은 대로</td>
-                        <td>담은 대로</td>
+                        <td><strong>순서</strong></td>
+                        <td>넣은 순서</td>
+                        <td>넣은 순서(파이썬 3.7부터)</td>
                         <td>없다</td>
                     </tr>
                     <tr>
                         <td><strong>잘하는 것</strong></td>
-                        <td>차례대로 다루기</td>
-                        <td>이름으로 찾기</td>
-                        <td><strong>겹침 걸러 내기 · 있는지 묻기</strong></td>
+                        <td>순서대로 다루기</td>
+                        <td>키로 찾기</td>
+                        <td><strong>중복 제거 · 있는지 묻기</strong></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/12.순서없다.py"></code></pre>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">차례가 없다는 것</p>
-                <p class="text-base text-slate-700 leading-relaxed">집합에는 <strong>인덱스가 없습니다.</strong> <code>s[0]</code>은 오류입니다. 순회할 수는 있지만 <strong>나오는 차례를 믿으면 안 됩니다.</strong> 차례가 필요하면 <code>sorted</code>로 <strong>정렬해서 순회합니다.</strong></p>
+                <p class="font-black text-lg text-slate-900">순서가 없다는 것</p>
+                <p class="text-base text-slate-700 leading-relaxed">집합에는 <strong>인덱스가 없습니다.</strong> <code>s[0]</code>은 오류입니다. 순회할 수는 있지만 <strong>요소가 나오는 순서에 기대면 안 됩니다.</strong> 순서가 필요하면 <code>sorted</code>로 <strong>정렬해서 순회합니다.</strong></p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">「학생마다 좋아하는 과일」을 담는다면 셋 중 무엇이 맞을까요? 「반에서 나온 과일 종류」라면요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">「학생마다 좋아하는 과일」을 저장한다면 셋 중 무엇이 알맞을까요? 「반에서 나온 과일 종류」라면요?</p>
         </div>
     </section>
 
 
     <section id="ops" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">겹치고 합치고 빼기</h2>
+            <h2 class="text-3xl font-black text-slate-900">교집합 · 합집합 · 차집합</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">집합이 다른 자료형과 가장 크게 다른 점입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed">집합끼리는 <strong>기호 하나로</strong> 겹친 것과 합친 것을 구할 수 있습니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">집합끼리는 <strong>연산자 하나로</strong> 교집합 · 합집합 · 차집합을 구할 수 있습니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 394" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
                      role="img" aria-label="네 개의 벤 다이어그램. a와 b가 겹치는 부분만, 두 원 전체, 왼쪽 원에서 겹친 부분을 뺀 곳, 오른쪽 원에서 겹친 부분을 뺀 곳이 차례로 칠해져 있다">
-                    <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">겹친 것 · 합친 것 · 뺀 것</text>
+                    <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">교집합 · 합집합 · 차집합</text>
                     <text x="144" y="52" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">a &amp; b</text>
                     <defs><clipPath id="cp144"><circle cx="166" cy="110" r="40"/></clipPath></defs>
                     <circle cx="122" cy="110" r="40" fill="#ffffff" stroke="#334155" stroke-width="2.5"/>
@@ -308,7 +308,7 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-32">기호</th>
+                        <th class="w-32">연산자</th>
                         <th class="w-24">이름</th>
                         <th>구하는 것</th>
                     </tr>
@@ -361,7 +361,7 @@
                 </svg>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/12.실전.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed">「둘 다 듣는 학생」은 <code>&amp;</code>, 「수학만 듣는 학생」은 <code>-</code>, 「모두 몇 명인가」는 <code>|</code>의 개수입니다. 리스트로 하면 이 셋 모두 반복문을 따로 짜야 합니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">「둘 다 듣는 학생」은 <code>&amp;</code>, 「수학만 듣는 학생」은 <code>-</code>, 「모두 몇 명인가」는 <code>|</code>의 개수입니다. 리스트로 구하려면 셋 모두 반복문을 따로 작성해야 합니다.</p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
@@ -375,14 +375,14 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">있는지 묻는 일</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">집합을 고르는 또 하나의 까닭입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">집합을 고르는 또 하나의 이유입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
-            <p class="text-base text-slate-700 leading-relaxed"><code>in</code>은 리스트에도 쓸 수 있습니다. 하는 일이 다를 뿐입니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>in</code>은 리스트에도 쓸 수 있습니다. 다만 값을 찾는 방식이 다릅니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 344" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위에는 리스트의 일곱 칸을 앞에서부터 하나씩 대어 보다가 마지막에 찾는 모습, 아래에는 집합이 값 자체로 곧바로 자리를 찾아가는 모습이 그려져 있다">
+                     role="img" aria-label="위에는 리스트의 요소 일곱 개를 앞에서부터 하나씩 비교하다가 마지막에 찾는 모습, 아래에는 집합이 값으로 위치를 계산해 곧바로 찾아가는 모습이 그려져 있다">
                     <defs><marker id="hs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="288" y="26" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">「있느냐」를 묻는 방법이 다르다</text>
                     <text x="96" y="62" font-size="18" fill="#0369a1" font-weight="700" text-anchor="middle">리스트</text>
@@ -407,39 +407,39 @@
                     <rect x="476" y="80" width="68" height="44" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="510" y="108" font-size="17" fill="#0f172a" font-weight="700" text-anchor="middle">6</text>
                     <text x="510" y="144" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle">찾았다</text>
-                    <text x="288" y="176" font-size="16" fill="#64748b" text-anchor="middle">앞에서부터 「하나씩」 대어 본다</text>
+                    <text x="288" y="176" font-size="16" fill="#64748b" text-anchor="middle">앞에서부터 「하나씩」 비교한다</text>
                     <line x1="20" y1="196" x2="556" y2="196" stroke="#e2e8f0" stroke-width="2"/>
                     <text x="96" y="228" font-size="18" fill="#334155" font-weight="700" text-anchor="middle">집합</text>
                     <rect x="20" y="246" width="250" height="52" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
                     <text x="145" y="278" font-size="19" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">6</text>
                     <line x1="276" y1="272" x2="316" y2="272" stroke="#c2410c" stroke-width="3" marker-end="url(#hs)"/>
-                    <text x="296" y="234" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle">값 자체로</text>
+                    <text x="296" y="234" font-size="16" fill="#c2410c" font-weight="700" text-anchor="middle">값으로 계산</text>
                     <rect x="324" y="246" width="232" height="52" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
                     <text x="440" y="278" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle">여기 있다</text>
-                    <text x="288" y="330" font-size="16" fill="#64748b" text-anchor="middle">몇 개가 들어 있든 「대어 보는 횟수」가 늘지 않는다</text>
+                    <text x="288" y="330" font-size="16" fill="#64748b" text-anchor="middle">요소가 많아져도 「비교 횟수」가 거의 늘지 않는다</text>
                 </svg>
             </div>
             <pre class="language-python"><code class="language-python" data-src="code/12.빠르기.py"></code></pre>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">담긴 개수가 늘어도 거의 느려지지 않습니다</p>
-                <p class="text-base text-slate-700 leading-relaxed">리스트의 <code>in</code>은 <strong>앞에서부터 하나씩 대어 봅니다.</strong> 값이 백만 개면 최악의 경우 백만 번입니다. 집합은 <strong>값 자체로 자리를 계산해</strong> 곧바로 갑니다. 그래서 <strong>개수가 늘어도 대어 보는 횟수가 거의 늘지 않습니다.</strong></p>
+                <p class="font-black text-lg text-slate-900">요소가 많아져도 거의 느려지지 않습니다</p>
+                <p class="text-base text-slate-700 leading-relaxed">리스트의 <code>in</code>은 <strong>앞에서부터 하나씩 비교합니다.</strong> 값이 백만 개면 최악의 경우 백만 번 비교합니다. 집합은 <strong>값으로 저장 위치를 계산해</strong> 곧바로 찾아갑니다. 그래서 <strong>요소가 많아져도 비교 횟수가 거의 늘지 않습니다.</strong></p>
             </div>
             <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-2">
                 <p class="font-bold text-base text-slate-800"><i class="fa-solid fa-gamepad text-orange-500 mr-1"></i>더 알아보기</p>
-                <p class="text-base text-slate-700 leading-relaxed">값으로 자리를 계산해 담아 두는 이런 구조를 해시 테이블(hash table)이라고 하고, 파이썬의 집합도 안에서 이 방식을 씁니다. <a href="../../simulator/cs/search.html" target="_blank" rel="noopener noreferrer" class="text-orange-700 font-bold underline hover:text-orange-900">탐색 시뮬레이터</a>의 「해시 테이블」 탭에서 값을 삽입하고 탐색해 보면, 값의 일의 자리로 칸 번호를 계산해 그 칸으로 곧바로 가는 모습과 두 값의 칸이 겹칠 때 벌어지는 일을 볼 수 있습니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed">값으로 저장 위치를 계산하는 이런 구조를 해시 테이블(hash table)이라고 하고, 파이썬의 집합도 안에서 이 방식을 씁니다. <a href="../../simulator/cs/search.html" target="_blank" rel="noopener noreferrer" class="text-orange-700 font-bold underline hover:text-orange-900">탐색 시뮬레이터</a>의 「해시 테이블」 탭에서 값을 삽입하고 탐색해 보면, 값의 일의 자리로 칸 번호를 계산해 그 칸으로 곧바로 가는 모습과 두 값의 칸이 겹칠 때 벌어지는 일을 볼 수 있습니다.</p>
             </div>
             <div class="bg-white border-l-4 border-l-slate-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">그렇다고 늘 집합이 나은 것은 아닙니다</p>
-                <p class="text-base text-slate-700 leading-relaxed">집합에는 <strong>차례가 없고</strong> 같은 값을 두 번 담지 않습니다. 인덱스로 꺼내야 하거나 같은 값을 여러 번 담아야 한다면 <strong>리스트라야 합니다.</strong> 「있는지 묻는 일」이 많다면 집합을 고를 까닭이 됩니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed">집합에는 <strong>순서가 없고</strong> 같은 값을 두 번 저장하지 않습니다. 인덱스로 꺼내야 하거나 같은 값을 여러 번 저장해야 한다면 <strong>리스트를 써야 합니다.</strong> 「값이 있는지 묻는 일」이 많다면 집합을 고를 이유가 됩니다.</p>
             </div>
-            <p class="text-base text-slate-700 leading-relaxed">이 강의노트에서 본 것을 모으면 두 줄을 받아 겹친 것과 합친 것을 내놓는 프로그램이 됩니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">이 강의노트에서 본 것을 모으면 두 줄을 입력받아 교집합과 합집합을 출력하는 프로그램이 됩니다.</p>
             <pre class="language-python"><code class="language-python" data-src="code/12.전체.py"></code></pre>
-            <p class="text-base text-slate-700 leading-relaxed"><code>print(*sorted(...))</code>의 <code>*</code>는 <strong>리스트를 풀어 하나씩 넘기라</strong>는 뜻입니다. 덕분에 <code>[3, 4]</code>가 아니라 <code>3 4</code>로 찍힙니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>print(*sorted(...))</code>의 <code>*</code>는 <strong>리스트를 풀어 요소를 하나씩 인자로 전달하라</strong>는 뜻입니다. 덕분에 <code>[3, 4]</code>가 아니라 <code>3 4</code>로 출력됩니다.</p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">값 백만 개에서 「있는지」를 천 번 물어야 합니다. 리스트와 집합 중 무엇을 고르고, 그 까닭은 무엇일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">값 백만 개에서 「있는지」를 천 번 물어야 합니다. 리스트와 집합 중 무엇을 고르고, 그 이유는 무엇일까요?</p>
         </div>
     </section>
 
@@ -452,24 +452,24 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">담는 것은 「무엇이 들어 있는가」뿐</h3>
-                <p class="text-base text-slate-700 leading-relaxed">집합은 <strong>같은 값을 두 번 담지 않고 인덱스도 두지 않는다.</strong> <code>set(리스트)</code> 한 줄이면 겹친 값이 저절로 합쳐진다.</p>
+                <h3 class="text-xl font-black text-slate-900">저장하는 것은 「무엇이 들어 있는가」뿐</h3>
+                <p class="text-base text-slate-700 leading-relaxed">집합은 <strong>같은 값을 두 번 저장하지 않고 인덱스도 없다.</strong> <code>set(리스트)</code> 한 줄이면 중복된 값이 자동으로 제거된다.</p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">빈 중괄호는 딕셔너리다</h3>
-                <p class="text-base text-slate-700 leading-relaxed"><code>{}</code>는 빈 딕셔너리이고 <strong>빈 집합은 <code>set()</code></strong>이다. 중괄호를 둘이 나눠 쓰기 때문이다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>{}</code>는 빈 딕셔너리이고 <strong>빈 집합은 <code>set()</code></strong>이다. 집합과 딕셔너리가 중괄호를 함께 쓰는데, 빈 중괄호는 딕셔너리로 정해져 있다.</p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">차례가 없다</h3>
-                <p class="text-base text-slate-700 leading-relaxed"><code>s[0]</code>은 오류다. 순회할 수는 있지만 나오는 차례를 믿으면 안 된다. 차례가 필요하면 <code>sorted</code>로 정렬해 순회한다.</p>
+                <h3 class="text-xl font-black text-slate-900">순서가 없다</h3>
+                <p class="text-base text-slate-700 leading-relaxed"><code>s[0]</code>은 오류다. 순회할 수는 있지만 요소가 나오는 순서에 기대면 안 된다. 순서가 필요하면 <code>sorted</code>로 정렬해 순회한다.</p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">기호 셋이 반복문을 대신한다</h3>
+                <h3 class="text-xl font-black text-slate-900">연산자 셋이 반복문을 대신한다</h3>
                 <p class="text-base text-slate-700 leading-relaxed"><code>&amp;</code>는 양쪽에 다 있는 것, <code>|</code>는 어느 쪽에든 있는 것, <code>-</code>는 앞쪽에만 있는 것. <strong><code>-</code>는 방향이 있다.</strong></p>
             </div>
             <div class="section-card space-y-2 md:col-span-2">
-                <h3 class="text-xl font-black text-slate-900">있는지 묻는 일에 강하다</h3>
-                <p class="text-base text-slate-700 leading-relaxed">리스트의 <code>in</code>은 하나씩 대어 보지만 집합은 값 자체로 자리를 찾아간다. 다만 집합에는 차례가 없으므로, 인덱스로 꺼내야 하면 리스트라야 한다.</p>
+                <h3 class="text-xl font-black text-slate-900">값이 있는지 묻는 일에 유리하다</h3>
+                <p class="text-base text-slate-700 leading-relaxed">리스트의 <code>in</code>은 하나씩 비교하지만 집합은 값으로 저장 위치를 계산해 곧바로 찾아간다. 다만 집합에는 순서가 없으므로, 인덱스로 꺼내야 하면 리스트를 쓴다.</p>
             </div>
         </div>
     </section>
@@ -487,7 +487,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '빈 중괄호는 집합이 아닙니다. set()이라야 합니다.')">
                     ① <code>set</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '빈 중괄호는 빈 딕셔너리입니다. 중괄호를 둘이 나눠 쓰기 때문입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '빈 중괄호는 빈 딕셔너리입니다. 집합과 딕셔너리가 중괄호를 함께 쓰지만, 빈 중괄호는 딕셔너리로 정해져 있습니다.')">
                     ② <code>dict</code>
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '대괄호를 쓰지 않았습니다.')">
@@ -511,7 +511,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '그것은 a &amp; b입니다.')">
                     ③ <code>{3}</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'a에서 b와 겹친 것만 빼므로 b에만 있는 4는 들어가지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'a에서 b와 공통인 값만 빼므로 b에만 있는 4는 들어가지 않습니다.')">
                     ④ <code>{1, 2, 4}</code>
                 </button>
             </div>
@@ -520,17 +520,17 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>집합을 고를 이유가 되지 않는</strong> 것은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'set(리스트) 한 줄로 겹친 값이 걸러지므로 집합을 고를 이유가 됩니다.')">
-                    ① 겹친 값을 걸러 내고 싶다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'set(리스트) 한 줄로 중복된 값이 제거되므로 집합을 고를 이유가 됩니다.')">
+                    ① 중복된 값을 제거하고 싶다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '값 자체로 자리를 찾아가므로 빠릅니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '값으로 저장 위치를 계산해 곧바로 찾아가므로 빠릅니다.')">
                     ② 값이 있는지 빠르게 묻고 싶다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '집합에는 인덱스가 없습니다. 그럴 때는 리스트라야 합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '집합에는 인덱스가 없습니다. 그럴 때는 리스트를 써야 합니다.')">
                     ③ <strong>인덱스로 값을 꺼내야 한다</strong>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '&amp; 하나로 구할 수 있습니다.')">
-                    ④ 두 모임의 겹치는 부분을 구하고 싶다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '&amp; 하나로 교집합을 구할 수 있습니다.')">
+                    ④ 두 모임에 모두 있는 값을 구하고 싶다
                 </button>
             </div>
         </div>

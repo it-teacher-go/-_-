@@ -8,6 +8,6 @@ for fruit in votes:
     if fruit in count:
         count[fruit] = count[fruit] + 1
     else:
-        count[fruit] = 1            # 처음 본 것이면 1로 시작한다
+        count[fruit] = 1            # 처음 나온 것이면 1로 시작한다
 
 print(count)                        # {'사과': 3, '포도': 2, '바나나': 1}

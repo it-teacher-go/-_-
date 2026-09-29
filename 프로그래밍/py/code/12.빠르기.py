@@ -5,5 +5,5 @@
 numbers = list(range(1000000))
 checked = set(numbers)
 
-print(999999 in numbers)    # True   리스트는 앞에서부터 하나씩 대어 본다
-print(999999 in checked)    # True   집합은 곧바로 자리를 찾아간다
+print(999999 in numbers)    # True   리스트는 앞에서부터 하나씩 비교한다
+print(999999 in checked)    # True   집합은 저장 위치를 계산해 곧바로 찾아간다

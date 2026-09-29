@@ -8,7 +8,7 @@ with open("성적.csv", "r", encoding="utf-8") as f:
     for line in f:
         values = line.strip().split(",")
         name = values[0]
-        table[name] = (int(values[1]), int(values[2]))   # 점수 둘을 묶어 담는다
+        table[name] = (int(values[1]), int(values[2]))   # 점수 둘을 튜플로 묶어 저장한다
 
 for name, (kor, eng) in table.items():
     print(f"{name}: 국어 {kor}, 영어 {eng}, 평균 {(kor + eng) / 2}")

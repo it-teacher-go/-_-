@@ -2,7 +2,7 @@
 # check: none
 # ---
 def summary(scores):
-    """가장 낮은 점수, 가장 높은 점수, 평균을 한 번에 돌려준다."""
+    """가장 낮은 점수, 가장 높은 점수, 평균을 한 번에 반환한다."""
     return min(scores), max(scores), round(sum(scores) / len(scores), 1)
 
 
