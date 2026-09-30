@@ -124,7 +124,7 @@
             <p class="text-base text-slate-700 leading-relaxed">
                 윤년 판별은 <code>else if</code>로 조건을 이어 쓰는 좋은 예입니다.
                 <strong>4의 배수이면서 100의 배수가 아니면</strong> 윤년이고,
-                이 조건이 거짓인 연도 가운데 400의 배수도 윤년입니다.
+                100의 배수라도 400의 배수이면 윤년입니다.
                 2024와 2000은 윤년이고, 1900은 아닙니다.
             </p>
         </div>
@@ -323,7 +323,7 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">
                 1. <code>score</code>가 95일 때, 조건을 <code>score &gt;= 70</code> &rarr; <code>score &gt;= 80</code> &rarr;
-                <code>score &gt;= 90</code> 순으로 <code>else if</code>를 늘어놓으면 어떻게 실행되는가?
+                <code>score &gt;= 90</code> 순서로 두고 <code>else if</code>로 이어 쓰면 어떻게 실행되는가?
             </p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '참인 첫 조건에서 멈춥니다. 95는 70 이상이라 첫 조건이 참이 되고, 나머지 조건은 검사하지 않습니다.')">

@@ -112,6 +112,7 @@
                 변수 앞에 <code>&amp;</code>를 붙이면 그 변수의 주소를 얻습니다.
                 그래서 <code>&amp;</code>를 <strong>주소 연산자(address-of operator)</strong>라고 합니다.
                 <code>%p</code>로 출력하면 주소를 눈으로 확인할 수 있습니다.
+                주소 앞에 붙인 <code>(void *)</code>는 <code>%p</code>가 <code>void *</code> 인자를 받도록 정해져 있어서 붙이는 강제 형 변환이며, <code>void *</code>가 무엇인지는 void 포인터를 배울 때 다룹니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/10.주소.c"></code></pre>
@@ -571,7 +572,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '읽기만 하는 것이 아닙니다. 역참조한 곳에 값을 저장할 수도 있습니다.')">
                     ③ 값을 넣을 수 없어 오류가 난다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'p 자신은 아무 변화가 없습니다. 손대는 것은 가리키는 곳입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'p의 값, 곧 저장된 주소는 바뀌지 않습니다. *p = 50;은 p가 가리키는 n에 50을 저장합니다.')">
                     ④ <code>p</code>의 값이 50이 된다
                 </button>
             </div>

@@ -236,7 +236,7 @@
                 <p class="font-black text-lg text-slate-900">바깥이 행을 고르고 안쪽이 그 행을 순회합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     바깥 반복이 <code>row</code>를 1 늘릴 때마다 <strong>안쪽 반복은 그 행의 요소 네 개를 모두</strong> 지나갑니다.
-                    시계에서 분침이 한 칸 움직이는 동안 초침이 한 바퀴를 도는 것과 같은 관계입니다.
+                    시계에서 분침이 한 눈금 움직이는 동안 초침이 한 바퀴를 도는 것과 같은 관계입니다.
                     그래서 안쪽 반복문의 중괄호 안은 <strong>3 &times; 4 = 12번</strong> 실행됩니다 &mdash; 배열의 요소 개수와 같습니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
@@ -286,7 +286,7 @@
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 340" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위쪽은 3행 4열인 표이고 아래쪽은 같은 열두 칸을 한 줄로 늘어놓은 모습이다. 행이 차례로 이어 붙어 있어 메모리에는 줄바꿈이 없다">
+                     role="img" aria-label="위쪽은 3행 4열인 표이고 아래쪽은 같은 열두 칸을 메모리 순서대로 한 줄로 이은 모습이다. 행이 차례로 이어 붙어 있어 메모리에는 줄바꿈이 없다">
                     <defs>
                         <marker id="ar12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                             <path d="M0 0 L10 5 L0 10 z" fill="#475569"/>
@@ -394,7 +394,7 @@
                     <strong>「요소 4개마다 행이 바뀐다」는 것은 선언의 <code>[3][4]</code>에 적어 둔 약속</strong>일 뿐입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>row</code>번 행의 <code>col</code>번 열에 있는 요소를 <strong>한 줄로 늘어놓았을 때의 인덱스</strong>도 계산할 수 있습니다 &mdash;
+                    배열 전체를 <strong>요소 12개짜리 1차원 배열로 보았을 때</strong> <code>row</code>번 행의 <code>col</code>번 열에 있는 요소의 인덱스도 계산할 수 있습니다 &mdash;
                     <strong><code>row &times; 열의 개수 + col</code></strong>입니다.
                     <code>score[1][2]</code>는 <strong>1 &times; 4 + 2 = 6</strong>이므로 인덱스 6인 요소이고,
                     위 결과에서 왼쪽부터 일곱 번째 값이 <strong>95</strong>인 것과 맞습니다.
@@ -404,7 +404,7 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>score[2][3]</code>은 한 줄로 늘어놓았을 때 인덱스가 얼마일까요? 요소 12개 가운데 어디에 놓이는지, 위 실행 결과에서 어떤 값인지도 확인해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>score</code>를 1차원 배열로 보면 <code>score[2][3]</code>의 인덱스는 얼마일까요? 요소 12개 가운데 어디에 놓이는지, 위 실행 결과에서 어떤 값인지도 확인해 보세요.</p>
         </div>
     </section>
 
@@ -536,7 +536,7 @@
                 <h3 class="text-xl font-black text-slate-900">메모리에는 한 줄로</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     0번 행부터 차례로 이어 붙여 연속으로 저장한다(행 우선 순서). 메모리에 줄바꿈은 없다.
-                    한 줄로 늘어놓았을 때의 인덱스는 <strong><code>행 인덱스 &times; 열의 개수 + 열 인덱스</code></strong>다.
+                    배열을 1차원으로 보았을 때 요소의 인덱스는 <strong><code>행 인덱스 &times; 열의 개수 + 열 인덱스</code></strong>다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -577,7 +577,7 @@
         </div>
 
         <div id="q2" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">2. <code>int a[3][4]</code>에서 <code>a[2][1]</code>을 한 줄로 늘어놓았을 때의 인덱스는?</p>
+            <p class="font-black text-lg text-slate-900">2. <code>int a[3][4]</code>를 1차원 배열로 보았을 때 <code>a[2][1]</code>의 인덱스는?</p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '두 인덱스를 더하기만 하면 안 됩니다. 앞의 행들을 모두 건너뛰어야 합니다.')">
                     ① 3

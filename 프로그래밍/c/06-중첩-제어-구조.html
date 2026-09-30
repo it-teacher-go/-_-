@@ -83,7 +83,7 @@
                 <p class="font-black text-lg text-orange-900">새로 배울 문법이 없습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     이 차시에는 <strong>새로운 문법 요소가 하나도 나오지 않습니다.</strong>
-                    반복문(<code>for</code>·<code>while</code>)과 선택 구조(<code>if</code>)을 서로의 안에 넣기만 합니다.
+                    반복문(<code>for</code>·<code>while</code>)과 선택 구조(<code>if</code>)를 서로의 안에 넣기만 합니다.
                     이렇게 제어 구조 안에 다른 제어 구조를 넣는 것을 중첩(nesting)이라고 합니다.
                     어려운 것은 문법이 아니라 중첩했을 때 어떤 순서로 실행되는지를 머릿속에 그리는 일입니다.
                 </p>
@@ -234,11 +234,11 @@
                 <p class="font-black text-lg text-orange-900">세 가지가 한곳에 모였습니다</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
                     <li><strong>반복</strong>이 1부터 20까지의 수를 차례로 만든다.</li>
-                    <li><strong>갈림길</strong>이 3의 배수인지 판단한다 &mdash; 나머지 연산자를 쓴다.</li>
+                    <li><strong><code>if</code>문</strong>이 3의 배수인지 판단한다 &mdash; 나머지 연산자를 쓴다.</li>
                     <li><strong>누적할 변수</strong>가 3의 배수의 개수를 센다 &mdash; 반복 밖에서 초기화한다.</li>
                 </ul>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    반복 · 갈림길 · 누적할 변수가 <strong>한 덩어리로 함께 쓰이는 구조</strong>입니다.
+                    반복 · <code>if</code>문 · 누적할 변수가 <strong>함께 쓰이는 구조</strong>입니다.
                 </p>
             </div>
 
@@ -275,7 +275,7 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     「<code>break</code>를 썼는데 왜 반복이 계속되지?」라는 의문은 여기서 생깁니다.
                     <strong>두 반복을 모두 끝내고 싶다면 <code>break</code> 하나로는 안 됩니다.</strong>
-                    바깥 반복의 조건에도 끝낼 신호를 주거나, 바깥 반복에서 한 번 더 <code>break</code>를 써야 합니다.
+                    끝낼지를 나타내는 변수를 두어 바깥 반복의 조건에서도 검사하거나, 바깥 반복에서 한 번 더 <code>break</code>를 써야 합니다.
                 </p>
             </div>
 
