@@ -34,7 +34,7 @@
 }
 
 /* ── 편마다의 hero 색 ── `<header class="hero-gradient hero-…">`. 이름은 그러데이션의 색과 단계를 차례로 적은 것이다.
-   **편마다 색이 다른 것은 과목 색(D-040)과 어긋난다** — 과목 색 하나로 모을지는 결정 기록 D-042에 있다.
+   편마다 색이 다른 것은 과목 색(D-040)의 예외로 두기로 했다(결정 기록 D-042).
    모으기로 하면 이 목록을 지우고 각 편의 hero-… 클래스를 뗀다. */
 .hero-blue500-violet500 { --note-hero: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
 .hero-blue600-violet600 { --note-hero: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
