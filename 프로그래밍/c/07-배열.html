@@ -212,7 +212,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">인덱스는 0부터</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">이 차시에서 가장 많이 틀리는 대목입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">이 차시에서 자주 틀리는 대목입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -419,6 +419,7 @@
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900"><code>sizeof</code>는 메모리에서 차지하는 크기를 알려 줍니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
+                    <code>sizeof</code>는 괄호 안에 쓴 것이 메모리에서 차지하는 크기를 구하는 연산자입니다.
                     <code>sizeof(score)</code>는 <strong>배열 전체가 메모리에서 차지하는 크기</strong>,
                     <code>sizeof(score[0])</code>은 요소 하나가 차지하는 크기입니다.
                     전체 크기를 요소 하나의 크기로 나누면 요소의 개수가 나옵니다.
@@ -484,7 +485,7 @@
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>범위 밖에 접근해도 C는 막지 않습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>score[5]</code>는 없는 요소입니다. 그런데 C는 <strong>「그런 요소는 없습니다」라고 알려 주지 않습니다.</strong>
-                    코드에 쓴 대로 배열이 끝난 다음 위치의 메모리를 읽어 옵니다. 사물함 줄 끝을 지나 옆 반 사물함을 여는 것과 같습니다.
+                    대개 코드에 쓴 대로 배열이 끝난 다음 위치의 메모리를 읽어 옵니다. 사물함 줄 끝을 지나 옆 반 사물함을 여는 것과 같습니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     그래서 결과가 <strong>한 가지로 정해지지 않습니다.</strong>
@@ -640,7 +641,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'C는 인덱스가 범위 안에 있는지 검사하지 않으므로 그런 문구를 출력하지 않습니다.')">
                     ① 「범위를 벗어났습니다」라는 문구가 반드시 나온다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '멈추는 경우도 있지만 늘 그런 것은 아닙니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '늘 멈추지는 않습니다. 엉뚱한 값을 출력하거나 정상처럼 실행되기도 합니다.')">
                     ② 프로그램이 반드시 그 줄에서 멈춘다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '엉뚱한 값 출력·비정상 종료·정상 실행처럼 보이기 가운데 무엇이든 될 수 있습니다. 정상처럼 보이는 경우가 가장 위험합니다.')">

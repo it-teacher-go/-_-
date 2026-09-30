@@ -21,7 +21,7 @@
             함수
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            줄 수를 줄이려고 쓰는 것이 아닙니다.<br>
+            줄 수를 줄이려고만 쓰는 것이 아닙니다.<br>
             <strong>일에 이름을 붙이려고 씁니다.</strong>
         </p>
     </div>
@@ -100,7 +100,7 @@
                     고칠 일이 생기면 <strong>묶어 둔 한 곳만</strong> 고치면 됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>함수는 줄 수를 줄이려고 쓰는 것이 아닙니다.</strong>
+                    <strong>함수는 줄 수를 줄이려고만 쓰는 것이 아닙니다.</strong>
                     한 번만 쓰는 코드도 함수로 분리하면 좋을 때가 있습니다.
                     함수 이름이 「무엇을 하는 코드인지」를 알려 주기 때문입니다.
                 </p>
@@ -109,7 +109,7 @@
             <p class="text-base text-slate-700 leading-relaxed">
                 사실 우리는 함수를 이미 쓰고 있었습니다.
                 <code>printf</code>도 <code>strlen</code>도 <strong>누군가 미리 만들어 이름을 붙여 둔 함수</strong>입니다.
-                <code>#include</code>는 그런 함수들이 모여 있는 파일을 포함하겠다는 표시였습니다.
+                <code>#include</code>는 그런 함수들을 쓰는 데 필요한 정보가 모여 있는 파일을 포함하겠다는 표시였습니다.
                 이 차시에서는 함수를 가져다 쓰는 쪽에서 직접 만드는 쪽으로 넘어갑니다.
             </p>
         </div>
@@ -430,7 +430,7 @@
                     <code>x</code>와 <code>y</code>의 값은 처음부터 끝까지 그대로입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>값에 의한 전달로는 함수가 호출한 쪽의 변수를 바꿀 수 없습니다.</strong>
+                    <strong>변수의 값만 전달해서는 함수가 호출한 쪽의 변수를 바꿀 수 없습니다.</strong>
                     반환할 수 있는 값이 하나뿐이니 <code>return</code>으로 두 값을 한꺼번에 반환할 수도 없습니다.
                 </p>
             </div>
@@ -456,7 +456,7 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>is_prime</code>은 <code>n</code>을 2부터 <code>n - 1</code>까지의 수로 모두 나누어 봅니다. 모든 수로 나누어 볼 필요가 없다면 어디까지만 확인하면 될까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>is_prime</code>은 나누어떨어지는 수를 찾을 때까지 <code>n</code>을 2부터 <code>n - 1</code>까지의 수로 차례로 나누어 봅니다. 이 수를 모두 확인할 필요가 없다면 어디까지만 확인하면 될까요?</p>
         </div>
     </section>
 
@@ -472,7 +472,7 @@
                 <h3 class="text-xl font-black text-slate-900">일에 이름을 붙인다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     코드를 함수로 묶어 두면 <strong>고칠 곳이 한 곳</strong>이 되고 함수 이름이 하는 일을 알려 준다.
-                    줄 수를 줄이려고 쓰는 것이 아니다.
+                    줄 수를 줄이려고만 쓰는 것이 아니다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -493,7 +493,7 @@
                 <h3 class="text-xl font-black text-slate-900">전달되는 것은 사본</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     함수 안의 변수는 <strong>이름이 같아도 다른 변수</strong>(지역 변수)다.
-                    그래서 값에 의한 전달로는 호출한 쪽의 변수를 바꿀 수 없다.
+                    그래서 변수의 값만 전달해서는 호출한 쪽의 변수를 바꿀 수 없다.
                 </p>
             </div>
         </div>
@@ -555,7 +555,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '처음 만나는 return에서 함수가 끝나므로 실제로 반환되는 값은 하나입니다.')">
                     ③ 먼저 만나는 return에서 끝나므로 반환되는 값은 하나다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '아래 return은 위 조건이 거짓일 때 실행되는 문장입니다. 쓸모없는 줄이 아닙니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '앞의 return을 만나지 않고 지나가면 뒤의 return이 실행됩니다. 앞의 return이 if문 안에 있고 그 조건이 거짓일 때가 그렇습니다.')">
                     ④ 뒤에 있는 return은 절대 실행되지 않는다
                 </button>
             </div>

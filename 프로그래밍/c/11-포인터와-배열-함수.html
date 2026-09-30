@@ -283,7 +283,7 @@
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                함수에 <strong>전달되는 것은 값의 사본</strong>이라, 값에 의한 전달로는 함수가 호출한 쪽의 변수를 바꿀 수 없습니다.
+                함수에 <strong>전달되는 것은 값의 사본</strong>이라, 변수의 값만 전달해서는 함수가 호출한 쪽의 변수를 바꿀 수 없습니다.
                 값 대신 주소를 전달하면 이야기가 달라집니다.
             </p>
 
@@ -428,7 +428,7 @@
             </div>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">반환값이 하나뿐이라는 제약도 풀립니다</p>
+                <p class="font-black text-lg text-orange-900">결과를 여러 개 돌려받을 수 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>return</code>으로는 값을 하나만 반환할 수 있습니다.
                     그런데 <strong>결과를 저장할 변수의 주소를 함수에 전달하면</strong> 개수 제한이 사라집니다.
@@ -491,7 +491,7 @@
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">주소를 전달하면 원본을 바꾼다</h3>
+                <h3 class="text-xl font-black text-slate-900">주소를 전달하면 원본을 바꿀 수 있다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     전달되는 것이 사본이라는 규칙은 그대로다.
                     <strong>복사된 것이 값이 아니라 주소</strong>일 뿐이고,
