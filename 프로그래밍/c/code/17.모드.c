@@ -6,16 +6,16 @@ int main(void) {
     //  인덱스       0  1  2  3   4    5  6    7
 
     // region: 직접
-    int field = 4;                       // 명령에 적힌 번호
+    int field = 4;                       // 명령어에 적힌 주소
 
     printf("직접: %d\n", memory[field]); // 4번 칸을 열어 3190을 꺼낸다
     // endregion
 
     // region: 간접
-    field = 5;                           // 이번에도 명령에 적힌 번호
+    field = 5;                           // 이번에도 명령어에 적힌 주소
 
-    int real = memory[field];            // 5번 칸을 열었더니 「또 번호」(7)가 있다
-    printf("간접: %d\n", memory[real]);  // 그 번호로 다시 가서 2022를 꺼낸다
+    int real = memory[field];            // 5번 칸을 열었더니 「또 다른 주소」(7)가 있다
+    printf("간접: %d\n", memory[real]);  // 그 주소로 다시 가서 2022를 꺼낸다
     // endregion
 
     return 0;

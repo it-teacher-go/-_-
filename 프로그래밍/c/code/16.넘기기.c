@@ -8,7 +8,7 @@ int square(int n) {
     return n * n;
 }
 
-void apply(int data[], int len, int (*f)(int)) {   // 「무엇을 할지」를 받는다
+void apply(int data[], int len, int (*f)(int)) {   // 「무엇을 할지」를 함수 포인터로 받는다
     for (int i = 0; i < len; i = i + 1) {
         printf("%d ", f(data[i]));
     }

@@ -21,7 +21,7 @@
             함수 포인터
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            지금까지 포인터가 가리킨 것은 자료였습니다.<br>
+            지금까지 포인터가 가리킨 것은 변수와 배열이었습니다.<br>
             <strong>그런데 함수도 메모리에 놓여 있습니다.</strong>
         </p>
     </div>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>함수 이름이 함수가 놓인 자리를 뜻한다는 것을 설명할 수 있다.</li>
-                    <li>함수 포인터를 선언하고 괄호가 왜 있어야 하는지 설명할 수 있다.</li>
-                    <li>함수를 넘겨받아 동작이 달라지는 함수를 만들 수 있다.</li>
-                    <li>함수 포인터 배열로 여럿 가운데 골라 쓸 수 있다.</li>
+                    <li>함수 이름이 식에서 그 함수의 주소로 바뀐다는 것을 설명할 수 있다.</li>
+                    <li>함수 포인터를 선언하고, 선언에 괄호가 필요한 이유를 설명할 수 있다.</li>
+                    <li>함수를 인자로 전달받아 동작이 달라지는 함수를 만들 수 있다.</li>
+                    <li>함수 포인터 배열로 여러 함수 가운데 하나를 골라 호출할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -57,9 +57,9 @@
             <span class="font-black text-xl tracking-tight text-slate-800">함수 포인터</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#addr" class="hover:text-orange-600 transition">함수에도 자리가 있다</a>
-            <a href="#shape" class="hover:text-orange-600 transition">모양 읽는 법</a>
-            <a href="#pass" class="hover:text-orange-600 transition">동작을 넘기기</a>
+            <a href="#addr" class="hover:text-orange-600 transition">함수에도 주소가 있다</a>
+            <a href="#shape" class="hover:text-orange-600 transition">선언 읽는 법</a>
+            <a href="#pass" class="hover:text-orange-600 transition">동작을 전달하기</a>
             <a href="#pick" class="hover:text-orange-600 transition">골라 쓰기</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
@@ -70,34 +70,36 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 함수에도 자리가 있다 ===== -->
+    <!-- ===== 함수에도 주소가 있다 ===== -->
     <section id="addr" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">함수에도 자리가 있다</h2>
+            <h2 class="text-3xl font-black text-slate-900">함수에도 주소가 있다</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">메모리에 놓이는 것은 자료만이 아닙니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">메모리에 저장되는 것은 데이터만이 아닙니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                프로그램을 실행하면 변수만 메모리에 놓이는 것이 아닙니다.
-                「무엇을 하라」는 명령들도 메모리에 올라가야 컴퓨터가 하나씩 읽어 실행합니다.
-                함수는 그 명령들을 묶어 놓은 것이니 <strong>함수도 메모리 어딘가에 놓여 있고,
+                프로그램을 실행하면 변수만 메모리에 올라가는 것이 아닙니다.
+                「무엇을 하라」는 명령어도 메모리에 올라가야 컴퓨터가 하나씩 읽어 실행합니다.
+                함수는 그 명령어를 묶어 놓은 것이므로 <strong>함수도 메모리 어딘가에 있고,
                 따라서 주소를 가집니다.</strong>
+                함수의 주소를 저장하는 포인터를 함수 포인터(function pointer)라고 합니다.
             </p>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900">배열 이름과 같은 이야기입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    배열 이름은 식에 쓰이면 <strong>첫 칸이 있는 자리</strong>를 뜻합니다.
-                    <strong>함수 이름도 그 함수가 놓인 자리</strong>를 뜻합니다.
-                    그래서 <code>&amp;</code>를 붙이지 않고 <strong>이름을 그대로</strong> 씁니다.
+                    배열 이름은 식에 쓰이면 <strong>첫 요소의 주소</strong>로 바뀝니다.
+                    <strong>함수 이름도 식에 쓰이면 그 함수의 주소</strong>로 바뀝니다.
+                    그래서 <code>&amp;</code>를 붙이지 않고 <strong>함수 이름을 그대로</strong> 씁니다.
+                    <code>&amp;twice</code>라고 써도 같은 주소를 얻습니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    닮은 점이 하나 더 있습니다. <strong>함수 이름에도 다른 것을 대입할 수 없습니다.</strong>
-                    <code>twice = square;</code>라고 쓸 수 없습니다 &mdash;
-                    <strong>이름은 「거기 있다」를 뜻할 뿐 값을 담는 자리가 아니기</strong> 때문입니다.
-                    <strong>담아 두고 바꿔 쓰려면 그것을 담을 변수가 따로</strong> 있어야 합니다.
+                    닮은 점이 하나 더 있습니다. <strong>함수 이름에도 다른 값을 대입할 수 없습니다.</strong>
+                    <code>twice = square;</code>라고 쓸 수 없습니다.
+                    <strong>함수 이름은 함수를 나타내는 이름일 뿐 값을 저장하는 변수가 아니기</strong> 때문입니다.
+                    <strong>주소를 저장해 두고 바꿔 쓰려면 포인터 변수가 따로</strong> 있어야 합니다.
                 </p>
             </div>
 
@@ -105,7 +107,7 @@
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 244" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="fp 상자가 twice 함수를 가리키고 있고 square 함수 쪽으로는 점선 화살표가 그려져 있다. 담긴 번호를 바꾸면 같은 fp 괄호 호출이 다른 함수를 부른다">
+                     role="img" aria-label="fp 상자가 twice 함수를 가리키고 있고 square 함수 쪽으로는 점선 화살표가 그려져 있다. 저장된 주소를 바꾸면 같은 fp 괄호 호출이 다른 함수를 호출한다">
                     <defs>
                         <marker id="ar16a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                             <path d="M0 0 L10 5 L0 10 z" fill="#ea580c"/>
@@ -119,7 +121,7 @@
 
                     <text x="95" y="106" font-size="17" font-weight="700" fill="#c2410c" text-anchor="middle">fp</text>
                     <rect x="20" y="118" width="150" height="60" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-                    <text x="95" y="155" font-size="17" font-weight="700" fill="#9a3412" text-anchor="middle">함수가 놓인 자리</text>
+                    <text x="95" y="155" font-size="17" font-weight="700" fill="#9a3412" text-anchor="middle">함수의 주소</text>
 
                     <rect x="356" y="52" width="200" height="66" rx="10" fill="#ffffff" stroke="#334155" stroke-width="2"/>
                     <text x="456" y="80" font-size="17" font-weight="700" fill="#0f172a" text-anchor="middle">twice</text>
@@ -132,88 +134,88 @@
                     <path d="M176 140 L266 140 L266 85 L348 85" fill="none" stroke="#ea580c" stroke-width="3" marker-end="url(#ar16a)"/>
                     <path d="M176 156 L266 156 L266 193 L348 193" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#ar16b)"/>
 
-                    <text x="20" y="212" font-size="16" fill="#64748b">담긴 번호만 바꾸면</text>
-                    <text x="20" y="234" font-size="16" font-weight="700" fill="#0f172a">같은 fp(10)이 다른 함수를 부른다</text>
+                    <text x="20" y="212" font-size="16" fill="#64748b">저장된 주소만 바꾸면</text>
+                    <text x="20" y="234" font-size="16" font-weight="700" fill="#0f172a">같은 fp(10)이 다른 함수를 호출한다</text>
                 </svg>
             </div>
 
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900"><code>fp(10)</code>이 <code>twice(10)</code>과 똑같이 돕니다</p>
+                <p class="font-black text-lg text-orange-900"><code>fp(10)</code>은 <code>twice(10)</code>과 똑같이 실행됩니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>fp</code>에 담긴 것은 <strong><code>twice</code>가 놓인 자리</strong>입니다.
-                    그 자리를 괄호와 함께 쓰면 <strong>「거기 있는 명령들을 실행하라」</strong>가 됩니다.
+                    <code>fp</code>에 저장된 것은 <strong><code>twice</code>의 주소</strong>입니다.
+                    그 주소에 괄호를 붙여 쓰면 <strong>「그 주소에 있는 명령어를 실행하라」</strong>, 곧 함수 호출이 됩니다.
                     그래서 <strong>결과가 같습니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>fp == twice</code>가 참인 것도 확인해 두세요.
-                    <strong>담긴 번호가 같다</strong>는 뜻입니다.
-                    포인터끼리 <code>==</code>로 비교하면 <strong>같은 곳을 가리키는지</strong>를 답합니다.
+                    <strong><code>fp</code>에 저장된 주소와 <code>twice</code>의 주소가 같다</strong>는 뜻입니다.
+                    포인터끼리 <code>==</code>로 비교하면 두 포인터가 같은 곳을 가리키는지 알 수 있습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>fp = square;</code>로 갈아 끼운 뒤 <code>fp(10)</code>을 부르면 무엇이 나올까요? <code>twice</code>는 그대로일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>fp = square;</code>로 바꾼 뒤 <code>fp(10)</code>을 호출하면 결과는 무엇일까요? <code>twice</code>는 그대로일까요?</p>
         </div>
     </section>
 
-    <!-- ===== 모양 읽는 법 ===== -->
+    <!-- ===== 선언 읽는 법 ===== -->
     <section id="shape" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">모양 읽는 법</h2>
+            <h2 class="text-3xl font-black text-slate-900">선언 읽는 법</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">이 차시에서 가장 낯선 것은 문법의 생김새입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">이 차시에서 가장 낯선 것은 선언의 형태입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>int (*fp)(int);</code>는 지금까지 본 선언과 모양이 다릅니다.
-                <strong>세 조각으로 끊어 읽으면</strong> 뜻이 보입니다.
+                <code>int (*fp)(int);</code>는 지금까지 본 선언과 형태가 다릅니다.
+                <strong>세 부분으로 나누어 읽으면</strong> 뜻이 보입니다.
             </p>
 
             <div class="overflow-x-auto">
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-36">조각</th>
-                        <th class="w-40">무엇을 정하나</th>
-                        <th>읽는 말</th>
+                        <th class="w-36">부분</th>
+                        <th class="w-40">정하는 것</th>
+                        <th>읽는 방법</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><code>(*fp)</code></td>
-                        <td>이름과 포인터라는 것</td>
-                        <td><code>fp</code>는 <strong>가리키는 변수</strong>인데</td>
+                        <td>이름과, 포인터라는 것</td>
+                        <td><code>fp</code>는 <strong>포인터</strong>인데</td>
                     </tr>
                     <tr>
                         <td><code>(int)</code></td>
-                        <td>가리킬 함수가 <strong>받는 것</strong></td>
+                        <td>가리킬 함수의 <strong>매개변수</strong></td>
                         <td>정수 하나를 받아서</td>
                     </tr>
                     <tr>
                         <td>맨 앞 <code>int</code></td>
-                        <td>가리킬 함수가 <strong>돌려주는 것</strong></td>
-                        <td>정수를 돌려주는 함수를 가리킨다</td>
+                        <td>가리킬 함수의 <strong>반환형</strong></td>
+                        <td>정수를 반환하는 함수를 가리킨다</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">가리킬 함수의 「모양」이 자료형을 정합니다</p>
+                <p class="font-black text-lg text-slate-900">가리킬 함수의 반환형과 매개변수가 자료형을 정합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int *</code>가 <strong>「정수를 가리킨다」</strong>였듯,
-                    함수 포인터는 <strong>「이런 모양의 함수를 가리킨다」</strong>입니다.
-                    모양을 이루는 것은 <strong>돌려주는 종류와 받는 것들</strong>입니다.
+                    <code>int *</code>가 <strong>「정수를 가리키는 포인터」</strong>였듯,
+                    함수 포인터의 자료형은 <strong>「이런 반환형과 매개변수를 가진 함수를 가리키는 포인터」</strong>입니다.
+                    자료형을 이루는 것은 <strong>반환형과 매개변수의 자료형</strong>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그러니 <strong>모양이 다르면 담을 수 없습니다.</strong>
-                    <code>int (*fp)(int)</code>에 <strong>정수 둘을 받는 함수</strong>를 담으려 하면
-                    컴파일러가 경고나 오류로 붙잡습니다. <strong>「몇 바이트를 읽을지」가 자료형이었던 것처럼
-                    여기서는 「어떻게 부를지」가 자료형</strong>입니다.
+                    그러니 <strong>반환형이나 매개변수가 다른 함수의 주소는 대입할 수 없습니다.</strong>
+                    <code>int (*fp)(int)</code>에 <strong>정수 둘을 받는 함수</strong>를 대입하려 하면
+                    컴파일러가 경고나 오류를 냅니다. <strong><code>int *</code>의 자료형이 「몇 바이트를 어떻게 읽을지」를 정했듯
+                    함수 포인터의 자료형은 「어떻게 호출할지」를 정합니다.</strong>
                 </p>
             </div>
 
@@ -228,10 +230,10 @@
                     <rect x="256" y="52" width="120" height="50" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="316" y="84" font-size="20" fill="#c2410c" font-weight="700" text-anchor="middle">(int)</text>
                     <text x="392" y="84" font-size="17" fill="#c2410c" font-weight="700">&rarr;&#160;&#160;포인터 「변수」</text>
-                    <text x="65" y="126" font-size="16" fill="#64748b" text-anchor="middle">돌려주는 것</text>
+                    <text x="65" y="126" font-size="16" fill="#64748b" text-anchor="middle">반환형</text>
                     <text x="183" y="126" font-size="16" fill="#64748b" text-anchor="middle">이름</text>
-                    <text x="316" y="126" font-size="16" fill="#64748b" text-anchor="middle">받는 것</text>
-                    <text x="20" y="156" font-size="16" fill="#64748b">가리킬 함수의 「모양」이 자료형을 정한다</text>
+                    <text x="316" y="126" font-size="16" fill="#64748b" text-anchor="middle">매개변수</text>
+                    <text x="20" y="156" font-size="16" fill="#64748b">가리킬 함수의 반환형과 매개변수가 자료형을 정한다</text>
                     <rect x="20" y="186" width="90" height="50" rx="6" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
                     <text x="65" y="218" font-size="20" fill="#e11d48" font-weight="700" text-anchor="middle">int</text>
                     <rect x="118" y="186" width="130" height="50" rx="6" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
@@ -239,30 +241,31 @@
                     <rect x="256" y="186" width="120" height="50" rx="6" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
                     <text x="316" y="218" font-size="20" fill="#e11d48" font-weight="700" text-anchor="middle">(int)</text>
                     <text x="392" y="218" font-size="17" fill="#e11d48" font-weight="700">&rarr;&#160;&#160;「함수」 선언</text>
-                    <text x="20" y="262" font-size="16" fill="#64748b">괄호가 없으면 뒤의 ( )가 먼저 붙어 함수가 된다.</text>
+                    <text x="20" y="262" font-size="16" fill="#64748b">괄호가 없으면 뒤의 ( )가 이름과 먼저 묶여 함수 선언이 된다.</text>
                 </svg>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>괄호를 빼면 아예 다른 것이 됩니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int *fp(int);</code>이라고 쓰면 <strong>「정수를 받아 정수의 자리를 돌려주는 함수」</strong>를
+                    <code>int *fp(int);</code>이라고 쓰면 <strong>「정수를 받아 정수를 가리키는 포인터(<code>int *</code>)를 반환하는 함수」</strong>를
                     선언한 것이 됩니다. <strong>변수가 아니라 함수</strong>입니다.
-                    그래서 <code>fp = twice;</code>라고 담으려 하면
-                    <strong>「담을 수 있는 자리가 아니다」</strong>라며 컴파일이 멈춥니다.
+                    그래서 <code>fp = twice;</code>라고 대입하려 하면
+                    <strong>함수 이름에는 대입할 수 없으므로</strong> 컴파일 오류가 납니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>괄호는 <code>*</code>를 이름에 먼저 붙이라는 표시</strong>입니다.
-                    괄호가 없으면 뒤의 <code>()</code>가 먼저 붙어 <strong>「함수」로 읽히기</strong> 때문입니다.
-                    포인터 <code>p</code>가 배열을 가리킬 때 <code>(*p)[i]</code>처럼 괄호를 씌우는 것도 <strong>같은 까닭</strong>입니다 &mdash; 대괄호도 별표보다 먼저 붙습니다.
+                    <strong>괄호는 <code>*</code>를 이름과 먼저 묶으라는 표시</strong>입니다.
+                    선언에서 뒤에 붙는 <code>()</code>는 앞의 <code>*</code>보다 먼저 이름과 묶이므로, 괄호가 없으면 <strong>함수 선언으로 읽히기</strong> 때문입니다.
+                    포인터 <code>p</code>가 배열을 가리킬 때 <code>(*p)[i]</code>처럼 괄호를 씌우는 것도 <strong>같은 이유</strong>입니다.
+                    대괄호도 별표보다 먼저 묶입니다.
                 </p>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>부를 때는 <code>fp(10)</code>으로 씁니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>호출할 때는 <code>fp(10)</code>으로 씁니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>(*fp)(10)</code>이라고 적은 코드도 볼 수 있습니다. <strong>둘 다 됩니다.</strong>
-                    <strong>「따라가서 부른다」는 뜻을 드러내려고</strong> 앞의 방식을 쓰기도 하는데,
+                    <code>(*fp)(10)</code>이라고 쓴 코드도 볼 수 있습니다. <strong>두 방법 모두 같은 함수를 호출합니다.</strong>
+                    <strong>「역참조해서 호출한다」는 뜻을 드러내려고</strong> 앞의 방법을 쓰기도 하는데,
                     <strong>이 강의노트에서는 짧은 쪽으로 통일</strong>합니다.
                 </p>
             </div>
@@ -270,34 +273,36 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">실수 둘을 받아 실수를 돌려주는 함수를 가리키려면 어떻게 적어야 할까요? 세 조각을 하나씩 채워 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed">실수 둘을 받아 실수를 반환하는 함수를 가리키려면 어떻게 선언해야 할까요? 세 부분을 하나씩 채워 보세요.</p>
         </div>
     </section>
 
-    <!-- ===== 동작을 넘기기 ===== -->
+    <!-- ===== 동작을 전달하기 ===== -->
     <section id="pass" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">동작을 넘기기</h2>
+            <h2 class="text-3xl font-black text-slate-900">동작을 전달하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">함수 포인터를 왜 만드는지가 여기서 드러납니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">함수 포인터를 왜 쓰는지가 여기서 드러납니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                지금까지 함수에 넘긴 것은 「무엇을」이었습니다 &mdash; 숫자, 배열, 주소.
-                함수 포인터를 넘기면 <strong>「무엇을 할지」</strong>까지 넘길 수 있습니다.
+                지금까지 함수에 인자로 전달한 것은 처리할 대상, 곧 숫자나 주소였습니다.
+                함수 포인터를 전달하면 <strong>「무엇을 할지」</strong>까지 전달할 수 있습니다.
+                이렇게 다른 함수에 인자로 전달되어 그 함수 안에서 호출되는 함수를 콜백 함수(callback function)라고 합니다.
+                아래 코드에서는 <code>twice</code>와 <code>square</code>가 <code>apply</code>의 콜백 함수입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/16.넘기기.c"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 202" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="apply 함수는 순회하는 뼈대만 갖고 있고 twice나 square를 받아 칸마다 할 일을 정한다">
+                     role="img" aria-label="apply 함수는 순회하는 뼈대만 갖고 있고 twice나 square를 전달받아 요소마다 할 일을 정한다">
                     <defs><marker id="ar16p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">apply는 「순회한다」는 뼈대만 갖는다</text>
                     <rect x="20" y="52" width="210" height="92" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
                     <text x="125" y="82" font-size="18" fill="#334155" font-weight="700" text-anchor="middle">apply</text>
-                    <text x="125" y="108" font-size="16" fill="#64748b" text-anchor="middle">칸을 하나씩 순회하고</text>
-                    <text x="125" y="130" font-size="16" fill="#64748b" text-anchor="middle">f(값)을 찍는다</text>
+                    <text x="125" y="108" font-size="16" fill="#64748b" text-anchor="middle">요소를 하나씩 순회하고</text>
+                    <text x="125" y="130" font-size="16" fill="#64748b" text-anchor="middle">f(값)을 출력한다</text>
                     <rect x="300" y="46" width="120" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="360" y="76" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle">twice</text>
                     <rect x="300" y="106" width="120" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -306,7 +311,7 @@
                     <line x1="238" y1="112" x2="292" y2="126" stroke="#c2410c" stroke-width="3" marker-end="url(#ar16p)"/>
                     <text x="438" y="76" font-size="18" fill="#0f172a" font-weight="700">2 4 6 8 10</text>
                     <text x="438" y="136" font-size="18" fill="#0f172a" font-weight="700">1 4 9 16 25</text>
-                    <text x="20" y="192" font-size="16" fill="#64748b">순회하는 코드는 한 번만 쓴다. 「무엇을 할지」는 부르는 쪽이 넣는다.</text>
+                    <text x="20" y="192" font-size="16" fill="#64748b">순회하는 코드는 한 번만 쓴다. 「무엇을 할지」는 호출하는 쪽이 정한다.</text>
                 </svg>
             </div>
 
@@ -314,33 +319,33 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900">같은 함수가 두 가지 일을 합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>apply</code>는 <strong>「배열을 하나씩 순회해 찍는다」는 뼈대만</strong> 갖고 있습니다.
-                    <strong>각 칸에 무엇을 하는지는 정해 두지 않았습니다.</strong>
-                    그것을 <strong>부르는 쪽이 넣어 줍니다.</strong>
+                    <code>apply</code>는 <strong>「배열을 하나씩 순회하며 출력한다」는 뼈대만</strong> 갖고 있습니다.
+                    <strong>각 요소에 무엇을 할지는 정해 두지 않았습니다.</strong>
+                    그것은 <strong>호출하는 쪽이 함수 포인터로 전달합니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     함수 포인터가 없다면 <strong><code>apply_twice</code>와 <code>apply_square</code>를
                     따로 만들어야</strong> 했을 것입니다.
-                    순회하는 부분은 <strong>글자 하나 다르지 않은데도</strong> 말입니다.
-                    같은 일이 여러 곳에 있으면 함수로 묶는다는 생각이
-                    <strong>한 겹 더 올라간 것</strong>입니다.
+                    순회하는 부분은 <strong>한 글자도 다르지 않은데도</strong> 말입니다.
+                    반복되는 코드를 함수로 묶는다는 생각을
+                    <strong>한 단계 더 밀고 나간 것</strong>입니다.
                 </p>
             </div>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">쓰는 쪽에서는 이름만 적습니다</p>
+                <p class="font-black text-lg text-orange-900">호출하는 쪽에서는 함수 이름만 씁니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>apply(data, 5, twice)</code>에서 <strong><code>twice</code> 뒤에 괄호가 없는 것</strong>을 보세요.
-                    <strong><code>twice(…)</code>라고 적으면 「지금 불러서 그 결과를 넘겨라」</strong>가 되고,
-                    <strong><code>twice</code>라고만 적으면 「이 함수 자체를 넘겨라」</strong>가 됩니다.
-                    <strong>괄호 하나가 「부르기」와 「가리키기」를 구분합니다.</strong>
+                    <strong><code>twice(…)</code>라고 쓰면 「지금 호출해서 그 반환값을 전달하라」</strong>가 되고,
+                    <strong><code>twice</code>라고만 쓰면 「이 함수의 주소를 전달하라」</strong>가 됩니다.
+                    <strong>괄호 하나가 「호출」과 「주소 전달」을 구분합니다.</strong>
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">칸마다 값을 찍지 않고 <strong>바꿔 넣고</strong> 싶다면 <code>apply</code>를 어떻게 고쳐야 할까요? 배열은 이미 자리로 넘어와 있습니다.</p>
+            <p class="text-base text-slate-700 leading-relaxed">각 요소를 출력하지 않고 <code>f</code>를 적용한 값으로 <strong>바꿔 저장하고</strong> 싶다면 <code>apply</code>를 어떻게 고쳐야 할까요? 매개변수 <code>data</code>에는 이미 배열의 주소가 전달되어 있습니다.</p>
         </div>
     </section>
 
@@ -349,19 +354,19 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">골라 쓰기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">담을 수 있으면 배열에도 담을 수 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">변수로 만들 수 있으면 배열로도 만들 수 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                함수 포인터도 값을 담는 변수이니 배열로 여럿 늘어놓을 수 있습니다.
-                그러면 <strong>인덱스 하나로 「어느 동작을 쓸지」를 고르게</strong> 됩니다.
+                함수 포인터도 변수이므로 여러 개를 배열로 만들 수 있습니다.
+                그러면 <strong>인덱스 하나로 「어느 동작을 쓸지」를 고를 수 있습니다.</strong>
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/16.전체.c"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 276" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="함수 포인터 배열의 각 칸이 add sub mul 함수를 가리키고 인덱스 하나로 어느 동작을 쓸지 고른다">
+                     role="img" aria-label="함수 포인터 배열의 각 요소가 add sub mul 함수를 가리키고 인덱스 하나로 어느 동작을 쓸지 고른다">
                     <defs><marker id="ar16k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">int (*op[3])(int, int) = {add, sub, mul};</text>
                     <rect x="20" y="56" width="110" height="44" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -382,45 +387,45 @@
                     <rect x="200" y="160" width="130" height="44" rx="4" fill="#ffffff" stroke="#f97316" stroke-width="2"/>
                     <text x="265" y="189" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle">mul</text>
                     <text x="360" y="189" font-size="18" fill="#0f172a" font-weight="700">12 &times; 5 = 60</text>
-                    <text x="20" y="240" font-size="16" fill="#64748b">if나 switch로 갈래를 벌이는 대신 인덱스 하나로 고른다.</text>
-                    <text x="20" y="266" font-size="16" fill="#64748b">동작을 더할 때 배열에 한 줄만 보태면 된다.</text>
+                    <text x="20" y="240" font-size="16" fill="#64748b">if문이나 switch문으로 분기하는 대신 인덱스 하나로 고른다.</text>
+                    <text x="20" y="266" font-size="16" fill="#64748b">동작을 추가할 때 분기문을 고치지 않고 배열에 함수를 더한다.</text>
                 </svg>
             </div>
 
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900"><code>int (*op[3])(int, int)</code>을 끊어 읽습니다</p>
+                <p class="font-black text-lg text-slate-900"><code>int (*op[3])(int, int)</code>을 나누어 읽습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    가운데가 <code>*op[3]</code>이므로 <strong><code>op</code>는 셋짜리 배열</strong>이고,
-                    <strong>담는 것은 포인터</strong>이며, <strong>가리킬 함수는 정수 둘을 받아 정수를 돌려줍니다.</strong>
-                    <strong>안에서 밖으로 읽어 나가면</strong> 아무리 길어도 풀립니다.
+                    이름 <code>op</code>에서 시작합니다. <code>op[3]</code>이므로 <strong><code>op</code>는 요소가 세 개인 배열</strong>이고,
+                    앞의 <code>*</code>로 보아 <strong>각 요소는 포인터</strong>이며, <strong>그 포인터가 가리킬 함수는 정수 둘을 받아 정수를 반환합니다.</strong>
+                    <strong>이름에서 시작해 안에서 밖으로 읽어 나가면</strong> 아무리 긴 선언도 풀립니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>op[i](a, b)</code>는 <strong>인덱스 <code>i</code>에 담긴 함수를 부르는</strong> 것입니다.
-                    <strong><code>if</code>·<code>switch</code>로 갈래를 벌여 놓는 대신 인덱스 하나로 고르는 것</strong>이라,
-                    <strong>동작을 더할 때 배열에 한 줄만 보태면</strong> 됩니다.
+                    <code>op[i](a, b)</code>는 <strong>인덱스가 <code>i</code>인 요소에 저장된 주소로 함수를 호출하는</strong> 것입니다.
+                    <strong><code>if</code>문이나 <code>switch</code>문으로 분기하는 대신 인덱스 하나로 고르는 것</strong>이라,
+                    <strong>동작을 추가할 때 분기문을 고치지 않고 배열에 함수를 더하면</strong> 됩니다.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>인덱스가 칸 밖으로 나가면 더 위험합니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>인덱스가 범위를 벗어나면 더 위험합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    배열의 칸 밖을 읽으면 <strong>엉뚱한 값이 나올 수 있습니다.</strong>
-                    함수 포인터 배열에서는 <strong>엉뚱한 값을 「실행」하려 듭니다.</strong>
-                    <strong>고를 인덱스가 밖에서 들어온다면 범위를 먼저 확인</strong>해야 합니다.
+                    배열의 범위 밖을 읽으면 <strong>엉뚱한 값이 나올 수 있습니다.</strong>
+                    함수 포인터 배열에서는 <strong>그 엉뚱한 값을 주소로 삼아 「실행」하려 듭니다.</strong>
+                    <strong>인덱스를 사용자 입력처럼 프로그램 밖에서 받는다면 범위를 먼저 검사</strong>해야 합니다.
                 </p>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>필요할 때만 씁니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수 포인터는 <strong>코드를 읽는 사람에게서 「지금 무엇이 불리는지」를 감춥니다.</strong>
+                    함수 포인터는 <strong>코드를 읽는 사람에게서 「지금 어떤 함수가 호출되는지」를 감춥니다.</strong>
                     <code>op[i](a, b)</code>라는 줄만 봐서는 <strong>더하는지 곱하는지 알 수 없습니다.</strong>
-                    <strong>갈래가 두셋뿐이라면 <code>if</code>로 또박또박 적는 편이 읽기 쉽습니다.</strong>
+                    <strong>경우가 두세 가지뿐이라면 <code>if</code>문으로 하나씩 쓰는 편이 읽기 쉽습니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>함수 포인터가 쓸모 있는 때는 「동작을 나중에 정해야 할 때」</strong>입니다 &mdash;
-                    쓰는 사람이 고르게 하거나, 뼈대만 만들어 두고 <strong>세부를 나중에 끼워 넣을 때</strong>요.
+                    <strong>함수 포인터가 쓸모 있는 때는 「동작을 나중에 정해야 할 때」</strong>입니다.
+                    사용자가 동작을 고르게 하거나, 뼈대만 만들어 두고 <strong>세부 동작을 나중에 정할 때</strong>가 그렇습니다.
                     <strong>쓸 수 있다고 늘 쓰는 것이 낫지는 않습니다.</strong>
                 </p>
             </div>
@@ -441,32 +446,32 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">함수 이름도 자리다</h3>
+                <h3 class="text-xl font-black text-slate-900">함수 이름도 주소로 바뀐다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    명령들도 메모리에 놓이므로 함수에도 주소가 있다.
-                    배열 이름처럼 <code>&amp;</code> 없이 그대로 쓰고,
-                    배열 이름처럼 다른 것을 대입할 수 없다.
+                    함수의 명령어도 메모리에 저장되므로 함수에도 주소가 있다.
+                    함수 이름은 식에서 그 주소로 바뀌므로 <code>&amp;</code> 없이 그대로 쓰고,
+                    배열 이름처럼 다른 값을 대입할 수 없다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">모양이 자료형을 정한다</h3>
+                <h3 class="text-xl font-black text-slate-900">반환형과 매개변수가 자료형을 정한다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>돌려주는 종류와 받는 것들</strong>이 「어떤 함수를 가리킬 수 있는지」를 정한다.
-                    모양이 다르면 담을 수 없다.
+                    <strong>반환형과 매개변수의 자료형</strong>이 「어떤 함수를 가리킬 수 있는지」를 정한다.
+                    반환형이나 매개변수가 다른 함수의 주소는 대입할 수 없다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">괄호가 뜻을 정한다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int (*fp)(int)</code>는 변수, <code>int *fp(int)</code>는 함수다.
-                    넘길 때도 <strong><code>twice</code>는 가리키기, <code>twice()</code>는 부르기</strong>다.
+                    <code>int (*fp)(int)</code>는 포인터 변수, <code>int *fp(int)</code>는 함수 선언이다.
+                    인자로 쓸 때도 <strong><code>twice</code>는 함수의 주소, <code>twice()</code>는 호출한 결과</strong>다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">동작을 나중에 정한다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    뼈대는 한 번만 만들고 <strong>무엇을 할지는 부르는 쪽이</strong> 넣는다.
-                    다만 읽는 사람에게서 「지금 무엇이 불리는지」를 감추므로
+                    뼈대는 한 번만 만들고 <strong>무엇을 할지는 호출하는 쪽이 콜백 함수로</strong> 전달한다.
+                    다만 읽는 사람에게서 「지금 어떤 함수가 호출되는지」를 감추므로
                     필요할 때만 쓴다.
                 </p>
             </div>
@@ -484,7 +489,7 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>int (*fp)(int);</code>와 <code>int *fp(int);</code>의 차이는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '괄호가 있으면 별표가 이름에 먼저 붙어 변수가 되고, 없으면 뒤의 괄호가 먼저 붙어 함수 선언이 됩니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '괄호가 있으면 별표가 이름과 먼저 묶여 포인터 변수가 되고, 없으면 뒤의 괄호가 먼저 묶여 함수 선언이 됩니다.')">
                     ① 앞은 포인터 <strong>변수</strong>, 뒤는 <strong>함수</strong> 선언이다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '괄호로 묶은 앞의 것이 포인터 변수입니다. 괄호로 묶어야 이름이 포인터가 됩니다.')">
@@ -502,17 +507,17 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>apply(data, 5, twice);</code>에서 <code>twice</code> 뒤에 괄호를 붙여 <code>twice()</code>로 쓰면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '괄호는 「지금 부르라」는 표시라 넘어가는 것이 달라집니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '괄호는 「지금 호출하라」는 표시라 전달되는 것이 달라집니다.')">
                     ① 똑같이 동작한다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '괄호는 「지금 불러서 그 결과를 넘겨라」는 뜻이라 함수 자체를 넘기는 것이 아니게 됩니다.')">
-                    ② 함수를 넘기는 것이 아니라 <strong>부른 결과</strong>를 넘기려는 뜻이 된다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '괄호는 「지금 호출해서 그 반환값을 전달하라」는 뜻이라 함수의 주소가 전달되지 않습니다. 이 코드는 인자까지 빠져 있어 컴파일 오류가 납니다.')">
+                    ② 함수의 주소가 아니라 <strong>호출한 결과</strong>를 전달하려는 뜻이 된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '괄호를 붙이는 것이 규칙이 아닙니다. 넘길 때는 이름만 적습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수를 인자로 전달할 때는 괄호 없이 함수 이름만 씁니다.')">
                     ③ 그렇게 붙이는 것이 올바른 표기다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '주소가 넘어가는 것은 괄호를 「붙이지 않았을」 때입니다.')">
-                    ④ 주소가 두 번 넘어간다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수의 주소가 전달되는 것은 괄호를 「붙이지 않았을」 때입니다.')">
+                    ④ 주소가 두 번 전달된다
                 </button>
             </div>
         </div>
@@ -521,15 +526,15 @@
             <p class="font-black text-lg text-slate-900">3. 함수 포인터를 쓰기에 알맞은 상황은?</p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '뼈대는 같고 세부 동작만 달라질 때가 함수 포인터가 쓸모 있는 경우입니다.')">
-                    ① 순회하는 방법은 같고 칸마다 할 일만 달라질 때
+                    ① 순회하는 방법은 같고 요소마다 할 일만 달라질 때
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '갈래가 둘뿐이면 if로 또박또박 적는 편이 읽기 쉽습니다.')">
-                    ② 갈래가 둘뿐이고 앞으로도 늘지 않을 때
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '경우가 둘뿐이면 if문으로 하나씩 쓰는 편이 읽기 쉽습니다.')">
+                    ② 경우가 둘뿐이고 앞으로도 늘지 않을 때
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수 포인터는 부르는 방법을 바꿀 뿐 빠르게 만들어 주지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수 포인터는 호출하는 방법을 바꿀 뿐 프로그램을 빠르게 만들어 주지 않습니다.')">
                     ③ 프로그램을 빠르게 만들고 싶을 때
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '오히려 「지금 무엇이 불리는지」를 감춥니다. 읽기 쉬워지지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '오히려 「지금 어떤 함수가 호출되는지」를 감춥니다. 읽기 쉬워지지 않습니다.')">
                     ④ 코드를 누구나 읽기 쉽게 만들고 싶을 때
                 </button>
             </div>
