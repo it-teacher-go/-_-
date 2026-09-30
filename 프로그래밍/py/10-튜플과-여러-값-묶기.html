@@ -89,7 +89,7 @@
             </div>
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">묶는 것은 괄호가 아니라 쉼표입니다</p>
-                <p class="text-base text-slate-700 leading-relaxed"><code>(5)</code>는 괄호로 감싼 정수 <code>5</code>일 뿐이고, <code>(5,)</code>라야 값이 하나인 튜플입니다. <strong>값이 하나일 때 쉼표를 빠뜨리는 것</strong>이 가장 흔한 실수입니다. 값이 하나도 없는 빈 튜플 <code>()</code>만은 괄호로 만듭니다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>(5)</code>는 괄호로 감싼 정수 <code>5</code>일 뿐이고, <code>(5,)</code>라야 값이 하나인 튜플입니다. <strong>값이 하나일 때 쉼표를 빠뜨리는 것</strong>이 흔한 실수입니다. 값이 하나도 없는 빈 튜플 <code>()</code>만은 괄호로 만듭니다.</p>
             </div>
         </div>
 
@@ -208,9 +208,9 @@
             <p class="text-base text-slate-700 leading-relaxed">묶은 것은 다시 풀 수 있습니다.</p>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 254" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="요소 세 개짜리 튜플의 각 요소에서 화살표가 내려와 kor 90, eng 85, math 72 세 변수에 차례로 대입되는 그림">
+                     role="img" aria-label="요소 세 개짜리 튜플의 각 요소에서 화살표가 내려와 kor 90, eng 85, math_ 72 세 변수에 차례로 대입되는 그림">
                     <defs><marker id="unp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
-                    <text x="288" y="28" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">kor, eng, math = scores</text>
+                    <text x="288" y="28" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">kor, eng, math_ = scores</text>
                     <text x="288" y="54" font-size="16" fill="#64748b" text-anchor="middle">묶음이 풀려 변수 셋에 차례로 대입된다</text>
                     <text x="60" y="112" font-size="17" fill="#64748b" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">scores</text>
                     <rect x="120" y="76" width="104" height="60" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
@@ -229,7 +229,7 @@
                     <text x="288" y="208" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">eng</text>
                     <text x="288" y="232" font-size="19" fill="#0f172a" font-weight="700" text-anchor="middle">85</text>
                     <rect x="352" y="182" width="104" height="60" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-                    <text x="404" y="208" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">math</text>
+                    <text x="404" y="208" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">math_</text>
                     <text x="404" y="232" font-size="19" fill="#0f172a" font-weight="700" text-anchor="middle">72</text>
                 </svg>
             </div>
@@ -518,7 +518,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'return a, b가 반환하는 것은 값 둘이 아니라 튜플 하나입니다.')">
                     ② <code>return a, b</code>는 튜플 하나를 반환한다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '튜플도 [0]처럼 꺼내는 방법은 리스트와 같습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '튜플도 리스트와 똑같이 인덱스 [0]으로 요소를 꺼냅니다.')">
                     ③ 튜플도 <code>[0]</code>으로 꺼낼 수 있다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'enumerate가 만드는 쌍은 튜플이라 for i, v in 처럼 언패킹해 받을 수 있습니다.')">

@@ -288,12 +288,13 @@
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>변화를 빠뜨리면 영원히 돕니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>변화를 빠뜨리면 반복이 끝나지 않습니다</p>
                 <pre class="language-python"><code class="language-python" data-src="code/06.무한루프.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>count</code>가 영원히 3이므로 조건도 영원히 참입니다.
                     <strong>출발선에 선 채로 「아직 도착하지 않았다」를 끝없이 확인하는 것</strong>과 같습니다.
                     화면에 3이 끝없이 출력되고 <strong>Ctrl+C를 눌러야</strong> 멈춥니다.
+                    이렇게 끝나지 않는 반복을 무한 루프(infinite loop)라고 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     처음 배울 때 거의 모두 겪습니다. <strong>고장이 아니라 코드에 쓴 대로 실행된 것</strong>이니
@@ -387,7 +388,7 @@
 
             <p class="text-base text-slate-700 leading-relaxed">
                 바깥 반복이 3번, 안쪽 반복이 3번이면 안쪽 줄들은 3 &times; 3 = 9번 실행됩니다.
-                <code>--- 단 ---</code>을 출력하는 줄이 <strong>바깥 반복 안, 안쪽 반복 앞</strong>에 있어서
+                단 제목(<code>--- 2 단 ---</code>)을 출력하는 줄이 <strong>바깥 반복 안, 안쪽 반복 앞</strong>에 있어서
                 단이 바뀔 때마다 한 번씩 출력됩니다.
             </p>
 
@@ -398,7 +399,7 @@
                     <strong>안쪽에 있어야 할 줄이 바깥으로 나갑니다.</strong>
                     공백 한두 개처럼 어정쩡하게 어긋나면 <code>IndentationError</code>가 나서 곧 알 수 있지만,
                     한 단계가 통째로 어긋나면 오류가 나지 않고 <strong>결과만 달라져</strong> 찾기 어렵습니다.
-                    한 단계 들어갈 때마다 <strong>공백 네 개씩</strong> 정확히 들여쓰세요.
+                    한 단계 들어갈 때마다 <strong>같은 개수(관례로 공백 네 개)씩</strong> 정확히 들여쓰세요.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>안쪽 반복에서 <code>break</code>를 쓰면 안쪽 반복만 끝납니다.</strong> 바깥 반복은 그대로 이어집니다.

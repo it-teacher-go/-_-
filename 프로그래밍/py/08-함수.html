@@ -241,6 +241,7 @@
                 매개변수는 값을 「받는 변수」이고 인자는 「전달하는 값」입니다. 함수를 호출하면 인자가 매개변수에 대입된 뒤 함수 안의 코드가 실행됩니다.
                 <code>print</code>에서 <code>sep</code>&middot;<code>end</code>를 지정하고 <code>len</code>의 괄호 안에 값을 넣던 것도 모두 인자를 전달하는 일이었습니다.
                 매개변수가 여럿이면 인자는 <strong>적은 순서대로</strong> 들어갑니다.
+                <code>sep="-"</code>처럼 매개변수 이름을 붙여 넣은 인자만은 순서와 상관없이 그 이름의 매개변수에 들어갑니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.여러개.py"></code></pre>
@@ -440,7 +441,7 @@
                     <tbody>
                     <tr>
                         <td><code>import math</code></td>
-                        <td>호출할 때마다 <strong>어느 모듈의 함수인지</strong> 드러난다. 가장 무난하다</td>
+                        <td>호출할 때마다 <strong>어느 모듈의 함수인지</strong> 드러난다. 무난하게 쓸 수 있다</td>
                     </tr>
                     <tr>
                         <td><code>import math as m</code></td>
@@ -456,7 +457,7 @@
 
             <p class="text-base text-slate-700 leading-relaxed">
                 무작위로 값을 고르는 <code>random</code> 모듈도 자주 씁니다.
-                이 모듈의 함수는 <strong>실행할 때마다 다른 값</strong>을 반환합니다.
+                이 모듈의 함수는 <strong>실행할 때마다 달라질 수 있는 값</strong>을 반환합니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/08.랜덤.py"></code></pre>
@@ -502,7 +503,7 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">인자는 순서대로 들어간다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    인자는 적은 순서대로 매개변수에 대입된다.
+                    이름을 붙이지 않은 인자는 적은 순서대로 매개변수에 대입된다.
                     순서를 바꾸면 <strong>오류 없이 틀린 값</strong>이 나올 수 있다.
                 </p>
             </div>
