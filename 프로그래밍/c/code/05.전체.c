@@ -4,7 +4,7 @@ int main(void) {
     int n;
     int sum = 0;
 
-    printf("몇 번째 수까지 더할까요? ");
+    printf("1부터 몇까지 더할까요? ");
     scanf("%d", &n);
 
     for (int i = 1; i <= n; i = i + 1) {

@@ -113,7 +113,7 @@
                     그런데 <strong>B만 출력됩니다.</strong> 참인 조건을 하나 만나면 그 아래 조건은 검사하지 않기 때문입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <strong>조건의 순서가 결과를 바꿉니다.</strong> 위 코드에서 조건의 순서를 뒤집어
+                    그래서 <strong>조건의 순서가 결과를 바꿀 수 있습니다.</strong> 위 코드에서 조건의 순서를 뒤집어
                     <code>score &gt;= 70</code>을 맨 위에 두면 95점도 C가 됩니다.
                     이렇게 조건의 범위가 서로 겹칠 때는 좁은 조건부터 넓은 조건 순으로 써야 합니다.
                 </p>
@@ -225,7 +225,7 @@
                 <p class="font-black text-lg text-slate-900"><code>if</code>문과 <code>switch</code>문 가운데 무엇을 쓸까</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong><code>switch</code>문으로 쓴 것은 모두 <code>if</code>문으로 바꿔 쓸 수 있습니다.</strong>
-                    반대는 성립하지 않습니다. 범위를 검사하는 조건은 <code>switch</code>문으로 옮길 수 없기 때문입니다.
+                    반대는 성립하지 않습니다. 범위를 검사하는 조건은 <code>case</code> 뒤에 그대로 쓸 수 없고, 실수를 비교하는 조건은 <code>switch</code>문으로 나타낼 수 없기 때문입니다.
                     정해진 값 가운데 하나를 고르는 경우라면 <code>switch</code>문이 읽기 쉽고,
                     범위를 검사하거나 여러 변수를 함께 비교하는 경우라면 <code>if</code>문을 씁니다.
                 </p>
@@ -252,9 +252,9 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">조건 연산자(conditional operator)</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>조건 ? 참일 때 값 : 거짓일 때 값</code> 형식으로 씁니다. 피연산자가 셋이라 삼항 연산자라고도 합니다.
+                    <code>조건 ? 참일 때 값 : 거짓일 때 값</code> 형식으로 씁니다. 연산에 쓰이는 값(피연산자)이 셋이라 삼항 연산자라고도 합니다.
                     <code>if</code>문이 실행할 문장을 고르는 것과 달리 <strong>조건 연산자는 값을 고릅니다.</strong>
-                    그래서 대입문의 오른쪽이나 <code>printf</code>의 인자처럼
+                    그래서 대입문의 오른쪽이나 <code>printf</code>로 출력할 값처럼
                     값이 들어갈 곳에 바로 쓸 수 있습니다.
                 </p>
             </div>
@@ -284,7 +284,7 @@
                 <h3 class="text-xl font-black text-slate-900"><code>if</code> &middot; <code>else if</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     위에서부터 조건을 검사하다가 <strong>참인 첫 조건에서 멈춘다.</strong>
-                    그래서 조건의 순서가 결과를 바꾼다 &mdash; 조건의 범위가 겹치면 좁은 조건을 위에 놓는다.
+                    조건의 범위가 겹치면 순서가 결과를 바꾸므로 좁은 조건을 위에 놓는다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -299,7 +299,7 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     변수를 정해진 값과 비교할 때 쓴다. <code>case</code>는 실행을 시작할 위치만 정하므로
                     <strong><code>break</code>가 없으면 아래 <code>case</code>로 이어서 실행된다.</strong>
-                    범위 조건에는 쓸 수 없다.
+                    <code>case</code> 뒤에 범위 조건은 쓸 수 없다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -347,8 +347,8 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'case는 실행을 시작할 위치만 정합니다. 그 case의 문장이 끝나도 switch문을 저절로 빠져나오지 않습니다.')">
                     ① 그 <code>case</code>만 실행되고 저절로 빠져나온다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'break를 만나기 전까지 아래 case의 줄들까지 계속 실행됩니다.')">
-                    ② 아래 <code>case</code>의 줄들까지 이어서 실행된다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'break를 만나거나 switch문이 끝날 때까지 아래 case의 문장들이 이어서 실행됩니다.')">
+                    ② 아래 <code>case</code>의 문장들까지 이어서 실행된다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '문법 오류가 아니므로 컴파일은 됩니다. 일부러 break를 빼서 활용하기도 합니다.')">
                     ③ 컴파일 오류가 난다
@@ -362,7 +362,7 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, 'if문으로 쓴 범위 조건은 switch문으로 옮길 수 없습니다. switch문으로 쓴 것은 모두 if문으로 바꿀 수 있지만 그 반대는 성립하지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '범위 조건은 case 뒤에 그대로 쓸 수 없고, 실수를 비교하는 조건은 switch문으로 옮길 수 없습니다. switch문으로 쓴 것은 모두 if문으로 바꿀 수 있지만 그 반대는 성립하지 않습니다.')">
                     ① <code>if</code>문으로 쓴 것은 모두 <code>switch</code>문으로 바꿔 쓸 수 있다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '중괄호가 없으면 if문에 포함되는 것은 다음 문장 하나뿐입니다. C는 들여쓰기를 무시합니다.')">

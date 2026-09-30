@@ -180,7 +180,7 @@
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                처음 배울 때 가장 많이 헷갈리는 줄이 바로 이것입니다.
+                처음 배울 때 흔히 헷갈리는 줄이 바로 이것입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/01.대입.c"></code></pre>
@@ -280,7 +280,7 @@
                 <p class="font-black text-lg text-slate-900">저장할 수 있는 값에는 한계가 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>int</code> 변수는 메모리에서 차지하는 크기가 정해져 있어서 <strong>아주 큰 수는 저장할 수 없습니다.</strong>
-                    범위를 넘어도 대개 오류로 멈추지 않고 그대로 실행되는데, 그때 나온 결과는 믿을 수 없어서 알아채기 어렵습니다.
+                    범위를 넘어도 대개 오류로 멈추지 않고 그대로 실행되므로, 믿을 수 없는 결과가 나와도 알아채기 어렵습니다.
                     정확한 범위는 컴퓨터와 컴파일러에 따라 다르므로 <strong>「범위에 한계가 있다」는 것부터</strong> 기억해 두면 됩니다.
                 </p>
             </div>
@@ -297,7 +297,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">자료형이 다른 값이 만날 때</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">C에서 가장 자주 발목을 잡는 것은 정수끼리의 나눗셈입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">C에서 자주 발목을 잡는 것이 정수끼리의 나눗셈입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -411,7 +411,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '양쪽이 정수라 몫만 남습니다. 나머지 1은 버려집니다.')">
                     ② 3
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '3.5가 되려면 한쪽이 실수여야 합니다. 7.0 / 2처럼 씁니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '3.5를 얻으려면 7.0 / 2처럼 한쪽을 실수로 쓰고, 출력도 %d가 아니라 %f로 해야 합니다.')">
                     ③ 3.5
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '오류로 멈추지 않습니다. 그래서 오히려 찾기 어렵습니다.')">
