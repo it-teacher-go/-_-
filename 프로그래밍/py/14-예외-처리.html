@@ -195,7 +195,7 @@
                 </svg>
             </div>
             <div class="overflow-x-auto">
-                <table class="">
+                <table class="table-prose">
                     <thead>
                     <tr>
                         <th class="w-44">위치</th>
@@ -431,7 +431,7 @@
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">갈림길이 생긴다</h3>
-                <p class="text-base text-slate-700 leading-relaxed"><code>try</code> 안에서 오류가 나면 <code>except</code>로, 나지 않으면 <code>else</code>로 간다. 어느 쪽으로 갔든 그 뒤의 줄로 이어진다. <code>except</code>에 쓰지 않은 종류의 오류가 나면 그대로 멈춘다. <code>finally</code> 안은 이 세 경우 모두, <code>return</code>으로 빠져나갈 때도 마지막에 실행된다.</p>
+                <p class="text-base text-slate-700 leading-relaxed"><code>try</code> 안에서 오류가 나면 <code>except</code>로, 나지 않으면 <code>else</code>로 간다. 어느 쪽으로 갔든 그 뒤의 줄로 이어진다. <code>except</code>에 쓰지 않은 종류의 오류가 나면 그대로 멈춘다. <code>finally</code> 안은 이 세 경우 모두, <code>return</code>으로 빠져나갈 때도 <code>try</code> 문을 벗어나기 직전에 실행된다.</p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900"><code>try</code> 안은 짧게</h3>
@@ -470,7 +470,7 @@
         </div>
 
         <div id="q2" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">2. <code>try</code> 안에서 오류가 <strong>나지 않았을 때</strong> 실행되는 부분은?</p>
+            <p class="font-black text-lg text-slate-900">2. <code>try</code> 안에서 오류가 <strong>나지 않았을 때</strong>만 실행되는 부분은?</p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'except는 오류가 났을 때만 실행됩니다.')">
                     ① <code>except</code> 안

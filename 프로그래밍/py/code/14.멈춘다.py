@@ -10,4 +10,5 @@ print("끝")                     # 멈추면 이 줄은 아예 실행되지 않�
 
 # 입력이 「스물」일 때
 # 시작
+# 나이: 스물
 # ValueError: invalid literal for int() with base 10: '스물'
