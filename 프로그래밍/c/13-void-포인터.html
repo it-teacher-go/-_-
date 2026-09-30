@@ -21,8 +21,8 @@
             void 포인터
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            포인터의 자료형은 「몇 바이트를 읽을지」였습니다.<br>
-            <strong>그 답을 미뤄 두면 어떻게 될까요?</strong>
+            포인터를 선언할 때 쓴 자료형은 「몇 바이트를 읽을지」를 정합니다.<br>
+            <strong>그 결정을 미뤄 두면 어떻게 될까요?</strong>
         </p>
     </div>
 </header>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li><code>void</code> 포인터가 무엇을 미뤄 두는 포인터인지 설명할 수 있다.</li>
-                    <li>형 변환으로 읽을 종류를 정해 주고 값을 꺼낼 수 있다.</li>
-                    <li>같은 자리를 다른 종류로 읽으면 왜 다른 값이 나오는지 설명할 수 있다.</li>
-                    <li>여러 종류를 함께 다루는 함수를 <code>void</code> 포인터로 만들 수 있다.</li>
+                    <li><code>void</code> 포인터가 가리킬 대상의 자료형을 정하지 않은 포인터임을 설명할 수 있다.</li>
+                    <li><code>void</code> 포인터를 형 변환한 뒤 역참조해 값을 읽을 수 있다.</li>
+                    <li>같은 메모리 공간을 다른 자료형으로 읽으면 왜 다른 값이 나오는지 설명할 수 있다.</li>
+                    <li>여러 자료형을 함께 다루는 함수를 <code>void</code> 포인터로 만들 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -57,10 +57,10 @@
             <span class="font-black text-xl tracking-tight text-slate-800">void 포인터</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#why" class="hover:text-orange-600 transition">종류를 미뤄 두기</a>
+            <a href="#why" class="hover:text-orange-600 transition">자료형을 미뤄 두기</a>
             <a href="#cast" class="hover:text-orange-600 transition">읽을 때 정해 준다</a>
-            <a href="#byte" class="hover:text-orange-600 transition">같은 자리 다르게 읽기</a>
-            <a href="#use" class="hover:text-orange-600 transition">종류를 가리지 않는 함수</a>
+            <a href="#byte" class="hover:text-orange-600 transition">같은 메모리를 다르게 읽기</a>
+            <a href="#use" class="hover:text-orange-600 transition">자료형을 가리지 않는 함수</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -70,58 +70,59 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 종류를 미뤄 두기 ===== -->
+    <!-- ===== 자료형을 미뤄 두기 ===== -->
     <section id="why" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">종류를 미뤄 두기</h2>
+            <h2 class="text-3xl font-black text-slate-900">자료형을 미뤄 두기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">무엇이 올지 모르는 채로 자리를 받아야 할 때가 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">어떤 자료형의 주소가 올지 모르는 채로 전달받아야 할 때가 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                포인터에 붙는 자료형은 <strong>가리키는 대상에 관한 정보</strong>입니다.
-                <code>int *</code>면 <code>int</code> 크기만큼(<code>int</code>가 4바이트인 환경에서는 4바이트) 읽어 정수로, <code>char *</code>면 1바이트를 읽어 글자로 봅니다.
-                그래서 담을 수 있는 주소도 그 종류로 제한됩니다 &mdash;
-                <code>double</code>의 자리를 <code>int *</code>에 넣으려 하면 컴파일러가 경고나 오류로 붙잡습니다.
+                포인터를 선언할 때 쓴 자료형은 <strong>가리키는 대상에 관한 정보</strong>입니다.
+                역참조할 때 <code>int *</code>는 <code>int</code> 크기만큼(<code>int</code>가 4바이트인 환경에서는 4바이트) 읽어 정수로, <code>char *</code>는 1바이트를 읽어 문자로 해석합니다.
+                그래서 저장할 수 있는 주소도 그 자료형의 주소로 제한됩니다.
+                <code>double</code> 변수의 주소를 <code>int *</code>에 대입하면 컴파일러가 경고나 오류를 냅니다.
             </p>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900">그런데 「아직 모를 때」가 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    정수를 다루든 실수를 다루든 <strong>하는 일이 똑같은 함수</strong>를 만든다고 해 봅시다.
-                    받을 자리를 <code>int *</code>로 적으면 <strong>정수 말고는 못 받고</strong>,
-                    <code>double *</code>로 적으면 <strong>실수 말고는 못 받습니다.</strong>
-                    종류마다 같은 함수를 따로 만들어야 할까요?
+                    정수든 실수든 <strong>같은 일을 하는 함수</strong>를 만든다고 해 봅시다.
+                    매개변수를 <code>int *</code>로 선언하면 <strong><code>int</code>의 주소만 전달받고</strong>,
+                    <code>double *</code>로 선언하면 <strong><code>double</code>의 주소만 전달받습니다.</strong>
+                    자료형마다 같은 함수를 따로 만들어야 할까요?
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>「주소는 지금 받아 두고, 그것을 어떻게 읽을지는 나중에 정하겠다」</strong>고
-                    말할 수 있으면 좋겠습니다. 그것이 <strong><code>void</code> 포인터</strong>입니다.
+                    <strong>「주소는 지금 저장해 두고, 그 주소를 어떻게 읽을지는 나중에 정하겠다」</strong>고
+                    할 수 있으면 좋겠습니다. 이렇게 가리킬 대상의 자료형을 정하지 않은 포인터가
+                    <strong><code>void</code> 포인터(void pointer)</strong>입니다.
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/13.보이드.c"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">종류가 다른 주소를 같은 변수에 담았습니다</p>
+                <p class="font-black text-lg text-orange-900">자료형이 다른 주소를 같은 변수에 저장했습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>void *p</code> 하나에 <strong><code>&amp;n</code>도 <code>&amp;d</code>도</strong> 그대로 들어갑니다.
-                    <strong>「가리키는 대상이 무엇인지」를 아예 적지 않았기 때문</strong>입니다.
-                    함수 선언의 <code>void</code>가 <strong>「없다」</strong>는 뜻인 것처럼
-                    여기서는 <strong>「정하지 않았다」</strong>는 뜻입니다.
+                    <code>void *p</code> 하나에 <strong><code>&amp;n</code>도 <code>&amp;d</code>도</strong> 그대로 대입됩니다.
+                    <strong>가리킬 대상의 자료형을 아예 적지 않았기 때문</strong>입니다.
+                    함수의 반환형에 쓴 <code>void</code>가 <strong>「반환값이 없다」</strong>는 뜻이었다면,
+                    여기서는 <strong>「자료형을 정하지 않았다」</strong>는 뜻입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>담을 수 있는 것은 그대로입니다</strong> &mdash; 포인터가 담는 것은
-                    <strong>자료가 아니라 번호</strong>이고, 무엇을 가리키든 번호라는 점은 같습니다.
-                    C는 <code>void *</code>가 어떤 자료의 주소든 잃지 않고 담아 두었다가
-                    원래 종류의 포인터로 되돌려 줄 수 있다고 정해 두었습니다.
+                    <strong>저장하는 것은 여전히 주소입니다</strong> &mdash; 포인터가 저장하는 것은
+                    <strong>대상의 값이 아니라 주소</strong>이고, 무엇을 가리키든 주소라는 점은 같습니다.
+                    C 표준은 어떤 변수의 주소든 <code>void *</code>에 저장했다가
+                    원래 자료형의 포인터로 되돌리면 처음 주소와 같아진다고 보장합니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>int *</code>에 담긴 주소를 <code>void *</code>에 옮겼다가 다시 <code>int *</code>에 옮겨 담으면 처음 주소와 같을까요? 그사이에 잠시 사라졌던 정보는 무엇일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>int *</code>에 저장된 주소를 <code>void *</code>에 대입했다가 다시 <code>int *</code>에 대입하면 처음 주소와 같을까요? 그사이에 잠시 사라졌던 정보는 무엇일까요?</p>
         </div>
     </section>
 
@@ -130,55 +131,55 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">읽을 때 정해 준다</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">미룬 답은 언젠가 내놓아야 합니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">미뤄 둔 결정은 언젠가 내려야 합니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                「종류를 미뤄 두기」 절의 코드에서 값을 꺼낼 때 <code>*p</code>라고 쓰지 않고
-                <code>*(int *) p</code>라고 적었습니다.
-                <strong><code>*p</code>라고만 쓰면 컴파일이 되지 않습니다.</strong>
+                「자료형을 미뤄 두기」 절의 코드에서 값을 읽을 때 <code>*p</code>가 아니라
+                <code>*(int *) p</code>라고 썼습니다.
+                <strong><code>*p</code>라고만 쓰면 컴파일 오류가 납니다.</strong>
             </p>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>몇 바이트를 읽을지 모르니 읽을 수가 없습니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>몇 바이트를 읽을지 모르니 역참조할 수 없습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    역참조는 <strong>「그 자리로 가서 정해진 바이트 수만큼 읽어 오라」</strong>입니다.
-                    <code>void</code> 포인터는 <strong>그 바이트 수를 정해 두지 않았으니</strong>
-                    가더라도 <strong>어디까지 읽어야 할지 알 수 없습니다.</strong>
-                    그래서 컴파일러가 <strong>「<code>void</code>를 잘못 쓰고 있다」며 오류</strong>를 냅니다.
+                    역참조는 <strong>「그 주소에서부터 자료형의 크기만큼 읽어 오라」</strong>는 뜻입니다.
+                    <code>void</code> 포인터에는 <strong>그 자료형이 정해져 있지 않으니</strong>
+                    주소를 알아도 <strong>어디까지 읽어야 할지 알 수 없습니다.</strong>
+                    그래서 컴파일러가 <strong>「<code>void</code>를 잘못 사용했다」는 오류</strong>를 냅니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    덧셈도 사정이 같습니다. <code>+ 1</code>이 <strong>「대상 하나만큼 옆으로」</strong>인데
-                    그 하나가 몇 바이트인지 모르니 <strong>표준이 뜻을 정해 두지 않았습니다.</strong>
-                    컴파일러가 나름의 해석으로 받아 주기도 하지만 <strong>기대고 쓸 것은 못 됩니다.</strong>
+                    포인터 연산도 사정이 같습니다. <code>p + 1</code>은 <strong>「가리키는 자료형 하나의 크기만큼 주소를 이동」</strong>하는 것인데,
+                    그 크기를 모르니 <strong>표준 C는 <code>void</code> 포인터의 포인터 연산을 허용하지 않습니다.</strong>
+                    일부 컴파일러가 확장 기능으로 1바이트씩 이동하게 해 주기도 하지만 <strong>표준이 아니므로 기대어 쓰면 안 됩니다.</strong>
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">괄호로 종류를 씌워 줍니다</p>
+                <p class="font-black text-lg text-slate-900">괄호로 자료형을 지정합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>(int *) p</code>는 <strong>「이 번호를 정수를 가리키는 것으로 쳐라」</strong>는 뜻입니다.
-                    이렇게 종류를 바꿔 주는 것을 <strong>형 변환(캐스트)</strong>이라고 합니다.
-                    <code>(double) sum / n</code>처럼 값의 종류를 바꿀 때 쓰는 괄호와 <strong>같은 문법</strong>입니다.
+                    <code>(int *) p</code>는 <strong>「이 주소를 <code>int</code>를 가리키는 주소로 다뤄라」</strong>는 뜻입니다.
+                    값의 자료형을 바꾸는 <code>(double) sum / n</code>과 <strong>같은 문법의 강제 형 변환(type casting)</strong>이고,
+                    여기서는 값이 아니라 포인터의 자료형을 바꿉니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>*(int *) p</code>는 <strong>먼저 종류를 정하고 그다음 역참조</strong>합니다.
-                    <strong>순서를 지키려고 괄호를 씌운 것</strong>이니,
-                    <code>*(int *) p</code>를 <strong>「정수로 쳐서 읽어라」</strong> 한 덩어리로 읽으면 됩니다.
+                    <code>*(int *) p</code>는 <strong>먼저 <code>p</code>를 <code>int *</code>로 형 변환하고, 그 결과를 역참조</strong>합니다.
+                    <code>p</code>에 가까이 붙은 형 변환이 먼저 적용되기 때문입니다.
+                    그러니 <code>*(int *) p</code>를 <strong>「<code>int</code>로 보고 읽어라」</strong>는 한 덩어리로 읽으면 됩니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <strong>포인터의 형 변환은 「어떻게 읽을지」를 정할 뿐 자리에 담긴 것을 고치지 않습니다.</strong>
-                그래서 틀리게 정해 주어도 컴파일러가 막지 못합니다.
+                <strong>포인터의 형 변환은 「어떻게 읽을지」를 정할 뿐, 메모리에 저장된 값을 바꾸지 않습니다.</strong>
+                그래서 자료형을 잘못 지정해도 컴파일러가 막지 못합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/13.캐스트.c"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 268" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="실수 하나가 담긴 8바이트를 double 포인터로 읽으면 다 읽지만 int 포인터로 읽으면 앞의 4바이트만 읽고 나머지를 버린다">
-                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">double d = 3.5;&#160;&#160;&#160;8바이트에 나뉘어 담겨 있다</text>
+                     role="img" aria-label="실수 하나가 저장된 8바이트를 double 포인터로 읽으면 다 읽지만 int 포인터로 읽으면 앞의 4바이트만 읽고 나머지를 버린다">
+                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">double d = 3.5;&#160;&#160;&#160;8바이트에 나뉘어 저장되어 있다</text>
                     <g transform="translate(0,22)">
                     <rect x="64" y="72" width="60" height="52" rx="0" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <rect x="124" y="72" width="60" height="52" rx="0" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -194,8 +195,8 @@
                     <path d="M64 138 L64 148 L304 148 L304 138" fill="none" stroke="#e11d48" stroke-width="2"/>
                     <text x="184" y="172" font-size="17" fill="#e11d48" font-weight="700" text-anchor="middle">*(int *) p &rarr; 앞의 4바이트만</text>
                     <text x="360" y="172" font-size="17" fill="#64748b">나머지 4바이트는 버린다</text>
-                    <text x="20" y="210" font-size="16" fill="#64748b">3.5를 담은 방식을 정수로 잘못 해석하니 3.5로 알아볼 수 없다.</text>
-                    <text x="20" y="236" font-size="16" fill="#64748b">포인터 형 변환은 읽는 법만 정하고 담긴 것은 그대로 둔다.</text>
+                    <text x="20" y="210" font-size="16" fill="#64748b">3.5를 저장한 바이트를 정수로 잘못 해석하니 3.5로 알아볼 수 없다.</text>
+                    <text x="20" y="236" font-size="16" fill="#64748b">포인터 형 변환은 읽는 방법만 정하고 저장된 값은 그대로 둔다.</text>
                     </g>
                 </svg>
             </div>
@@ -204,48 +205,48 @@
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>3.5도 3도 아닌 값이 나옵니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    실수 <code>3.5</code>가 든 자리를 <strong>정수로 쳐서 앞의 4바이트만</strong> 읽었습니다.
-                    이 강의노트를 만든 컴퓨터에서는 <strong>0</strong>이 찍혔습니다.
-                    3.5를 담은 바이트를 정수를 담는 방식으로 잘못 해석한 값이라, <strong>이 값으로는 3.5를 알아볼 수 없습니다.</strong>
-                    실수를 담는 방식과 정수를 담는 방식이 애초에 다르기 때문입니다.
-                    게다가 C는 <code>double</code>이 든 자리를 <code>int *</code>로 읽었을 때 무엇이 나올지 정해 두지 않았습니다.
-                    어떤 자리든 바이트 단위로 읽어도 된다고 C가 보장하는 것은 <code>char *</code>로 읽을 때뿐입니다.
+                    실수 <code>3.5</code>가 저장된 메모리 공간을 <strong><code>int</code>로 보고 앞의 4바이트만</strong> 읽었습니다.
+                    이 강의노트를 만든 컴퓨터에서는 <strong>0</strong>이 출력되었습니다.
+                    3.5를 저장한 바이트를 정수의 저장 방식으로 잘못 해석한 값이라, <strong>이 값으로는 3.5를 알아볼 수 없습니다.</strong>
+                    실수와 정수는 메모리에 저장하는 방식이 애초에 다르기 때문입니다.
+                    게다가 C 표준은 <code>double</code> 변수를 <code>int *</code>로 읽었을 때 무엇이 나올지 정해 두지 않았습니다.
+                    어떤 메모리 공간이든 바이트 단위로 읽어도 된다고 C가 보장하는 것은 <code>char *</code>로 읽을 때뿐입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>포인터의 형 변환은 「이렇게 읽겠다」는 선언이고, 담긴 것을 바꾸지 않습니다.</strong>
-                    그래서 <strong><code>void</code> 포인터를 쓸 때는 「무엇을 담아 두었는지」를
-                    사람이 기억하고 있어야</strong> 합니다. 컴파일러가 대신 지켜 주지 않습니다.
+                    <strong>포인터의 형 변환은 「이렇게 읽겠다」는 표시일 뿐, 저장된 값을 바꾸지 않습니다.</strong>
+                    그래서 <strong><code>void</code> 포인터를 쓸 때는 「어떤 자료형의 주소를 저장해 두었는지」를
+                    프로그래머가 기억하고 있어야</strong> 합니다. 컴파일러가 대신 확인해 주지 않습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>int</code>를 담아 둔 <code>void</code> 포인터를 <code>*(double *)</code>로 읽으면 몇 바이트를 읽게 될까요? 그 가운데 몇 바이트가 남의 자리일까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>int</code> 변수의 주소를 저장한 <code>void</code> 포인터를 <code>*(double *)</code>로 읽으면 몇 바이트를 읽게 될까요? 그 가운데 몇 바이트가 그 변수에 속하지 않는 메모리 공간일까요?</p>
         </div>
     </section>
 
-    <!-- ===== 같은 자리 다르게 읽기 ===== -->
+    <!-- ===== 같은 메모리를 다르게 읽기 ===== -->
     <section id="byte" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">같은 자리 다르게 읽기</h2>
+            <h2 class="text-3xl font-black text-slate-900">같은 메모리를 다르게 읽기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">틀리게 읽는 것이 아니라 일부러 다르게 읽어 봅니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">잘못 읽는 것이 아니라 일부러 다르게 읽어 봅니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
                 「읽을 때 정해 준다」 절에서는 잘못 읽어 엉뚱한 값이 나왔지만, <strong>일부러 다르게 읽어 얻는 것</strong>도 있습니다.
-                정수 하나가 4바이트에 어떻게 나뉘어 들어 있는지를 보려면
-                <code>char *</code>로 1바이트씩 읽으면 됩니다. C가 보장하는 읽기입니다.
+                정수 하나가 4바이트에 어떻게 나뉘어 저장되어 있는지 보려면
+                <code>char *</code>로 1바이트씩 읽으면 됩니다. C 표준이 보장하는 읽기 방법입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/13.바이트.c"></code></pre>
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 260" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="정수 하나가 담긴 4바이트를 int 포인터로 읽으면 하나의 값이 되고 char 포인터로 읽으면 바이트마다 따로 읽힌다. 담긴 것은 그대로이고 읽는 방법만 다르다">
-                    <text x="20" y="28" font-size="17" font-weight="700" fill="#0f172a">int num = 0x12345678;&#160;&#160;&#160;&#160;담긴 것은 그대로다</text>
+                     role="img" aria-label="정수 하나가 저장된 4바이트를 int 포인터로 읽으면 하나의 값이 되고 char 포인터로 읽으면 바이트마다 따로 읽힌다. 저장된 값은 그대로이고 읽는 방법만 다르다">
+                    <text x="20" y="28" font-size="17" font-weight="700" fill="#0f172a">int num = 0x12345678;&#160;&#160;&#160;&#160;저장된 값은 그대로다</text>
 
                     <path d="M112 76 L112 66 L464 66 L464 76" fill="none" stroke="#c2410c" stroke-width="2"/>
                     <text x="288" y="56" font-size="17" font-weight="700" fill="#c2410c" text-anchor="middle">int * 로 읽으면 &mdash; 4바이트를 묶어 정수 하나</text>
@@ -272,29 +273,29 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900">먼저 <code>0x</code> 표기를 확인합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>0x12345678</code>은 <strong>16진수로 적은 수</strong>입니다.
-                    주소를 <code>%p</code>로 찍을 때도 대개 16진수가 나옵니다. <strong>앞의 <code>0x</code>가 「이건 16진수」라는 표시</strong>입니다.
-                    16진수가 편한 까닭은 <strong>두 자리가 정확히 1바이트</strong>이기 때문입니다 &mdash;
+                    <code>0x12345678</code>은 <strong>16진수로 쓴 수</strong>입니다.
+                    주소를 <code>%p</code>로 출력할 때도 대개 16진수로 나옵니다. <strong>앞의 <code>0x</code>가 「16진수」라는 표시</strong>입니다.
+                    16진수가 편리한 이유는 <strong>16진수 두 자리가 정확히 1바이트</strong>이기 때문입니다 &mdash;
                     <code>12</code> <code>34</code> <code>56</code> <code>78</code>이 <strong>4바이트에 하나씩</strong> 대응합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>%02X</code>는 <strong>「16진수 두 자리로, 모자라면 0을 채워」</strong> 찍으라는 뜻입니다.
-                    그래야 바이트마다 자릿수가 같아 <strong>줄을 세워 볼 수</strong> 있습니다.
+                    <code>%02X</code>는 <strong>「16진수 두 자리로, 자릿수가 모자라면 앞을 0으로 채워」</strong> 출력하라는 뜻입니다.
+                    그래야 바이트마다 자릿수가 같아 <strong>나란히 비교해 볼 수</strong> 있습니다.
                 </p>
             </div>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900"><code>78 56 34 12</code>로 거꾸로 나옵니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    적은 순서대로라면 <code>12 34 56 78</code>이 나와야 할 것 같은데 <strong>뒤집혀 나옵니다.</strong>
-                    <strong>낮은 자릿수를 앞 바이트에 놓는 방식</strong>으로 담기 때문입니다.
-                    많이 쓰는 개인용 컴퓨터가 이 방식이고, <strong>반대로 놓는 컴퓨터도 있습니다.</strong>
+                    쓴 순서대로라면 <code>12 34 56 78</code>이 나와야 할 것 같은데 <strong>순서가 뒤집혀 출력됩니다.</strong>
+                    <strong>낮은 자릿수를 앞 바이트(주소가 작은 쪽)에 저장하는 방식</strong>이기 때문입니다.
+                    흔히 쓰는 개인용 컴퓨터가 이 방식이고, <strong>반대 순서로 저장하는 컴퓨터도 있습니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>어느 쪽이 옳고 그른 것이 아니라 약속이 다른 것</strong>입니다.
                     평소에는 알 필요가 없다가, <strong>바이트 단위로 직접 살펴볼 때</strong>에야 드러납니다.
                     <strong>포인터의 자료형은 결국 「해석하는 방법」</strong>이라는 것이 여기서 분명해집니다 &mdash;
-                    <strong>자리에 든 것은 그대로인데 읽는 방법이 결과를 정합니다.</strong>
+                    <strong>메모리에 저장된 값은 그대로인데 읽는 방법이 결과를 정합니다.</strong>
                 </p>
             </div>
         </div>
@@ -305,61 +306,61 @@
         </div>
     </section>
 
-    <!-- ===== 종류를 가리지 않는 함수 ===== -->
+    <!-- ===== 자료형을 가리지 않는 함수 ===== -->
     <section id="use" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">종류를 가리지 않는 함수</h2>
+            <h2 class="text-3xl font-black text-slate-900">자료형을 가리지 않는 함수</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">「종류를 미뤄 두기」 절의 물음으로 돌아갑니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">「자료형을 미뤄 두기」 절의 물음으로 돌아갑니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <pre class="language-c"><code class="language-c" data-src="code/13.전체.c"></code></pre>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">종류가 다른 셋을 한 배열에 담았습니다</p>
+                <p class="font-black text-lg text-slate-900">자료형이 다른 세 주소를 한 배열에 저장했습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    배열은 <strong>한 종류만 담는다</strong>는 규칙은 그대로입니다 &mdash;
-                    <code>slot</code>은 <strong><code>void *</code>만 담는 배열</strong>입니다.
-                    다만 <strong><code>void *</code>는 어떤 자리든 가리킬 수 있으니</strong>
-                    결과적으로 <strong>정수·실수·글자를 한 줄에 세운 것</strong>이 됩니다.
+                    배열에는 <strong>자료형이 같은 값만 저장한다</strong>는 규칙은 그대로입니다 &mdash;
+                    <code>slot</code>은 <strong><code>void *</code> 값만 저장하는 배열</strong>입니다.
+                    다만 <strong><code>void *</code>는 어떤 변수든 가리킬 수 있으니</strong>
+                    결과적으로 <strong>정수·실수·문자를 한 배열로 다루게</strong> 됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>show</code>는 <strong>무엇이 올지 모르는 채로 자리를 받습니다.</strong>
-                    그래서 <code>kind</code>를 <strong>함께 받습니다</strong> &mdash;
-                    <strong>「이 자리를 무엇으로 읽어야 하는지」를 알려 주는 쪽지</strong>입니다.
+                    <code>show</code>는 <strong>어떤 자료형의 주소가 올지 모르는 채로 전달받습니다.</strong>
+                    그래서 <code>kind</code>를 <strong>함께 전달받습니다</strong> &mdash;
+                    <strong>「이 주소를 어떤 자료형으로 읽어야 하는지」를 알려 주는 쪽지</strong>입니다.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>지켜 주는 장치가 사라집니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>kind</code>를 <code>'d'</code>로 잘못 적어도 <strong>컴파일은 그대로 됩니다.</strong>
-                    <strong><code>void</code> 포인터의 이점은 「종류를 가리지 않는 것」인데,
-                    그 이점이 대가</strong>이기도 합니다 &mdash;
-                    <strong>종류가 맞는지 봐 주던 컴파일러의 검사를 스스로 꺼 버린 셈</strong>입니다.
+                    <code>kind</code>를 <code>'d'</code>로 잘못 써도 <strong>컴파일은 그대로 됩니다.</strong>
+                    <strong><code>void</code> 포인터의 장점은 「자료형을 가리지 않는 것」인데,
+                    그 장점이 곧 대가</strong>이기도 합니다 &mdash;
+                    <strong>자료형이 맞는지 확인하던 컴파일러의 검사를 스스로 꺼 버린 셈</strong>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     그러니 <strong>꼭 필요할 때만 씁니다.</strong>
-                    다루는 종류가 <strong>하나로 정해져 있다면 <code>int *</code>처럼 또박또박 적는 편</strong>이
-                    낫습니다. 그래야 <strong>틀리면 컴파일러가 붙잡아 줍니다.</strong>
+                    다루는 자료형이 <strong>하나로 정해져 있다면 <code>int *</code>처럼 자료형을 분명히 적는 편</strong>이
+                    낫습니다. 그래야 <strong>잘못 쓰면 컴파일러가 알려 줍니다.</strong>
                 </p>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>%p</code>에 넘길 때도 씌웁니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>%p</code>로 출력할 때도 형 변환합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    주소를 찍을 때는 <code>printf("%p", (void *) &amp;n)</code>처럼
-                    <strong><code>void *</code>로 씌웁니다.</strong>
-                    <code>%p</code>는 <strong>「무엇을 가리키든 상관없이 번호만 찍는」</strong> 자리라
-                    <strong>종류를 가리지 않는 포인터를 받게</strong> 되어 있기 때문입니다.
+                    주소를 출력할 때는 <code>printf("%p", (void *) &amp;n)</code>처럼
+                    <strong><code>void *</code>로 형 변환합니다.</strong>
+                    <code>%p</code>는 <strong>「무엇을 가리키든 상관없이 주소만 출력하는」</strong> 서식 지정자라서
+                    <strong><code>void *</code> 인자를 받도록</strong> 정해져 있기 때문입니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>show</code>에서 <code>kind</code>를 없애고 자리만 받게 하면 무엇이 불가능해질까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>show</code>에서 <code>kind</code>를 없애고 주소만 전달받게 하면 무엇이 불가능해질까요?</p>
         </div>
     </section>
 
@@ -372,33 +373,33 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">종류를 미뤄 둔 포인터</h3>
+                <h3 class="text-xl font-black text-slate-900">자료형을 미뤄 둔 포인터</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>void *</code>는 <strong>가리키는 대상을 정하지 않은</strong> 포인터다.
-                    어떤 자료의 주소든 담을 수 있지만, 몇 바이트를 어떻게 읽을지는 담고 있지 않다.
+                    <code>void *</code>는 <strong>가리킬 대상의 자료형을 정하지 않은</strong> 포인터다.
+                    어떤 변수의 주소든 저장할 수 있지만, 몇 바이트를 어떻게 읽을지에 관한 정보는 없다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">읽으려면 정해 주어야</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    몇 바이트를 읽을지 모르므로 그대로는 역참조할 수 없다.
-                    <code>*(int *) p</code>처럼 <strong>형 변환으로 「이렇게 읽겠다」</strong>고 말해 준다.
+                    몇 바이트를 읽을지 모르므로 그대로는 역참조할 수 없고, 표준 C에서는 포인터 연산도 할 수 없다.
+                    <code>*(int *) p</code>처럼 <strong>형 변환으로 「이렇게 읽겠다」</strong>고 지정한 뒤 역참조한다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">읽는 방법이 결과를 정한다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    포인터의 형 변환은 <strong>담긴 것을 고치지 않는다.</strong>
-                    같은 자리도 <code>char *</code>로 읽으면 바이트별로 보이고,
-                    틀리게 정하면 무엇이 나올지 C가 정해 두지 않았고, 대개 담긴 바이트를 잘못 해석한 값이 나온다.
+                    포인터의 형 변환은 <strong>저장된 값을 바꾸지 않는다.</strong>
+                    같은 메모리 공간도 <code>char *</code>로 읽으면 바이트별로 보인다.
+                    자료형을 잘못 지정하면 무엇이 나올지 C가 정해 두지 않았고, 대개 저장된 바이트를 잘못 해석한 값이 나온다.
                     바이트 단위로 읽어도 된다고 C가 보장하는 것은 <code>char *</code>뿐이다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">검사를 스스로 끄는 일</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    종류를 가리지 않는 만큼 컴파일러도 검사하지 않는다.
-                    무엇을 담았는지 사람이 기억해야 하므로
+                    자료형을 가리지 않는 만큼 컴파일러도 자료형을 검사하지 않는다.
+                    어떤 자료형의 주소를 저장했는지 프로그래머가 기억해야 하므로
                     꼭 필요할 때만 쓴다.
                 </p>
             </div>
@@ -416,52 +417,52 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>void *p = &amp;n;</code> 다음에 <code>printf("%d", *p);</code>라고 쓰면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'void 포인터는 몇 바이트를 읽을지 정해져 있지 않아 그대로 읽을 수 없습니다.')">
-                    ① <code>n</code>의 값이 잘 찍힌다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'void 포인터는 몇 바이트를 읽을지 정해져 있지 않아 그대로 역참조할 수 없습니다.')">
+                    ① <code>n</code>의 값이 제대로 출력된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '읽을 바이트 수가 정해져 있지 않아 컴파일러가 붙잡습니다. 형 변환으로 정해 주어야 합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '읽을 바이트 수가 정해져 있지 않아 컴파일 오류가 납니다. 형 변환으로 자료형을 지정해야 합니다.')">
                     ② 컴파일되지 않는다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '엉뚱한 값이 나오는 것이 아니라 아예 컴파일 단계에서 막힙니다.')">
-                    ③ 엉뚱한 값이 찍힌다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '엉뚱한 값이 나오는 것이 아니라 아예 컴파일 단계에서 오류가 납니다.')">
+                    ③ 엉뚱한 값이 출력된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '주소가 아니라 값을 읽으려는 코드입니다. 그리고 읽을 수 없습니다.')">
-                    ④ 주소가 찍힌다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '*p는 주소가 아니라 값을 읽으려는 식이고, void 포인터로는 그렇게 읽을 수도 없습니다.')">
+                    ④ 주소가 출력된다
                 </button>
             </div>
         </div>
 
         <div id="q2" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">2. <code>double</code>이 든 자리를 <code>*(int *)</code>로 읽으면?</p>
+            <p class="font-black text-lg text-slate-900">2. <code>double</code> 변수를 <code>*(int *)</code>로 읽으면?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '소수점을 버리는 것이 아닙니다. 그것은 값을 바꾸는 형 변환이고, 여기서는 읽는 방법만 바꿨습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '소수점 아래를 버리는 것은 값을 바꾸는 형 변환이 하는 일이고, 여기서는 읽는 방법만 바꿨습니다.')">
                     ① 소수점 아래가 잘린 정수가 나온다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '담는 방식이 애초에 달라, 담긴 바이트를 정수로 잘못 해석한 값이 나옵니다. 그 값으로는 원래 값을 알아볼 수 없습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '실수와 정수는 저장 방식이 애초에 달라, 저장된 바이트를 정수로 잘못 해석한 값이 나옵니다. 그 값으로는 원래 값을 알아볼 수 없습니다.')">
                     ② 원래 값을 알아볼 수 없는 값이 나온다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '포인터를 형 변환해도 담긴 것은 고쳐지지 않습니다. 자리의 내용은 그대로입니다.')">
-                    ③ 그 자리의 값이 정수로 바뀐다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '포인터를 형 변환해도 저장된 값은 바뀌지 않습니다. 메모리의 내용은 그대로입니다.')">
+                    ③ 그 변수에 저장된 값이 정수로 바뀐다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '컴파일러가 막지 못합니다. 포인터 형 변환은 「이렇게 읽겠다」는 사람의 선언이기 때문입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '컴파일러가 막지 못합니다. 포인터 형 변환은 「이렇게 읽겠다」는 프로그래머의 지시이기 때문입니다.')">
                     ④ 컴파일러가 막아 준다
                 </button>
             </div>
         </div>
 
         <div id="q3" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">3. <code>void</code> 포인터를 쓸 때 사람이 함께 챙겨야 하는 것은?</p>
+            <p class="font-black text-lg text-slate-900">3. <code>void</code> 포인터를 쓸 때 프로그래머가 함께 챙겨야 하는 것은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '무엇을 담아 두었는지는 컴파일러가 봐 주지 않으므로 사람이 기억하거나 따로 넘겨야 합니다.')">
-                    ① 그 자리에 무엇이 들어 있는지
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '어떤 자료형의 주소를 저장했는지 컴파일러가 확인해 주지 않으므로 프로그래머가 기억하거나 따로 전달해야 합니다.')">
+                    ① 그 주소에 어떤 자료형의 값이 저장되어 있는지
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '흔히 쓰는 컴퓨터에서는 포인터의 크기가 대상과 무관하게 같습니다. 챙길 것이 아닙니다.')">
                     ② 포인터 변수 자신의 크기
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '주소값은 운영 체제가 정합니다. 사람이 챙길 수 있는 것이 아닙니다.')">
-                    ③ 주소로 몇 번이 나올지
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '변수의 주소는 프로그램을 실행할 때 정해집니다. 프로그래머가 챙길 수 있는 것이 아닙니다.')">
+                    ③ 주소가 어떤 값이 될지
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '16진수 표기는 찍는 방법일 뿐 챙겨야 할 정보가 아닙니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '16진수 표기는 출력하는 방법일 뿐 챙겨야 할 정보가 아닙니다.')">
                     ④ 주소를 16진수로 적었는지
                 </button>
             </div>

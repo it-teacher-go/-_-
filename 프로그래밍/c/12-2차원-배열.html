@@ -21,8 +21,8 @@
             2차원 배열
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            우리는 표로 적습니다.<br>
-            <strong>그런데 컴퓨터는 여전히 한 줄로 늘어놓습니다.</strong>
+            코드에는 표 형태로 씁니다.<br>
+            <strong>그러나 메모리에는 여전히 한 줄로 이어서 저장됩니다.</strong>
         </p>
     </div>
 </header>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>표 모양 자료를 2차원 배열로 만들고 인덱스 둘로 가리킬 수 있다.</li>
-                    <li>중첩 반복으로 모든 칸을 빠짐없이 순회할 수 있다.</li>
-                    <li>2차원 배열이 메모리에 한 줄로 놓인다는 것을 확인하고 설명할 수 있다.</li>
-                    <li>함수에 넘길 때 열 크기를 적어야 하는 까닭을 설명할 수 있다.</li>
+                    <li>표 형태의 자료를 2차원 배열로 선언하고 행과 열의 인덱스로 요소를 가리킬 수 있다.</li>
+                    <li>중첩 반복문으로 모든 요소를 빠짐없이 순회할 수 있다.</li>
+                    <li>2차원 배열의 요소가 메모리에 행 순서대로 연속해 저장된다는 것을 확인하고 설명할 수 있다.</li>
+                    <li>2차원 배열을 함수에 전달할 때 열의 크기를 적어야 하는 이유를 설명할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -57,10 +57,10 @@
             <span class="font-black text-xl tracking-tight text-slate-800">2차원 배열</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#table" class="hover:text-orange-600 transition">표 모양으로 담기</a>
+            <a href="#table" class="hover:text-orange-600 transition">표 형태로 저장하기</a>
             <a href="#loop" class="hover:text-orange-600 transition">중첩 반복으로 순회하기</a>
             <a href="#line" class="hover:text-orange-600 transition">사실은 한 줄이다</a>
-            <a href="#func" class="hover:text-orange-600 transition">함수에 넘길 때</a>
+            <a href="#func" class="hover:text-orange-600 transition">함수에 전달할 때</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -70,29 +70,30 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 표 모양으로 담기 ===== -->
+    <!-- ===== 표 형태로 저장하기 ===== -->
     <section id="table" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">표 모양으로 담기</h2>
+            <h2 class="text-3xl font-black text-slate-900">표 형태로 저장하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">한 줄로 늘어놓기 곤란한 자료가 많습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">한 줄로 나열하기 어려운 자료가 많습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                배열은 같은 종류의 자리를 한 줄로 늘어놓은 것입니다.
-                그런데 세상의 자료는 <strong>표 모양</strong>인 것이 많습니다 &mdash;
-                좌석 배치, 달력, 바둑판, 모둠별 기록처럼요.
-                한 줄짜리 배열로도 담을 수는 있지만 「몇째 줄 몇째 칸」을 손으로 계산해야 합니다.
+                배열은 자료형이 같은 값 여러 개를 메모리에 연속으로 저장한 것입니다.
+                그런데 좌석 배치, 달력, 바둑판, 모둠별 기록처럼 <strong>표 형태</strong>인 자료가 많습니다.
+                지금까지 쓴 배열처럼 인덱스가 하나인 배열(1차원 배열)에도 저장할 수는 있지만,
+                「몇 번째 행의 몇 번째 열」인지를 프로그래머가 직접 계산해야 합니다.
             </p>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">대괄호를 하나 더 붙입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int score[3][4];</code>는 <strong>「네 칸짜리 줄이 세 개」</strong>라는 뜻입니다.
-                    앞의 <code>[3]</code>이 <strong>줄(행)의 개수</strong>, 뒤의 <code>[4]</code>가
-                    <strong>한 줄에 든 칸(열)의 개수</strong>입니다.
-                    <strong>앞이 먼저 나눈 것, 뒤가 나중에 나눈 것</strong>이라고 읽으면 순서를 헷갈리지 않습니다.
+                    <code>int score[3][4];</code>는 <strong>「요소 4개로 이루어진 행이 3개」</strong>인 배열을 선언합니다.
+                    이처럼 인덱스 두 개로 요소를 가리키는 배열을 2차원 배열(two-dimensional array)이라고 합니다.
+                    앞의 <code>[3]</code>이 <strong>행(row)의 개수</strong>, 뒤의 <code>[4]</code>가
+                    <strong>한 행에 있는 열(column)의 개수</strong>입니다.
+                    <strong>먼저 행으로 나누고, 각 행을 다시 열로 나눈다</strong>고 읽으면 순서를 헷갈리지 않습니다.
                 </p>
             </div>
 
@@ -137,9 +138,9 @@
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                초기 값을 적을 때 중괄호를 겹쳐 씁니다.
-                바깥 중괄호가 배열 전체, <strong>안쪽 중괄호 하나가 한 줄</strong>입니다.
-                줄마다 한 행에 적어 두면 코드도 표 모양이 됩니다.
+                위 코드처럼 초기화할 때는 중괄호를 중첩해 씁니다.
+                바깥 중괄호가 배열 전체, <strong>안쪽 중괄호 하나가 한 행</strong>입니다.
+                한 행의 초기값을 코드 한 줄에 쓰면 코드도 표 형태가 됩니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/12.만들기.c#칸"></code></pre>
@@ -147,20 +148,20 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">인덱스가 둘이 되었을 뿐입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>score[1][2]</code>는 <strong>「1번 줄의 2번 칸」</strong>입니다.
-                    <strong>둘 다 0부터 셉니다</strong> &mdash; 배열의 규칙이 그대로입니다.
-                    그래서 세 줄짜리의 마지막 줄은 <code>[2]</code>, 네 칸짜리의 마지막 칸은 <code>[3]</code>입니다.
+                    <code>score[1][2]</code>는 <strong>「1번 행의 2번 열」</strong>에 있는 요소입니다.
+                    <strong>행과 열의 인덱스 모두 0부터 셉니다</strong> &mdash; 1차원 배열의 규칙 그대로입니다.
+                    그래서 행이 3개이면 마지막 행의 인덱스는 <code>[2]</code>, 열이 4개이면 마지막 열의 인덱스는 <code>[3]</code>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    칸 하나를 가리키고 나면 <strong>여느 변수와 똑같이</strong> 다룹니다.
-                    읽을 수도 있고 <code>score[2][3] = 100;</code>처럼 <strong>값을 넣을 수도</strong> 있습니다.
+                    요소 하나를 가리키면 <strong>일반 변수와 똑같이</strong> 쓸 수 있습니다.
+                    값을 읽을 수도 있고 <code>score[2][3] = 100;</code>처럼 <strong>값을 대입할 수도</strong> 있습니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">가로 아홉 칸, 세로 아홉 칸인 바둑판을 담으려면 어떻게 적어야 할까요? 가운데 칸의 인덱스는 얼마입니까?</p>
+            <p class="text-base text-slate-700 leading-relaxed">가로 9칸, 세로 9칸인 바둑판을 2차원 배열에 저장하려면 어떻게 선언해야 할까요? 한가운데 칸의 행 인덱스와 열 인덱스는 각각 얼마입니까?</p>
         </div>
     </section>
 
@@ -169,21 +170,21 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">중첩 반복으로 순회하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">겹쳐 놓은 반복이 여기서 제 쓸모를 찾습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">중첩 반복문이 가장 자연스럽게 쓰이는 곳입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                한 줄짜리 배열은 반복 하나로 순회합니다.
-                <strong>인덱스가 둘이면 반복도 둘</strong>입니다.
-                반복 안에 반복을 넣는 중첩 반복입니다.
+                1차원 배열은 반복문 하나로 순회합니다.
+                <strong>인덱스가 둘이면 반복문도 둘</strong>입니다.
+                반복문 안에 반복문을 넣는 중첩 반복문을 씁니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/12.순회.c#중첩"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 272" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="세 줄 네 칸짜리 표를 왼쪽 위부터 오른쪽으로 순회하고 줄이 끝나면 다음 줄로 내려가 열두 칸을 차례로 지나간다">
-                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">바깥이 줄을 고르고 안쪽이 그 줄을 순회한다</text>
+                     role="img" aria-label="3행 4열인 표를 왼쪽 위부터 오른쪽으로 순회하고 한 행이 끝나면 다음 행으로 내려가 열두 칸을 차례로 지나간다">
+                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">바깥이 행을 고르고 안쪽이 그 행을 순회한다</text>
                     <rect x="152" y="44" width="88" height="62" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="196" y="76" font-size="19" fill="#0f172a" font-weight="700" text-anchor="middle">80</text>
                     <text x="196" y="98" font-size="16" fill="#64748b" text-anchor="middle">1번째</text>
@@ -226,43 +227,43 @@
                     <text x="460" y="222" font-size="16" fill="#64748b" text-anchor="middle">12번째</text>
                     <text x="144" y="206" font-size="17" fill="#c2410c" font-weight="700" text-anchor="end">row = 2</text>
                     <line x1="152" y1="199" x2="504" y2="199" stroke="#fdba74" stroke-width="2" stroke-dasharray="4 4"/>
-                    <text x="20" y="262" font-size="16" fill="#64748b">안쪽 중괄호는 3 &times; 4 = 12번 지나간다 &mdash; 칸 수와 같다.</text>
+                    <text x="20" y="262" font-size="16" fill="#64748b">안쪽 중괄호 안은 3 &times; 4 = 12번 실행된다 &mdash; 칸 수와 같다.</text>
                 </svg>
             </div>
 
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">바깥이 줄을 고르고 안쪽이 그 줄을 순회합니다</p>
+                <p class="font-black text-lg text-slate-900">바깥이 행을 고르고 안쪽이 그 행을 순회합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    바깥 반복이 <code>row</code>를 한 칸 올릴 때마다 <strong>안쪽 반복이 네 칸을 통째로</strong> 지나갑니다.
-                    시계에서 분침이 한 칸 갈 동안 초침이 한 바퀴를 도는 것과 같은 관계입니다.
-                    안쪽 중괄호는 <strong>3 &times; 4 = 12번</strong> 지나갑니다 &mdash; 칸 수와 같습니다.
+                    바깥 반복이 <code>row</code>를 1 늘릴 때마다 <strong>안쪽 반복은 그 행의 요소 네 개를 모두</strong> 지나갑니다.
+                    시계에서 분침이 한 칸 움직이는 동안 초침이 한 바퀴를 도는 것과 같은 관계입니다.
+                    그래서 안쪽 반복문의 중괄호 안은 <strong>3 &times; 4 = 12번</strong> 실행됩니다 &mdash; 배열의 요소 개수와 같습니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>printf("\n")</code>이 <strong>안쪽 중괄호 밖</strong>에 있는 것을 눈여겨보세요.
-                    한 줄을 다 찍은 뒤에 줄을 바꾸어야 <strong>화면에도 표 모양</strong>으로 나옵니다.
-                    <code>%4d</code>는 <strong>네 칸을 잡고 오른쪽에 붙이라</strong>는 뜻이라 <strong>열이 맞습니다.</strong>
+                    한 행을 모두 출력한 뒤에 줄을 바꾸어야 <strong>화면에도 표 형태</strong>로 출력됩니다.
+                    <code>%4d</code>는 <strong>출력 폭을 4로 잡고 오른쪽에 맞춰 출력하라</strong>는 뜻이라 <strong>열이 맞습니다.</strong>
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>바깥과 안쪽의 한계가 다릅니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>바깥과 안쪽의 반복 범위가 다릅니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     바깥은 <code>&lt; 3</code>, 안쪽은 <code>&lt; 4</code>입니다.
-                    <strong>둘 다 <code>&lt; 3</code>으로 쓰면 마지막 열을 통째로 빠뜨리고</strong>,
-                    <strong>둘 다 <code>&lt; 4</code>로 쓰면 없는 줄을 가리킵니다.</strong>
-                    C는 없는 자리를 가리켜도 막아 주지 않습니다.
+                    <strong>둘 다 <code>&lt; 3</code>으로 쓰면 마지막 열을 모두 빠뜨리고</strong>,
+                    <strong>둘 다 <code>&lt; 4</code>로 쓰면 없는 행을 가리킵니다.</strong>
+                    C는 범위를 벗어난 인덱스를 써도 막아 주지 않습니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>세는 변수 이름을 <code>i</code>·<code>j</code> 대신 <code>row</code>·<code>col</code>로</strong> 둔 까닭입니다.
-                    무엇을 세는지가 이름에 있으면 <strong>한계를 바꿔 적는 실수가 눈에 띕니다.</strong>
+                    <strong>인덱스로 쓰는 변수의 이름을 <code>i</code>·<code>j</code> 대신 <code>row</code>·<code>col</code>로</strong> 지은 이유입니다.
+                    변수 이름에 행인지 열인지가 드러나면 <strong>두 반복의 범위를 바꿔 쓰는 실수가 눈에 잘 띕니다.</strong>
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">바깥과 안쪽 반복을 서로 바꾸면 화면이 어떻게 달라질까요? 표가 뒤집혀 나올까요, 순서만 달라질까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">바깥과 안쪽 반복문을 서로 바꾸면 출력이 어떻게 달라질까요? 표가 뒤집혀 나올까요, 순서만 달라질까요?</p>
         </div>
     </section>
 
@@ -271,21 +272,21 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">사실은 한 줄이다</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">표는 사람이 보는 모양이고, 메모리는 그렇지 않습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">표는 사람이 보는 형태일 뿐, 메모리의 구조는 다릅니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                메모리는 <strong>번호가 매겨진 바이트가 한 줄로 이어진 것</strong>이고, 배열의 칸도 그 위에 한 줄로 놓입니다.
-                줄이 하나뿐인 곳에 어떻게 표를 담을까요?
-                주소를 찍어 보면 답이 나옵니다.
+                메모리는 <strong>바이트마다 주소가 매겨져 한 줄로 이어진 것</strong>이고, 배열의 요소도 그 위에 연속으로 저장됩니다.
+                한 줄뿐인 메모리에 표를 어떻게 저장할까요?
+                요소의 주소를 출력해 보면 알 수 있습니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/12.한줄.c#주소"></code></pre>
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 340" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위쪽은 세 줄 네 칸짜리 표이고 아래쪽은 같은 열두 칸을 한 줄로 늘어놓은 모습이다. 줄이 차례로 이어 붙어 있어 메모리에는 줄바꿈이 없다">
+                     role="img" aria-label="위쪽은 3행 4열인 표이고 아래쪽은 같은 열두 칸을 한 줄로 늘어놓은 모습이다. 행이 차례로 이어 붙어 있어 메모리에는 줄바꿈이 없다">
                     <defs>
                         <marker id="ar12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                             <path d="M0 0 L10 5 L0 10 z" fill="#475569"/>
@@ -300,7 +301,7 @@
                     <text x="348" y="73" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">75</text>
                     <rect x="384" y="44" width="72" height="44" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
                     <text x="420" y="73" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">88</text>
-                    <text x="160" y="73" font-size="16" font-weight="700" fill="#9a3412" text-anchor="end">0번 줄</text>
+                    <text x="160" y="73" font-size="16" font-weight="700" fill="#9a3412" text-anchor="end">0번 행</text>
                     <rect x="168" y="88" width="72" height="44" rx="4" fill="#ffedd5" stroke="#f97316" stroke-width="1.5"/>
                     <text x="204" y="117" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">60</text>
                     <rect x="240" y="88" width="72" height="44" rx="4" fill="#ffedd5" stroke="#f97316" stroke-width="1.5"/>
@@ -309,7 +310,7 @@
                     <text x="348" y="117" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">95</text>
                     <rect x="384" y="88" width="72" height="44" rx="4" fill="#ffedd5" stroke="#f97316" stroke-width="1.5"/>
                     <text x="420" y="117" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">84</text>
-                    <text x="160" y="117" font-size="16" font-weight="700" fill="#9a3412" text-anchor="end">1번 줄</text>
+                    <text x="160" y="117" font-size="16" font-weight="700" fill="#9a3412" text-anchor="end">1번 행</text>
                     <rect x="168" y="132" width="72" height="44" rx="4" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
                     <text x="204" y="161" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">90</text>
                     <rect x="240" y="132" width="72" height="44" rx="4" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
@@ -318,7 +319,7 @@
                     <text x="348" y="161" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">70</text>
                     <rect x="384" y="132" width="72" height="44" rx="4" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
                     <text x="420" y="161" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">77</text>
-                    <text x="160" y="161" font-size="16" font-weight="700" fill="#9a3412" text-anchor="end">2번 줄</text>
+                    <text x="160" y="161" font-size="16" font-weight="700" fill="#9a3412" text-anchor="end">2번 행</text>
 
                     <line x1="288" y1="180" x2="288" y2="210" stroke="#475569" stroke-width="3" marker-end="url(#ar12)"/>
                     <text x="20" y="204" font-size="17" font-weight="700" fill="#0f172a">메모리에 놓이는 모양</text>
@@ -347,53 +348,55 @@
                     <rect x="508" y="218" width="44" height="44" rx="4" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
                     <text x="530" y="247" font-size="17" font-weight="700" fill="#0f172a" text-anchor="middle">77</text>
                     <path d="M24 272 L24 280 L200 280 L200 272" fill="none" stroke="#9a3412" stroke-width="1.5"/>
-                    <text x="112" y="300" font-size="16" font-weight="700" fill="#9a3412" text-anchor="middle">0번 줄</text>
+                    <text x="112" y="300" font-size="16" font-weight="700" fill="#9a3412" text-anchor="middle">0번 행</text>
                     <path d="M200 272 L200 280 L376 280 L376 272" fill="none" stroke="#9a3412" stroke-width="1.5"/>
-                    <text x="288" y="300" font-size="16" font-weight="700" fill="#9a3412" text-anchor="middle">1번 줄</text>
+                    <text x="288" y="300" font-size="16" font-weight="700" fill="#9a3412" text-anchor="middle">1번 행</text>
                     <path d="M376 272 L376 280 L552 280 L552 272" fill="none" stroke="#9a3412" stroke-width="1.5"/>
-                    <text x="464" y="300" font-size="16" font-weight="700" fill="#9a3412" text-anchor="middle">2번 줄</text>
-                    <text x="20" y="330" font-size="16" fill="#64748b">줄을 차례로 이어 붙인다. 사이가 벌어지지 않는다.</text>
+                    <text x="464" y="300" font-size="16" font-weight="700" fill="#9a3412" text-anchor="middle">2번 행</text>
+                    <text x="20" y="330" font-size="16" fill="#64748b">행을 차례로 이어 붙인다. 사이에 빈 공간이 없다.</text>
                 </svg>
             </div>
 
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">0번 줄이 끝나면 곧바로 1번 줄이 붙어 있습니다</p>
+                <p class="font-black text-lg text-slate-900">0번 행이 끝나는 곳에 바로 1번 행이 이어집니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>score[0][3]</code>과 <code>score[1][0]</code>의 번호가
-                    <strong>정수 한 개만큼</strong>밖에 차이 나지 않습니다.
-                    줄이 바뀌었는데도 <strong>사이가 조금도 벌어지지 않습니다.</strong>
-                    2차원 배열은 <strong>줄을 차례로 이어 붙여 한 줄로 늘어놓은 것</strong>입니다.
+                    <code>score[0][3]</code>과 <code>score[1][0]</code>의 주소는
+                    <strong><code>int</code> 하나의 크기만큼</strong>만 차이 납니다.
+                    행이 바뀌었는데도 <strong>사이에 빈 공간이 전혀 없습니다.</strong>
+                    2차원 배열은 <strong>0번 행부터 차례로 이어 붙여 메모리에 연속으로 저장</strong>됩니다.
+                    이런 배치를 행 우선(row-major) 순서라고 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <code>int score[3][4]</code>는 <strong>「네 칸짜리 배열이 세 개 있는 배열」</strong>로도 읽힙니다.
-                    바깥 배열의 칸 하나가 <strong>안쪽 배열 하나를 통째로</strong> 품고 있는 셈입니다.
+                    그래서 <code>int score[3][4]</code>는 <strong>「요소 4개짜리 배열 3개를 요소로 갖는 배열」</strong>로도 읽을 수 있습니다.
+                    바깥 배열의 요소 하나가 <strong>안쪽 배열 하나 전체</strong>인 셈입니다.
+                    <code>score[0]</code>은 0번 행 전체, 곧 요소 4개짜리 배열 하나입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                한 줄로 놓여 있다면 <strong>포인터 하나로 처음부터 끝까지 내리 읽을 수도</strong> 있습니다.
+                요소가 연속으로 저장되어 있으니 <strong>포인터 하나로 처음부터 끝까지 차례로 읽을 수도</strong> 있습니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/12.한줄.c#통째로"></code></pre>
 
             <p class="text-base text-slate-600 leading-relaxed">
-                엄밀히 말하면 C 표준은 <code>&amp;score[0][0]</code>에서 출발한 포인터로 첫 줄 네 칸 밖까지 읽는 것을
-                보장하지 않습니다(정의되지 않은 동작). 흔히 쓰는 컴파일러에서는 위처럼 나오지만, 이 코드는 메모리 배치를
-                확인하는 실험으로만 쓰고 실제 프로그램에서는 <code>score[i][j]</code>로 읽습니다.
+                엄밀히 말하면 C 표준은 <code>&amp;score[0][0]</code>에서 출발한 포인터로 0번 행의 요소 네 개를 넘어서까지 읽는 것을
+                보장하지 않습니다. 이런 것을 정의되지 않은 동작(undefined behavior)이라고 합니다. 흔히 쓰는 컴파일러에서는 위와 같이 출력되지만,
+                이 코드는 메모리 배치를 확인하는 실험으로만 쓰고 실제 프로그램에서는 <code>score[i][j]</code>로 읽습니다.
             </p>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>줄을 나누는 것은 사람의 약속입니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>행의 경계는 선언에 적은 약속입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    포인터로 열두 칸을 내리 읽으면 <strong>표가 아니라 한 줄</strong>로 나옵니다.
+                    포인터로 요소 12개를 차례로 읽으면 <strong>표가 아니라 한 줄</strong>로 출력됩니다.
                     <strong>메모리에는 「줄바꿈」이 없습니다.</strong>
-                    <strong>「네 칸마다 줄이 바뀐다」는 것은 코드에 적어 둔 약속</strong>일 뿐입니다.
+                    <strong>「요소 4개마다 행이 바뀐다」는 것은 선언의 <code>[3][4]</code>에 적어 둔 약속</strong>일 뿐입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>row</code>번 줄의 <code>col</code>번 칸을 <strong>한 줄로 늘어놓았을 때의 인덱스</strong>도 계산됩니다 &mdash;
-                    <strong><code>row &times; 열 수 + col</code></strong>입니다.
-                    <code>score[1][2]</code>는 <strong>1 &times; 4 + 2 = 6</strong>, 곧 인덱스 6인 칸이고,
+                    <code>row</code>번 행의 <code>col</code>번 열에 있는 요소를 <strong>한 줄로 늘어놓았을 때의 인덱스</strong>도 계산할 수 있습니다 &mdash;
+                    <strong><code>row &times; 열의 개수 + col</code></strong>입니다.
+                    <code>score[1][2]</code>는 <strong>1 &times; 4 + 2 = 6</strong>이므로 인덱스 6인 요소이고,
                     위 결과에서 왼쪽부터 일곱 번째 값이 <strong>95</strong>인 것과 맞습니다.
                 </p>
             </div>
@@ -401,23 +404,23 @@
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>score[2][1]</code>을 한 줄로 늘어놓으면 인덱스가 얼마일까요? 계산해 보고 위 실행 결과에서 세어 확인해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>score[2][1]</code>은 한 줄로 늘어놓았을 때 인덱스가 얼마일까요? 계산해 보고 위 실행 결과에서 세어 확인해 보세요.</p>
         </div>
     </section>
 
-    <!-- ===== 함수에 넘길 때 ===== -->
+    <!-- ===== 함수에 전달할 때 ===== -->
     <section id="func" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">함수에 넘길 때</h2>
+            <h2 class="text-3xl font-black text-slate-900">함수에 전달할 때</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">열 크기를 적어야 하는 까닭은 메모리 배치에 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">열의 크기를 적어야 하는 이유는 메모리 배치에 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <pre class="language-c"><code class="language-c" data-src="code/12.넘기기.c"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 250" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="열두 칸이 한 줄로 놓여 있고 인덱스 0 · 4 · 8인 칸에서 각 줄이 시작한다. 다음 줄이 어디서 시작하는지는 열 크기를 알아야 계산할 수 있다">
+                     role="img" aria-label="열두 칸이 한 줄로 놓여 있고 인덱스 0 · 4 · 8인 칸에서 각 행이 시작한다. 다음 행이 어디서 시작하는지는 열의 크기를 알아야 계산할 수 있다">
                     <defs><marker id="ar12f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
                     <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">메모리에는 줄바꿈이 없다</text>
                     <rect x="24" y="66" width="44" height="50" rx="3" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -445,63 +448,63 @@
                     <rect x="508" y="66" width="44" height="50" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
                     <text x="530" y="58" font-size="16" fill="#64748b" text-anchor="middle">11</text>
                     <line x1="26" y1="140" x2="26" y2="120" stroke="#c2410c" stroke-width="3" marker-end="url(#ar12f)"/>
-                    <text x="26" y="164" font-size="17" fill="#c2410c" font-weight="700" text-anchor="start">0번 줄 시작</text>
+                    <text x="26" y="164" font-size="17" fill="#c2410c" font-weight="700" text-anchor="start">0번 행 시작</text>
                     <line x1="202" y1="140" x2="202" y2="120" stroke="#c2410c" stroke-width="3" marker-end="url(#ar12f)"/>
-                    <text x="202" y="164" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">1번 줄 시작</text>
+                    <text x="202" y="164" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">1번 행 시작</text>
                     <line x1="378" y1="140" x2="378" y2="120" stroke="#c2410c" stroke-width="3" marker-end="url(#ar12f)"/>
-                    <text x="378" y="164" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">2번 줄 시작</text>
+                    <text x="378" y="164" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">2번 행 시작</text>
                     <text x="20" y="208" font-size="18" fill="#0f172a" font-weight="700">data[1][0]&#160;&#160;&rarr;&#160;&#160;1 &times; 4 + 0 = 인덱스 4</text>
-                    <text x="20" y="240" font-size="16" fill="#64748b">여기 쓰인 4가 「열 크기」다. 그래서 int data[][4]처럼 적어야 한다.</text>
+                    <text x="20" y="240" font-size="16" fill="#64748b">여기 쓰인 4가 「열의 크기」다. 그래서 int data[][4]처럼 적어야 한다.</text>
                 </svg>
             </div>
 
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>열 크기는 비워 둘 수 없습니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>열의 크기는 비워 둘 수 없습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    한 줄짜리 배열은 <code>int data[]</code>처럼 <strong>칸 수를 비워도</strong> 됩니다.
-                    그런데 2차원 배열은 <code>int data[][4]</code>로 <strong>열 크기를 반드시 적어야</strong> 합니다.
-                    <strong><code>int data[][]</code>라고 쓰면 컴파일이 되지 않습니다.</strong>
+                    1차원 배열 매개변수는 <code>int data[]</code>처럼 <strong>배열의 크기를 비워도</strong> 됩니다.
+                    그런데 2차원 배열 매개변수는 <code>int data[][4]</code>처럼 <strong>열의 크기를 반드시 적어야</strong> 합니다.
+                    <strong><code>int data[][]</code>라고 쓰면 컴파일 오류가 납니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    까닭은 「사실은 한 줄이다」 절에서 본 배치에 있습니다. 함수가 받은 것은 <strong>첫 칸의 주소 하나</strong>이고,
-                    메모리에는 <strong>줄바꿈이 없습니다.</strong>
-                    <code>data[1][0]</code>을 찾으려면 <strong>「몇 칸을 건너뛰어야 다음 줄인지」</strong>를 알아야 하는데,
-                    그것을 알려 주는 것이 <strong>열 크기</strong>입니다.
+                    이유는 「사실은 한 줄이다」 절에서 본 배치에 있습니다. 인자로 쓴 배열 이름 <code>score</code>는
+                    첫 요소, 곧 <strong>0번 행의 주소</strong>로 바뀌어 전달되고, 메모리에는 <strong>줄바꿈이 없습니다.</strong>
+                    <code>data[1][0]</code>을 찾으려면 <strong>「요소를 몇 개 건너뛰어야 다음 행인지」</strong>를 알아야 하는데,
+                    그것을 알려 주는 것이 <strong>열의 크기</strong>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>행 수는 몰라도 됩니다.</strong> 어디서 끊을지는 <code>rows</code>로 따로 받으면 되니까요.
-                    <strong>열 수만이 「자리를 찾는 계산」에 들어갑니다.</strong>
+                    <strong>행의 개수는 몰라도 됩니다.</strong> 몇 번 행까지 처리할지는 <code>rows</code>로 따로 전달받으면 됩니다.
+                    <strong>요소의 위치를 계산하는 데에는 열의 개수만 쓰입니다.</strong>
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">넘어가는 것은 여전히 주소입니다</p>
+                <p class="font-black text-lg text-slate-900">전달되는 것은 여전히 주소입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    2차원이라고 규칙이 바뀌지 않습니다. <strong>배열은 통째로 복사되지 않고</strong>,
-                    함수 안에서 칸을 바꾸면 <strong>부른 쪽의 배열이 바뀝니다.</strong>
-                    함수 안의 <code>sizeof</code>가 전체 크기를 내주지 않는 것도 같습니다.
+                    2차원 배열이라고 규칙이 바뀌지는 않습니다. <strong>배열 전체가 복사되지 않으므로</strong>,
+                    함수 안에서 요소를 바꾸면 <strong>호출한 쪽의 배열이 바뀝니다.</strong>
+                    함수 안에서 <code>sizeof</code>로 배열 전체의 크기를 알 수 없는 것도 같습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                줄마다 합계를 내고 표 전체에서 가장 큰 값을 찾는 것까지 모아 봅니다.
-                <strong>가장 큰 값이 「어디에」 있는지</strong>까지 알아내려면 인덱스 둘을 함께 기억해 두어야 합니다.
+                행마다 합계를 구하고 표 전체에서 가장 큰 값을 찾는 코드까지 모아 봅니다.
+                <strong>가장 큰 값이 「어디에」 있는지</strong>까지 알아내려면 행과 열의 인덱스를 함께 저장해 두어야 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/12.전체.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>sum</code>을 바깥 반복 「안」에 만든 것을 보세요.
-                줄이 바뀔 때마다 0부터 다시 세어야 하기 때문입니다.
-                반복 밖에 두면 앞 줄들의 합이 계속 쌓여 버립니다 &mdash;
-                <strong>쌓아 담을 자리를 어느 중괄호 안에 두느냐가 무엇을 세는지를 정합니다.</strong>
+                <code>sum</code>을 바깥 반복 「안」에서 선언한 것을 보세요.
+                행이 바뀔 때마다 0부터 다시 더해야 하기 때문입니다.
+                반복문 밖에서 선언하면 앞 행들의 합까지 계속 누적됩니다.
+                <strong>누적할 변수를 어느 중괄호 안에서 선언하느냐에 따라 무엇의 합을 구하는지가 정해집니다.</strong>
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">줄별 합계가 아니라 <strong>차례별</strong> 합계(세로로 더한 값)를 내려면 두 반복 가운데 어느 쪽이 바깥에 와야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">행별 합계가 아니라 <strong>차례별</strong> 합계(열마다 세로로 더한 값)를 구하려면 두 반복문 가운데 어느 쪽이 바깥에 와야 할까요?</p>
         </div>
     </section>
 
@@ -516,32 +519,32 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">대괄호가 하나 더</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int a[3][4]</code>는 <strong>네 칸짜리 줄이 세 개</strong>다.
-                    앞이 행, 뒤가 열이고 둘 다 0부터 센다.
-                    칸 하나를 가리키고 나면 여느 변수와 같다.
+                    <code>int a[3][4]</code>는 <strong>열이 4개인 행이 3개</strong>인 2차원 배열이다.
+                    앞이 행, 뒤가 열이고 두 인덱스 모두 0부터 센다.
+                    요소 하나는 일반 변수와 똑같이 쓴다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">인덱스가 둘이면 반복도 둘</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    바깥이 줄을 고르고 안쪽이 그 줄을 순회한다.
-                    바깥과 안쪽의 한계가 서로 다르므로
-                    세는 변수 이름을 뜻이 드러나게 짓는다.
+                    바깥 반복이 행을 고르고 안쪽 반복이 그 행을 순회한다.
+                    두 반복의 범위가 서로 다르므로
+                    인덱스로 쓰는 변수의 이름을 뜻이 드러나게 짓는다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">메모리에는 한 줄로</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    줄을 차례로 이어 붙여 놓는다. 메모리에 줄바꿈은 없다.
-                    한 줄로 놓았을 때의 인덱스는 <strong><code>행 &times; 열 수 + 열</code></strong>이다.
+                    0번 행부터 차례로 이어 붙여 연속으로 저장한다(행 우선 순서). 메모리에 줄바꿈은 없다.
+                    한 줄로 늘어놓았을 때의 인덱스는 <strong><code>행 인덱스 &times; 열의 개수 + 열 인덱스</code></strong>다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">열 크기는 반드시 적는다</h3>
+                <h3 class="text-xl font-black text-slate-900">열의 크기는 반드시 적는다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수가 받은 것은 주소 하나뿐이라
-                    <strong>몇 칸마다 줄이 바뀌는지를 알려 주어야</strong> 자리를 찾는다.
-                    행 수는 따로 넘기면 된다.
+                    함수가 전달받는 것은 주소 하나뿐이라
+                    <strong>요소 몇 개마다 행이 바뀌는지를 알려 주어야</strong> 요소의 위치를 계산한다.
+                    행의 개수는 따로 전달하면 된다.
                 </p>
             </div>
         </div>
@@ -556,18 +559,18 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. <code>int a[5][3];</code>에서 마지막 칸을 가리키는 것은?</p>
+            <p class="font-black text-lg text-slate-900">1. <code>int a[5][3];</code>에서 마지막 요소를 가리키는 것은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '선언에 적은 수는 개수입니다. 인덱스로 쓰면 둘 다 칸 밖입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '선언에 적은 수는 개수입니다. 인덱스로 쓰면 둘 다 범위를 벗어납니다.')">
                     ① <code>a[5][3]</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '줄이 다섯이면 마지막 줄은 4번, 칸이 셋이면 마지막 칸은 2번입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '행이 5개이면 마지막 행의 인덱스는 4, 열이 3개이면 마지막 열의 인덱스는 2입니다.')">
                     ② <code>a[4][2]</code>
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '앞뒤가 뒤바뀌었습니다. 앞이 행, 뒤가 열입니다.')">
                     ③ <code>a[2][4]</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '2차원 배열은 인덱스 하나로 칸을 가리키지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '2차원 배열의 요소는 행과 열의 인덱스 두 개로 가리킵니다.')">
                     ④ <code>a[14]</code>
                 </button>
             </div>
@@ -576,35 +579,35 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>int a[3][4]</code>에서 <code>a[2][1]</code>을 한 줄로 늘어놓았을 때의 인덱스는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '두 인덱스를 더하면 안 됩니다. 앞 줄들을 통째로 건너뛰어야 합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '두 인덱스를 더하기만 하면 안 됩니다. 앞의 행들을 모두 건너뛰어야 합니다.')">
                     ① 3
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '행 × 열 수 + 열 = 2 × 4 + 1 = 9입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '행 인덱스 × 열의 개수 + 열 인덱스 = 2 × 4 + 1 = 9입니다.')">
                     ② 9
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '2 × 4 = 8은 그 줄 첫 칸의 인덱스입니다. 열 인덱스 1을 더해야 합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '2 × 4 = 8은 그 행의 첫 요소의 인덱스입니다. 열 인덱스 1을 더해야 합니다.')">
                     ③ 8
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '열 수가 아니라 행 수를 곱했습니다. 건너뛰는 것은 「앞 줄 하나의 칸 수」입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '열의 개수가 아니라 행의 개수를 곱했습니다. 행 하나를 건너뛸 때 넘는 것은 「한 행의 요소 개수」입니다.')">
                     ④ 7
                 </button>
             </div>
         </div>
 
         <div id="q3" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">3. 2차원 배열을 함수에 넘길 때 열 크기를 적어야 하는 까닭은?</p>
+            <p class="font-black text-lg text-slate-900">3. 2차원 배열을 함수에 전달할 때 열의 크기를 적어야 하는 이유는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '메모리에는 줄바꿈이 없어, 몇 칸을 건너뛰어야 다음 줄인지 알아야 자리를 찾습니다.')">
-                    ① 몇 칸마다 줄이 바뀌는지 알아야 자리를 찾을 수 있어서
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '메모리에는 줄바꿈이 없어, 요소를 몇 개 건너뛰어야 다음 행인지 알아야 요소의 위치를 계산할 수 있습니다.')">
+                    ① 요소 몇 개마다 행이 바뀌는지 알아야 요소의 위치를 계산할 수 있어서
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '배열은 통째로 복사되지 않습니다. 넘어가는 것은 주소 하나입니다.')">
-                    ② 배열 전체를 복사해 넘기기 위해서
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '배열 전체는 복사되지 않습니다. 전달되는 것은 주소 하나입니다.')">
+                    ② 배열 전체를 복사해 전달하기 위해서
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '끝나는 지점은 행 수로 정합니다. 열 크기가 하는 일이 아닙니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '바깥 반복을 끝낼 지점은 따로 전달한 행의 개수로 정합니다. 열의 크기를 반드시 적는 이유는 요소의 위치 계산에 있습니다.')">
                     ③ 반복을 어디서 끝낼지 정하기 위해서
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '행 수는 비워 두고 따로 넘겨도 됩니다. 반드시 적어야 하는 것은 열 크기입니다.')">
-                    ④ 행 수도 함께 반드시 적어야 해서
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '행의 개수는 비워 두고 따로 전달해도 됩니다. 반드시 적어야 하는 것은 열의 크기입니다.')">
+                    ④ 행의 개수도 함께 반드시 적어야 해서
                 </button>
             </div>
         </div>

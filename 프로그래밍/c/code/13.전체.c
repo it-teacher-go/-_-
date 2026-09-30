@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void show(void *data, char kind) {   // 무엇이 올지 모르는 채로 받는다
+void show(void *data, char kind) {   // 어떤 자료형의 주소든 전달받는다
     if (kind == 'i') {
         printf("정수 %d\n", *(int *) data);
     } else if (kind == 'd') {
@@ -17,8 +17,8 @@ int main(void) {
     double d = 3.5;
     char c = 'A';
 
-    void *slot[3] = {&n, &d, &c};    // 종류가 다른 것들의 자리를 한 배열에 담는다
-    char kind[3] = {'i', 'd', 'c'};  // 무엇인지는 따로 적어 둔다
+    void *slot[3] = {&n, &d, &c};    // 자료형이 다른 세 변수의 주소를 저장한다
+    char kind[3] = {'i', 'd', 'c'};  // 각 주소의 자료형은 따로 적어 둔다
 
     for (int i = 0; i < 3; i = i + 1) {
         show(slot[i], kind[i]);
