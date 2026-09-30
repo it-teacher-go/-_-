@@ -21,8 +21,8 @@
             입력과 출력
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-사람과 말을 주고받지 못하는 프로그램은<br>
-            <strong>매번 같은 답만 내놓습니다.</strong>
+사용자에게서 값을 입력받지 못하는 프로그램은<br>
+            <strong>매번 같은 결과만 출력합니다.</strong>
         </p>
     </div>
 </header>
@@ -193,12 +193,12 @@
                 <p class="font-black text-lg text-sky-900"><i class="fa-solid fa-circle-info mr-2"></i>입력받자마자 변환해 두는 편이 낫습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>int(input(&hellip;))</code>처럼 <strong>입력받는 줄에서 곧바로</strong> 변환해 두면,
-                    그 뒤로는 그냥 숫자처럼 쓰면 됩니다. 나중에 쓸 때마다 변환하면
+                    그 뒤로는 변환 없이 바로 계산에 쓸 수 있습니다. 나중에 쓸 때마다 변환하면
                     <strong>한 군데를 빠뜨리기 쉽습니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    다만 <strong>숫자가 아닌 것을 입력하면 그 줄에서 바로 오류가 납니다.</strong>
-                    「열일곱」은 정수로 변환할 수 없기 때문입니다.
+                    다만 <strong>정수로 변환할 수 없는 값을 입력하면 그 줄에서 바로 오류가 납니다.</strong>
+                    「열일곱」이나 「17.5」를 입력하면 그렇게 됩니다.
                 </p>
             </div>
         </div>
@@ -229,7 +229,7 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">나눈 결과는 여러 값을 모은 리스트입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>split</code>은 <strong>공백을 기준으로 문자열을 나누고</strong>, 나뉜 값을 <code>['80', '91']</code>처럼 대괄호로 묶어 순서대로 늘어놓습니다.
+                    <code>split</code>은 <strong>공백을 기준으로 문자열을 나누고</strong>, 나뉜 값을 순서대로 모아 <code>['80', '91']</code>처럼 대괄호로 묶어 반환합니다.
                     이렇게 여러 값을 순서대로 모은 것을 리스트(list)라고 합니다.
                     리스트의 값은 <strong>앞에서부터 0번, 1번</strong>으로 번호를 세어 꺼냅니다.
                 </p>

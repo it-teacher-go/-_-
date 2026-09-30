@@ -104,7 +104,7 @@
                     <tr>
                         <td><code>//</code></td>
                         <td>몫</td>
-                        <td>나눈 값보다 크지 않은 정수로 내린다</td>
+                        <td>나눈 결과보다 크지 않은 가장 큰 정수로 내린다</td>
                     </tr>
                     <tr>
                         <td><code>%</code></td>
@@ -284,7 +284,8 @@
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>결과가 정해지면 오른쪽은 아예 계산하지 않습니다</p>
                 <pre class="language-python"><code class="language-python" data-src="code/03.단축평가.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>and</code>는 왼쪽이 거짓이면 오른쪽을 볼 필요도 없이 거짓입니다.
+                    이 코드의 <code>if</code>는 조건식이 참이면 바로 아래 줄을, 거짓이면 <code>else</code> 아래 줄을 실행하는 문장으로, 「선택 구조」 강의노트에서 자세히 배웁니다.
+                    <code>and</code>는 왼쪽이 거짓이면 오른쪽을 계산할 필요도 없이 거짓입니다.
                     그래서 <strong>오른쪽을 건너뜁니다</strong> &mdash; <code>count</code>가 0이므로
                     <code>total / count</code>는 <strong>아예 계산되지 않습니다.</strong>
                 </p>
@@ -314,7 +315,7 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
                 지금까지의 연산은 수를 하나의 값으로 다뤘습니다.
-                <strong>비트 연산</strong>은 같은 수를 0과 1이 늘어선 이진수로 보고,
+                <strong>비트 연산</strong>은 같은 수를 0과 1로 이루어진 이진수로 보고,
                 이진수의 자릿수인 비트(bit)마다 따로 계산합니다.
             </p>
 
@@ -362,7 +363,7 @@
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900"><code>and</code>와 <code>&amp;</code>는 다릅니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    영어 단어로 된 <code>and</code>·<code>or</code>는 <strong>조건 전체</strong>를 보고 참·거짓을 냅니다.
+                    영어 단어로 된 <code>and</code>·<code>or</code>는 <strong>양쪽 값을 각각 참 또는 거짓으로 판단</strong>해 조건을 묶습니다.
                     기호인 <code>&amp;</code>·<code>|</code>는 <strong>비트 하나하나</strong>를 계산합니다.
                     <strong>이름이 비슷해 헷갈리기 쉽지만 하는 일이 전혀 다릅니다.</strong>
                     조건을 묶을 때는 <strong>영어 단어로 된 쪽</strong>을 씁니다.
@@ -461,7 +462,7 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>print("점수: " + 90)</code>을 고치는 방법으로 <strong>맞지 않는</strong> 것은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '&quot;점수: &quot;는 정수 모양의 문자열이 아니라서 int로 변환하는 순간 오류가 납니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '&quot;점수: &quot;는 정수를 나타내는 문자열이 아니라서 int로 변환하는 순간 오류가 납니다.')">
                     ① <code>int("점수: ") + 90</code>으로 바꾼다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 숫자를 문자열로 변환해 양쪽 자료형을 맞춥니다.')">
