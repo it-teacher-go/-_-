@@ -3,9 +3,9 @@
 
 int main(void) {
     int n = 5;
-    int *data = (int *) malloc(n * sizeof(int));   // 정수 다섯 개 자리를 빌린다
+    int *data = (int *) malloc(n * sizeof(int));   // 정수 다섯 개를 저장할 메모리를 할당한다
 
-    if (data == NULL) {                            // 못 빌렸을 수도 있다
+    if (data == NULL) {                            // 할당에 실패했을 수도 있다
         printf("자리를 빌리지 못했습니다.\n");
         return 1;
     }
@@ -19,7 +19,7 @@ int main(void) {
     }
     printf("\n");
 
-    free(data);                                    // 다 썼으면 돌려준다
+    free(data);                                    // 다 썼으면 해제한다
 
     return 0;
 }

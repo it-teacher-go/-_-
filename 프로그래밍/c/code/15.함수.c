@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void make(int **out, int n) {          // 「여기에 담아 줘」라고 포인터의 자리를 받는다
+void make(int **out, int n) {          // 결과를 저장할 포인터의 주소를 전달받는다
     *out = (int *) malloc(n * sizeof(int));
 
     if (*out == NULL) {
@@ -16,7 +16,7 @@ void make(int **out, int n) {          // 「여기에 담아 줘」라고 포�
 int main(void) {
     int *data = NULL;
 
-    make(&data, 5);                    // data가 「있는 자리」를 알려 준다
+    make(&data, 5);                    // data의 주소를 전달한다
 
     if (data == NULL) {
         printf("자리를 빌리지 못했습니다.\n");

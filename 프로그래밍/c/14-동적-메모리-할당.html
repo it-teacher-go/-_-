@@ -21,7 +21,7 @@
             동적 메모리 할당
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            배열은 칸 수를 미리 적어야 했습니다.<br>
+            배열은 크기를 미리 정해 두어야 했습니다.<br>
             <strong>미리 알 수 없다면 어떻게 할까요?</strong>
         </p>
     </div>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>필요한 칸 수를 프로그램이 도는 동안 정해야 하는 상황을 설명할 수 있다.</li>
-                    <li><code>malloc</code>으로 자리를 빌려 배열처럼 쓸 수 있다.</li>
-                    <li>다 쓴 자리를 돌려주어야 하는 까닭을 설명할 수 있다.</li>
-                    <li><code>calloc</code>과 <code>realloc</code>이 무엇이 다른지 알고 가려 쓸 수 있다.</li>
+                    <li>필요한 메모리의 크기를 실행 중에 정해야 하는 상황을 설명할 수 있다.</li>
+                    <li><code>malloc</code>으로 메모리를 할당해 배열처럼 쓸 수 있다.</li>
+                    <li>사용을 마친 메모리를 <code>free</code>로 해제해야 하는 이유를 설명할 수 있다.</li>
+                    <li><code>calloc</code>과 <code>realloc</code>이 <code>malloc</code>과 무엇이 다른지 알고 구별해 쓸 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -58,9 +58,9 @@
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
             <a href="#why" class="hover:text-orange-600 transition">미리 알 수 없을 때</a>
-            <a href="#borrow" class="hover:text-orange-600 transition">빌려 쓰기</a>
-            <a href="#back" class="hover:text-orange-600 transition">돌려주기</a>
-            <a href="#family" class="hover:text-orange-600 transition">형제 둘</a>
+            <a href="#borrow" class="hover:text-orange-600 transition">malloc으로 할당하기</a>
+            <a href="#back" class="hover:text-orange-600 transition">free로 해제하기</a>
+            <a href="#family" class="hover:text-orange-600 transition">calloc과 realloc</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -75,27 +75,27 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">미리 알 수 없을 때</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">코드를 쓰는 시점과 답을 아는 시점이 다릅니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">코드를 작성하는 시점과 필요한 크기를 아는 시점이 다릅니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>int score[5];</code>라고 적으려면 <strong>코드를 쓰는 순간에 5를 알고 있어야</strong> 합니다.
-                그런데 몇 명분이 필요한지를 프로그램을 실행해 봐야 아는 경우가 많습니다 &mdash;
-                사용자가 개수를 입력하거나, 파일을 열어 봐야 줄 수를 알거나 하는 식으로요.
+                <code>int score[5];</code>라고 선언하려면 <strong>코드를 작성하는 시점에 5를 알고 있어야</strong> 합니다.
+                그런데 몇 명분이 필요한지는 프로그램을 실행해 봐야 알 수 있는 경우가 많습니다.
+                사용자가 개수를 입력하는 경우나, 파일을 열어 봐야 줄 수를 알 수 있는 경우가 그렇습니다.
             </p>
             <p class="text-base text-slate-600 leading-relaxed">
-                C99부터는 <code>int score[n];</code>처럼 실행 중에 정한 값으로 크기를 정하는 가변 길이 배열(VLA)도 있습니다.
-                다만 C11부터는 컴파일러가 꼭 지원하지 않아도 되는 기능이 되었고, 크기가 크면 프로그램이 멈출 수 있으며,
-                선언한 함수가 끝나면 사라집니다. 그래서 크기가 크거나 함수가 끝난 뒤에도 써야 하는 데이터는 이제부터 볼 방법으로 마련합니다.
+                C99부터는 <code>int score[n];</code>처럼 실행 중에 정한 값으로 크기를 정하는 가변 길이 배열(variable-length array, VLA)도 있습니다.
+                다만 C11부터는 컴파일러가 반드시 지원하지 않아도 되는 기능이 되었고, 크기가 크면 프로그램이 비정상 종료될 수 있으며,
+                선언한 함수가 끝나면 사라집니다. 그래서 크기가 크거나 함수가 끝난 뒤에도 써야 하는 데이터는 이제부터 볼 방법으로 메모리를 마련합니다.
             </p>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900">넉넉하게 잡아 두면 되지 않을까요</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int score[1000];</code>처럼 크게 잡는 방법을 흔히 떠올립니다.
-                    <strong>두 가지가 걸립니다.</strong>
-                    다섯 명만 쓸 때는 <strong>995칸이 놀고</strong>,
+                    <code>int score[1000];</code>처럼 크게 선언하는 방법을 흔히 떠올립니다.
+                    <strong>문제가 두 가지 있습니다.</strong>
+                    다섯 명만 쓸 때는 <strong>요소 995개가 쓰이지 않고</strong>,
                     <strong>1001명이 오면 그때는 방법이 없습니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
@@ -144,33 +144,33 @@
             </div>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">돌아가는 도중에 자리를 빌립니다</p>
+                <p class="font-black text-lg text-orange-900">실행 중에 메모리를 빌려 씁니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    프로그램에는 <strong>돌아가는 동안 필요할 때 빌려 쓸 수 있는 메모리 몫</strong>이 따로 있습니다.
-                    프로그램이 <code>malloc</code>으로 <strong>「이만큼 필요합니다」라고 청하면</strong>,
-                    <code>malloc</code>이 그 몫 안에서 <strong>빈 자리를 찾아 그 시작 주소를 알려 줍니다.</strong>
-                    이것을 <strong>동적 메모리 할당</strong>이라고 합니다.
+                    프로그램에는 <strong>실행 중에 필요한 만큼 빌려 쓸 수 있는 메모리 영역</strong>이 따로 있고, 흔히 이 영역을 힙(heap)이라고 부릅니다.
+                    프로그램이 <code>malloc</code>을 호출해 <strong>필요한 크기를 요청하면</strong>,
+                    <code>malloc</code>은 힙에서 <strong>그만큼의 메모리 공간을 확보해 그 시작 주소를 반환합니다.</strong>
+                    이처럼 실행 중에 메모리를 할당받는 것을 <strong>동적 메모리 할당(dynamic memory allocation)</strong>이라고 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>돌려받는 것이 「주소」라는 데 주목하세요.</strong>
-                    이름표가 붙은 변수가 생기는 것이 아니라 <strong>번호만 받습니다.</strong>
-                    그래서 <strong>동적으로 빌린 자리는 포인터로만 다룰 수 있습니다.</strong>
+                    <strong>반환되는 것이 「주소」라는 데 주목하세요.</strong>
+                    이름이 붙은 변수가 새로 생기는 것이 아니라 <strong>주소 하나만 반환됩니다.</strong>
+                    그래서 <strong>동적으로 할당한 메모리는 포인터로만 다룰 수 있습니다.</strong>
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">지금까지 만든 프로그램 가운데 「넉넉하게 잡아 둔」 배열이 있었나요? 얼마나 놀고 있었을까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">지금까지 만든 프로그램 가운데 「넉넉하게 잡아 둔」 배열이 있었나요? 요소가 얼마나 쓰이지 않고 남아 있었을까요?</p>
         </div>
     </section>
 
-    <!-- ===== 빌려 쓰기 ===== -->
+    <!-- ===== malloc으로 할당하기 ===== -->
     <section id="borrow" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">빌려 쓰기</h2>
+            <h2 class="text-3xl font-black text-slate-900">malloc으로 할당하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">청하는 함수의 이름은 <code>malloc</code>입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">메모리를 할당하는 함수는 <code>malloc</code>입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -178,7 +178,7 @@
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 308" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위쪽은 malloc으로 빌린 다섯 칸을 포인터가 가리키는 모습이고 아래쪽은 free로 돌려준 뒤의 모습이다. 자리는 남의 것이 되었는데 포인터는 옛 번호를 그대로 들고 있다">
+                     role="img" aria-label="위쪽은 malloc으로 할당한 다섯 칸을 포인터가 가리키는 모습이고 아래쪽은 free로 해제한 뒤의 모습이다. 메모리는 해제되었는데 포인터에는 옛 주소가 그대로 남아 있다">
                     <defs>
                         <marker id="ar14a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                             <path d="M0 0 L10 5 L0 10 z" fill="#ea580c"/>
@@ -188,7 +188,7 @@
                         </marker>
                     </defs>
 
-                    <text x="20" y="30" font-size="17" font-weight="700" fill="#c2410c">malloc 뒤 &mdash; 빌린 자리에는 이름표가 없다</text>
+                    <text x="20" y="30" font-size="17" font-weight="700" fill="#c2410c">malloc 뒤 &mdash; 할당한 메모리에는 이름이 없다</text>
                     <rect x="20" y="60" width="130" height="52" rx="8" fill="#ffffff" stroke="#f97316" stroke-width="2"/>
                     <text x="85" y="92" font-size="18" font-weight="700" fill="#9a3412" text-anchor="middle">data</text>
                     <rect x="206" y="60" width="68" height="52" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -197,9 +197,9 @@
                     <rect x="422" y="60" width="68" height="52" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <rect x="494" y="60" width="68" height="52" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <line x1="156" y1="86" x2="198" y2="86" stroke="#ea580c" stroke-width="3" marker-end="url(#ar14a)"/>
-                    <text x="288" y="140" font-size="16" fill="#64748b" text-anchor="middle">포인터가 유일한 연결선이다. 이 번호를 잃으면 돌려줄 수도 없다.</text>
+                    <text x="288" y="140" font-size="16" fill="#64748b" text-anchor="middle">포인터가 유일한 연결선이다. 이 주소를 잃으면 해제할 수도 없다.</text>
 
-                    <text x="20" y="176" font-size="17" font-weight="700" fill="#334155">free 뒤 &mdash; 자리는 돌아갔는데 번호는 남아 있다</text>
+                    <text x="20" y="176" font-size="17" font-weight="700" fill="#334155">free 뒤 &mdash; 메모리는 해제됐는데 주소는 남아 있다</text>
                     <rect x="20" y="192" width="130" height="52" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
                     <text x="85" y="224" font-size="18" font-weight="700" fill="#475569" text-anchor="middle">data</text>
                     <rect x="206" y="192" width="68" height="52" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5 4"/>
@@ -208,8 +208,8 @@
                     <rect x="422" y="192" width="68" height="52" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5 4"/>
                     <rect x="494" y="192" width="68" height="52" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5 4"/>
                     <line x1="156" y1="218" x2="198" y2="218" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#ar14b)"/>
-                    <text x="288" y="272" font-size="16" font-weight="700" fill="#e11d48" text-anchor="middle">이 상태로 data[0]을 쓰면 남에게 넘어갔을 자리에 접근한다</text>
-                    <text x="288" y="296" font-size="16" fill="#64748b" text-anchor="middle">그래서 free 다음 줄에 data = NULL을 적어 둔다</text>
+                    <text x="288" y="272" font-size="16" font-weight="700" fill="#e11d48" text-anchor="middle">이 상태로 data[0]에 접근하면 해제된 메모리에 접근한다</text>
+                    <text x="288" y="296" font-size="16" fill="#64748b" text-anchor="middle">그래서 free 다음 줄에 data = NULL을 써 둔다</text>
                 </svg>
             </div>
 
@@ -218,183 +218,186 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-44">적은 것</th>
-                        <th>뜻</th>
+                        <th class="w-44">코드</th>
+                        <th>의미</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><code>n * sizeof(int)</code></td>
-                        <td>필요한 크기. 칸의 개수가 아니라 <strong>바이트 수</strong>로 청합니다.</td>
+                        <td>필요한 크기. 요소의 개수가 아니라 <strong>바이트 수</strong>로 요청한다.</td>
                     </tr>
                     <tr>
                         <td><code>(int *)</code></td>
-                        <td>돌려받은 번호를 <strong>정수를 가리키는 것으로</strong> 정해 줍니다.</td>
+                        <td>반환된 <code>void *</code> 주소를 <strong><code>int *</code>로 형 변환</strong>한다.</td>
                     </tr>
                     <tr>
                         <td><code>== NULL</code></td>
-                        <td><strong>못 빌렸을 때</strong>를 구별합니다. 실패하면 <code>NULL</code>이 옵니다.</td>
+                        <td><strong>할당에 실패했는지</strong> 검사한다. 실패하면 <code>NULL</code>이 반환된다.</td>
                     </tr>
                     <tr>
                         <td><code>data[i]</code></td>
-                        <td>빌린 뒤에는 <strong>배열과 똑같이</strong> 대괄호로 씁니다.</td>
+                        <td>할당한 뒤에는 <strong>배열과 똑같이</strong> 인덱스로 쓴다.</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">개수가 아니라 바이트 수로 청합니다</p>
+                <p class="font-black text-lg text-slate-900">개수가 아니라 바이트 수로 요청합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>malloc(5)</code>는 <strong>「5바이트」</strong>이지 「정수를 담는 칸 다섯 개」가 아닙니다.
-                    정수 다섯 개를 담으려면 <strong><code>5 * sizeof(int)</code></strong>라고 적어야 합니다.
+                    <code>malloc(5)</code>는 <strong>「5바이트」</strong>를 요청하는 것이지 「정수 다섯 개를 저장할 메모리」를 요청하는 것이 아닙니다.
+                    정수 다섯 개를 저장하려면 <strong><code>5 * sizeof(int)</code></strong>라고 써야 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong><code>20</code>이라고 직접 적지 않는 까닭</strong>이 있습니다.
+                    <strong><code>20</code>이라고 직접 쓰지 않는 이유</strong>가 있습니다.
                     <code>int</code>가 몇 바이트인지는 <strong>환경에 따라 다를 수 있고</strong>,
-                    나중에 담을 종류를 바꾸면 <strong>숫자를 함께 고쳐야</strong> 합니다.
-                    <code>sizeof</code>로 적어 두면 <strong>둘 다 저절로 따라옵니다.</strong>
+                    나중에 저장할 자료형을 바꾸면 <strong>숫자도 함께 고쳐야</strong> 합니다.
+                    <code>sizeof</code>로 써 두면 <strong>두 경우 모두 크기가 자동으로 맞춰집니다.</strong>
                 </p>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>malloc</code>은 <code>void *</code>를 돌려줍니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>malloc</code>은 <code>void *</code>를 반환합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    빌려 주는 쪽은 <strong>그 자리를 무엇에 쓸지 알 수 없습니다.</strong>
-                    정수를 담을지 글자를 담을지는 <strong>청한 사람만 압니다.</strong>
-                    그래서 <strong>종류를 정하지 않은 포인터</strong>를 돌려주고,
-                    받는 쪽이 <strong>형 변환으로 「이렇게 쓰겠다」</strong>고 정합니다.
-                    종류를 정하지 않은 <code>void</code> 포인터가 <strong>쓰이는 대표적인 예</strong>입니다.
+                    <code>malloc</code>은 <strong>할당한 메모리에 어떤 자료형의 값이 저장될지 알 수 없습니다.</strong>
+                    정수를 저장할지 문자를 저장할지는 <strong><code>malloc</code>을 호출한 쪽만 압니다.</strong>
+                    그래서 <strong>가리킬 대상의 자료형을 정하지 않은 포인터</strong>를 반환하고,
+                    호출한 쪽이 <strong>형 변환으로 「이 자료형의 주소로 쓰겠다」</strong>고 정합니다.
+                    <code>void</code> 포인터가 <strong>쓰이는 대표적인 예</strong>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>C에서는 이 형 변환을 생략해도 됩니다.</strong>
-                    다만 <strong>적어 두면 무엇으로 쓸 자리인지가 그 줄에서 바로 보이므로</strong>
-                    이 강의노트에서는 적는 쪽으로 씁니다.
+                    <code>void *</code>는 다른 자료형의 포인터에 대입할 때 자동으로 변환되기 때문입니다.
+                    다만 <strong>형 변환을 써 두면 어떤 자료형으로 쓸 메모리인지가 그 줄에서 바로 보이므로</strong>
+                    이 강의노트에서는 써 두는 쪽을 택합니다.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>빌리지 못할 수도 있습니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>할당에 실패할 수도 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    빌려 줄 자리가 없으면 <code>malloc</code>은 <strong><code>NULL</code>을 돌려줍니다.</strong>
-                    그것을 확인하지 않고 <code>data[0] = 10;</code>을 하면
-                    <strong>아무 곳도 아닌 자리에 값을 넣으려는 것</strong>이 됩니다.
+                    요청한 크기만큼 할당할 수 없으면 <code>malloc</code>은 <strong><code>NULL</code>을 반환합니다.</strong>
+                    그것을 검사하지 않고 <code>data[0] = 10;</code>을 실행하면
+                    <strong>널 포인터를 역참조해 값을 저장하려는 것</strong>이 되어 대부분의 환경에서 비정상 종료됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>빌린 직후에 <code>NULL</code>인지 묻는 것이 규칙</strong>입니다.
-                    「쓰기 전에 <code>NULL</code>인지 물어보는 습관」이
-                    가장 자주 쓰이는 때가 빌린 직후입니다.
+                    <strong>할당한 직후에는 반드시 <code>NULL</code>인지 검사합니다.</strong>
+                    「역참조하기 전에 <code>NULL</code>인지 검사하는 습관」이
+                    가장 자주 쓰이는 곳이 바로 할당 직후입니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">글자 100개를 담을 자리를 빌리려면 <code>malloc</code>에 무엇을 적어야 할까요? 문자열이라면 몇을 더 빌려야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">문자 100개를 저장할 메모리를 할당하려면 <code>malloc</code>에 무엇을 전달해야 할까요? 문자열로 쓴다면 몇 바이트를 더 할당해야 할까요?</p>
         </div>
     </section>
 
-    <!-- ===== 돌려주기 ===== -->
+    <!-- ===== free로 해제하기 ===== -->
     <section id="back" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">돌려주기</h2>
+            <h2 class="text-3xl font-black text-slate-900">free로 해제하기</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">빌렸으면 돌려주어야 합니다. 저절로 되지 않습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">할당한 메모리는 직접 해제해야 합니다. 자동으로 해제되지 않습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                함수 안에서 만든 변수는 함수가 끝나면 저절로 사라집니다.
-                그런데 빌린 자리는 그렇지 않습니다.
-                <strong><code>free</code>로 「다 썼습니다」라고 말해 주기 전까지 계속 빌린 상태</strong>입니다.
+                함수 안에서 선언한 지역 변수는 흔히 스택(stack)이라고 부르는 영역에 놓여, 함수가 끝나면 자동으로 사라집니다.
+                그러나 힙에 할당한 메모리는 함수가 끝나도 남아 있습니다.
+                <strong><code>free</code>를 호출해 메모리를 돌려주기 전까지 계속 할당된 상태</strong>입니다.
+                이렇게 할당한 메모리를 돌려주는 것을 해제(deallocation)라고 합니다.
             </p>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>주소를 잃어버리면 돌려줄 수도 없습니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>주소를 잃어버리면 해제할 수도 없습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    빌린 자리를 가리키는 <strong>포인터가 유일한 연결선</strong>입니다.
-                    그 포인터에 <strong>다른 주소를 덮어써 버리면</strong>
-                    앞서 빌린 자리는 <strong>어디였는지 알 방법이 없어집니다.</strong>
-                    쓰지도 못하고 돌려주지도 못하는 자리가 되는 것입니다.
+                    할당한 메모리의 주소를 저장하고 있는 <strong>포인터가 유일한 연결선</strong>입니다.
+                    그 포인터에 <strong>다른 주소를 대입해 버리면</strong>
+                    앞서 할당한 메모리가 <strong>어디에 있는지 알 방법이 없어집니다.</strong>
+                    사용할 수도, 해제할 수도 없는 메모리가 남는 것입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    이렇게 <strong>돌려주지 못한 자리가 쌓여 쓸 수 있는 메모리가 줄어드는 것</strong>을
-                    <strong>메모리 누수</strong>라고 합니다.
-                    <strong>프로그램이 끝나면 운영 체제가 한꺼번에 거두어 가므로</strong>
-                    짧게 돌다 끝나는 프로그램에서는 티가 나지 않습니다.
-                    <strong>오래 켜 두는 프로그램일수록 새는 만큼 그대로 쌓입니다.</strong>
+                    이렇게 <strong>해제하지 못한 메모리가 쌓여 사용할 수 있는 메모리가 줄어드는 것</strong>을
+                    <strong>메모리 누수(memory leak)</strong>라고 합니다.
+                    <strong>대부분의 운영 체제는 프로그램이 끝나면 그 프로그램의 메모리를 한꺼번에 회수하므로</strong>
+                    잠깐 실행되고 끝나는 프로그램에서는 잘 드러나지 않습니다.
+                    <strong>오래 실행되는 프로그램일수록 누수된 메모리가 계속 쌓입니다.</strong>
                 </p>
             </div>
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 270" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="포인터가 새 자리를 가리키게 되면서 먼저 빌린 자리로 가는 연결이 끊어졌다. 그 자리는 쓰지도 돌려주지도 못한다">
+                     role="img" aria-label="포인터가 새로 할당한 메모리를 가리키게 되면서 먼저 할당한 메모리로 가는 연결이 끊어졌다. 그 메모리는 사용할 수도 해제할 수도 없다">
                     <defs><marker id="ar14w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker><marker id="ar14o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
-                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">같은 포인터에 새 번호를 덮어쓰면</text>
+                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">같은 포인터에 새 주소를 대입하면</text>
                     <rect x="20" y="54" width="120" height="50" rx="6" fill="#ffffff" stroke="#f97316" stroke-width="2"/>
                     <text x="80" y="86" font-size="20" fill="#c2410c" font-weight="700" text-anchor="middle">p</text>
                     <rect x="300" y="54" width="240" height="50" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4"/>
-                    <text x="420" y="86" font-size="18" fill="#64748b" font-weight="700" text-anchor="middle">먼저 빌린 자리</text>
+                    <text x="420" y="86" font-size="18" fill="#64748b" font-weight="700" text-anchor="middle">먼저 할당한 메모리</text>
                     <line x1="146" y1="79" x2="292" y2="79" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#ar14w)"/>
                     <text x="219" y="68" font-size="16" fill="#e11d48" font-weight="700" text-anchor="middle">끊겼다</text>
                     <rect x="300" y="150" width="240" height="50" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-                    <text x="420" y="182" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle">새로 빌린 자리</text>
+                    <text x="420" y="182" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle">새로 할당한 메모리</text>
                     <path d="M80 110 L80 175 L292 175" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#ar14o)"/>
-                    <text x="20" y="232" font-size="17" fill="#e11d48" font-weight="700">먼저 빌린 자리는 어디였는지 알 방법이 없다.</text>
-                    <text x="20" y="260" font-size="16" fill="#64748b">쓰지도 못하고 돌려주지도 못한다 &mdash; 이것이 메모리 누수다.</text>
+                    <text x="20" y="232" font-size="17" fill="#e11d48" font-weight="700">먼저 할당한 메모리가 어디에 있는지 알 방법이 없다.</text>
+                    <text x="20" y="260" font-size="16" fill="#64748b">사용할 수도 해제할 수도 없다 &mdash; 이것이 메모리 누수다.</text>
                 </svg>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">돌려준 뒤에도 포인터는 옛 번호를 들고 있습니다</p>
+                <p class="font-black text-lg text-slate-900">해제한 뒤에도 포인터에는 옛 주소가 남아 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>free(data);</code>는 <strong>「이 자리 이제 안 씁니다」라고 알리는 것</strong>이지
-                    <strong><code>data</code>를 지우는 것이 아닙니다.</strong>
-                    <code>data</code>에는 <strong>여전히 그 번호가 남아</strong> 있습니다.
-                    그 상태로 <code>data[0]</code>을 하면 <strong>이미 남에게 넘어갔을 자리에 접근하는 셈</strong>입니다.
+                    <code>free(data);</code>는 <strong>「이 메모리는 이제 쓰지 않는다」고 알리는 것</strong>이지
+                    <strong>포인터 변수 <code>data</code>의 값을 바꾸는 것이 아닙니다.</strong>
+                    <code>data</code>에는 <strong>여전히 해제된 메모리의 주소가 남아</strong> 있습니다.
+                    이처럼 해제된 메모리를 가리키는 포인터를 댕글링 포인터(dangling pointer)라고 합니다.
+                    그 상태로 <code>data[0]</code>에 접근하는 것은 정의되지 않은 동작으로, <strong>이미 다른 용도로 다시 할당되었을 수도 있는 메모리에 접근하는 것</strong>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <strong><code>free</code> 다음 줄에 <code>data = NULL;</code>을 적어 두는</strong>
-                    습관이 있습니다. <strong>「아무 곳도 아니다」로 바꿔 두면</strong> 실수로 썼을 때
-                    <strong>조용히 넘어가지 않고 대개 그 자리에서 드러납니다.</strong>
+                    그래서 <strong><code>free</code> 다음 줄에 <code>data = NULL;</code>을 써 두는</strong>
+                    습관을 들입니다. <strong>널 포인터로 바꿔 두면</strong> 실수로 역참조했을 때
+                    <strong>조용히 넘어가지 않고 대부분의 환경에서 그 줄에서 비정상 종료되어 잘못이 바로 드러납니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>같은 자리를 두 번 돌려주는 것도 하면 안 됩니다.</strong>
-                    이미 돌려준 것을 또 돌려주겠다는 말이라, 무슨 일이 일어날지 C가 정해 두지 않았습니다.
+                    <strong>같은 메모리를 두 번 해제해서도 안 됩니다.</strong>
+                    이미 해제한 메모리의 주소를 다시 <code>free</code>에 전달하면 정의되지 않은 동작이 됩니다.
                     <code>NULL</code>로 바꿔 두면 <strong>이 실수도 함께 막힙니다.</strong>
                     <code>free(NULL)</code>은 아무 일도 하지 않기 때문입니다.
-                    다만 같은 번호를 다른 포인터에도 담아 두었다면 그 포인터는 따로 챙겨야 합니다.
+                    다만 같은 주소를 다른 포인터에도 저장해 두었다면 그 포인터도 댕글링 포인터가 되므로 따로 챙겨야 합니다.
                 </p>
             </div>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">빌린 줄과 돌려주는 줄을 짝으로 봅니다</p>
+                <p class="font-black text-lg text-orange-900">할당하는 줄과 해제하는 줄을 쌍으로 봅니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong><code>malloc</code>을 적는 순간 <code>free</code>를 어디에 적을지 함께 정합니다.</strong>
-                    나중에 찾아 넣으려 하면 <strong>어느 길로 빠져나가는지를 모두 검토해야</strong> 합니다 &mdash;
-                    중간에 <code>return</code>으로 나가는 길이 있으면 <strong>그 길에도 <code>free</code>가 있어야</strong> 합니다.
+                    <strong><code>malloc</code>을 쓰는 순간 <code>free</code>를 어디에 쓸지 함께 정합니다.</strong>
+                    나중에 찾아 넣으려 하면 <strong>함수를 빠져나가는 경로를 모두 검토해야</strong> 합니다 &mdash;
+                    중간에 <code>return</code>으로 빠져나가는 경로가 있으면 <strong>그 경로에도 <code>free</code>가 있어야</strong> 합니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">반복 안에서 <code>malloc</code>을 하고 같은 포인터에 계속 담으면 무슨 일이 생길까요? 몇 번째 것까지 돌려줄 수 있을까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">반복문 안에서 <code>malloc</code>을 호출하고 그 반환값을 같은 포인터에 계속 대입하면 무슨 일이 생길까요? 몇 번째로 할당한 메모리까지 해제할 수 있을까요?</p>
         </div>
     </section>
 
-    <!-- ===== 형제 둘 ===== -->
+    <!-- ===== calloc과 realloc ===== -->
     <section id="family" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">형제 둘</h2>
+            <h2 class="text-3xl font-black text-slate-900">calloc과 realloc</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">채워 주는 것과 늘려 주는 것입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">0으로 채워 주는 함수와 크기를 바꿔 주는 함수입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>malloc</code>이 빌려 준 자리에는 <strong>무엇이 들어 있을까요?</strong>
-                초기화하지 않은 변수를 읽으면 엉뚱한 값이 나오는 것과 같은 이야기입니다.
+                <code>malloc</code>이 할당한 메모리에는 <strong>어떤 값이 들어 있을까요?</strong>
+                초기화하지 않은 변수를 읽으면 엉뚱한 값이 나오는 것과 같은 상황입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/14.초기값.c"></code></pre>
@@ -402,50 +405,50 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900"><code>calloc</code>은 0으로 채워 줍니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>malloc</code>이 준 자리에는 <strong>정해지지 않은 값</strong>이 들어 있습니다.
+                    <code>malloc</code>은 할당한 메모리를 초기화하지 않으므로 <strong>정해지지 않은 값</strong>이 들어 있습니다.
                     <strong>실행할 때마다 다른 값이 나올 수 있고, 0이 나올 수도 있습니다</strong> &mdash;
-                    <strong>0이 나왔다고 「0으로 채워진다」고 믿으면 안 되는</strong> 대표적인 경우입니다.
+                    <strong>0이 나왔다고 「0으로 초기화된다」고 믿으면 안 되는</strong> 대표적인 경우입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>calloc</code>은 <strong>빌려 준 자리를 0으로 채워</strong> 줍니다.
-                    적는 방법도 조금 달라서 <strong>개수와 크기를 쉼표로 나누어</strong> 적습니다 &mdash;
-                    <code>calloc(5, sizeof(int))</code>입니다.
-                    <strong>합을 쌓거나 개수를 셀 자리라면 <code>calloc</code>이 한 줄을 아껴 줍니다.</strong>
+                    <code>calloc</code>은 <strong>할당한 메모리의 모든 바이트를 0으로 채워</strong> 줍니다.
+                    호출하는 방법도 조금 달라서 <strong>요소의 개수와 요소 하나의 크기를 인자 두 개로 나누어</strong> 전달합니다.
+                    <code>calloc(5, sizeof(int))</code>처럼 씁니다.
+                    <strong>합을 누적하거나 개수를 셀 배열이라면 <code>calloc</code>을 쓸 때 0으로 초기화하는 반복문을 따로 쓰지 않아도 됩니다.</strong>
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                빌린 뒤에 모자란 것을 알게 되면 어떻게 할까요?
-                더 큰 자리를 새로 빌려 <strong>담긴 것을 옮기고 옛 자리를 돌려주면</strong> 되는데,
-                그 셋을 한 번에 해 주는 것이 <code>realloc</code>입니다.
+                할당한 뒤에 크기가 모자란 것을 알게 되면 어떻게 할까요?
+                더 큰 메모리를 새로 할당해 <strong>저장된 값을 복사하고 원래 메모리를 해제하면</strong> 되는데,
+                이 과정을 한 번에 해 주는 함수가 <code>realloc</code>입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/14.늘리기.c"></code></pre>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>결과를 원래 포인터에 바로 담지 않습니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>반환값을 원래 포인터에 바로 대입하지 않습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>data = realloc(data, …);</code>라고 <strong>바로 담고 싶어집니다.</strong>
-                    그런데 <strong>늘리는 데 실패하면 <code>NULL</code>이 돌아옵니다.</strong>
-                    그것을 <code>data</code>에 덮어써 버리면 <strong>원래 자리의 번호를 잃어버려</strong>
-                    <strong>돌려줄 수도 없게</strong> 됩니다 &mdash; 실패 한 번으로 누수가 생기는 것입니다.
+                    <code>data = realloc(data, …);</code>처럼 <strong>바로 대입하고 싶어집니다.</strong>
+                    그런데 <strong>크기를 늘리는 데 실패하면 <code>NULL</code>이 반환됩니다.</strong>
+                    그 값을 <code>data</code>에 대입해 버리면 <strong>원래 메모리의 주소를 잃어</strong>
+                    <strong>해제할 수도 없게</strong> 됩니다 &mdash; 실패 한 번으로 메모리 누수가 생기는 것입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <strong>다른 포인터로 먼저 받아 <code>NULL</code>인지 확인한 뒤</strong>
-                    <strong>성공했을 때만 갈아 끼웁니다.</strong>
-                    실패해도 <strong>원래 자리는 그대로 살아 있으므로</strong> 돌려주고 끝낼 수 있습니다.
+                    그래서 <strong>반환값을 다른 포인터에 먼저 저장해 <code>NULL</code>인지 검사한 뒤</strong>
+                    <strong>성공했을 때만 <code>data</code>에 대입합니다.</strong>
+                    <code>realloc</code>이 실패해도 <strong>원래 메모리는 해제되지 않고 그대로 남아 있으므로</strong> 그 메모리를 해제하고 끝낼 수 있습니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    한 가지 더 있습니다. <strong>늘린 자리가 옛 자리와 다른 곳일 수 있습니다.</strong>
-                    옆에 빈 자리가 없으면 <strong>통째로 옮겨 담기</strong> 때문입니다.
-                    그래서 <strong>옛 주소를 들고 있던 다른 포인터가 있다면 그것들도 못 쓰게</strong> 됩니다.
+                    한 가지 더 있습니다. <strong>늘린 메모리의 주소가 원래 주소와 다를 수 있습니다.</strong>
+                    원래 위치에서 이어서 늘릴 공간이 없으면 <strong>다른 곳에 새로 할당해 값을 모두 옮기고 원래 메모리를 해제하기</strong> 때문입니다.
+                    그래서 <strong>원래 주소를 저장하고 있던 다른 포인터가 있다면 그 포인터들은 댕글링 포인터가</strong> 됩니다.
                 </p>
             </div>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">여기까지를 한 프로그램으로</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    개수를 입력받아 <strong>그만큼만</strong> 빌리고, 다 쓰고 나서 <strong>돌려줍니다.</strong>
+                    개수를 입력받아 <strong>그만큼만</strong> 할당하고, 다 쓰고 나서 <strong>해제합니다.</strong>
                     「넉넉하게 잡아 두기」가 필요 없어졌습니다.
                 </p>
             </div>
@@ -453,16 +456,16 @@
             <pre class="language-c"><code class="language-c" data-src="code/14.전체.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>n</code>이 0 이하인지 먼저 거른 것을 보세요.
-                입력이 그대로 <code>malloc</code>에 들어가므로
-                이상한 값이 들어오면 이상한 크기를 청하게 됩니다.
-                <strong>밖에서 받은 값을 그대로 믿고 자리를 빌리지 않습니다.</strong>
+                <code>n</code>이 0 이하인지 먼저 검사한 부분을 보세요.
+                입력받은 값이 그대로 <code>malloc</code>의 크기 계산에 쓰이므로
+                잘못된 값이 들어오면 엉뚱한 크기를 요청하게 됩니다.
+                <strong>사용자가 입력한 값은 검사한 뒤에 메모리 할당에 씁니다.</strong>
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">「여기까지를 한 프로그램으로」의 프로그램에서 <code>malloc</code>이 성공한 뒤 입력 도중에 <code>return</code>으로 빠져나가는 길을 만든다면 무엇을 잊지 말아야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">「여기까지를 한 프로그램으로」의 프로그램에서 <code>malloc</code>이 성공한 뒤 입력 도중에 <code>return</code>으로 빠져나가는 경로를 만든다면 무엇을 잊지 말아야 할까요?</p>
         </div>
     </section>
 
@@ -475,33 +478,33 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">도는 도중에 빌린다</h3>
+                <h3 class="text-xl font-black text-slate-900">실행 중에 할당한다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    필요한 크기를 그때 가서 청한다.
-                    돌려받는 것은 주소뿐이라 <strong>포인터로만 다룰 수 있다.</strong>
+                    필요한 크기를 실행 중에 요청한다.
+                    반환되는 것은 주소뿐이라 <strong>포인터로만 다룰 수 있다.</strong>
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">바이트로 청하고 확인한다</h3>
+                <h3 class="text-xl font-black text-slate-900">바이트 수로 요청하고 검사한다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>개수 * sizeof(종류)</code>로 적는다.
-                    돌아온 것이 <code>NULL</code>인지 쓰기 전에 반드시 묻는다.
-                    빌린 뒤에는 배열과 똑같이 쓴다.
+                    <code>개수 * sizeof(자료형)</code>으로 쓴다.
+                    반환값이 <code>NULL</code>인지 쓰기 전에 반드시 검사한다.
+                    할당한 뒤에는 배열과 똑같이 쓴다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">저절로 돌아가지 않는다</h3>
+                <h3 class="text-xl font-black text-slate-900">자동으로 해제되지 않는다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>free</code>로 직접 돌려준다. 주소를 잃으면 <strong>돌려줄 수도 없다.</strong>
-                    돌려준 뒤에는 <code>NULL</code>로 바꿔 옛 번호를 남기지 않는다.
+                    <code>free</code>로 직접 해제한다. 주소를 잃으면 <strong>해제할 수도 없다</strong>(메모리 누수).
+                    <code>free</code>는 포인터의 값을 바꾸지 않으므로 해제한 뒤 <code>NULL</code>을 대입해 옛 주소를 남기지 않는다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">채워 주는 것, 늘려 주는 것</h3>
+                <h3 class="text-xl font-black text-slate-900">0으로 채우는 calloc, 크기를 바꾸는 realloc</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>calloc</code>은 0으로 채워 준다.
-                    <code>realloc</code>은 옮겨 담기까지 해 주지만
-                    <strong>실패할 수 있으니 다른 포인터로 먼저 받는다.</strong>
+                    <code>realloc</code>은 저장된 값을 옮기는 일까지 해 주지만
+                    <strong>실패할 수 있으니 반환값을 다른 포인터에 먼저 저장한다.</strong>
                 </p>
             </div>
         </div>
@@ -516,18 +519,18 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. 정수 <code>n</code>개를 담을 자리를 빌리는 올바른 코드는?</p>
+            <p class="font-black text-lg text-slate-900">1. 정수 <code>n</code>개를 저장할 메모리를 할당하는 올바른 코드는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'malloc은 바이트 수로 청합니다. n을 그대로 적으면 n바이트만 빌립니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'malloc은 바이트 수로 요청합니다. n을 그대로 쓰면 n바이트만 할당됩니다.')">
                     ① <code>malloc(n)</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '개수에 한 개의 크기를 곱해 바이트 수로 청합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '요소의 개수에 요소 하나의 크기를 곱해 바이트 수로 요청합니다.')">
                     ② <code>malloc(n * sizeof(int))</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'sizeof(int)만 적으면 정수 「한 개」 자리만 빌립니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'sizeof(int)만 쓰면 정수 「한 개」를 저장할 메모리만 할당됩니다.')">
                     ③ <code>malloc(sizeof(int))</code>
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '숫자를 직접 적으면 환경이 바뀌거나 담을 종류가 바뀔 때 함께 틀립니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '숫자를 직접 쓰면 환경이 바뀌거나 저장할 자료형이 바뀔 때 크기가 맞지 않게 됩니다.')">
                     ④ <code>malloc(20)</code>
                 </button>
             </div>
@@ -536,29 +539,29 @@
         <div id="q2" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">2. <code>free(data);</code>를 한 뒤 <code>data</code>는 어떤 상태인가?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'free는 자리를 돌려줄 뿐 포인터 변수를 건드리지 않습니다.')">
-                    ① 저절로 <code>NULL</code>이 된다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'free는 메모리를 해제할 뿐 포인터 변수의 값을 바꾸지 않습니다.')">
+                    ① 자동으로 <code>NULL</code>이 된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '번호는 그대로 남아 있어 그 자리를 다시 쓰면 남에게 넘어갔을 자리에 접근하게 됩니다.')">
-                    ② 옛 번호를 그대로 들고 있다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'free는 포인터 변수의 값을 바꾸지 않으므로 주소가 그대로 남습니다. 그 주소로 다시 접근하면 해제된 메모리에 접근하게 됩니다.')">
+                    ② 해제하기 전의 주소가 그대로 남아 있다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '포인터 변수 자체가 사라지지는 않습니다. 돌려준 것은 가리키던 자리입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '포인터 변수 자체가 사라지지는 않습니다. 해제된 것은 가리키던 메모리입니다.')">
                     ③ 변수 자체가 사라진다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '돌려준 자리를 계속 써도 된다면 free를 할 까닭이 없습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '해제한 메모리를 계속 써도 된다면 free를 호출할 이유가 없습니다.')">
                     ④ 그대로 계속 써도 된다
                 </button>
             </div>
         </div>
 
         <div id="q3" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">3. <code>data = realloc(data, 더 큰 크기);</code>처럼 바로 담으면 위험한 까닭은?</p>
+            <p class="font-black text-lg text-slate-900">3. <code>data = realloc(data, 더 큰 크기);</code>처럼 바로 대입하면 위험한 이유는?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '실패하면 NULL이 덮어써져 원래 자리의 번호를 잃고, 돌려줄 수도 없게 됩니다.')">
-                    ① 실패하면 원래 자리의 번호까지 잃어버려서
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '실패하면 data에 NULL이 대입되어 원래 메모리의 주소를 잃고, 해제할 수도 없게 됩니다.')">
+                    ① 실패하면 원래 메모리의 주소까지 잃어버려서
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '담긴 것은 realloc이 옮겨 줍니다. 그것이 realloc이 하는 일입니다.')">
-                    ② 담긴 값이 사라져서
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '저장된 값은 realloc이 옮겨 줍니다. 그것이 realloc이 하는 일입니다.')">
+                    ② 저장된 값이 사라져서
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '문법에는 문제가 없습니다. 컴파일은 그대로 됩니다.')">
                     ③ 문법에 어긋나서

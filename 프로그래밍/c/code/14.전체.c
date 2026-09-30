@@ -30,7 +30,7 @@ int main(void) {
     printf("\n%d개의 합계 %d, 평균 %.1f\n", n, sum, (double) sum / n);
 
     free(score);
-    score = NULL;        // 돌려준 뒤에는 「아무 곳도 아니다」로 적어 둔다
+    score = NULL;        // 해제한 뒤에는 널 포인터로 바꿔 둔다
 
     return 0;
 }

@@ -21,8 +21,8 @@
             포인터를 가리키는 포인터
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
-            값을 바꾸려고 값의 자리를 넘겼습니다.<br>
-            <strong>그러면 포인터를 바꾸려면 무엇을 넘겨야 할까요?</strong>
+            변수의 값을 바꾸려고 그 변수의 주소를 전달했습니다.<br>
+            <strong>그렇다면 포인터를 바꾸려면 무엇을 전달해야 할까요?</strong>
         </p>
     </div>
 </header>
@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>포인터도 변수라 자기 자리가 따로 있다는 것을 확인할 수 있다.</li>
-                    <li>별표를 하나 더 붙여 선언하고 두 번 따라가 값을 읽고 바꿀 수 있다.</li>
-                    <li>함수가 포인터 자체를 바꾸게 하려면 무엇을 넘겨야 하는지 설명할 수 있다.</li>
-                    <li>줄마다 따로 빌린 표를 만들고 올바른 순서로 돌려줄 수 있다.</li>
+                    <li>포인터도 변수이므로 자신의 주소가 따로 있음을 확인할 수 있다.</li>
+                    <li>별표(<code>*</code>)를 하나 더 붙여 이중 포인터를 선언하고, 두 번 역참조해 값을 읽고 바꿀 수 있다.</li>
+                    <li>함수가 호출한 쪽의 포인터 자체를 바꾸게 하려면 무엇을 전달해야 하는지 설명할 수 있다.</li>
+                    <li>행마다 따로 할당한 표를 만들고 올바른 순서로 해제할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -57,10 +57,10 @@
             <span class="font-black text-xl tracking-tight text-slate-800">포인터를 가리키는 포인터</span>
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
-            <a href="#self" class="hover:text-orange-600 transition">포인터의 자리</a>
+            <a href="#self" class="hover:text-orange-600 transition">포인터의 주소</a>
             <a href="#double" class="hover:text-orange-600 transition">별표를 하나 더</a>
             <a href="#func" class="hover:text-orange-600 transition">포인터를 바꾸는 함수</a>
-            <a href="#grid" class="hover:text-orange-600 transition">줄마다 따로 빌린 표</a>
+            <a href="#grid" class="hover:text-orange-600 transition">행마다 따로 할당한 표</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -70,45 +70,45 @@
 <!-- ── 메인 콘텐츠 ── -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-24">
 
-    <!-- ===== 포인터의 자리 ===== -->
+    <!-- ===== 포인터의 주소 ===== -->
     <section id="self" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">포인터의 자리</h2>
+            <h2 class="text-3xl font-black text-slate-900">포인터의 주소</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">포인터 자신이 놓인 자리를 찍어 봅니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">포인터 자신의 주소를 출력해 봅니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <strong>포인터도 변수라 자기 자리가 따로 있습니다.</strong>
-                <code>p</code>는 「저기」라고 적어 둔 쪽지인데,
+                <strong>포인터도 변수이므로 자신의 메모리 공간과 주소가 따로 있습니다.</strong>
+                <code>p</code>는 「저기」라고 적어 둔 쪽지와 같은데,
                 그 쪽지도 어딘가에 놓여 있어야 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/15.자리.c"></code></pre>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">번호가 둘 나옵니다</p>
+                <p class="font-black text-lg text-slate-900">주소가 두 개 출력됩니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>p</code>는 <strong><code>num</code>이 있는 자리</strong>를 담고 있고,
-                    <code>&amp;p</code>는 <strong><code>p</code> 자신이 놓인 자리</strong>입니다.
-                    <strong>둘은 다른 번호</strong>입니다.
+                    <code>p</code>에는 <strong><code>num</code>의 주소</strong>가 저장되어 있고,
+                    <code>&amp;p</code>는 <strong><code>p</code> 자신의 주소</strong>입니다.
+                    <strong>둘은 서로 다른 주소</strong>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    변수 앞에 <code>&amp;</code>를 붙이면 그 변수의 자리가 나옵니다.
+                    변수 앞에 주소 연산자 <code>&amp;</code>를 붙이면 그 변수의 주소를 얻습니다.
                     <strong>포인터도 변수이니 예외가 아닙니다.</strong>
                     특별한 규칙이 새로 생긴 것이 아니라 <strong>이미 있는 규칙을 한 번 더 적용</strong>한 것뿐입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그렇다면 <strong><code>&amp;p</code>가 내놓는 그 번호도 어딘가에 담아 둘 수</strong> 있어야 합니다.
-                    주소를 담는 변수가 포인터이니, <strong>포인터의 주소를 담는 변수</strong>도 있어야 합니다.
+                    그렇다면 <strong><code>&amp;p</code>로 얻은 주소도 어딘가에 저장할 수</strong> 있어야 합니다.
+                    주소를 저장하는 변수가 포인터이니, <strong>포인터의 주소를 저장하는 포인터</strong>도 있어야 합니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>p</code>가 <code>num</code>을 가리키게 한 뒤 <code>p = &amp;other;</code>로 바꾸면, <code>&amp;p</code>가 내는 번호도 함께 달라질까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>p</code>가 <code>num</code>을 가리키게 한 뒤 <code>p = &amp;other;</code>로 바꾸면, <code>&amp;p</code>로 얻는 주소도 함께 달라질까요?</p>
         </div>
     </section>
 
@@ -117,22 +117,22 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">별표를 하나 더</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">한 번 더 따라가면 되는 일입니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">역참조를 한 번 더 하면 됩니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>int *p</code>가 「정수를 가리키는 포인터」였으니,
-                <code>int **q</code>는 「정수를 가리키는 포인터를 가리키는 포인터」입니다.
-                뒤에서부터 읽으면 그대로 뜻이 됩니다.
-                이런 것을 <strong>이중 포인터</strong>라고 부릅니다.
+                <code>int *p</code>가 「<code>int</code>를 가리키는 포인터」였으니,
+                <code>int **q</code>는 「<code>int</code>를 가리키는 포인터를 가리키는 포인터」입니다.
+                변수 이름 <code>q</code>에서 왼쪽으로 읽어 나가면 그대로 뜻이 됩니다.
+                이런 포인터를 <strong>이중 포인터(double pointer)</strong>라고 부릅니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/15.이중.c"></code></pre>
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 246" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="q 상자가 p를 가리키고 p 상자가 num을 가리킨다. 별표 q는 한 걸음이라 p에 닿고 별표 두 개는 두 걸음이라 값 60에 닿는다">
+                     role="img" aria-label="q 상자가 p를 가리키고 p 상자가 num을 가리킨다. 별표 q는 한 걸음이라 p에 닿고 별표 두 개는 두 걸음이라 num의 값 60에 닿는다">
                     <defs>
                         <marker id="ar15" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                             <path d="M0 0 L10 5 L0 10 z" fill="#ea580c"/>
@@ -143,11 +143,11 @@
 
                     <text x="95" y="66" font-size="17" font-weight="700" fill="#c2410c" text-anchor="middle">q</text>
                     <rect x="20" y="78" width="150" height="64" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-                    <text x="95" y="117" font-size="17" font-weight="700" fill="#9a3412" text-anchor="middle">p가 있는 자리</text>
+                    <text x="95" y="117" font-size="17" font-weight="700" fill="#9a3412" text-anchor="middle">p의 주소</text>
 
                     <text x="288" y="66" font-size="17" font-weight="700" fill="#c2410c" text-anchor="middle">p</text>
                     <rect x="213" y="78" width="150" height="64" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-                    <text x="288" y="117" font-size="17" font-weight="700" fill="#9a3412" text-anchor="middle">num이 있는 자리</text>
+                    <text x="288" y="117" font-size="17" font-weight="700" fill="#9a3412" text-anchor="middle">num의 주소</text>
 
                     <text x="481" y="66" font-size="17" font-weight="700" fill="#334155" text-anchor="middle">num</text>
                     <rect x="406" y="78" width="150" height="64" rx="10" fill="#ffffff" stroke="#334155" stroke-width="2"/>
@@ -169,26 +169,26 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-32">적은 것</th>
-                        <th class="w-44">무엇이 나오나</th>
-                        <th>어떻게 읽나</th>
+                        <th class="w-32">식</th>
+                        <th class="w-44">값</th>
+                        <th>읽는 방법</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><code>q</code></td>
-                        <td><code>p</code>가 있는 자리</td>
-                        <td>따라가지 않고 담긴 번호 그대로</td>
+                        <td><code>p</code>의 주소</td>
+                        <td>역참조하지 않으면 <code>q</code>에 저장된 주소 그대로</td>
                     </tr>
                     <tr>
                         <td><code>*q</code></td>
-                        <td><code>num</code>이 있는 자리</td>
-                        <td>한 번 따라가면 <code>p</code>에 담긴 것이 나온다</td>
+                        <td><code>num</code>의 주소</td>
+                        <td>한 번 역참조하면 <code>p</code>에 저장된 값이 나온다</td>
                     </tr>
                     <tr>
                         <td><code>**q</code></td>
                         <td><code>60</code></td>
-                        <td>두 번 따라가면 값에 닿는다</td>
+                        <td>두 번 역참조하면 <code>num</code>의 값에 닿는다</td>
                     </tr>
                     </tbody>
                 </table>
@@ -197,25 +197,24 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">별표 하나가 한 걸음입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>따라가야 할 걸음 수만큼 별표를 붙인다</strong>고 보면 헷갈리지 않습니다.
-                    <code>num</code>까지 <strong>두 걸음</strong>이니 <code>**q</code>이고,
+                    <strong>역참조할 횟수만큼 별표를 붙인다</strong>고 보면 헷갈리지 않습니다.
+                    <code>num</code>까지는 <strong>두 걸음</strong>이니 <code>**q</code>이고,
                     <code>p</code>까지는 <strong>한 걸음</strong>이니 <code>*q</code>입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>읽기만이 아니라 바꾸기도 됩니다.</strong>
-                    <code>**q = 99;</code>는 <strong>두 걸음 따라가 <code>num</code>을 바꿉니다.</strong>
-                    <code>*q = &amp;other;</code>라고 쓰면 <strong>한 걸음만 가서 <code>p</code>를 바꿉니다</strong> &mdash;
-                    <strong>별표 개수가 무엇을 손대는지를 정합니다.</strong>
+                    <strong>값을 읽을 뿐 아니라 바꿀 수도 있습니다.</strong>
+                    <code>**q = 99;</code>는 <strong>두 번 역참조해 <code>num</code>의 값을 바꿉니다.</strong>
+                    <code>*q = &amp;other;</code>라고 쓰면 <strong>한 번만 역참조해 <code>p</code>에 저장된 주소를 바꿉니다</strong> &mdash;
+                    <strong>별표의 개수가 접근하는 대상을 정합니다.</strong>
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">세 개, 네 개도 문법상 됩니다</p>
+                <p class="font-black text-lg text-slate-900">별표 세 개, 네 개도 문법에 맞습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int ***r</code>도 만들 수 있습니다. <strong>다만 실제로 쓰는 일은 드뭅니다.</strong>
-                    걸음이 늘수록 <strong>사람이 따라가기가 급격히 어려워지고</strong>,
-                    그렇게까지 겹쳐야 한다면 <strong>구조를 달리 짜는 편이 나은 경우가 많기</strong> 때문입니다.
-                    <strong>「할 수 있다」와 「그렇게 쓴다」는 다릅니다.</strong>
+                    <code>int ***r</code>도 선언할 수 있습니다. <strong>다만 실제로 쓰는 일은 드뭅니다.</strong>
+                    단계가 늘수록 <strong>코드를 읽는 사람이 따라가기가 급격히 어려워지고</strong>,
+                    그만큼 여러 단계가 필요하다면 <strong>구조를 다르게 설계하는 편이 나은 경우가 많기</strong> 때문입니다.
                 </p>
             </div>
         </div>
@@ -236,36 +235,36 @@
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                자리를 빌리는 일을 함수에 맡기고 싶다고 해 봅시다.
-                함수 안에서 <code>malloc</code>을 하고 그 결과를 부른 쪽이 받아야 합니다.
-                그런데 <code>void make(int *out)</code>이라고 적고 <code>out = malloc(…)</code>을 하면
-                <strong>바뀌는 것은 사본뿐</strong>입니다 &mdash; 함수에 넘어가는 것은 사본이라 <code>out</code>은 부른 쪽 포인터를 베낀 것이기 때문입니다.
+                메모리를 할당하는 일을 함수에 맡기고 싶다고 해 봅시다.
+                함수 안에서 <code>malloc</code>을 호출하고, 그 반환값(주소)을 호출한 쪽의 포인터가 받아야 합니다.
+                그런데 <code>void make(int *out)</code>이라고 선언하고 함수 안에서 <code>out = malloc(…)</code>을 실행하면
+                <strong>바뀌는 것은 사본뿐</strong>입니다 &mdash; C의 인자 전달은 값에 의한 전달이라, <code>out</code>은 호출한 쪽 포인터의 값을 복사해 받은 매개변수이기 때문입니다.
             </p>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-slate-900">규칙은 언제나 같습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>「무엇을 바꾸고 싶으면 그것이 있는 자리를 넘긴다」</strong>입니다.
-                    정수를 바꾸고 싶으면 <code>int *</code>를 넘깁니다.
-                    이번에 바꾸고 싶은 것은 <strong>포인터</strong>이니 <strong><code>int **</code>를 넘깁니다.</strong>
+                    <strong>「함수 안에서 어떤 변수를 바꾸고 싶으면 그 변수의 주소를 전달한다」</strong>입니다.
+                    <code>int</code> 변수를 바꾸고 싶으면 <code>int *</code>를 전달합니다.
+                    이번에 바꾸고 싶은 것은 <code>int *</code> <strong>포인터</strong>이니 그 주소, 곧 <strong><code>int **</code>를 전달합니다.</strong>
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/15.함수.c"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 286" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="함수가 data가 있는 자리를 받아 그 자리에 빌린 번호를 써 넣으면 부른 쪽의 data가 채워진다">
+                     role="img" aria-label="함수가 data의 주소를 전달받아 그 주소에 있는 data에 할당한 메모리의 주소를 저장하면 호출한 쪽의 data가 바뀐다">
                     <defs><marker id="ar15f1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker><marker id="ar15f2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2410c"/></marker></defs>
-                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">make(&amp;data, 5) &mdash; data가 「있는 자리」를 넘긴다</text>
+                    <text x="20" y="26" font-size="17" fill="#0f172a" font-weight="700">make(&amp;data, 5) &mdash; data의 주소를 전달한다</text>
                     <rect x="20" y="52" width="170" height="56" rx="6" fill="#ffffff" stroke="#f97316" stroke-width="2"/>
                     <text x="105" y="76" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">data</text>
                     <text x="105" y="98" font-size="16" fill="#64748b" text-anchor="middle">처음에는 NULL</text>
                     <rect x="300" y="52" width="250" height="56" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
                     <text x="425" y="76" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">make 안의 out</text>
-                    <text x="425" y="98" font-size="16" fill="#64748b" text-anchor="middle">data가 있는 자리</text>
+                    <text x="425" y="98" font-size="16" fill="#64748b" text-anchor="middle">data의 주소</text>
                     <line x1="292" y1="80" x2="198" y2="80" stroke="#94a3b8" stroke-width="3" marker-end="url(#ar15f1)"/>
                     <text x="245" y="132" font-size="16" fill="#64748b" text-anchor="middle">out은 data를 가리킨다</text>
-                    <text x="20" y="176" font-size="17" fill="#c2410c" font-weight="700">*out = malloc(&hellip;) &mdash; 그 자리에 빌린 번호를 써 넣는다</text>
+                    <text x="20" y="176" font-size="17" fill="#c2410c" font-weight="700">*out = malloc(&hellip;) &mdash; data에 새 주소를 저장한다</text>
                     <rect x="200" y="198" width="68" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <rect x="272" y="198" width="68" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <rect x="344" y="198" width="68" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -274,65 +273,65 @@
                     <rect x="20" y="198" width="150" height="46" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="95" y="228" font-size="18" fill="#c2410c" font-weight="700" text-anchor="middle">data</text>
                     <line x1="176" y1="221" x2="192" y2="221" stroke="#c2410c" stroke-width="3" marker-end="url(#ar15f2)"/>
-                    <text x="20" y="276" font-size="16" fill="#64748b">바꾸고 싶은 것이 포인터라 int **를 받았다.</text>
+                    <text x="20" y="276" font-size="16" fill="#64748b">바꾸고 싶은 것이 포인터라 매개변수를 int **로 선언했다.</text>
                 </svg>
             </div>
 
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900"><code>&amp;data</code>를 넘기고 <code>*out</code>에 담습니다</p>
+                <p class="font-black text-lg text-orange-900"><code>&amp;data</code>를 전달하고 <code>*out</code>에 대입합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>make(&amp;data, 5)</code>는 <strong><code>data</code>가 있는 자리</strong>를 알려 줍니다.
-                    함수 안의 <code>*out = malloc(…)</code>은 <strong>그 자리에 빌린 번호를 써 넣는</strong> 것이라
-                    <strong>부른 쪽의 <code>data</code>가 채워집니다.</strong>
+                    <code>make(&amp;data, 5)</code>는 <strong><code>data</code>의 주소</strong>를 전달합니다.
+                    함수 안의 <code>*out = malloc(…)</code>은 <strong>그 주소에 있는 변수, 곧 호출한 쪽의 <code>data</code>에 할당한 메모리의 주소를 저장하므로</strong>
+                    <strong>호출한 쪽의 <code>data</code>가 바뀝니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>data</code>를 <strong><code>NULL</code>로 두고 시작한 것</strong>도 눈여겨보세요.
-                    함수가 실패해 아무것도 담지 않았을 때 <strong>부른 쪽이 그것을 알 수 있어야</strong> 하기 때문입니다.
+                    <code>data</code>를 <strong><code>NULL</code>로 초기화하고 시작한 것</strong>도 눈여겨보세요.
+                    초기화하지 않은 포인터에는 알 수 없는 주소가 들어 있으므로, 함수가 <code>data</code>를 바꾸지 못하고 끝나는 경우가 생기면 <strong>호출한 쪽이 실패를 알아볼 방법이 없기</strong> 때문입니다.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>(*out)[i]</code>의 괄호를 빼면 안 됩니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>*out[i]</code>라고 쓰면 <strong>대괄호가 별표보다 먼저</strong> 붙어
-                    <strong><code>*(out[i])</code></strong>로 읽힙니다.
-                    <code>out</code>을 <strong>포인터의 배열</strong>로 보고 인덱스 <code>i</code>인 것을 고른 다음
-                    따라가라는 뜻이 되어 <strong>전혀 다른 자리에 손대게 됩니다.</strong>
+                    <code>*out[i]</code>라고 쓰면 <strong>대괄호의 우선순위가 역참조 연산자보다 높아</strong>
+                    <strong><code>*(out[i])</code></strong>로 해석됩니다.
+                    <code>out</code>을 <strong>포인터의 배열</strong>로 보고 인덱스 <code>i</code>인 요소를 역참조하라는 뜻이 되어
+                    <strong>전혀 다른 메모리 위치에 접근하게 됩니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>먼저 따라가고 그다음 칸을 가리켜야</strong> 하므로
-                    <code>(*out)[i]</code>처럼 <strong>괄호로 순서를 못박습니다.</strong>
-                    <strong>컴파일은 둘 다 되니 컴파일러가 잡아 주지 않습니다.</strong>
+                    <strong>먼저 <code>out</code>을 역참조해 <code>data</code>를 얻은 다음, <code>data</code>가 가리키는 메모리에서 인덱스 <code>i</code>인 요소에 접근해야</strong> 하므로
+                    <code>(*out)[i]</code>처럼 <strong>괄호로 순서를 정해 줍니다.</strong>
+                    <strong>두 식 모두 컴파일되므로 컴파일러가 알려 주지 않습니다.</strong>
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">다 쓴 자리를 돌려주는 일까지 함수에 맡긴다면, 그 함수도 <code>int **</code>를 받아야 할까요? 무엇을 바꾸고 싶은지로 생각해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed">사용을 마친 메모리를 해제하는 일까지 함수에 맡긴다면, 그 함수도 <code>int **</code>를 전달받아야 할까요? 무엇을 바꾸고 싶은지로 생각해 보세요.</p>
         </div>
     </section>
 
-    <!-- ===== 줄마다 따로 빌린 표 ===== -->
+    <!-- ===== 행마다 따로 할당한 표 ===== -->
     <section id="grid" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">줄마다 따로 빌린 표</h2>
+            <h2 class="text-3xl font-black text-slate-900">행마다 따로 할당한 표</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">크기를 도중에 정하는 표를 만들어 봅니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">크기를 실행 중에 정하는 표를 만들어 봅니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                2차원 배열은 행과 열을 미리 적어야 합니다.
-                크기를 실행해 보고 정해야 한다면 빌려 써야 하는데,
-                <strong>표는 「줄이 여럿」이므로 빌리는 일도 두 층</strong>이 됩니다.
+                2차원 배열은 행과 열의 개수를 미리 정해야 합니다.
+                크기를 실행 중에 정해야 한다면 동적으로 할당해야 하는데,
+                <strong>표는 행이 여러 개이므로 할당도 두 단계</strong>로 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/15.전체.c"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 326" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="위쪽 2차원 배열은 열두 칸이 이어져 있고 아래쪽 이중 포인터로 만든 표는 줄마다 따로 빌려 서로 떨어진 곳에 놓인다">
+                     role="img" aria-label="위쪽 2차원 배열은 열두 칸이 이어져 있고 아래쪽 이중 포인터로 만든 표는 행마다 따로 할당해 서로 떨어진 곳에 놓인다">
                     <text x="20" y="26" font-size="17" fill="#334155" font-weight="700">int a[3][4] &mdash; 열두 칸이 빈틈없이 이어진다</text>
                     <rect x="24" y="46" width="44" height="44" rx="3" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
                     <rect x="68" y="46" width="44" height="44" rx="3" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
@@ -346,7 +345,7 @@
                     <rect x="420" y="46" width="44" height="44" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
                     <rect x="464" y="46" width="44" height="44" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
                     <rect x="508" y="46" width="44" height="44" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
-                    <text x="20" y="132" font-size="17" fill="#c2410c" font-weight="700">int **grid &mdash; 줄마다 따로 빌리니 흩어져 놓일 수 있다</text>
+                    <text x="20" y="132" font-size="17" fill="#c2410c" font-weight="700">int **grid &mdash; 행마다 따로 할당하니 흩어져 놓일 수 있다</text>
                     <rect x="20" y="158" width="92" height="38" rx="4" fill="#ffffff" stroke="#f97316" stroke-width="1.5"/>
                     <text x="66" y="184" font-size="17" fill="#c2410c" font-weight="700" text-anchor="middle">grid[0]</text>
                     <rect x="260" y="158" width="44" height="38" rx="3" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
@@ -368,58 +367,58 @@
                     <rect x="468" y="250" width="44" height="38" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
                     <rect x="512" y="250" width="44" height="38" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
                     <line x1="118" y1="269" x2="372" y2="269" stroke="#fdba74" stroke-width="2" stroke-dasharray="5 4"/>
-                    <text x="20" y="316" font-size="16" fill="#64748b">대신 줄마다 길이를 달리할 수 있다.</text>
+                    <text x="20" y="316" font-size="16" fill="#64748b">대신 행마다 길이를 다르게 할 수 있다.</text>
                 </svg>
             </div>
 
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">먼저 「줄을 가리킬 자리」를, 그다음 각 줄을 빌립니다</p>
+                <p class="font-black text-lg text-slate-900">먼저 「행을 가리킬 포인터」를, 그다음 각 행을 할당합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>malloc(rows * sizeof(int *))</code>은 <strong>정수를 빌리는 것이 아니라
-                    「정수를 가리키는 포인터」 세 개 자리</strong>를 빌립니다.
-                    <code>sizeof(int)</code>가 아니라 <strong><code>sizeof(int *)</code></strong>인 까닭입니다.
+                    <code>malloc(rows * sizeof(int *))</code>은 <strong>정수를 저장할 메모리가 아니라
+                    「<code>int</code>를 가리키는 포인터」 세 개를 저장할 메모리</strong>를 할당합니다.
+                    <code>sizeof(int)</code>가 아니라 <strong><code>sizeof(int *)</code></strong>를 쓰는 이유입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그다음 <strong>줄마다 <code>malloc</code>을 한 번씩</strong> 더 해서
-                    <code>grid[0]</code>·<code>grid[1]</code>·<code>grid[2]</code>에 담습니다.
-                    다 하고 나면 <strong><code>grid[r][c]</code>로 2차원 배열과 똑같이</strong> 쓸 수 있습니다.
+                    그다음 <strong>행마다 <code>malloc</code>을 한 번씩</strong> 더 호출해
+                    반환된 주소를 <code>grid[0]</code>·<code>grid[1]</code>·<code>grid[2]</code>에 저장합니다.
+                    모두 마치면 <strong><code>grid[r][c]</code>처럼 2차원 배열과 똑같이</strong> 쓸 수 있습니다.
                 </p>
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>2차원 배열과 겉모습만 같습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int a[3][4]</code>는 <strong>열두 칸이 빈틈없이 이어져</strong> 있습니다.
-                    그런데 위 프로그램을 실행해 보면 <strong>0번 줄과 1번 줄의 번호가 대개 딱 붙어 있지 않습니다.</strong>
-                    <strong>줄마다 따로 빌렸으니 서로 다른 곳에 흩어져 놓일 수 있기</strong> 때문입니다.
+                    <code>int a[3][4]</code>는 <strong>요소 열두 개가 빈틈없이 이어져</strong> 있습니다.
+                    그런데 위 프로그램을 실행해 보면 <strong>0번 행과 1번 행의 주소가 대개 바로 이어지지 않습니다.</strong>
+                    <strong>행마다 따로 할당했으니 서로 다른 곳에 흩어져 놓일 수 있기</strong> 때문입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <strong>포인터 하나로 처음부터 끝까지 내리 읽는 방법은 여기서 통하지 않습니다.</strong>
-                    <strong>「몇 칸마다 줄이 바뀌는지」라는 것 자체가 없습니다</strong> &mdash;
-                    줄이 어디 있는지는 <code>grid[r]</code>에 적힌 번호가 알려 줍니다.
-                    <strong>그 대신 줄마다 길이를 다르게 빌릴 수도</strong> 있습니다.
+                    그래서 <strong>포인터 하나로 처음부터 끝까지 이어서 읽는 방법은 여기서 통하지 않습니다.</strong>
+                    <strong>「요소 몇 개마다 다음 행이 시작되는지」라는 규칙 자체가 없습니다</strong> &mdash;
+                    각 행이 어디에 있는지는 <code>grid[r]</code>에 저장된 주소가 알려 줍니다.
+                    <strong>그 대신 행마다 길이를 다르게 할당할 수도</strong> 있습니다.
                 </p>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>돌려주는 순서가 정해져 있습니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>해제하는 순서가 정해져 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>줄들을 먼저 돌려주고 <code>grid</code>를 나중에</strong> 돌려줍니다.
-                    <code>grid</code>를 먼저 돌려주면 <strong>각 줄의 번호가 적혀 있던 자리가 사라져</strong>
-                    <strong>줄들을 돌려줄 방법이 없어집니다.</strong>
+                    <strong>각 행을 먼저 해제하고 <code>grid</code>를 나중에</strong> 해제합니다.
+                    <code>grid</code>를 먼저 해제하면 <strong>각 행의 주소가 저장되어 있던 메모리가 해제되어</strong>
+                    <strong>각 행을 해제할 방법이 없어집니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    중간에 실패했을 때도 마찬가지입니다.
-                    위 코드는 <strong>실패한 줄 앞까지 빌려 둔 것들을 하나씩 돌려주고</strong> 나서 끝냅니다.
-                    <strong>빌린 것이 여럿이면 실패하는 길에서도 남김없이 돌려주어야</strong> 합니다.
+                    중간에 할당에 실패했을 때도 마찬가지입니다.
+                    위 코드는 <strong>실패한 행 앞까지 할당해 둔 행을 하나씩 해제하고</strong> 나서 <code>grid</code>를 해제하고 끝냅니다.
+                    <strong>할당한 메모리가 여럿이면 실패하는 경로에서도 빠짐없이 해제해야</strong> 합니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">줄마다 길이가 다른 표(첫 줄은 두 칸, 둘째 줄은 다섯 칸)를 만들려면 무엇만 바꾸면 될까요? 그 길이들은 어디에 적어 두어야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">행마다 길이가 다른 표(0번 행은 요소 두 개, 1번 행은 요소 다섯 개)를 만들려면 무엇만 바꾸면 될까요? 그 길이들은 어디에 저장해 두어야 할까요?</p>
         </div>
     </section>
 
@@ -432,32 +431,32 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">포인터에도 자리가 있다</h3>
+                <h3 class="text-xl font-black text-slate-900">포인터에도 주소가 있다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    포인터도 변수이므로 <code>&amp;p</code>가 성립한다.
+                    포인터도 변수이므로 <code>&amp;p</code>로 자신의 주소를 얻을 수 있다.
                     새 규칙이 아니라 있던 규칙을 한 번 더 적용한 것이다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">별표 하나가 한 걸음</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>**q</code>는 두 걸음 따라가 값에, <code>*q</code>는 한 걸음 가서
-                    포인터에 닿는다. <strong>별표 개수가 무엇을 손대는지를 정한다.</strong>
+                    <code>**q</code>는 두 번 역참조해 값에, <code>*q</code>는 한 번 역참조해
+                    포인터에 닿는다. <strong>별표의 개수가 접근하는 대상을 정한다.</strong>
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">바꾸려면 그것의 자리를</h3>
+                <h3 class="text-xl font-black text-slate-900">바꾸려면 그 변수의 주소를</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    정수를 바꾸려면 <code>int *</code>, <strong>포인터를 바꾸려면 <code>int **</code></strong>를 넘긴다.
-                    함수가 자리를 빌려 부른 쪽 포인터를 채워 줄 때 쓰인다.
+                    <code>int</code> 변수를 바꾸려면 <code>int *</code>, <strong>포인터를 바꾸려면 <code>int **</code></strong>를 전달한다.
+                    함수가 메모리를 할당해 호출한 쪽의 포인터에 그 주소를 저장해 줄 때 쓰인다.
                 </p>
             </div>
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">겉모습만 2차원 배열</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    줄마다 따로 빌리므로 <strong>이어 붙어 있다는 보장이 없다.</strong>
-                    대신 줄마다 길이를 달리할 수 있다.
-                    줄을 먼저, 바깥을 나중에 돌려준다.
+                    행마다 따로 할당하므로 <strong>행들이 이어져 있다는 보장이 없다.</strong>
+                    대신 행마다 길이를 다르게 할 수 있다.
+                    각 행을 먼저, <code>grid</code>를 나중에 해제한다.
                 </p>
             </div>
         </div>
@@ -472,37 +471,37 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. <code>int num; int *p = &amp;num; int **q = &amp;p;</code>일 때 <code>*q</code>가 내는 것은?</p>
+            <p class="font-black text-lg text-slate-900">1. <code>int num; int *p = &amp;num; int **q = &amp;p;</code>일 때 <code>*q</code>의 값은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'num의 값에 닿으려면 두 걸음을 가야 합니다. **q입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'num의 값에 닿으려면 두 번 역참조해야 합니다. **q입니다.')">
                     ① <code>num</code>의 값
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '한 걸음 따라가면 p에 담긴 것, 곧 num이 있는 자리가 나옵니다.')">
-                    ② <code>num</code>이 있는 자리
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'q를 한 번 역참조하면 p에 저장된 값, 곧 num의 주소가 나옵니다.')">
+                    ② <code>num</code>의 주소
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'p가 있는 자리는 따라가지 않은 q 자신이 담고 있는 값입니다.')">
-                    ③ <code>p</code>가 있는 자리
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'p의 주소는 역참조하지 않은 q 자신에 저장된 값입니다.')">
+                    ③ <code>p</code>의 주소
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'q에도 자기 자리가 있지만 그것은 &q로 얻습니다.')">
-                    ④ <code>q</code>가 있는 자리
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'q의 주소는 &q로 얻습니다. *q와는 다릅니다.')">
+                    ④ <code>q</code>의 주소
                 </button>
             </div>
         </div>
 
         <div id="q2" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">2. 함수가 부른 쪽의 <strong>포인터 변수</strong>를 바꾸게 하려면 무엇을 넘겨야 하는가?</p>
+            <p class="font-black text-lg text-slate-900">2. 함수가 호출한 쪽의 <strong>포인터 변수</strong>를 바꾸게 하려면 무엇을 전달해야 하는가?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '포인터를 그냥 넘기면 사본이 넘어가, 함수 안에서 바꿔도 밖은 그대로입니다.')">
-                    ① 포인터를 그대로 넘긴다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '포인터를 그대로 전달하면 그 값의 사본이 전달되어, 함수 안에서 바꿔도 호출한 쪽의 포인터는 그대로입니다.')">
+                    ① 포인터를 그대로 전달한다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '바꾸고 싶은 것이 포인터이므로 그 포인터가 있는 자리를 넘깁니다.')">
-                    ② 그 포인터가 있는 자리를 넘긴다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '바꾸고 싶은 것이 포인터이므로 그 포인터의 주소를 전달합니다.')">
+                    ② 그 포인터의 주소를 전달한다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '값을 넘기면 자리를 알 수 없어 부른 쪽에 닿지 못합니다.')">
-                    ③ 가리키는 곳의 값을 넘긴다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '가리키는 대상의 값을 전달하면 포인터의 주소를 알 수 없어 호출한 쪽의 포인터를 바꿀 수 없습니다.')">
+                    ③ 가리키는 대상의 값을 전달한다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '넘길 방법이 있습니다. 규칙은 「바꾸고 싶은 것의 자리를 넘긴다」로 한결같습니다.')">
-                    ④ 넘길 방법이 없다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '포인터의 주소를 전달하면 됩니다. 규칙은 「바꾸고 싶은 변수의 주소를 전달한다」로 한결같습니다.')">
+                    ④ 전달할 방법이 없다
                 </button>
             </div>
         </div>
@@ -510,17 +509,17 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. <code>int **grid</code>로 만든 표가 <code>int a[3][4]</code>와 다른 점은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '줄마다 따로 빌리므로 흩어져 놓일 수 있고, 그래서 줄마다 길이를 달리할 수도 있습니다.')">
-                    ① 줄들이 이어 붙어 있지 않을 수 있다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '행마다 따로 할당하므로 흩어져 놓일 수 있고, 그래서 행마다 길이를 다르게 할 수도 있습니다.')">
+                    ① 행들이 이어져 있지 않을 수 있다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '둘 다 grid[r][c]로 똑같이 씁니다. 겉모습이 같은 것이 헷갈리는 지점입니다.')">
-                    ② 대괄호 두 개로 가리킬 수 없다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '둘 다 grid[r][c]처럼 똑같이 씁니다. 겉모습이 같아서 헷갈리기 쉽습니다.')">
+                    ② 대괄호 두 개로 요소를 가리킬 수 없다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '줄 수도 빌릴 때 정하므로 도중에 정할 수 있습니다.')">
-                    ③ 줄 수를 미리 적어야 한다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '행의 개수도 할당할 때 정하므로 실행 중에 정할 수 있습니다.')">
+                    ③ 행의 개수를 미리 정해야 한다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '빌린 것은 모두 돌려주어야 합니다. 오히려 돌려줄 것이 더 많습니다.')">
-                    ④ 돌려주지 않아도 된다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '할당한 메모리는 모두 해제해야 합니다. 오히려 해제할 것이 더 많습니다.')">
+                    ④ 해제하지 않아도 된다
                 </button>
             </div>
         </div>
