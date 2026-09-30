@@ -297,7 +297,7 @@
                     <code>*out[i]</code>라고 쓰면 <strong>대괄호의 우선순위가 역참조 연산자보다 높아</strong>
                     <strong><code>*(out[i])</code></strong>로 해석됩니다.
                     <code>out</code>을 <strong>포인터의 배열</strong>로 보고 인덱스 <code>i</code>인 요소를 역참조하라는 뜻이 되어
-                    <strong>전혀 다른 메모리 위치에 접근하게 됩니다.</strong>
+                    <strong><code>i</code>가 1 이상이면 전혀 다른 메모리 위치에 접근하게 됩니다.</strong>
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>먼저 <code>out</code>을 역참조해 <code>data</code>를 얻은 다음, <code>data</code>가 가리키는 메모리에서 인덱스 <code>i</code>인 요소에 접근해야</strong> 하므로
@@ -325,7 +325,7 @@
             <p class="text-base text-slate-700 leading-relaxed">
                 2차원 배열은 행과 열의 개수를 미리 정해야 합니다.
                 크기를 실행 중에 정해야 한다면 동적으로 할당해야 하는데,
-                <strong>표는 행이 여러 개이므로 할당도 두 단계</strong>로 합니다.
+                <strong>여기서는 표를 행마다 나누어 할당하므로 할당도 두 단계</strong>로 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/15.전체.c"></code></pre>

@@ -22,7 +22,7 @@
         </h1>
         <p class="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
             포인터는 C가 새로 지어낸 것이 아닙니다.<br>
-            <strong>기계가 원래 하던 일을 문법으로 나타낸 것입니다.</strong>
+            <strong>기계가 원래 하던 일과 같은 생각을 문법으로 나타낸 것입니다.</strong>
         </p>
     </div>
 </header>
@@ -151,7 +151,7 @@
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     이 「어떻게」를 <strong>주소 지정 방식(addressing mode)</strong>이라고 부르고, 줄여서 주소 모드라고도 합니다.
-                    <strong>기계가 주소를 다루는 방식이 처음부터 한 가지가 아니었다</strong>는 것이
+                    <strong>기계가 주소를 다루는 방식이 한 가지가 아니라</strong>는 것이
                     이 차시의 출발점입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
@@ -260,7 +260,7 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     요즘 흔히 쓰는 CPU는 이 두 단계를 명령어 하나로 처리하지 않는 경우가 많습니다.
                     먼저 한 명령어가 메모리에 저장된 주소를 레지스터로 가져오고, 다음 명령어가 레지스터에 저장된 그 주소로 메모리에 접근합니다.
-                    이것을 레지스터 간접 방식이라고 합니다. 명령어 하나로 하든 둘로 나누든 「저장된 주소로 한 번 더 간다」는 일은 같습니다.
+                    두 번째 명령어처럼 레지스터에 저장된 주소로 메모리에 접근하는 방식을 레지스터 간접 방식이라고 합니다. 명령어 하나로 하든 둘로 나누든 「저장된 주소로 한 번 더 간다」는 일은 같습니다.
                 </p>
             </div>
         </div>
@@ -400,7 +400,7 @@
                     <tr>
                         <td><strong>메모리에 접근하는 횟수</strong></td>
                         <td>직접 1번, 간접 2번</td>
-                        <td>이름으로 1번, 별표(역참조) 하나마다 1번 더</td>
+                        <td>개념상 이름으로 1번, 별표(역참조) 하나마다 1번 더</td>
                     </tr>
                     </tbody>
                 </table>
@@ -501,7 +501,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '직접 방식에서는 적힌 주소에 곧바로 값이 있습니다. 칸을 한 번만 엽니다.')">
                     ① 직접 주소 지정 방식
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '열어 보니 또 다른 주소가 있어 그 주소로 한 번 더 갑니다. 포인터를 역참조하는 것과 같은 일입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '열어 보니 또 다른 주소가 있어 그 주소로 한 번 더 갑니다. 포인터를 역참조하는 것과 같은 생각입니다.')">
                     ② 간접 주소 지정 방식
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '둘은 뜻이 다릅니다. 칸을 여는 횟수부터 다릅니다.')">

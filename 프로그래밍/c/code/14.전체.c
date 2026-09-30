@@ -5,9 +5,7 @@ int main(void) {
     int n;
 
     printf("점수를 몇 개 입력할까요? ");
-    scanf("%d", &n);
-
-    if (n <= 0) {
+    if (scanf("%d", &n) != 1 || n <= 0) {
         printf("한 개 이상이어야 합니다.\n");
         return 1;
     }
