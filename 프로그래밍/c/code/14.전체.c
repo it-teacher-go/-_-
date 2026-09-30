@@ -4,7 +4,7 @@
 int main(void) {
     int n;
 
-    printf("점수를 몇 개 넣을까요? ");
+    printf("점수를 몇 개 입력할까요? ");
     scanf("%d", &n);
 
     if (n <= 0) {
@@ -15,7 +15,7 @@ int main(void) {
     int *score = (int *) malloc(n * sizeof(int));
 
     if (score == NULL) {
-        printf("자리를 빌리지 못했습니다.\n");
+        printf("메모리를 할당하지 못했습니다.\n");
         return 1;
     }
 

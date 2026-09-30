@@ -16,7 +16,7 @@ try:
 except FileNotFoundError:
     print("성적.csv가 없습니다. 파일을 먼저 만들어 주세요")
 except ValueError:
-    print("점수 칸에 숫자가 아닌 값이 있습니다")
+    print("점수 열에 숫자가 아닌 값이 있습니다")
 else:
     for name, score in scores.items():
         print(f"{name}: {score}")

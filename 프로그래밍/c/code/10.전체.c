@@ -4,7 +4,7 @@ int main(void) {
     int a;
     int b;
 
-    printf("두 수를 적어 주세요: ");
+    printf("두 수를 입력하세요: ");
     scanf("%d %d", &a, &b);
 
     int *big = &a;             // 먼저 a를 가리키게 한다

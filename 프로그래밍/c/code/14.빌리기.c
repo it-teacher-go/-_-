@@ -6,7 +6,7 @@ int main(void) {
     int *data = (int *) malloc(n * sizeof(int));   // 정수 다섯 개를 저장할 메모리를 할당한다
 
     if (data == NULL) {                            // 할당에 실패했을 수도 있다
-        printf("자리를 빌리지 못했습니다.\n");
+        printf("메모리를 할당하지 못했습니다.\n");
         return 1;
     }
 

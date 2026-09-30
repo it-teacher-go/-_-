@@ -6,9 +6,9 @@ void show(void *data, char kind) {   // 어떤 자료형의 주소든 전달받�
     } else if (kind == 'd') {
         printf("실수 %.2f\n", *(double *) data);
     } else if (kind == 'c') {
-        printf("글자 %c\n", *(char *) data);
+        printf("문자 %c\n", *(char *) data);
     } else {
-        printf("모르는 종류입니다\n");
+        printf("모르는 자료형입니다\n");
     }
 }
 

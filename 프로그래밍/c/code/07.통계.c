@@ -22,13 +22,13 @@ int main(void) {
         }
     }
 
-    printf("가장 큰 값은 %d입니다.\n", best);   // 95
+    printf("가장 큰 값은 %d입니다.\n", best);     // 95
     // endregion
 
     // region: 개수
     int count = sizeof(score) / sizeof(score[0]);
 
-    printf("칸은 모두 %d개입니다.\n", count);   // 5
+    printf("요소는 모두 %d개입니다.\n", count);   // 5
     // endregion
 
     return 0;

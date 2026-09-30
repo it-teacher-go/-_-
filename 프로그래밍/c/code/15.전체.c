@@ -36,8 +36,8 @@ int main(void) {
         printf("\n");
     }
 
-    printf("0번 줄 %p\n", (void *) grid[0]);
-    printf("1번 줄 %p\n", (void *) grid[1]);   // 이어져 있지 않을 수 있다
+    printf("0번 행 %p\n", (void *) grid[0]);
+    printf("1번 행 %p\n", (void *) grid[1]);   // 이어져 있지 않을 수 있다
 
     for (int r = 0; r < rows; r = r + 1) {     // 각 행을 「먼저」 해제한다
         free(grid[r]);

@@ -22,7 +22,7 @@ int main(void) {
     printf("\n");                    // 80 92 75 88 60 71 95 84 90 85 70 77
     // endregion
 
-    printf("배열 전체 %d칸, 한 줄 %d칸\n",
+    printf("배열 전체의 요소 %d개, 한 행의 요소 %d개\n",
            (int) (sizeof(score) / sizeof(int)),
            (int) (sizeof(score[0]) / sizeof(int)));
 

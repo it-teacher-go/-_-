@@ -19,7 +19,7 @@ int main(void) {
     make(&data, 5);                    // data의 주소를 전달한다
 
     if (data == NULL) {
-        printf("자리를 빌리지 못했습니다.\n");
+        printf("메모리를 할당하지 못했습니다.\n");
         return 1;
     }
 
