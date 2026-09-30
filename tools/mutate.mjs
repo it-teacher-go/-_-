@@ -133,6 +133,7 @@ export const MUTANTS = [
     // ── 검사 규칙 자체 — 규칙 하나를 끄면 틀린 조각 기록이 달라져야 한다 ──────
     ['fixtures', 'tools/checks/html.mjs', 'for (const m of src.matchAll(FORWARD_LESSON))', 'for (const m of [])', 'html: 뒤 차시 규칙 끔'],
     ['fixtures', 'tools/checks/html.mjs', "report('중복 id', idRules(src));", '', 'html: 중복 id 규칙 끔'],
+    ['fixtures', 'tools/checks/html.mjs', "report('마우스로만 보이는 정보', c.hoverOnly);", '', 'html: 누를 수 없는 요소의 title= 규칙 끔'],
     ['fixtures', 'tools/checks/html.mjs', "report('세로로 쌓은 칸', stackRules(src));", '', 'html: 세로 칸 규칙 끔'],
     ['fixtures', 'tools/checks/html.mjs', "report('머리말', headRules(src));", '', 'html: 머리말 규칙 끔'],
     ['fixtures', 'tools/checks/html.mjs', "report('좁은 화면 여백', gutterRules(src));", '', 'html: 여백 규칙 끔'],

@@ -37,6 +37,9 @@ import {tokens} from '../lib/html-tokens.mjs';
 // 바뀌면서 버려질 때만 쓴다. 2026-08-12 에 목록이 비었다.
 const REWRITE_PENDING = [];
 
+/** title= 을 둬도 되는 요소 — 누르거나 입력하는 것. 그 밖의 title= 은 마우스로만 보이는 정보다. */
+const TITLE_OK = new Set(['a', 'button', 'iframe', 'input', 'select', 'textarea', 'label', 'summary']);
+
 // ── 기준값 ───────────────────────────────────────────────────────────────────
 // 375px 화면에서 section-card 안쪽이 실제로 갖는 폭(브라우저 실측 340px).
 // SVG 텍스트는 viewBox 폭에 맞춰 축소되므로 이 값으로 실효 크기를 환산한다.
@@ -86,6 +89,7 @@ export class Checker {
         this.cssSmall = [];       // 위반: 인라인 style 글자 크기 < MIN_PX
         this.cssWarn = [];        // 경고
         this.twSmall = [];        // 위반: Tailwind 소형 크기 클래스
+        this.hoverOnly = [];      // 위반: 누를 수 없는 요소의 title= — 마우스를 올려야만 보이는 정보
     }
 
     wrapped() { return this.stack.some(([, , p]) => (p.class || '').includes('overflow-x-auto')); }
@@ -110,6 +114,9 @@ export class Checker {
         if (!isDecorativeIcon(tag, cls)) {
             for (const m of cls.matchAll(TW_SMALL)) this.twSmall.push(`${line}행: ${m[0]}`);
         }
+        // title= 은 마우스를 올려야 보이고 터치 기기에서는 끝내 보이지 않는다. 누를 수 있는 요소(링크 · 단추 · 입력)의
+        // 보조 설명에만 쓴다. 값 · 설명은 화면에 글자로 적고, 화면 읽기 프로그램에는 aria-label 로 알린다.
+        if ('title' in a && !TITLE_OK.has(tag) && !this.inSvg()) this.hoverOnly.push(`${line}행: <${tag} title="${a.title}">`);
         const inSvg = this.inSvg();
         if ('font-size' in a && inSvg) this.checkSvgFont(line, a['font-size']);
 
@@ -558,6 +565,7 @@ function checkFile(file, r) {
     report('좁은 화면 여백', gutterRules(src));
     report('세로로 쌓은 칸', stackRules(src));
     report('중복 id', idRules(src));
+    report('마우스로만 보이는 정보', c.hoverOnly);
 }
 
 /** 상대 경로는 현재 디렉터리 → 저장소 루트 순으로 찾는다. */

@@ -38,7 +38,8 @@ ERROR tests/fixtures/html/1-1.틀린-제목.html:39 [테이블 래퍼] 표 3개 
 ERROR tests/fixtures/html/1-1.틀린-제목.html:40 [중복 id] id="quiz"가 40행에도 있다 — #quiz 로 가는 링크는 먼저 나온 쪽으로 간다
 ERROR tests/fixtures/html/1-1.틀린-제목.html:43 [태그 중첩] </div> 앞에 닫히지 않은 태그 <span>(43행)
 ERROR tests/fixtures/html/1-1.틀린-제목.html:44 [태그 중첩] </p> 짝 없음
-ERROR tests/fixtures/html/1-1.틀린-제목.html:46 [태그 중첩] </main> 앞에 닫히지 않은 태그 <section>(45행)
+ERROR tests/fixtures/html/1-1.틀린-제목.html:47 [마우스로만 보이는 정보] <div title="서울 60mm">
+ERROR tests/fixtures/html/1-1.틀린-제목.html:49 [태그 중첩] </main> 앞에 닫히지 않은 태그 <section>(45행)
 ERROR tests/fixtures/html/1-1.틀린-제목.html:5 [머리말] viewport 메타가 없다 — 이름이 어긋났다: <meta name="viewpor" content="width=device-width">. <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ERROR tests/fixtures/html/1-1.틀린-제목.html:8 [좁은 화면 여백] .section-card 여백이 2.5rem 고정 — 375px에서 좌우로 80px을 먹는다. clamp(1.25rem, 4vw, 2.5rem)로 준다
 ERROR tests/fixtures/html/1-1.틀린-제목.html:9 [글자 크기(CSS)] font-size: 0.7rem (≈11px)
