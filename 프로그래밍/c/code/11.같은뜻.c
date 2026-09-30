@@ -10,7 +10,7 @@ int main(void) {
     printf("\n");
 
     for (int i = 0; i < 5; i = i + 1) {
-        printf("%d ", *(score + i));      // 주소를 옮겨 가며 읽기
+        printf("%d ", *(score + i));      // 주소에 i를 더해 역참조하기
     }
     printf("\n");
     // endregion

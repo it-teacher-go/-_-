@@ -3,7 +3,7 @@
 void look(int data[], int len) {
     printf("함수 안에서 sizeof(data) = %d\n", (int) sizeof(data));
 
-    data[0] = 0;                   // 받은 배열의 칸을 바꾼다
+    data[0] = 0;                   // 전달받은 배열의 요소를 바꾼다
     printf("len으로 받은 칸 수 = %d\n", len);
 }
 

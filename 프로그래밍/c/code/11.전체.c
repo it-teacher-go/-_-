@@ -19,7 +19,7 @@ int main(void) {
     int lo;
     int hi;
 
-    min_max(score, 5, &lo, &hi);   // 담아 올 자리 둘을 함께 넘긴다
+    min_max(score, 5, &lo, &hi);   // 결과를 저장할 두 변수의 주소를 함께 전달한다
 
     printf("가장 작은 값 %d, 가장 큰 값 %d\n", lo, hi);   // 61, 95
 
