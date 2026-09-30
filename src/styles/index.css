@@ -194,16 +194,21 @@ body {
     color: var(--ink-body);
 }
 
-/* hover — 마우스가 있는 기기에서만 */
+/* hover — 마우스가 있는 기기에서만. 카드를 띄우지 않고 과목 색으로 테두리와 점을 빛낸다 —
+   한 줄짜리 카드가 빽빽이 붙어 있어, 훑고 지나갈 때마다 들썩이면 글자가 흔들린다.
+   다크는 짙은 바탕에 빛이 묻히므로 과목 색을 흰색에 섞어 한 단계(400 → 300쯤) 밝힌 빛을 쓴다. */
+.link-card { --link-glow: color-mix(in srgb, var(--theme-color, #a855f7) 50%, transparent); }
+:root[data-theme="dark"] .link-card { --link-glow: color-mix(in srgb, var(--theme-color, #a855f7) 65%, white); }
+
 @media (hover: hover) {
     .link-card:hover {
-        transform: translateY(-0.25rem);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-        border-color: var(--theme-border, #7c3aed);
+        box-shadow: 0 0 10px var(--link-glow);
+        border-color: var(--theme-color, #a855f7);
     }
 
     .link-card:hover div {
         background-color: var(--theme-color, #a855f7);
+        box-shadow: 0 0 6px var(--theme-color, #a855f7);
         transform: scale(1.25);
     }
 
@@ -217,22 +222,27 @@ body {
     }
 }
 
-/* 과목마다의 hover 색 — 라이트는 300 · 500 · 700, 다크는 짙은 바탕에서 읽히도록 500 · 400 · 200. */
-.theme-purple { --theme-border: #d8b4fe; --theme-color: #a855f7; --theme-text: #7e22ce; }
-.theme-indigo { --theme-border: #a5b4fc; --theme-color: #6366f1; --theme-text: #4338ca; }
-.theme-teal   { --theme-border: #5eead4; --theme-color: #14b8a6; --theme-text: #0f766e; }
-.theme-blue   { --theme-border: #93c5fd; --theme-color: #3b82f6; --theme-text: #1d4ed8; }
-.theme-orange { --theme-border: #fdba74; --theme-color: #f97316; --theme-text: #c2410c; }
-.theme-rose   { --theme-border: #fda4af; --theme-color: #f43f5e; --theme-text: #be123c; }
-.theme-lime   { --theme-border: #a3e635; --theme-color: #65a30d; --theme-text: #3f6212; }
+/* 위로 가기 버튼은 짙은 원이라 다크 바탕에서는 윤곽이 사라진다. 옅은 테두리로 가장자리만 세운다. */
+:root[data-theme="dark"] #scrollTopBtn {
+    border: 1px solid var(--surface-edge);
+}
 
-:root[data-theme="dark"] .theme-purple { --theme-border: #a855f7; --theme-color: #c084fc; --theme-text: #e9d5ff; }
-:root[data-theme="dark"] .theme-indigo { --theme-border: #6366f1; --theme-color: #818cf8; --theme-text: #c7d2fe; }
-:root[data-theme="dark"] .theme-teal   { --theme-border: #14b8a6; --theme-color: #2dd4bf; --theme-text: #99f6e4; }
-:root[data-theme="dark"] .theme-blue   { --theme-border: #3b82f6; --theme-color: #60a5fa; --theme-text: #bfdbfe; }
-:root[data-theme="dark"] .theme-orange { --theme-border: #f97316; --theme-color: #fb923c; --theme-text: #fed7aa; }
-:root[data-theme="dark"] .theme-rose   { --theme-border: #f43f5e; --theme-color: #fb7185; --theme-text: #fecdd3; }
-:root[data-theme="dark"] .theme-lime   { --theme-border: #84cc16; --theme-color: #a3e635; --theme-text: #d9f99d; }
+/* 과목마다의 hover 색 —라이트는 500 · 700, 다크는 짙은 바탕에서 읽히도록 400 · 200. */
+.theme-purple { --theme-color: #a855f7; --theme-text: #7e22ce; }
+.theme-indigo { --theme-color: #6366f1; --theme-text: #4338ca; }
+.theme-teal   { --theme-color: #14b8a6; --theme-text: #0f766e; }
+.theme-blue   { --theme-color: #3b82f6; --theme-text: #1d4ed8; }
+.theme-orange { --theme-color: #f97316; --theme-text: #c2410c; }
+.theme-rose   { --theme-color: #f43f5e; --theme-text: #be123c; }
+.theme-lime   { --theme-color: #65a30d; --theme-text: #3f6212; }
+
+:root[data-theme="dark"] .theme-purple { --theme-color: #c084fc; --theme-text: #e9d5ff; }
+:root[data-theme="dark"] .theme-indigo { --theme-color: #818cf8; --theme-text: #c7d2fe; }
+:root[data-theme="dark"] .theme-teal   { --theme-color: #2dd4bf; --theme-text: #99f6e4; }
+:root[data-theme="dark"] .theme-blue   { --theme-color: #60a5fa; --theme-text: #bfdbfe; }
+:root[data-theme="dark"] .theme-orange { --theme-color: #fb923c; --theme-text: #fed7aa; }
+:root[data-theme="dark"] .theme-rose   { --theme-color: #fb7185; --theme-text: #fecdd3; }
+:root[data-theme="dark"] .theme-lime   { --theme-color: #a3e635; --theme-text: #d9f99d; }
 
 /* 좁은 화면의 가로 알약 줄 — 스크롤바를 감춘다 */
 .no-scrollbar::-webkit-scrollbar {
