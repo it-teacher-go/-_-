@@ -75,7 +75,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">산술 연산자</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">나눗셈이 두 가지라는 점만 조심하면 나머지는 계산기와 같습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">계산기와 가장 다른 점은 나눗셈이 두 가지라는 것입니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -121,7 +121,7 @@
             </div>
 
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>나누면 딱 떨어져도 실수가 됩니다</p>
+                <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i><code>/</code>로 나누면 딱 떨어져도 실수가 됩니다</p>
                 <pre class="language-python"><code class="language-python" data-src="code/03.나눗셈.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>6 / 3</code>이 <code>2</code>가 아니라 <strong><code>2.0</code></strong>입니다.
@@ -149,7 +149,7 @@
             <pre class="language-python"><code class="language-python" data-src="code/03.전체.py"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                여기서 <code>//</code>를 <code>/</code>로 바꾸면 「2.25 분」처럼 출력됩니다.
+                여기서 <code>//</code>를 <code>/</code>로 바꾸면 135를 입력했을 때 「2.25 분」처럼 출력됩니다.
                 <strong>몫과 나머지는 한 쌍</strong>이라 이런 계산에서 늘 함께 씁니다.
             </p>
         </div>
@@ -221,7 +221,7 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">결과는 <code>True</code>와 <code>False</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    비교 연산의 결과는 참 또는 거짓 가운데 하나이며, 이 값을 <strong>논리값</strong>이라고 합니다.
+                    비교 연산의 결과는 참 또는 거짓 가운데 하나인 <strong>논리값</strong>입니다.
                     <code>True</code>와 <code>False</code>는 첫 글자가 <strong>대문자</strong>라는 점을 눈여겨보세요.
                 </p>
             </div>
@@ -230,7 +230,7 @@
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>같은지 비교하는 것은 <code>==</code>, 대입하는 것은 <code>=</code></p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>x = 5</code>는 x에 5를 대입하고, <code>x == 5</code>는 x가 5와 같은지 비교합니다.
-                    <strong>가장 자주 하는 실수</strong>이니 조건식을 쓸 때마다 등호 개수를 확인하세요.
+                    <strong>자주 하는 실수</strong>이니 조건식을 쓸 때마다 등호 개수를 확인하세요.
                 </p>
             </div>
 
@@ -239,7 +239,7 @@
                 <pre class="language-python"><code class="language-python" data-src="code/03.연달아.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>80 &lt;= score &lt; 90</code>이 <strong>의도한 대로 동작합니다.</strong>
-                    많은 언어에서는 이렇게 쓰면 엉뚱한 결과가 나오지만, 파이썬은
+                    많은 언어에서는 이렇게 쓰면 엉뚱한 결과가 나오거나 오류가 나지만, 파이썬은
                     <strong>「80 이상이면서 90 미만」으로 해석합니다.</strong>
                 </p>
             </div>
@@ -397,7 +397,7 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">나눗셈 둘</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>/</code>는 <strong>딱 떨어져도 실수</strong>를 준다.
+                    <code>/</code>의 결과는 <strong>딱 떨어져도 실수</strong>다.
                     정수끼리 나누어 정수 결과를 얻으려면 <code>//</code>. <code>//</code>는 버림이 아니라 내림이다.
                 </p>
             </div>
@@ -464,7 +464,7 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, true, '&quot;점수: &quot;는 정수 모양의 문자열이 아니라서 int로 변환하는 순간 오류가 납니다.')">
                     ① <code>int("점수: ") + 90</code>으로 바꾼다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 숫자를 문자열로 바꿔 양쪽 자료형을 맞춥니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 숫자를 문자열로 변환해 양쪽 자료형을 맞춥니다.')">
                     ② <code>"점수: " + str(90)</code>으로 바꾼다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '맞게 고친 방법입니다. 쉼표로 나열하면 문자열과 숫자를 섞어도 됩니다.')">
@@ -479,7 +479,7 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '전혀 다릅니다. and는 조건 전체를 보고, &는 비트 하나하나를 계산합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, 'and는 두 값을 각각 참 · 거짓으로 판단하고 &는 비트 하나하나를 계산하므로, 하는 일이 전혀 다릅니다.')">
                     ① <code>and</code>와 <code>&amp;</code>는 같은 일을 하는 다른 표기다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '//는 내림이라 -7 // 2는 -3이 아니라 -4입니다.')">

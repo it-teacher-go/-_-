@@ -167,7 +167,7 @@
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                처음 배울 때 가장 많이 헷갈리는 줄이 바로 이것입니다.
+                처음 배울 때 많이 헷갈리는 줄이 바로 이것입니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/01.대입.py"></code></pre>
@@ -264,7 +264,7 @@
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>3</code>과 <code>"3"</code>은 다른 값입니다</p>
                 <pre class="language-python"><code class="language-python" data-src="code/01.붙이기.py"></code></pre>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    같은 기호인데 결과가 다릅니다. 문자열끼리는 <strong>이어 붙이고</strong>, 수끼리는 <strong>더합니다</strong>.
+                    같은 기호인데 결과가 다릅니다. 문자열끼리는 <strong>이어 붙이고</strong>, 숫자끼리는 <strong>더합니다</strong>.
                     기호가 무엇을 하는지는 <strong>양쪽 값의 자료형이 정합니다.</strong>
                 </p>
             </div>
@@ -310,7 +310,7 @@
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
                 값의 자료형을 바꾸는 것을 <strong>형 변환(type conversion)</strong>이라고 합니다.
-                바꾸려는 자료형의 이름을 그대로 함수처럼 씁니다.
+                변환하려는 자료형의 이름을 그대로 함수처럼 씁니다.
             </p>
 
             <pre class="language-python"><code class="language-python" data-src="code/01.형변환.py"></code></pre>
@@ -326,7 +326,7 @@
                     </p>
                 </div>
                 <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-5 space-y-2 min-w-0">
-                    <p class="font-black text-base text-slate-900">바꿀 수 없는 값도 있습니다</p>
+                    <p class="font-black text-base text-slate-900">변환할 수 없는 값도 있습니다</p>
                     <p class="text-base text-slate-700 leading-relaxed">
                         <code>int("사과")</code>는 오류가 납니다. <code>int</code>는 문자열이 정수 모양일 때만 변환합니다.
                         <code>int("3.5")</code>처럼 소수점이 있어도 오류가 나므로, 이때는 <code>float("3.5")</code>로 변환합니다.
@@ -384,7 +384,7 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">형 변환</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int</code>&middot;<code>float</code>&middot;<code>str</code>로 자료형을 바꾼다.
+                    <code>int</code>&middot;<code>float</code>&middot;<code>str</code>로 자료형을 변환한다.
                     <code>int</code>는 <strong>반올림이 아니라 소수점 아래를 버린다.</strong>
                 </p>
             </div>
@@ -438,7 +438,7 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 다음 중 <strong>틀린</strong> 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '반올림이 아니라 소수점 아래를 자르므로 int(3.7)은 3입니다. 반올림이 필요하면 round를 따로 씁니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '반올림이 아니라 소수점 아래를 버리므로 int(3.7)은 3입니다. 반올림이 필요하면 round를 따로 씁니다.')">
                     ① <code>int(3.7)</code>은 반올림해서 4가 된다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '파이썬은 대문자와 소문자를 구별하므로 score와 Score는 서로 다른 이름입니다.')">

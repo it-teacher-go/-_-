@@ -87,7 +87,7 @@
             <pre class="language-python"><code class="language-python" data-src="code/02.출력.py"></code></pre>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900">쉼표로 나열하면 세 가지가 자동으로 이루어집니다</p>
+                <p class="font-black text-lg text-orange-900">쉼표로 나열할 때 알아 둘 세 가지</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
                     <li>값 사이에 <strong>공백 하나</strong>가 들어간다.</li>
                     <li>문자열과 숫자를 <strong>섞어 놓아도</strong> 된다.</li>
@@ -103,7 +103,7 @@
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>print("점수는", 90)</code>은 됩니다. 그런데
                     <code>print("점수는" + 90)</code>은 <strong>오류가 납니다.</strong>
-                    쉼표는 <strong>「나열하라」</strong>는 뜻이고 더하기는 <strong>「이어 붙이라」</strong>는 뜻인데,
+                    쉼표는 <strong>「나열하라」</strong>는 뜻이고 문자열에 쓴 더하기는 <strong>「이어 붙이라」</strong>는 뜻인데,
                     문자열과 숫자는 이어 붙일 수 없기 때문입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
@@ -254,7 +254,7 @@
                     <li><code>map(int, &hellip;)</code> &mdash; <strong>나눈 값마다 <code>int</code>를 적용</strong>한다.</li>
                 </ol>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    왼쪽의 <code>kor, eng</code>에는 <strong>나온 값이 순서대로 하나씩 대입됩니다.</strong>
+                    왼쪽의 <code>kor, eng</code>에는 <strong>변환된 값이 순서대로 하나씩 대입됩니다.</strong>
                     <strong>왼쪽 변수의 개수와 값의 개수가 같아야</strong> 하고,
                     다르면 오류가 납니다 &mdash; 사용자가 값을 하나만 입력하면 그렇게 됩니다.
                 </p>
@@ -288,7 +288,7 @@
                 <h3 class="text-xl font-black text-slate-900"><code>sep</code>과 <code>end</code></h3>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <code>sep</code>은 값과 값 사이, <code>end</code>는 출력이 끝난 뒤.
-                    <code>end=""</code>를 주면 줄이 바뀌지 않는다.
+                    <code>end=""</code>를 지정하면 줄이 바뀌지 않는다.
                 </p>
             </div>
             <div class="section-card space-y-2">
@@ -319,7 +319,7 @@
         </div>
 
         <div id="q1" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">1. <code>age = input()</code>으로 17을 받았다. <code>age + 1</code>은?</p>
+            <p class="font-black text-lg text-slate-900">1. <code>age = input()</code>으로 17을 입력받았다. <code>age + 1</code>은?</p>
             <div class="space-y-3">
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'input이 반환한 값은 문자열입니다. 숫자처럼 더해지지 않습니다.')">
                     ① 18
