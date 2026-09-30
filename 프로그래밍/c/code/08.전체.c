@@ -9,7 +9,7 @@ int main(void) {
     scanf("%49s", word);
 
     printf("찾을 글자: ");
-    scanf(" %c", &target);        // %c 앞의 빈칸이 남은 엔터를 건너뛴다
+    scanf(" %c", &target);        // %c 앞의 공백이 남은 줄바꿈 문자를 건너뛴다
 
     int len = (int) strlen(word);
     int count = 0;

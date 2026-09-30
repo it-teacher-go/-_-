@@ -5,8 +5,8 @@ int main(void) {
     int sum = 0;
 
     for (int i = 0; i < 5; i = i + 1) {
-        printf("%d번째 점수: ", i + 1);     // 사람에게는 1번부터라고 말한다
-        scanf("%d", &score[i]);             // 칸 하나에 곧바로 받는다
+        printf("%d번째 점수: ", i + 1);     // 사람에게는 1번부터 보여 준다
+        scanf("%d", &score[i]);             // 요소 하나에 바로 입력받는다
     }
 
     for (int i = 0; i < 5; i = i + 1) {

@@ -8,10 +8,10 @@ int main(void) {
 
     printf("글자 수: %d\n", (int) strlen(a));      // 6
 
-    strcpy(copy, a);                                // a에 담긴 것을 copy로 옮겨 적는다
+    strcpy(copy, a);                                // a에 저장된 문자열을 copy에 복사한다
     printf("옮겨 적은 것: %s\n", copy);             // banana
 
-    if (strcmp(a, b) == 0) {                        // 같으면 0을 돌려준다
+    if (strcmp(a, b) == 0) {                        // 두 문자열이 같으면 결과가 0이다
         printf("같습니다\n");
     } else {
         printf("다릅니다\n");                       // 다릅니다

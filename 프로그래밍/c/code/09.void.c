@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-void star(int n) {                   // 받기는 하지만 돌려주지 않는다
+void star(int n) {                   // 매개변수는 있지만 반환값은 없다
     for (int i = 0; i < n; i = i + 1) {
         printf("*");
     }
     printf("\n");
 }
 
-void line(void) {                    // 받지도 돌려주지도 않는다
+void line(void) {                    // 매개변수도 반환값도 없다
     printf("--------\n");
 }
 

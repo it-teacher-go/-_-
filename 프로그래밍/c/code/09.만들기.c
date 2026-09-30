@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-double area(double r) {              // 돌려줄 종류 / 이름 / 받을 것
-    return 3.14159 * r * r;          // 값을 만들어 부른 자리로 돌려준다
+double area(double r) {              // 반환형 / 함수 이름 / 매개변수
+    return 3.14159 * r * r;          // 값을 계산해 호출한 곳으로 반환한다
 }
 
 int main(void) {

@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-int bigger(int a, int b) {           // 받을 것이 둘이면 쉼표로 잇는다
+int bigger(int a, int b) {           // 매개변수가 둘이면 쉼표로 구분한다
     if (a > b) {
-        return a;                    // return을 만나면 「그 자리에서」 함수가 끝난다
+        return a;                    // return을 만나면 「바로」 함수가 끝난다
     }
     return b;
 }

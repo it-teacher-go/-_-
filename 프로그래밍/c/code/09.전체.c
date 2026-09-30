@@ -1,19 +1,19 @@
 #include <stdio.h>
 
-int is_prime(int n) {                // 소수면 1, 아니면 0을 돌려준다
+int is_prime(int n) {                // 소수면 1, 아니면 0을 반환한다
     if (n < 2) {
         return 0;
     }
     for (int i = 2; i < n; i = i + 1) {
         if (n % i == 0) {
-            return 0;                // 나누어떨어지면 그 자리에서 끝낸다
+            return 0;                // 나누어떨어지면 바로 끝낸다
         }
     }
     return 1;
 }
 
 void show(int n) {
-    if (is_prime(n)) {               // 함수 안에서 다른 함수를 부를 수 있다
+    if (is_prime(n)) {               // 함수 안에서 다른 함수를 호출할 수 있다
         printf("%d ", n);
     }
 }

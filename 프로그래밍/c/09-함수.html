@@ -37,10 +37,10 @@
             <div>
                 <p class="font-black text-base text-slate-500 mb-2 uppercase tracking-widest">학습 목표</p>
                 <ol class="space-y-1 text-base font-medium text-slate-800 list-decimal list-outside pl-5">
-                    <li>여러 곳에 흩어진 같은 일을 함수 하나로 묶을 수 있다.</li>
-                    <li>돌려줄 종류·이름·받을 것을 갖추어 함수를 만들고 부를 수 있다.</li>
-                    <li>값을 받는 자리와 돌려주지 않는 함수를 가려 쓸 수 있다.</li>
-                    <li>함수에 넘어가는 것이 값의 사본이라는 것을 알고 그 결과를 설명할 수 있다.</li>
+                    <li>여러 곳에 흩어진 같은 코드를 함수 하나로 묶을 수 있다.</li>
+                    <li>반환형·함수 이름·매개변수를 갖추어 함수를 정의하고 호출할 수 있다.</li>
+                    <li>매개변수가 여럿인 함수와 값을 반환하지 않는 함수를 구별해 쓸 수 있다.</li>
+                    <li>함수에 전달되는 것이 값의 사본이라는 것을 알고, 그 때문에 생기는 결과를 설명할 수 있다.</li>
                 </ol>
             </div>
         </div>
@@ -58,9 +58,9 @@
         </div>
         <div class="hidden md:flex flex-wrap justify-end gap-x-4 gap-y-1 font-bold text-slate-500 text-base">
             <a href="#why" class="hover:text-orange-600 transition">같은 일이 여러 곳에</a>
-            <a href="#make" class="hover:text-orange-600 transition">만들고 부르기</a>
-            <a href="#give" class="hover:text-orange-600 transition">주고받기</a>
-            <a href="#copy" class="hover:text-orange-600 transition">넘어가는 것은 사본</a>
+            <a href="#make" class="hover:text-orange-600 transition">정의와 호출</a>
+            <a href="#give" class="hover:text-orange-600 transition">매개변수와 반환</a>
+            <a href="#copy" class="hover:text-orange-600 transition">전달되는 것은 사본</a>
             <a href="#summary" class="hover:text-orange-600 transition">핵심 정리</a>
             <a href="#quiz" class="hover:text-orange-600 transition">퀴즈</a>
         </div>
@@ -75,7 +75,7 @@
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-black text-slate-900">같은 일이 여러 곳에</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">고쳐야 할 자리가 흩어지면 하나를 빠뜨리기 쉽습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">고쳐야 할 곳이 흩어져 있으면 하나를 빠뜨리기 쉽습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
@@ -85,45 +85,45 @@
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>세 줄이 문제가 아닙니다</p>
                 <ul class="space-y-2 text-base text-slate-700 list-disc list-outside pl-5">
                     <li>원주율을 더 정밀하게 바꾸려면 <strong>세 곳을 모두</strong> 고쳐야 합니다.
-                        한 곳을 빠뜨리면 <strong>그 한 줄만 다른 답</strong>을 냅니다.</li>
+                        한 곳을 빠뜨리면 <strong>그 줄만 다른 결과</strong>를 출력합니다.</li>
                     <li>읽는 사람이 <code>3.14159 * r * r</code>을 하나씩 살펴보아야
                         <strong>「아, 원의 넓이구나」</strong>를 알 수 있습니다.</li>
-                    <li>이 계산이 필요한 곳이 열 군데가 되면 <strong>같은 식이 열 번</strong> 적힙니다.</li>
+                    <li>이 계산이 필요한 곳이 열 군데가 되면 <strong>같은 식을 열 번</strong> 써야 합니다.</li>
                 </ul>
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900">일에 이름을 붙여 한곳에 둡니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>함수(function)</strong>는 <strong>하나의 일을 묶어 이름을 붙여 둔 것</strong>입니다.
-                    묶어 두면 그 일이 필요한 곳에서 <strong>이름만 부르면</strong> 되고,
+                    <strong>함수(function)</strong>는 <strong>하나의 일을 하는 코드를 묶어 이름을 붙여 둔 것</strong>입니다.
+                    묶어 두면 그 일이 필요한 곳에서 이름만 부르면 되고,
                     고칠 일이 생기면 <strong>묶어 둔 한 곳만</strong> 고치면 됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     <strong>함수는 줄 수를 줄이려고 쓰는 것이 아닙니다.</strong>
-                    한 번밖에 안 쓰는 일도 함수로 빼면 좋을 때가 있습니다 &mdash;
-                    <strong>이름이 「무엇을 하는 코드인지」를 대신 말해 주기</strong> 때문입니다.
+                    한 번만 쓰는 코드도 함수로 분리하면 좋을 때가 있습니다.
+                    함수 이름이 「무엇을 하는 코드인지」를 알려 주기 때문입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
                 사실 우리는 함수를 이미 쓰고 있었습니다.
-                <code>printf</code>도 <code>strlen</code>도 <strong>누군가 묶어 이름을 붙여 둔 함수</strong>입니다.
-                <code>#include</code>는 그 묶음을 가져다 쓰겠다는 표시였습니다.
-                이 차시에서는 가져다 쓰는 쪽에서 만드는 쪽으로 넘어갑니다.
+                <code>printf</code>도 <code>strlen</code>도 <strong>누군가 미리 만들어 이름을 붙여 둔 함수</strong>입니다.
+                <code>#include</code>는 그런 함수들이 모여 있는 파일을 포함하겠다는 표시였습니다.
+                이 차시에서는 함수를 가져다 쓰는 쪽에서 직접 만드는 쪽으로 넘어갑니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">지금까지 쓴 코드 가운데 「같은 식이 두 번 이상 나온 자리」를 하나 떠올려 보세요. 그 일에 이름을 붙인다면 무엇이라 부르겠습니까?</p>
+            <p class="text-base text-slate-700 leading-relaxed">지금까지 쓴 코드 가운데 같은 식이 두 번 이상 나온 곳을 하나 떠올려 보세요. 그 일을 함수로 만든다면 이름을 무엇이라 붙이겠습니까?</p>
         </div>
     </section>
 
-    <!-- ===== 만들고 부르기 ===== -->
+    <!-- ===== 정의와 호출 ===== -->
     <section id="make" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">만들고 부르기</h2>
+            <h2 class="text-3xl font-black text-slate-900">정의와 호출</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">원의 넓이를 구하는 세 줄을 그대로 함수로 옮겨 봅시다.</p>
         </div>
@@ -132,63 +132,64 @@
             <pre class="language-c"><code class="language-c" data-src="code/09.만들기.c"></code></pre>
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 284" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="함수 선언을 돌려줄 종류와 이름과 받을 것 세 조각으로 나누어 보인 해부도">
-                    <text x="20" y="28" font-size="17" fill="#0f172a" font-weight="700">함수를 만들 때 적는 세 자리</text>
+                     role="img" aria-label="함수의 첫 줄을 반환형과 함수 이름과 매개변수 세 부분으로 나누어 보인 해부도">
+                    <text x="20" y="28" font-size="17" fill="#0f172a" font-weight="700">함수를 정의할 때 쓰는 세 부분</text>
                     <rect x="20" y="56" width="130" height="56" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="85" y="92" font-size="20" fill="#c2410c" font-weight="700" text-anchor="middle">double</text>
                     <rect x="158" y="56" width="120" height="56" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="218" y="92" font-size="20" fill="#c2410c" font-weight="700" text-anchor="middle">area</text>
                     <rect x="286" y="56" width="200" height="56" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
                     <text x="386" y="92" font-size="20" fill="#c2410c" font-weight="700" text-anchor="middle">(double r)</text>
-                    <text x="85" y="138" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">돌려줄 종류</text>
-                    <text x="218" y="138" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">이름</text>
-                    <text x="386" y="138" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">받을 것</text>
+                    <text x="85" y="138" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">반환형</text>
+                    <text x="218" y="138" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">함수 이름</text>
+                    <text x="386" y="138" font-size="17" fill="#334155" font-weight="700" text-anchor="middle">매개변수</text>
                     <text x="85" y="162" font-size="16" fill="#64748b" text-anchor="middle">없으면 void</text>
                     <text x="218" y="162" font-size="16" fill="#64748b" text-anchor="middle">하는 일이 드러나게</text>
                     <text x="386" y="162" font-size="16" fill="#64748b" text-anchor="middle">없으면 void</text>
                     <rect x="20" y="190" width="466" height="54" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
                     <text x="253" y="224" font-size="20" fill="#0f172a" font-weight="700" text-anchor="middle">return 3.14159 * r * r;</text>
-                    <text x="20" y="274" font-size="16" fill="#64748b">return이 만든 값이 부른 자리에 놓인다.</text>
+                    <text x="20" y="274" font-size="16" fill="#64748b">return 뒤의 값이 호출한 곳으로 반환된다.</text>
                 </svg>
             </div>
 
 
             <p class="text-base text-slate-700 leading-relaxed">
-                화면에 찍히는 것은 『같은 일이 여러 곳에』 절의 코드와 똑같습니다.
-                하는 일이 달라진 것이 아니라 <strong>같은 일을 다르게 정리했을 뿐</strong>입니다.
-                이제 원주율은 한 곳에만 있고, 부르는 쪽은 <code>area</code>라는 이름으로
-                무엇을 구하는지 말해 주고 있습니다.
+                화면에 출력되는 결과는 『같은 일이 여러 곳에』 절의 코드와 똑같습니다.
+                하는 일이 달라진 것이 아니라 같은 일을 다르게 정리했을 뿐입니다.
+                이제 원주율은 한 곳에만 있고, 함수를 쓰는 쪽에서는 <code>area</code>라는 이름만 보고도
+                무엇을 구하는지 알 수 있습니다.
+                이렇게 함수를 만드는 것을 함수 정의라고 하고, 함수 이름을 써서 실행하는 것을 <strong>호출(call)</strong>이라고 합니다.
             </p>
 
             <div class="overflow-x-auto">
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-36">자리</th>
+                        <th class="w-36">부분</th>
                         <th class="w-32">예시</th>
-                        <th>뜻</th>
+                        <th>의미</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>돌려줄 종류</td>
+                        <td>반환형</td>
                         <td><code>double</code></td>
-                        <td>부른 자리로 어떤 종류의 값을 넘겨줄지. 안 넘겨주면 <code>void</code>입니다.</td>
+                        <td>함수가 결과로 돌려줄 값의 자료형. 결과를 돌려주는 것을 <strong>반환(return)</strong>이라고 합니다. 반환할 값이 없으면 <code>void</code>입니다.</td>
                     </tr>
                     <tr>
-                        <td>이름</td>
+                        <td>함수 이름</td>
                         <td><code>area</code></td>
-                        <td>부를 때 쓰는 말. <strong>무슨 일을 하는지 드러나게</strong> 짓습니다.</td>
+                        <td>호출할 때 쓰는 이름. <strong>무슨 일을 하는지 드러나게</strong> 짓습니다.</td>
                     </tr>
                     <tr>
-                        <td>받을 것</td>
+                        <td>매개변수</td>
                         <td><code>double r</code></td>
-                        <td>일을 하려면 밖에서 무엇을 받아야 하는지. <strong>매개변수</strong>라고 합니다.</td>
+                        <td>호출할 때 전달받은 값을 저장할 변수. 함수가 일을 하는 데 필요한 값을 밖에서 받습니다.</td>
                     </tr>
                     <tr>
                         <td>중괄호 안</td>
                         <td><code>return …;</code></td>
-                        <td>실제로 하는 일. <code>return</code>이 값을 부른 자리로 돌려보냅니다.</td>
+                        <td>실제로 하는 일. <code>return</code>이 값을 호출한 곳으로 반환합니다.</td>
                     </tr>
                     </tbody>
                 </table>
@@ -197,94 +198,95 @@
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
                 <p class="font-black text-lg text-slate-900"><code>area(2.0)</code>은 결국 값 하나입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>printf("%.2f\n", area(2.0))</code>에서 <strong><code>area(2.0)</code>이 먼저 계산됩니다.</strong>
-                    함수가 돌면서 <code>return</code>이 값을 내놓으면, 그 자리에 <strong>값이 놓인 것처럼</strong> 이어집니다.
-                    <code>area(2.0)</code>이 돌려주는 값은 12.56636이므로 <code>printf("%.2f\n", 12.56636)</code>이라고 적은 것과 같아지고, 화면에는 12.57이 찍힙니다.
+                    <code>printf("%.2f\n", area(2.0))</code>에서는 <strong><code>area(2.0)</code>이 먼저 계산됩니다.</strong>
+                    함수가 실행되다가 <code>return</code>이 값을 반환하면, 호출한 곳에 그 값을 쓴 것처럼 실행이 이어집니다.
+                    <code>area(2.0)</code>이 반환하는 값은 12.56636이므로 <code>printf("%.2f\n", 12.56636)</code>이라고 쓴 것과 같아지고, 화면에는 12.57이 출력됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 함수를 부른 결과는 <strong>변수에 담을 수도 있고 계산에 섞을 수도</strong> 있습니다.
-                    <strong>값이 오는 자리라면 어디든 놓을 수 있습니다.</strong>
+                    그래서 함수의 반환값은 <strong>변수에 저장할 수도 있고 다른 계산에 쓸 수도</strong> 있습니다.
+                    값을 쓸 수 있는 곳이라면 어디에든 함수 호출을 쓸 수 있습니다.
                 </p>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i><code>main</code>도 함수였습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>int main(void)</code>를 다시 보면 방금 배운 세 자리가 그대로 있습니다 &mdash;
-                    <strong><code>int</code>를 돌려주고, 이름은 <code>main</code>이고, 받는 것은 없습니다.</strong>
-                    <code>void</code>가 「받을 것이 없다」는 뜻이었던 것입니다.
+                    <code>int main(void)</code>를 다시 보면 방금 배운 세 부분이 그대로 있습니다 &mdash;
+                    <strong>반환형은 <code>int</code>, 함수 이름은 <code>main</code>이고, 매개변수는 없습니다.</strong>
+                    괄호 안의 <code>void</code>가 「매개변수가 없다」는 뜻이었던 것입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    끝의 <code>return 0;</code>도 이제 읽힙니다.
-                    <strong>「잘 끝났다」는 뜻의 0을 프로그램을 실행한 운영 체제에 돌려주는 것</strong>입니다.
-                    지금까지 뜻 모르고 적던 두 줄이 함수의 규칙을 따르고 있었습니다.
+                    끝의 <code>return 0;</code>도 이제 이해할 수 있습니다.
+                    <strong>「정상적으로 끝났다」는 뜻의 0을 프로그램을 실행한 운영 체제에 반환하는 것</strong>입니다.
+                    지금까지 의미를 모르고 쓰던 두 줄이 함수의 규칙을 따르고 있었습니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                한 가지 지킬 것이 있습니다. <strong>부르기 전에 「이런 함수가 있다」고 알려 두어야</strong> 합니다.
-                <code>area</code>를 <code>main</code> 위에 적은 것이 그래서입니다.
-                아래에 적고 싶다면 위에 한 줄로 미리 알려 둡니다.
+                한 가지 지킬 것이 있습니다. <strong>함수를 호출하기 전에 「이런 함수가 있다」고 알려 두어야</strong> 합니다.
+                <code>area</code>를 <code>main</code> 위에 정의한 것이 그래서입니다.
+                아래에 정의하고 싶다면 위에 함수의 첫 줄만 한 번 더 써서 미리 알려 둡니다.
+                이 줄을 함수 원형(function prototype)이라고 합니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/09.미리알리기.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                두 방법 다 맞습니다. 함수가 몇 개 안 되면 위에 적는 것이 간단하고,
-                여러 개가 서로를 부르기 시작하면 미리 알려 두는 줄만 위에 모으는 편이 정리됩니다.
-                미리 알리는 줄은 중괄호 없이 세미콜론으로 끝냅니다.
+                두 방법 다 맞습니다. 함수가 몇 개 안 되면 위에 정의하는 것이 간단하고,
+                여러 함수가 서로를 호출하기 시작하면 함수 원형만 위에 모아 두는 편이 깔끔합니다.
+                함수 원형은 중괄호 없이 세미콜론으로 끝냅니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed">섭씨를 화씨로 바꾸는 함수를 만든다면 세 자리에 각각 무엇을 적어야 할까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed">섭씨를 화씨로 바꾸는 함수를 만든다면 반환형·함수 이름·매개변수에 각각 무엇을 써야 할까요?</p>
         </div>
     </section>
 
-    <!-- ===== 주고받기 ===== -->
+    <!-- ===== 매개변수와 반환 ===== -->
     <section id="give" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">주고받기</h2>
+            <h2 class="text-3xl font-black text-slate-900">매개변수와 반환</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">받는 것도 돌려주는 것도 없을 수 있습니다.</p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">매개변수도 반환값도 없을 수 있습니다.</p>
         </div>
 
         <div class="section-card space-y-6">
             <pre class="language-c"><code class="language-c" data-src="code/09.여럿.c"></code></pre>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">받을 것이 여럿이면 쉼표로 잇습니다</p>
+                <p class="font-black text-lg text-slate-900">매개변수가 여럿이면 쉼표로 구분합니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>종류를 하나마다 따로 적어야</strong> 합니다.
+                    <strong>매개변수마다 자료형을 따로 써야</strong> 합니다.
                     <code>int a, b</code>가 아니라 <code>int a, int b</code>입니다.
-                    부를 때는 <strong>적어 둔 순서대로</strong> 값이 들어갑니다 &mdash;
-                    <code>bigger(7, 3)</code>이면 <code>a</code>에 7, <code>b</code>에 3입니다.
+                    호출할 때는 <strong>쓴 순서대로</strong> 값이 전달됩니다 &mdash;
+                    <code>bigger(7, 3)</code>이면 <code>a</code>에 7, <code>b</code>에 3이 저장됩니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수를 만들 때 적은 <code>a</code>·<code>b</code>를 <strong>매개변수(parameter)</strong>,
-                    부를 때 실제로 넣은 <code>7</code>·<code>3</code>을 <strong>인자(argument)</strong>라고 합니다.
-                    <strong>받을 자리와 실제로 들어간 값</strong>을 가리키는 말입니다.
+                    함수를 정의할 때 쓴 <code>a</code>·<code>b</code>를 <strong>매개변수(parameter)</strong>,
+                    호출할 때 실제로 넣은 <code>7</code>·<code>3</code>을 <strong>인자(argument)</strong>라고 합니다.
+                    호출하면 인자의 값이 매개변수에 차례로 저장됩니다.
                 </p>
             </div>
 
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-orange-900"><code>return</code>은 그 자리에서 함수를 끝냅니다</p>
+                <p class="font-black text-lg text-orange-900"><code>return</code>을 만나면 함수가 바로 끝납니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>bigger</code>에는 <code>else</code>가 없습니다. 없어도 되는 까닭은
+                    <code>bigger</code>에는 <code>else</code>가 없습니다. 없어도 되는 이유는
                     <strong><code>return a;</code>를 만나면 아래 줄로 내려가지 않고 함수가 끝나기</strong> 때문입니다.
-                    아래 <code>return b;</code>에 닿았다는 것은 <strong>조건이 거짓이었다는 뜻</strong>입니다.
+                    아래 <code>return b;</code>까지 실행되었다는 것은 조건이 거짓이었다는 뜻입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    그래서 <code>return</code>은 함수 안에 <strong>여러 개 있어도 됩니다.</strong>
-                    다만 <strong>한 번 부를 때 실제로 돌려주는 값은 하나뿐</strong>입니다 &mdash;
-                    처음 만나는 <code>return</code>에서 끝나기 때문입니다.
+                    그래서 <code>return</code>은 함수 안에 여러 개 있어도 됩니다.
+                    다만 <strong>한 번 호출할 때 실제로 반환되는 값은 하나뿐</strong>입니다 &mdash;
+                    처음 만나는 <code>return</code>에서 함수가 끝나기 때문입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                돌려줄 것이 없는 함수도 있습니다. 화면에 찍기만 하고 끝나는 일이 그렇습니다.
-                이때 <strong>돌려줄 종류 자리에 <code>void</code></strong>를 적습니다.
+                반환할 값이 없는 함수도 있습니다. 화면에 출력만 하고 끝나는 함수가 그렇습니다.
+                이때는 <strong>반환형으로 <code>void</code></strong>를 씁니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/09.void.c"></code></pre>
@@ -293,71 +295,71 @@
                 <table class="table-prose">
                     <thead>
                     <tr>
-                        <th class="w-40">모양</th>
-                        <th class="w-36">받는가</th>
-                        <th>돌려주는가</th>
+                        <th class="w-40">함수의 첫 줄</th>
+                        <th class="w-36">매개변수</th>
+                        <th>반환값</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><code>double area(double r)</code></td>
-                        <td>받는다</td>
-                        <td>돌려준다</td>
+                        <td>있다</td>
+                        <td>있다</td>
                     </tr>
                     <tr>
                         <td><code>void star(int n)</code></td>
-                        <td>받는다</td>
-                        <td>돌려주지 않는다</td>
+                        <td>있다</td>
+                        <td>없다</td>
                     </tr>
                     <tr>
                         <td><code>void line(void)</code></td>
-                        <td>받지 않는다</td>
-                        <td>돌려주지 않는다</td>
+                        <td>없다</td>
+                        <td>없다</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>같은 <code>void</code>가 두 자리에 나옵니다</p>
+                <p class="font-black text-lg text-amber-900"><i class="fa-solid fa-lightbulb mr-2"></i>같은 <code>void</code>가 두 곳에 쓰입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>앞의 <code>void</code>는 「돌려줄 것이 없다」</strong>,
-                    <strong>괄호 안의 <code>void</code>는 「받을 것이 없다」</strong>입니다.
+                    <strong>앞의 <code>void</code>는 「반환값이 없다」</strong>,
+                    괄호 안의 <code>void</code>는 「매개변수가 없다」는 뜻입니다.
                     <code>void line(void)</code>는 둘 다인 경우입니다.
-                    <strong>같은 낱말이 자리에 따라 다른 말을 하니 어디에 있는지를 봅니다.</strong>
+                    같은 단어라도 쓰인 위치에 따라 의미가 다르니 어디에 있는지를 봅니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    돌려주지 않는 함수는 <strong>값이 오는 자리에 놓을 수 없습니다.</strong>
-                    <code>printf("%d", line())</code>처럼 쓸 수 없고, <code>line();</code>처럼 <strong>한 줄로 부릅니다.</strong>
+                    반환값이 없는 함수는 <strong>값이 필요한 곳에 쓸 수 없습니다.</strong>
+                    <code>printf("%d", line())</code>처럼 쓸 수 없고, <code>line();</code>처럼 문장 하나로 호출합니다.
                 </p>
             </div>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>bigger</code>에 셋 가운데 가장 큰 값을 묻고 싶다면 어떻게 하겠습니까? 함수를 고치는 방법과 두 번 부르는 방법을 둘 다 생각해 보세요.</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>bigger</code>로 세 수 가운데 가장 큰 값을 구하고 싶다면 어떻게 하겠습니까? 함수를 고치는 방법과 두 번 호출하는 방법을 모두 생각해 보세요.</p>
         </div>
     </section>
 
-    <!-- ===== 넘어가는 것은 사본 ===== -->
+    <!-- ===== 전달되는 것은 사본 ===== -->
     <section id="copy" class="scroll-mt-24 space-y-8">
         <div class="text-center space-y-4">
-            <h2 class="text-3xl font-black text-slate-900">넘어가는 것은 사본</h2>
+            <h2 class="text-3xl font-black text-slate-900">전달되는 것은 사본</h2>
             <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-semibold">함수 안에서 바꾼 값은 밖에도 남을까요?</p>
         </div>
 
         <div class="section-card space-y-6">
             <p class="text-base text-slate-700 leading-relaxed">
-                함수에 변수를 넘겼습니다. 함수 안에서 그 값을 바꿨습니다.
-                <strong>부른 쪽의 변수는 어떻게 될까요?</strong>
+                함수에 변수를 인자로 전달했습니다. 함수 안에서 그 값을 바꿨습니다.
+                <strong>호출한 쪽의 변수는 어떻게 될까요?</strong>
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/09.사본.c"></code></pre>
 
             <div class="overflow-x-auto">
                 <svg viewBox="0 0 576 246" class="w-full h-auto max-w-xl mx-auto min-w-[576px]"
-                     role="img" aria-label="왼쪽 main의 변수 n에는 7이 들어 있고 오른쪽 change 함수의 n은 값을 베껴 받은 다른 자리다. 함수 안에서 100으로 바꿔도 왼쪽 n은 7 그대로다">
+                     role="img" aria-label="왼쪽 main의 변수 n에는 7이 들어 있고 오른쪽 change 함수의 n은 값을 복사해 받은 다른 변수다. 함수 안에서 100으로 바꿔도 왼쪽 n은 7 그대로다">
                     <defs>
                         <marker id="ar09" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                             <path d="M0 0 L10 5 L0 10 z" fill="#ea580c"/>
@@ -373,11 +375,11 @@
                     <rect x="330" y="44" width="230" height="150" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
                     <text x="445" y="70" font-size="17" font-weight="700" fill="#475569" text-anchor="middle">change</text>
                     <rect x="370" y="88" width="150" height="66" rx="8" fill="#ffffff" stroke="#f97316" stroke-width="2"/>
-                    <text x="445" y="112" font-size="16" fill="#94a3b8" text-anchor="middle">n &mdash; 다른 자리</text>
+                    <text x="445" y="112" font-size="16" fill="#94a3b8" text-anchor="middle">n &mdash; 다른 변수</text>
                     <text x="445" y="142" font-size="24" font-weight="700" fill="#e11d48" text-anchor="middle">100</text>
 
                     <line x1="212" y1="121" x2="362" y2="121" stroke="#ea580c" stroke-width="3" marker-end="url(#ar09)"/>
-                    <text x="288" y="226" font-size="16" font-weight="700" fill="#c2410c" text-anchor="middle">7만 베껴 건넨다</text>
+                    <text x="288" y="226" font-size="16" font-weight="700" fill="#c2410c" text-anchor="middle">값 7만 복사해 전달</text>
 
                     <text x="131" y="226" font-size="17" font-weight="700" fill="#0f172a" text-anchor="middle">그대로 7</text>
                     <text x="445" y="226" font-size="17" font-weight="700" fill="#0f172a" text-anchor="middle">여기서만 100</text>
@@ -388,10 +390,11 @@
             <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-rose-900"><i class="fa-solid fa-triangle-exclamation mr-2"></i>안에서는 100인데 밖에서는 7입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수를 부를 때 넘어가는 것은 <strong>변수 자체가 아니라 「그 안에 담긴 값을 베낀 것」</strong>입니다.
-                    <code>change(n)</code>은 <strong>7이라는 값만 건네줍니다.</strong>
-                    함수 안의 <code>n</code>은 <strong>그 값을 받아 새로 만든 다른 자리</strong>이고,
-                    그것을 100으로 바꿔도 <strong>원래 자리는 손대지 않은</strong> 것입니다.
+                    함수를 호출할 때 전달되는 것은 <strong>변수 자체가 아니라 그 변수에 저장된 값의 사본</strong>입니다.
+                    <code>change(n)</code>은 7이라는 값만 전달합니다.
+                    함수 안의 <code>n</code>은 그 값을 받아 새로 만든 다른 변수이고,
+                    그것을 100으로 바꿔도 원래 변수는 바뀌지 않습니다.
+                    이처럼 인자의 값을 복사해 전달하는 방식을 <strong>값에 의한 전달(call by value)</strong>이라고 합니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
                     사물함으로 말하면 안에 든 것의 복사본을 건넨 셈이라,
@@ -400,21 +403,21 @@
             </div>
 
             <div class="bg-white border-l-4 border-l-orange-500 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <p class="font-black text-lg text-slate-900">이름이 같아도 다른 자리입니다</p>
+                <p class="font-black text-lg text-slate-900">이름이 같아도 다른 변수입니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    위 코드에는 <code>n</code>이 둘 있습니다. 이름이 같은데도 서로를 흔들지 않았습니다.
-                    <strong>함수 안에서 만든 변수는 그 함수의 것</strong>이라, 함수가 끝나면 사라지고
-                    <strong>다른 함수에서는 보이지도 않습니다.</strong> 이런 변수를 <strong>지역 변수</strong>라고 합니다.
+                    위 코드에는 <code>n</code>이 둘 있습니다. 이름이 같은데도 서로 영향을 주지 않았습니다.
+                    함수 안에서 선언한 변수는 그 함수에 속해서, 함수가 끝나면 사라지고
+                    다른 함수에서는 보이지도 않습니다. 이런 변수를 <strong>지역 변수(local variable)</strong>라고 하며, 매개변수도 지역 변수입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    덕분에 함수를 만들 때 <strong>다른 데서 무슨 이름을 썼는지 걱정하지 않아도</strong> 됩니다.
+                    덕분에 함수를 만들 때 다른 함수에서 어떤 변수 이름을 썼는지 걱정하지 않아도 됩니다.
                     <code>i</code>든 <code>sum</code>이든 마음대로 쓸 수 있습니다.
-                    <strong>이름이 서로 부딪히지 않는 것이 함수로 나누는 큰 이득</strong> 가운데 하나입니다.
+                    <strong>변수 이름이 서로 충돌하지 않는 것이 함수로 나누는 큰 장점</strong> 가운데 하나입니다.
                 </p>
             </div>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                이 성질이 문제가 되는 대표적인 예가 <strong>두 값을 맞바꾸는 일</strong>입니다.
+                이 성질이 문제가 되는 대표적인 예가 <strong>두 변수의 값을 맞바꾸는 일</strong>입니다.
             </p>
 
             <pre class="language-c"><code class="language-c" data-src="code/09.맞바꾸기.c"></code></pre>
@@ -422,39 +425,38 @@
             <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 space-y-2">
                 <p class="font-black text-lg text-orange-900">함수 안에서는 분명히 바뀌었습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>swap</code>의 논리에는 잘못이 없습니다. 안에서 찍어 보면 <code>a=2 b=1</code>로 <strong>제대로 맞바뀌어</strong> 있습니다.
+                    <code>swap</code>의 논리에는 잘못이 없습니다. 함수 안에서 출력해 보면 <code>a=2 b=1</code>로 <strong>제대로 맞바뀌어</strong> 있습니다.
                     그런데 <strong>바뀐 것은 사본</strong>이고, 함수가 끝나면 그 사본은 사라집니다.
-                    <code>x</code>와 <code>y</code>는 처음부터 끝까지 아무 일도 겪지 않았습니다.
+                    <code>x</code>와 <code>y</code>의 값은 처음부터 끝까지 그대로입니다.
                 </p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>값을 베껴 넘기는 이 방식으로는 함수가 부른 쪽의 변수를 바꿀 수 없습니다.</strong>
-                    돌려줄 수 있는 값이 하나뿐이니 <code>return</code>으로 둘을 한꺼번에 내보낼 수도 없습니다.
-                    <strong>지금 가진 도구로는 여기까지</strong>입니다.
+                    <strong>값에 의한 전달로는 함수가 호출한 쪽의 변수를 바꿀 수 없습니다.</strong>
+                    반환할 수 있는 값이 하나뿐이니 <code>return</code>으로 두 값을 한꺼번에 반환할 수도 없습니다.
                 </p>
             </div>
 
             <div class="bg-white border-l-4 border-l-slate-400 border border-slate-200 rounded-2xl p-6 space-y-2">
-                <p class="font-black text-lg text-slate-900">함수는 함수를 부를 수 있습니다</p>
+                <p class="font-black text-lg text-slate-900">함수 안에서 다른 함수를 호출할 수 있습니다</p>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    아래 프로그램에서 <code>show</code>가 <code>is_prime</code>을 부릅니다.
-                    <strong>일을 잘게 나누고 위에서 엮는 것</strong>이 함수를 쓰는 보람입니다.
-                    <code>is_prime</code>은 <strong>「소수인가」만</strong> 판단하고,
-                    <code>show</code>는 <strong>「찍을지 말지」만</strong> 정하고,
-                    <code>main</code>은 <strong>「어디까지 볼지」만</strong> 다룹니다.
+                    아래 프로그램에서는 <code>show</code>가 <code>is_prime</code>을 호출합니다.
+                    <strong>일을 잘게 나누고 위에서 조합하는 것</strong>이 함수를 쓰는 보람입니다.
+                    <code>is_prime</code>은 「소수인가」만 판단하고,
+                    <code>show</code>는 「출력할지 말지」만 정하고,
+                    <code>main</code>은 「어디까지 확인할지」만 다룹니다.
                 </p>
             </div>
 
             <pre class="language-c"><code class="language-c" data-src="code/09.전체.c"></code></pre>
 
             <p class="text-base text-slate-700 leading-relaxed">
-                <code>is_prime</code>이 <strong>1과 0을 돌려주고</strong> 그것을 <code>if</code>가 그대로 조건으로 쓰는 것을 보세요.
-                「참이면 1, 거짓이면 0」이라는 규칙이 함수의 돌려주는 값과 그대로 대응합니다.
+                <code>is_prime</code>이 <strong>1과 0을 반환하고</strong> 그 값을 <code>if</code>문이 그대로 조건으로 쓰는 것을 보세요.
+                「참이면 1, 거짓이면 0」이라는 규칙이 함수의 반환값과 그대로 대응합니다.
             </p>
         </div>
 
         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-6">
             <p class="font-black text-base text-sky-900 mb-2"><i class="fa-solid fa-circle-question mr-2"></i>스스로 확인</p>
-            <p class="text-base text-slate-700 leading-relaxed"><code>is_prime</code>은 <code>n</code>보다 작은 수를 모두 나눠 봅니다. 굳이 다 볼 필요가 없다면 어디까지만 보면 될까요?</p>
+            <p class="text-base text-slate-700 leading-relaxed"><code>is_prime</code>은 <code>n</code>을 2부터 <code>n - 1</code>까지의 수로 모두 나누어 봅니다. 모든 수로 나누어 볼 필요가 없다면 어디까지만 확인하면 될까요?</p>
         </div>
     </section>
 
@@ -469,29 +471,29 @@
             <div class="section-card space-y-2">
                 <h3 class="text-xl font-black text-slate-900">일에 이름을 붙인다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    묶어 두면 <strong>고칠 자리가 한 곳</strong>이 되고 이름이 뜻을 말해 준다.
+                    코드를 함수로 묶어 두면 <strong>고칠 곳이 한 곳</strong>이 되고 함수 이름이 하는 일을 알려 준다.
                     줄 수를 줄이려고 쓰는 것이 아니다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">세 자리를 갖춘다</h3>
+                <h3 class="text-xl font-black text-slate-900">세 부분을 갖춘다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <strong>돌려줄 종류 · 이름 · 받을 것</strong>을 적고 중괄호 안에 일을 쓴다.
-                    없으면 <code>void</code>를 적는다. <code>main</code>도 같은 규칙을 따른다.
+                    <strong>반환형 · 함수 이름 · 매개변수</strong>를 쓰고 중괄호 안에 할 일을 쓴다.
+                    반환값이나 매개변수가 없으면 <code>void</code>를 쓴다. <code>main</code>도 같은 규칙을 따른다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">부른 자리에 값이 놓인다</h3>
+                <h3 class="text-xl font-black text-slate-900">호출한 곳으로 값이 반환된다</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    <code>return</code>은 값을 돌려주며 그 자리에서 함수를 끝낸다.
-                    한 번 부를 때 돌려주는 값은 하나다.
+                    <code>return</code>은 값을 반환하며 그 즉시 함수를 끝낸다.
+                    한 번 호출할 때 반환되는 값은 하나다.
                 </p>
             </div>
             <div class="section-card space-y-2">
-                <h3 class="text-xl font-black text-slate-900">넘어가는 것은 사본</h3>
+                <h3 class="text-xl font-black text-slate-900">전달되는 것은 사본</h3>
                 <p class="text-base text-slate-700 leading-relaxed">
-                    함수 안의 변수는 <strong>이름이 같아도 다른 자리</strong>다.
-                    그래서 값을 베껴 넘기는 방식으로는 부른 쪽의 변수를 바꿀 수 없다.
+                    함수 안의 변수는 <strong>이름이 같아도 다른 변수</strong>(지역 변수)다.
+                    그래서 값에 의한 전달로는 호출한 쪽의 변수를 바꿀 수 없다.
                 </p>
             </div>
         </div>
@@ -508,13 +510,13 @@
         <div id="q1" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">1. <code>void line(void)</code>에서 두 <code>void</code>는 각각 무슨 뜻인가?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '앞은 돌려줄 종류 자리, 뒤는 받을 것 자리입니다. 자리가 뜻을 정합니다.')">
-                    ① 앞은 「돌려줄 것 없음」, 뒤는 「받을 것 없음」
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '앞은 반환형, 괄호 안은 매개변수를 쓰는 곳입니다. 쓰인 위치가 의미를 정합니다.')">
+                    ① 앞은 「반환값 없음」, 뒤는 「매개변수 없음」
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '순서가 뒤바뀌었습니다. 앞자리는 돌려줄 종류를 적는 곳입니다.')">
-                    ② 앞은 「받을 것 없음」, 뒤는 「돌려줄 것 없음」
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '순서가 뒤바뀌었습니다. 함수 이름 앞에는 반환형을 씁니다.')">
+                    ② 앞은 「매개변수 없음」, 뒤는 「반환값 없음」
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '같은 낱말이지만 자리가 달라 다른 말을 합니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '같은 단어지만 쓰인 위치가 달라 의미가 다릅니다.')">
                     ③ 둘 다 같은 뜻이라 하나는 없어도 된다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, 'void는 「비어 있다」는 뜻이지 값이 0이라는 뜻이 아닙니다.')">
@@ -524,15 +526,15 @@
         </div>
 
         <div id="q2" class="section-card space-y-4">
-            <p class="font-black text-lg text-slate-900">2. <code>int n = 7;</code>을 <code>change(n)</code>으로 넘겨 함수 안에서 <code>n = 100;</code>을 했다. 함수가 끝난 뒤 밖의 <code>n</code>은?</p>
+            <p class="font-black text-lg text-slate-900">2. <code>int n = 7;</code>을 <code>change(n)</code>으로 전달하고 함수 안에서 <code>n = 100;</code>을 실행했다. 함수가 끝난 뒤 <code>main</code>의 <code>n</code>은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수 안에서 바뀐 것은 사본입니다. 원래 자리는 손대지 않았습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수 안에서 바뀐 것은 사본입니다. 원래 변수는 바뀌지 않았습니다.')">
                     ① 100
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '넘어간 것은 값을 베낀 사본이라 원래 변수는 그대로입니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '전달된 것은 값의 사본이라 원래 변수는 그대로입니다.')">
                     ② 7
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수가 끝나도 부른 쪽의 변수는 사라지지 않습니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '함수가 끝나도 호출한 쪽의 변수는 사라지지 않습니다.')">
                     ③ 사라져서 쓸 수 없다
                 </button>
                 <button class="quiz-btn" onclick="checkAnswer(this, false, '결과는 정해져 있습니다. 언제나 7입니다.')">
@@ -544,16 +546,16 @@
         <div id="q3" class="section-card space-y-4">
             <p class="font-black text-lg text-slate-900">3. 함수 안에 <code>return</code>이 두 개 있을 때 알맞은 설명은?</p>
             <div class="space-y-3">
-                <button class="quiz-btn" onclick="checkAnswer(this, false, 'return이 여러 개인 것은 잘못이 아닙니다. 조건마다 다른 값을 돌려줄 때 흔히 씁니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, 'return이 여러 개인 것은 잘못이 아닙니다. 조건마다 다른 값을 반환할 때 흔히 씁니다.')">
                     ① 문법에 어긋나므로 하나만 두어야 한다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '두 값이 함께 나가지 않습니다. 처음 만나는 곳에서 함수가 끝납니다.')">
-                    ② 두 값이 모두 돌아간다
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '두 값이 함께 반환되지 않습니다. 처음 만나는 return에서 함수가 끝납니다.')">
+                    ② 두 값이 모두 반환된다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, true, '처음 만나는 return에서 함수가 끝나므로 실제로 돌아가는 값은 하나입니다.')">
-                    ③ 먼저 만나는 곳에서 끝나므로 돌아가는 값은 하나다
+                <button class="quiz-btn" onclick="checkAnswer(this, true, '처음 만나는 return에서 함수가 끝나므로 실제로 반환되는 값은 하나입니다.')">
+                    ③ 먼저 만나는 return에서 끝나므로 반환되는 값은 하나다
                 </button>
-                <button class="quiz-btn" onclick="checkAnswer(this, false, '아래 return은 위 조건이 거짓일 때 닿는 자리입니다. 쓸모없는 줄이 아닙니다.')">
+                <button class="quiz-btn" onclick="checkAnswer(this, false, '아래 return은 위 조건이 거짓일 때 실행되는 문장입니다. 쓸모없는 줄이 아닙니다.')">
                     ④ 뒤에 있는 return은 절대 실행되지 않는다
                 </button>
             </div>

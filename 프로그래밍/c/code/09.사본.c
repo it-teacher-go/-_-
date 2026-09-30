@@ -6,7 +6,7 @@ void change(int n) {                 // 여기 n은 「사본」이다
 }
 
 int main(void) {
-    int n = 7;                       // 여기 n과 위의 n은 서로 다른 자리다
+    int n = 7;                       // 여기 n과 위의 n은 서로 다른 변수다
 
     change(n);
     printf("함수 밖: %d\n", n);      // 7 — 그대로다
